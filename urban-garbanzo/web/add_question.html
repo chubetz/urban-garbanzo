@@ -11,7 +11,18 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <p>Ввод нового вопроса</p>
         <form name="add_question" action="add_q" method="POST">
+            <label>Тип вопроса</label>
+            <select name="type">
+                <option value="info">Информационный</option>
+                <option value="test">Тест</option>
+                <option value="tell">Описательный</option>
+            </select>
+            <br>
+            <p>Текст вопроса</p>
+            <textarea name="text" rows="10" cols="80"></textarea>
+            <br>
             <input type="submit" value="Отправить" /> 
         </form>
     </body>

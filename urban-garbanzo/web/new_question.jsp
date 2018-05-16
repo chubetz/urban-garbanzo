@@ -13,5 +13,6 @@
     </head>
     <body>
         <h2>Вопрос добавлен</h2>
+        Тип: ${pageContext.request.getParameter("type")}
     </body>
 </html>
