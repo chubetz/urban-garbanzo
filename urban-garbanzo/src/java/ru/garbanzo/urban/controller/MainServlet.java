@@ -12,6 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,13 +31,25 @@ public class MainServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    
+    
+    @Override
+    public void init()
+            throws ServletException {
         
         
-        getServletContext().getRequestDispatcher("/new_question.jsp").forward(request, response);
+        super.init(); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Class.forName("org.hsqldb.jdbc.JDBCDriver");
+            System.out.println("Connecting to database...");
+            //conn = DriverManager.getConnection(DB_URL,USER,PASS);            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
-        
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        getServletContext().getRequestDispatcher("/new_question.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

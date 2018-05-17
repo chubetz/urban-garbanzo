@@ -1,0 +1,27 @@
+Как работать с HSQL
+
+Положить JDBC-драйвер в Tomcat - можно через Netbeans (Servers - Apache.. - Sources - добавить hsqldb.jar)
+
+runserver.bat --help - список доступных аргументов
+
+новая БД:
+runserver.bat --database.0 file:C:\JAVA\hsql\test1 --dbname.0 test1
+
+Подключение:
+runmanager.bat
+
+Type: HSQL Database Engine Server
+Driver: org.hsqldb.jdbcDriver
+jdbc:hsqldb:hsql://localhost/test1
+
+
+https://www.tutorialspoint.com/jdbc/jdbc-sample-code.htm
+
+
+Servlet cookbook
+
+=====
+дома:
+-подумать, как добавить Connection в сервлет с учетом того, что не рекомендуется использовать переменные экземпляра.
+-попробовать подключить JDBC
+-красиво оформить new2.java
