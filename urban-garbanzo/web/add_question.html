@@ -13,6 +13,7 @@ and open the template in the editor.
     <body>
         <p>Ввод нового вопроса</p>
         <form name="add_question" action="add_q" method="POST">
+            <input type="hidden" name="action" value="add_question">        
             <label>Тип вопроса</label>
             <select name="type">
                 <option value="info">Информационный</option>

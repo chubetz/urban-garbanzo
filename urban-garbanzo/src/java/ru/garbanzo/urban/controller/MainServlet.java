@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ru.garbanzo.urban.db.JDBCUtils;
+import ru.garbanzo.urban.util.Utils;
 
 /**
  *
@@ -39,16 +41,44 @@ public class MainServlet extends HttpServlet {
         
         
         super.init(); //To change body of generated methods, choose Tools | Templates.
-        try {
-            Class.forName("org.hsqldb.jdbc.JDBCDriver");
-            System.out.println("Connecting to database...");
-            //conn = DriverManager.getConnection(DB_URL,USER,PASS);            
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        String action = request.getParameter("action");
+        switch (action) {
+            case "add_question":
+                Utils.print(request.getParameterMap());
+        }
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = JDBCUtils.getHSQLConnection();            
+            System.out.println(conn);
+            System.out.println("Creating statement...");
+            stmt = conn.createStatement();
+            String sql;
+            sql = "SELECT * FROM Customer";
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                int id  = rs.getInt("id");
+                String firstName = rs.getString("firstname");
+                String lastName = rs.getString("lastname");
+                String street = rs.getString("street");
+                String city = rs.getString("city");
+                //System.out.println("" + id + " " + firstName + " " + lastName + " " + street + " " + city);
+            }            
+            rs.close();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conn != null) conn.close();
+                if (stmt != null) stmt.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
         getServletContext().getRequestDispatcher("/new_question.jsp").forward(request, response);
     }
 
