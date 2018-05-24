@@ -55,6 +55,7 @@ public class MainServlet extends HttpServlet {
         }
         Connection conn = null;
         Statement stmt = null;
+        PreparedStatement prp = null;
         try {
             conn = JDBCUtils.getHSQLConnection();            
             System.out.println(conn);
@@ -72,12 +73,35 @@ public class MainServlet extends HttpServlet {
                 //System.out.println("" + id + " " + firstName + " " + lastName + " " + street + " " + city);
             }            
             rs.close();
+            
+            String psql = "INSERT INTO Customer VALUES(?,?,?,?,?)";
+            prp = conn.prepareStatement(psql);
+            
+            prp.setInt(1, 333);
+            prp.setString(2, "Maria");
+            prp.setString(3, "Mastchenko");
+            prp.setString(4, "Belomorskaya");
+            prp.setString(5, "Snezhinks");
+            int rows = prp.executeUpdate();
+            
+            rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                int id  = rs.getInt("id");
+                String firstName = rs.getString("firstname");
+                String lastName = rs.getString("lastname");
+                String street = rs.getString("street");
+                String city = rs.getString("city");
+                System.out.println("" + id + " " + firstName + " " + lastName + " " + street + " " + city);
+            }            
+            rs.close();
+            
         } catch(SQLException e) {
             e.printStackTrace();
         } finally {
             try {
-                if (conn != null) conn.close();
                 if (stmt != null) stmt.close();
+                if (prp != null) prp.close();
+                if (conn != null) conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
