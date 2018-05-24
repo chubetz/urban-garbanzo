@@ -52,14 +52,6 @@ public class MainServlet extends HttpServlet {
         switch (action) {
             case "add_question":
                 Utils.print(request.getParameterMap());
-                List<String> list = new ArrayList<String>();
-                list.add("aaa");
-                list.add("sss");
-                list.add("ddd");
-                Utils.print(list);
-                Utils.print(new int[]{1,2,3,4,5});
-                Utils.print(new String[]{"ggg", "hhh", "jjj"});
-                System.out.println(Utils.arrayToString("asd"));
         }
         Connection conn = null;
         Statement stmt = null;

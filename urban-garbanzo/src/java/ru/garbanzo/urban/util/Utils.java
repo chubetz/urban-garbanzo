@@ -29,7 +29,6 @@ public class Utils {
     public static String collectionToString(Collection<?> list) {
         StringBuilder sb = new StringBuilder("[");
         for (Object entry : list) {
-            System.out.println("$$$ " + entry);
             sb.append(convertToString(entry) + ", ");
         }
         sb.append("]");
