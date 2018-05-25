@@ -15,10 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ru.garbanzo.urban.db.JDBCUtils;
+import ru.garbanzo.urban.edu.Question;
 import ru.garbanzo.urban.util.Utils;
 
 /**
@@ -52,59 +55,8 @@ public class MainServlet extends HttpServlet {
         switch (action) {
             case "add_question":
                 Utils.print(request.getParameterMap());
-        }
-        Connection conn = null;
-        Statement stmt = null;
-        PreparedStatement prp = null;
-        try {
-            conn = JDBCUtils.getHSQLConnection();            
-            System.out.println(conn);
-            System.out.println("Creating statement...");
-            stmt = conn.createStatement();
-            String sql;
-            sql = "SELECT * FROM Customer";
-            ResultSet rs = stmt.executeQuery(sql);
-            while(rs.next()){
-                int id  = rs.getInt("id");
-                String firstName = rs.getString("firstname");
-                String lastName = rs.getString("lastname");
-                String street = rs.getString("street");
-                String city = rs.getString("city");
-                //System.out.println("" + id + " " + firstName + " " + lastName + " " + street + " " + city);
-            }            
-            rs.close();
-            
-            String psql = "INSERT INTO Customer VALUES(?,?,?,?,?)";
-            prp = conn.prepareStatement(psql);
-            
-            prp.setInt(1, 333);
-            prp.setString(2, "Maria");
-            prp.setString(3, "Mastchenko");
-            prp.setString(4, "Belomorskaya");
-            prp.setString(5, "Snezhinks");
-            int rows = prp.executeUpdate();
-            
-            rs = stmt.executeQuery(sql);
-            while(rs.next()){
-                int id  = rs.getInt("id");
-                String firstName = rs.getString("firstname");
-                String lastName = rs.getString("lastname");
-                String street = rs.getString("street");
-                String city = rs.getString("city");
-                System.out.println("" + id + " " + firstName + " " + lastName + " " + street + " " + city);
-            }            
-            rs.close();
-            
-        } catch(SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (stmt != null) stmt.close();
-                if (prp != null) prp.close();
-                if (conn != null) conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+                Map<String, Object> data = new HashMap<String, Object>(); 
+                Question.createQuestion(data);
         }
         getServletContext().getRequestDispatcher("/new_question.jsp").forward(request, response);
     }

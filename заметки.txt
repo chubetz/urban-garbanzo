@@ -21,20 +21,60 @@ https://www.tutorialspoint.com/jdbc/jdbc-sample-code.htm
 https://www.tutorialspoint.com/jdbc/jdbc-statements.htm
 https://www.tutorialspoint.com/jdbc/preparestatement-object-example.htm
 
+http://hsqldb.org/doc/guide/guide.html
+
 Servlet cookbook
 
 =====
 дома:
+
+!- добиться работоспособности. 1) напечатать строку INSERT...
+2) положить в questionMap
+3) убедиться что записи в БД и в объектах идентичны
+3) сделать форму редактирования вопроса
+4) сделать блок UPDATE, убедиться, что работает.
+5) все хорошенько протестировать
+
 -попробовать положить данные в таблицу //готово
 -красиво оформить new2.java
 -пройти еще одну главу по сервлетам
 -вынести код работы с БД из сервлета
 -подумать, как хранить и реплицировать данные
+___> генерировать объекты по ResultSet
+
+-форма редактирования вопроса
+
 -начать подтотовку к сертификации, попутно расширять механизм вопросов
 
+- схема взаимодействия с БД: вопросы заводятся с интерфейса, редактируются с интерфейса,
+скрипт наката выгружается в проекте, заливается напрямую через БД
+проследить за целостностью идентификаторов!
 
 -интересная задачка: универсальная печать многомерных массивов
 
 
 
+-- hashCode для Question
+
+Можно ли запускать код Ruby в Java-проекте?
+
+#Eckel on Java 8
+#Bloch effective Java
+
+вопросное конспектирование книг
+
+изначальное написание книг в вопросном формате
+
+
 Maven
+
+
+Сайт, где кажды может создать себе систему подготовки!
+
+
+
+
+DROP TABLE Question IF EXISTS
+
+CREATE TABLE Question (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realm VARCHAR(20))
+INSERT INTO Question VALUES 
