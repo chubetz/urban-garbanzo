@@ -56,7 +56,7 @@ public class MainServlet extends HttpServlet {
             case "add_question":
                 Utils.print(request.getParameterMap());
                 Map<String, Object> data = new HashMap<String, Object>(); 
-                Question.createQuestion(data);
+                Question.createQuestion(request.getParameterMap());
         }
         getServletContext().getRequestDispatcher("/new_question.jsp").forward(request, response);
     }

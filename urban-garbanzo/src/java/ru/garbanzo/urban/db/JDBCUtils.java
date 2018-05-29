@@ -49,14 +49,17 @@ public class JDBCUtils {
     
     public static int saveEntity(DBEntity entity) {
         Connection conn = null;
-        PreparedStatement prp = null;
+        Statement stmt = null;
         String sql = null;
         try {
             conn = JDBCUtils.getHSQLConnection();
-            sql = "SELECT * FROM " + entity.getTableName() + "WHERE id = " + entity.getId();
-            prp = conn.prepareStatement(sql);
+            sql = "SELECT * FROM " + entity.getTableName() + " WHERE id = " + entity.getId();
+            //stmt = conn.prepareStatement(sql, 
+             //       ResultSet.TYPE_SCROLL_SENSITIVE,
+              //      ResultSet.CONCUR_UPDATABLE);
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             //prp.setInt(1, (Integer)entity.getState().get("id"));
-            ResultSet rs = prp.executeQuery();
+            ResultSet rs = stmt.executeQuery(sql);
             if (rs.first()) {
                 // обновляем запись
             } else {
@@ -78,7 +81,9 @@ public class JDBCUtils {
                     }
                 }
                 fields.append(")"); values.append(")");
-                Utils.print(fields.toString() + values.toString());
+                sql = "INSERT INTO " + entity.getTableName() + " " + fields.toString() + values.toString();
+                Utils.print(sql);
+                stmt.executeQuery(sql);
             }
             rs.close();
         } catch (Exception e) {
@@ -86,7 +91,7 @@ public class JDBCUtils {
             return -1;
         } finally {
             try {
-                if (prp != null) prp.close();
+                if (stmt != null) stmt.close();
                 if (conn != null) conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();

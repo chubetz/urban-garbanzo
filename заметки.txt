@@ -28,7 +28,7 @@ Servlet cookbook
 =====
 дома:
 
-!- добиться работоспособности. 1) напечатать строку INSERT...
+!- добиться работоспособности. 1) напечатать строку INSERT... - готово
 2) положить в questionMap
 3) убедиться что записи в БД и в объектах идентичны
 3) сделать форму редактирования вопроса
@@ -78,3 +78,14 @@ DROP TABLE Question IF EXISTS
 
 CREATE TABLE Question (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realm VARCHAR(20))
 INSERT INTO Question VALUES 
+
+
+
+
+
+============= поразмыслить 
+<?> and <? extends Object> are synonymous, as you'd expect, but there are a few cases with generics where extends Object is not actually redundant. For example, <T extends Object & Foo> will cause T to become Object under erasure, whereas with <T extends Foo> it will become Foo under erasure. (This can matter if you're trying to retain compatibility with a pre-generics API that used Object.)
+
+(Source: http://download.oracle.com/javase/tutorial/extra/generics/convert.html; it explains why the JDK's java.util.Collections class has a method with this signature:
+
+public static <T extends Object & Comparable<? super T>> T max(Collection<? extends T> coll

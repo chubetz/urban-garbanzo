@@ -53,7 +53,7 @@ public class Question implements DBEntity {
         return "Вопрос {" + id + '}';
     }
     
-    public static Question saveQuestion(int id, Map<String, Object> data) {
+    public static Question saveQuestion(int id, Map<String, ?> data) {
         Question question = questionMap.get(id);
         if (question == null) {
             question = new Question(id);
@@ -77,7 +77,7 @@ public class Question implements DBEntity {
         return question;
     }
     
-    public static Question createQuestion(Map<String, Object> data) {
+    public static Question createQuestion(Map<String, ?> data) {
         return saveQuestion(-1, data);
     }
 
