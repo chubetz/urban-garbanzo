@@ -5,14 +5,17 @@
  */
 package ru.garbanzo.urban.edu;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.Util;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import ru.garbanzo.urban.db.JDBCUtils;
+import ru.garbanzo.urban.util.Utils;
 
 /**
  *
@@ -25,7 +28,7 @@ public class Question implements DBEntity {
     private Map<String, Object> state = new LinkedHashMap<String, Object>();
 
 
-    private String realm;
+    private String realm = "";
 
     @Override
     synchronized public Map<String, Object> getState() {
@@ -34,6 +37,17 @@ public class Question implements DBEntity {
     }
     
     private static Map<Integer, Question> questionMap = new HashMap<Integer, Question>();
+    public static Map<Integer, Question> getQuestionMap() {
+        return questionMap;
+    }
+    static {
+        List<Map<String, Object>> data = JDBCUtils.loadEntitiesData(new Question(-1));
+        for (Map<String, Object> entry : data) {
+            Question question = new Question((Integer)entry.get("id"));
+            question.realm = (String)entry.get("realm");
+            questionMap.put(question.id, question);
+        }
+    }
 
     /**
      * Get the value of id
@@ -69,7 +83,8 @@ public class Question implements DBEntity {
         int validId = JDBCUtils.saveEntity(question);
         if (validId >= 0) { // удалось записать объект в БД с валидным id
             question.id = validId;
-            questionMap.put(id, question);
+            questionMap.put(question.id, question);
+            Utils.print("validId: " + validId);
         } else {
             return null;
         }

@@ -11,11 +11,19 @@
     </session-config>
     <servlet>
         <servlet-name>MainServlet</servlet-name>
-        <servlet-class> ru.garbanzo.urban.controller.MainServlet</servlet-class>
+        <servlet-class>ru.garbanzo.urban.controller.MainServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GenerateHTML</servlet-name>
+        <servlet-class>ru.garbanzo.urban.controller.GenerateHTML</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>/add_q</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GenerateHTML</servlet-name>
+        <url-pattern>/view</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -11,6 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,10 +50,47 @@ public class JDBCUtils {
         return getHSQLConnection("SA", "");
     }
     
+    public static List<Map<String, Object>> loadEntitiesData(DBEntity sample) {
+        Connection conn = null;
+        Statement stmt = null;
+        String sql = null;
+        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+        try {
+            conn = JDBCUtils.getHSQLConnection();
+            sql = "SELECT * FROM " + sample.getTableName();
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                Map<String, Object> data = new HashMap<String, Object>();
+                data.put("id", rs.getInt("id"));
+                for (Map.Entry<String, Object> entry : sample.getState().entrySet()) {
+                    if (entry.getValue() instanceof String) {
+                        data.put(entry.getKey(), rs.getString(entry.getKey()));
+                    }
+                }
+                list.add(data);
+            }            
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            try {
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                return null;
+            }
+        }
+        return list;
+    }
+    
     public static int saveEntity(DBEntity entity) {
         Connection conn = null;
         Statement stmt = null;
         String sql = null;
+        int id = -1;
         try {
             conn = JDBCUtils.getHSQLConnection();
             sql = "SELECT * FROM " + entity.getTableName() + " WHERE id = " + entity.getId();
@@ -84,6 +124,10 @@ public class JDBCUtils {
                 sql = "INSERT INTO " + entity.getTableName() + " " + fields.toString() + values.toString();
                 Utils.print(sql);
                 stmt.executeQuery(sql);
+                sql = "SELECT MAX(ID) FROM " + entity.getTableName();
+                rs = stmt.executeQuery(sql);
+                rs.first();
+                id = rs.getInt(1);
             }
             rs.close();
         } catch (Exception e) {
@@ -98,7 +142,7 @@ public class JDBCUtils {
                 return -1;
             }
         }
-        return -1;
+        return id;
     }
     
     private void testCode() {
