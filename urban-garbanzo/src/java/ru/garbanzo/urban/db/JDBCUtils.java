@@ -67,6 +67,9 @@ public class JDBCUtils {
                     if (entry.getValue() instanceof String) {
                         data.put(entry.getKey(), rs.getString(entry.getKey()));
                     }
+                    if (entry.getValue() instanceof Integer) {
+                        data.put(entry.getKey(), rs.getInt(entry.getKey()));
+                    }
                 }
                 list.add(data);
             }            

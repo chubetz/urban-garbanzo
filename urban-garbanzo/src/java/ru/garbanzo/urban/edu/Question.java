@@ -23,16 +23,22 @@ import ru.garbanzo.urban.util.Utils;
  */
 public class Question implements DBEntity {
     
+    public static final int INFO_TYPE = 0;
+    public static final int TEST_TYPE = 1;
+    public static final int COMMON_TYPE = 2;
+    
     private int id;
     private final String tableName = "Question";
     private Map<String, Object> state = new LinkedHashMap<String, Object>();
 
 
     private String realm = "";
+    private int type = -1;
 
     @Override
     synchronized public Map<String, Object> getState() {
         state.put("realm", realm);
+        state.put("type", type);
         return state;
     }
     
@@ -45,6 +51,7 @@ public class Question implements DBEntity {
         for (Map<String, Object> entry : data) {
             Question question = new Question((Integer)entry.get("id"));
             question.realm = (String)entry.get("realm");
+            question.type = (Integer)entry.get("type");
             questionMap.put(question.id, question);
         }
     }
@@ -67,18 +74,36 @@ public class Question implements DBEntity {
         return "Вопрос {" + id + '}';
     }
     
+    private static Map<String, Object> translateWebData(Map<String, String[]> data) {
+        Map<String, Object> tmp = new HashMap<>();
+        for (String key: data.keySet()) {
+            String[] current = data.get(key);
+            if (current.length == 1) {
+                tmp.put(key, current[0]);
+            } else {
+                tmp.put(key, current);
+            }
+        }
+        return tmp;
+    }
+    
+    public static Question saveQuestionFromWeb(int id, Map<String, String[]> data) {
+        return saveQuestion(id, translateWebData(data));
+    }
+    
     public static Question saveQuestion(int id, Map<String, ?> data) {
         Question question = questionMap.get(id);
         if (question == null) {
             question = new Question(id);
         }
         if (data != null) {
-            if (data.get("realm").getClass().isArray()) {
-                question.realm = ((String[])data.get("realm"))[0];
-            } else {
-                question.realm = (String)data.get("realm");
+            if (data.get("realm").getClass().isArray()) { //список параметров с фронта
+                data = translateWebData( (Map<String, String[]>)data );
             }
-                
+            Utils.print(data);
+            question.realm = (String) data.get("realm");
+            question.type = Integer.parseInt( (String)data.get("type") );
+
         }
         int validId = JDBCUtils.saveEntity(question);
         if (validId >= 0) { // удалось записать объект в БД с валидным id
