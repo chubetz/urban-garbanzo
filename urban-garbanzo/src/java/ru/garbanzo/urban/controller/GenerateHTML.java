@@ -46,10 +46,10 @@ public class GenerateHTML extends HttpServlet {
                 for (Map.Entry<Integer, Question> question: Question.getQuestionMap().entrySet()) {
                     body.append("<tr>");
                     body.append("<td>");
-                    body.append(question.getKey().toString());
+                    body.append(question.getValue().toString());
                     body.append("</td>");
                     body.append("<td>");
-                    body.append(question.getValue().toString());
+                    body.append(question.getValue().getText());
                     body.append("</td>");
                     body.append("</tr>");
                 }

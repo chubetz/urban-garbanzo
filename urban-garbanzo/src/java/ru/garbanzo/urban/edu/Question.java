@@ -34,11 +34,24 @@ public class Question implements DBEntity {
 
     private String realm = "";
     private int type = -1;
+    private String text = "";
+    public String getRealm() {
+        return realm;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public String getText() {
+        return text;
+    }
 
     @Override
     synchronized public Map<String, Object> getState() {
         state.put("realm", realm);
         state.put("type", type);
+        state.put("text", text);
         return state;
     }
     
@@ -52,6 +65,7 @@ public class Question implements DBEntity {
             Question question = new Question((Integer)entry.get("id"));
             question.realm = (String)entry.get("realm");
             question.type = (Integer)entry.get("type");
+            question.text = (String)entry.get("text");
             questionMap.put(question.id, question);
         }
     }
@@ -103,6 +117,7 @@ public class Question implements DBEntity {
             Utils.print(data);
             question.realm = (String) data.get("realm");
             question.type = Integer.parseInt( (String)data.get("type") );
+            question.text = (String) data.get("text");
 
         }
         int validId = JDBCUtils.saveEntity(question);
