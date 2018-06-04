@@ -54,6 +54,18 @@ public class Question implements DBEntity {
         state.put("text", text);
         return state;
     }
+    @Override
+    synchronized public void setState(Map<String, ?> map) {
+        this.realm = (String)map.get("realm");
+        int type = -1;
+        if (map.get("type") instanceof String) {
+            type = Integer.parseInt( (String)map.get("type") );
+        } else if (map.get("type") instanceof Integer) {
+            type = (Integer)map.get("type");
+        }
+        this.type = type;
+        this.text = (String)map.get("text");
+    }
     
     private static Map<Integer, Question> questionMap = new HashMap<Integer, Question>();
     public static Map<Integer, Question> getQuestionMap() {
@@ -63,9 +75,7 @@ public class Question implements DBEntity {
         List<Map<String, Object>> data = JDBCUtils.loadEntitiesData(new Question(-1));
         for (Map<String, Object> entry : data) {
             Question question = new Question((Integer)entry.get("id"));
-            question.realm = (String)entry.get("realm");
-            question.type = (Integer)entry.get("type");
-            question.text = (String)entry.get("text");
+            question.setState(entry);
             questionMap.put(question.id, question);
         }
     }
@@ -115,9 +125,7 @@ public class Question implements DBEntity {
                 data = translateWebData( (Map<String, String[]>)data );
             }
             Utils.print(data);
-            question.realm = (String) data.get("realm");
-            question.type = Integer.parseInt( (String)data.get("type") );
-            question.text = (String) data.get("text");
+            question.setState(data);
 
         }
         int validId = JDBCUtils.saveEntity(question);

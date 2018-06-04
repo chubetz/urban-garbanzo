@@ -16,5 +16,6 @@ public interface DBEntity {
     int getId();
     String getTableName();
     Map<String, Object> getState();
+    void setState(Map<String, ?> map);
     
 }

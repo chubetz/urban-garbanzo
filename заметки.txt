@@ -34,10 +34,15 @@ Servlet cookbook
 3.5) добавить тип и текст в вопрос, убедиться, что пишется в БД и читается нормально. Доработать вывод списка - готово
 3) убедиться что записи в БД и в объектах идентичны - не надо
 
+3.5) Постараться записывать и читать из БД Кириллицу
+
 4) сделать сущность Answer, доработать форму создания вопроса
+	4.1 Сделать форму с четырьмя ответами
+	4.2 Сохранять вопрос вместе с ответами
+	4.3 Отображать ответы.
 
 
-5) сделать форму редактирования вопроса и функционал сохранения в БД
+5) сделать форму редактирования вопроса (с учетом уже имеющихся ответов!) и функционал сохранения в БД
 
 6) сделать блок UPDATE, убедиться, что работает.
 7) все хорошенько протестировать
@@ -99,3 +104,20 @@ INSERT INTO Question VALUES
 (Source: http://download.oracle.com/javase/tutorial/extra/generics/convert.html; it explains why the JDK's java.util.Collections class has a method with this signature:
 
 public static <T extends Object & Comparable<? super T>> T max(Collection<? extends T> coll
+
+
+Сервис: Человек сам составляет для себя вопросы!
+
+
+
+
+Кириллица:
+https://stackoverflow.com/questions/932559/encoding-problems-in-jsp
+
+http://yan.zlobin.name/86
+
+    <Connector port="8081" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" URIEncoding="UTF-8"/>
+
+        request.setCharacterEncoding ("UTF-8"); - в сервлете
