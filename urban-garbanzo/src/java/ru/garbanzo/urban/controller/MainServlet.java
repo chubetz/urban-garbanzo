@@ -55,7 +55,7 @@ public class MainServlet extends HttpServlet {
         String action = request.getParameter("action");
         switch (action) {
             case "add_question":
-                Utils.print(request.getParameterMap());
+                Utils.print("Servlet.add_question", request.getParameterMap());
                 Map<String, Object> data = new HashMap<String, Object>(); 
                 Question.createQuestion(request.getParameterMap());
         }

@@ -103,4 +103,7 @@ public class Utils {
         System.out.println(convertToString(obj));
     }
     
+    public static void print(String label, Object obj) {
+        System.out.println(label + ": " + convertToString(obj));
+    }
 }

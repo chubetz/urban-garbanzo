@@ -3,16 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package ru.garbanzo.urban.edu;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import ru.garbanzo.urban.db.JDBCUtils;
+import ru.garbanzo.urban.exception.NoQuestionException;
+import ru.garbanzo.urban.util.Utils;
 
 /**
  *
  * @author d.gorshenin
  */
 public class Answer implements DBEntity{
+    
+    private Answer() {
+        
+    }
     
     private int id = -1;
     
@@ -57,14 +65,47 @@ public class Answer implements DBEntity{
 
     @Override
     public int getId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return id; 
     }
 
     @Override
     public String getTableName() {
         return this.tableName;
     }
+    
+    public String to_s(Object s) {
+        return s.toString();
+    }
 
+    public static Answer saveAnswer(int id, Map<String, Object> data) throws NoQuestionException {
+        int questionId = (Integer)data.get("questionId");
+        Question question = Question.getQuestionMap().get(questionId);
+        if (question == null) {
+            throw new NoQuestionException("В системе нет вопроса с id = " + questionId);
+        }
+        Answer answer = null;
+        for (int ansId: question.getAnswerMap().keySet()) {
+            if (ansId == id) {
+                answer = question.getAnswerMap().get(ansId);
+                break;
+            }
+        }
+        
+        if (answer == null)
+            answer = new Answer();
+        Utils.print("saveAnswer", data);
+        answer.setState(data);
+
+        int validId = JDBCUtils.saveEntity(answer);
+        if (validId >= 0) { // удалось записать объект в БД с валидным id
+            answer.id = validId;
+            Utils.print("Answer validId: " + validId);
+        } else {
+            return null;
+        }
+            
+        return answer;
+    }
 
     
 }

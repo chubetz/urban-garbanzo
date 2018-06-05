@@ -8,6 +8,8 @@ package ru.garbanzo.urban.edu;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.util.Util;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import ru.garbanzo.urban.db.JDBCUtils;
+import ru.garbanzo.urban.exception.NoQuestionException;
 import ru.garbanzo.urban.util.Utils;
 
 /**
@@ -27,10 +30,9 @@ public class Question implements DBEntity {
     public static final int TEST_TYPE = 1;
     public static final int COMMON_TYPE = 2;
     
-    private int id;
+    private int id = -1;
     private final String tableName = "Question";
     private Map<String, Object> state = new LinkedHashMap<String, Object>();
-
 
     private String realm = "";
     private int type = -1;
@@ -69,12 +71,18 @@ public class Question implements DBEntity {
     
     private static Map<Integer, Question> questionMap = new HashMap<Integer, Question>();
     public static Map<Integer, Question> getQuestionMap() {
-        return questionMap;
+        return Collections.unmodifiableMap(questionMap);
     }
+    private Map<Integer, Answer> answerMap = new HashMap<Integer, Answer>();
+    public Map<Integer, Answer> getAnswerMap() {
+        return Collections.unmodifiableMap(answerMap);
+    }
+
     static {
-        List<Map<String, Object>> data = JDBCUtils.loadEntitiesData(new Question(-1));
+        List<Map<String, Object>> data = JDBCUtils.loadEntitiesData(new Question());
         for (Map<String, Object> entry : data) {
-            Question question = new Question((Integer)entry.get("id"));
+            Question question = new Question();
+            question.id = (Integer)entry.get("id");
             question.setState(entry);
             questionMap.put(question.id, question);
         }
@@ -89,8 +97,7 @@ public class Question implements DBEntity {
         return id;
     }
 
-    private Question(int id) {
-        this.id = id;
+    private Question() {
     }
 
     @Override
@@ -111,6 +118,36 @@ public class Question implements DBEntity {
         return tmp;
     }
     
+    private void saveAnswers(Map<String, ?> data) {
+        for (Map.Entry<String, ?> entry: data.entrySet()) {
+            String[] corrects = new String[0];
+            if (data.get("correct") != null) {
+                corrects = (String[])data.get("correct");
+                Arrays.sort(corrects);
+            }
+            String[] ans = entry.getKey().split("_");
+            if ((ans.length == 2) && ans[0].equals("answer")) { // данные ответа
+                int answerId = Integer.parseInt(ans[1]);
+                Map<String, Object> answerData = new HashMap<String, Object>();
+                answerData.put("questionId", this.id);
+                if (Arrays.binarySearch(corrects, ans[1]) >= 0)
+                    answerData.put("correct", true);
+                else
+                    answerData.put("correct", false);
+                answerData.put("text", entry.getValue());
+                
+                Utils.print("answerData", answerData);
+                try {
+                    Answer answer = Answer.saveAnswer(answerId, answerData);
+                    this.answerMap.put(answer.getId(), answer);
+                } catch(NoQuestionException nqe) {
+                    nqe.printStackTrace();
+                }
+            }
+            
+        }
+    }
+    
     public static Question saveQuestionFromWeb(int id, Map<String, String[]> data) {
         return saveQuestion(id, translateWebData(data));
     }
@@ -118,13 +155,13 @@ public class Question implements DBEntity {
     public static Question saveQuestion(int id, Map<String, ?> data) {
         Question question = questionMap.get(id);
         if (question == null) {
-            question = new Question(id);
+            question = new Question();
         }
         if (data != null) {
             if (data.get("realm").getClass().isArray()) { //список параметров с фронта
                 data = translateWebData( (Map<String, String[]>)data );
             }
-            Utils.print(data);
+            Utils.print("saveQuestion", data);
             question.setState(data);
 
         }
@@ -132,6 +169,7 @@ public class Question implements DBEntity {
         if (validId >= 0) { // удалось записать объект в БД с валидным id
             question.id = validId;
             questionMap.put(question.id, question);
+            question.saveAnswers(data);
             Utils.print("validId: " + validId);
         } else {
             return null;

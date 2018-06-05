@@ -27,8 +27,36 @@ and open the template in the editor.
                 <option value="2">Общий</option>
             </select>
             <br>
-            <p>Текст вопроса</p>
-            <textarea name="text" rows="10" cols="80"></textarea>
+            <table cellpadding="10">
+                <tr>
+                    <td>
+                        <p>Текст вопроса</p>
+                        <textarea name="text" rows="10" cols="80"></textarea>
+                    </td>
+                    <td style="vertical-align: top">
+                        <p>Правильные ответы</p>
+                        <select name="correct" size="4" multiple>
+                                <option value="-1">Ответ 1</option>
+                                <option value="-2">Ответ 2</option>
+                                <option value="-3">Ответ 3</option>
+                                <option value="-4">Ответ 4</option>
+                        </select>
+                        
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <p>Ответ 1</p>
+            <textarea name="answer_-1" rows="3" cols="80"></textarea>
+            <br>
+            <p>Ответ 2</p>
+            <textarea name="answer_-2" rows="3" cols="80"></textarea>
+            <br>
+            <p>Ответ 3</p>
+            <textarea name="answer_-3" rows="3" cols="80"></textarea>
+            <br>
+            <p>Ответ 4</p>
+            <textarea name="answer_-4" rows="3" cols="80"></textarea>
             <br>
             <input type="submit" value="Отправить" /> 
         </form>
