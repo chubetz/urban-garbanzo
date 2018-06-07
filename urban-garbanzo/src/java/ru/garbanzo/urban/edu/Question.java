@@ -86,6 +86,16 @@ public class Question implements DBEntity {
             question.setState(entry);
             questionMap.put(question.id, question);
         }
+        data = JDBCUtils.loadEntitiesData(new Answer(-1)); //ответы
+        for (Map<String, Object> entry : data) {
+            Answer answer = new Answer((Integer)entry.get("id"));
+            answer.setState(entry);
+            Question question = questionMap.get(answer.getQuestionId());
+            if (question != null) {
+                question.answerMap.put(answer.getId(), answer);
+            }
+        }
+        
     }
 
     /**
@@ -122,11 +132,15 @@ public class Question implements DBEntity {
         for (Map.Entry<String, ?> entry: data.entrySet()) {
             String[] corrects = new String[0];
             if (data.get("correct") != null) {
-                corrects = (String[])data.get("correct");
+                try {
+                    corrects = (String[])data.get("correct");
+                } catch (ClassCastException cce) {
+                    corrects = new String[] {(String)data.get("correct")};
+                }
                 Arrays.sort(corrects);
             }
             String[] ans = entry.getKey().split("_");
-            if ((ans.length == 2) && ans[0].equals("answer")) { // данные ответа
+            if ((ans.length == 2) && ans[0].equals("answer") && !entry.getValue().equals("")) { // данные ответа
                 int answerId = Integer.parseInt(ans[1]);
                 Map<String, Object> answerData = new HashMap<String, Object>();
                 answerData.put("questionId", this.id);

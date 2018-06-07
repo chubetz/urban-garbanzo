@@ -22,6 +22,10 @@ public class Answer implements DBEntity{
         
     }
     
+    Answer(int id) { // TODO! обязательно перенести весь класс Answer внутрь класса Question
+        this.id = id;
+    }
+    
     private int id = -1;
     
     private final String tableName = "Answer";
@@ -60,6 +64,7 @@ public class Answer implements DBEntity{
             questionId = (Integer)map.get("questionId");
         }
         this.questionId = questionId;
+        Utils.print("map-->", map);
         this.correct = (Boolean)map.get("correct");
     }
 

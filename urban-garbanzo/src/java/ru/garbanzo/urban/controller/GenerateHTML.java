@@ -13,7 +13,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import ru.garbanzo.urban.edu.Answer;
 import ru.garbanzo.urban.edu.Question;
+import ru.garbanzo.urban.util.Utils;
 
 /**
  *
@@ -51,6 +53,15 @@ public class GenerateHTML extends HttpServlet {
                     body.append("<td>");
                     body.append(question.getValue().getText());
                     body.append("</td>");
+                    for (Map.Entry<Integer, Answer> answer: question.getValue().getAnswerMap().entrySet()) {
+                        body.append("<td>");
+                        String ansText = answer.getValue().getText();
+                        if (answer.getValue().isCorrect()) {
+                            ansText = "<b>" + ansText + "</b>";
+                        }
+                        body.append(ansText);
+                        body.append("</td>");
+                    }
                     body.append("</tr>");
                 }
                 body.append("</table>");
