@@ -48,8 +48,12 @@ public class GenerateHTML extends HttpServlet {
                 body.append("<table>");
                 try {
                     for (Map.Entry<Integer, Question> question: Question.getQuestionMap().entrySet()) {
+                        String bgcolor = " bgcolor=red";
+                        if (question.getValue().isValid()) {
+                            bgcolor = ""; //вопрос валидный, подсчетки не надо
+                        }
                         body.append("<tr>");
-                        body.append("<td><form name=\"edit\" action=\"controller\" method=\"POST\">");
+                        body.append("<td" + bgcolor + "><form name=\"edit\" action=\"controller\" method=\"POST\">");
                         body.append("<input type=\"hidden\" name=\"action\" value=\"edit_question\">");
                         body.append("<input type=\"hidden\" name=\"qid\" value=\"" + question.getKey() + "\">");
                         body.append("<input type=\"submit\" value=\"Edit\" /></form></td>");

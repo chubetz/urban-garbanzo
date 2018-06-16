@@ -8,6 +8,7 @@ package ru.garbanzo.urban.edu;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.util.Util;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -33,7 +34,58 @@ public class Question implements DBEntity {
     public static final int TEST_TYPE = 1;
     public static final int COMMON_TYPE = 2;
     
-    private static Map<Integer, String> typeText = new HashMap<Integer, String>();
+    private static Map<Integer, Question> questionMap = new HashMap<Integer, Question>();
+    public static Map<Integer, Question> getQuestionMap() throws JDBCException {
+        if (staticException instanceof JDBCException) { // при инициализации класса что-то случилось с БД
+            throw (JDBCException)staticException;
+        }
+        return Collections.unmodifiableMap(questionMap);
+    }
+
+    private static Map<String, String> availableRealms;
+    public static Map<String, String> getAvailableRealms() {
+        return Collections.unmodifiableMap(availableRealms);
+    }
+
+    private static Map<Integer, String> availableTypes;
+    public static Map<Integer, String> getAvailableTypes() {
+        return Collections.unmodifiableMap(availableTypes);
+    }
+
+    static {
+        try {
+            List<Map<String, Object>> data = JDBCUtils.loadEntitiesData(new Question());
+            for (Map<String, Object> entry : data) {
+                Question question = new Question();
+                question.id = (Integer)entry.get("id");
+                question.setState(entry);
+                questionMap.put(question.id, question);
+            }
+            data = JDBCUtils.loadEntitiesData(new Answer(-1)); //ответы
+            for (Map<String, Object> entry : data) {
+                Answer answer = new Answer((Integer)entry.get("id"));
+                answer.setState(entry);
+                Question question = questionMap.get(answer.getQuestionId());
+                if (question != null) {
+                    question.answerMap.put(answer.getId(), answer);
+                }
+            }
+        } catch (JDBCException ex) {
+            Logger.getLogger(Question.class.getName()).log(Level.SEVERE, null, ex);
+            staticException = ex;
+        }
+        
+        availableRealms = new HashMap<String, String>();
+        availableRealms.put("java", "Java");
+        availableRealms.put("kotlin", "Kotlin");
+        
+        availableTypes = new HashMap<Integer, String>();
+        availableTypes.put(INFO_TYPE, "Информационный");
+        availableTypes.put(TEST_TYPE, "Тест");
+        availableTypes.put(COMMON_TYPE, "Общий");
+    }
+
+    
     
     public static String getTypeText(Object keyObj) {
         Integer key = 0;
@@ -45,20 +97,7 @@ public class Question implements DBEntity {
             throw new RuntimeException("Аргумент должен быть Integer или String");
         }
             
-        if (!typeText.containsKey(key)) {
-            switch (key) {
-                case INFO_TYPE:
-                    typeText.put(key, "Информационный");
-                    break;
-                case TEST_TYPE:
-                    typeText.put(key, "Тест");
-                    break;
-                case COMMON_TYPE:
-                    typeText.put(key, "Общий");
-                    break;
-            }
-        }
-        return typeText.get(key);
+        return getAvailableTypes().get(key);
     }
     
     private static Exception staticException;
@@ -83,7 +122,14 @@ public class Question implements DBEntity {
     }
     
     public boolean isValid() {
-        return (text != "") && (getAnswerMap().size() != 0);
+        boolean correctExists = false;
+        for (Answer answer: getAnswerMap().values()) {
+            if (answer.isCorrect()) {
+                correctExists = true;
+                break;
+            }
+        }
+        return correctExists && (text != "") && (getAnswerMap().size() != 0);
     }
 
     @Override
@@ -106,13 +152,6 @@ public class Question implements DBEntity {
         this.text = (String)map.get("text");
     }
     
-    private static Map<Integer, Question> questionMap = new HashMap<Integer, Question>();
-    public static Map<Integer, Question> getQuestionMap() throws JDBCException {
-        if (staticException instanceof JDBCException) { // при инициализации класса что-то случилось с БД
-            throw (JDBCException)staticException;
-        }
-        return Collections.unmodifiableMap(questionMap);
-    }
     
     public static Question getQuestionById(Object id){
         try {
@@ -144,7 +183,7 @@ public class Question implements DBEntity {
         return Collections.unmodifiableMap(answerMap);
     }
     
-    public String getAnswersHTML() {
+    public String getAnswersTableHTML() {
         StringBuilder sb = new StringBuilder();
         sb.append("<tr>");
         for (Map.Entry<Integer, Answer> entry: getAnswerMap().entrySet()) {
@@ -160,30 +199,99 @@ public class Question implements DBEntity {
         return sb.toString();
     }
 
-    static {
+    public String getAnswersEditHTML() {
+        List<Answer> answers = new ArrayList(getAnswerMap().values());
+        StringBuilder sb = new StringBuilder();
+        sb.append("<p>Ответ 1</p>\n");
         try {
-            List<Map<String, Object>> data = JDBCUtils.loadEntitiesData(new Question());
-            for (Map<String, Object> entry : data) {
-                Question question = new Question();
-                question.id = (Integer)entry.get("id");
-                question.setState(entry);
-                questionMap.put(question.id, question);
-            }
-            data = JDBCUtils.loadEntitiesData(new Answer(-1)); //ответы
-            for (Map<String, Object> entry : data) {
-                Answer answer = new Answer((Integer)entry.get("id"));
-                answer.setState(entry);
-                Question question = questionMap.get(answer.getQuestionId());
-                if (question != null) {
-                    question.answerMap.put(answer.getId(), answer);
-                }
-            }
-        } catch (JDBCException ex) {
-            Logger.getLogger(Question.class.getName()).log(Level.SEVERE, null, ex);
-            staticException = ex;
+            sb.append("<textarea name=\"answer_" + answers.get(0).getId() + "\"");
+            sb.append(" rows=\"3\" cols=\"80\">" + answers.get(0).getText() + "</textarea>\n");
+        } catch (IndexOutOfBoundsException e) {
+            sb.append("<textarea name=\"answer_-1\" rows=\"3\" cols=\"80\"></textarea>\n");
         }
-        
+        sb.append("<br>");
+        sb.append("<p>Ответ 2</p>\n");
+        try {
+            sb.append("<textarea name=\"answer_" + answers.get(1).getId() + "\"");
+            sb.append(" rows=\"3\" cols=\"80\">" + answers.get(1).getText() + "</textarea>\n");
+        } catch (IndexOutOfBoundsException e) {
+            sb.append("<textarea name=\"answer_-2\" rows=\"3\" cols=\"80\"></textarea>\n");
+        }
+        sb.append("<br>");
+        sb.append("<p>Ответ 3</p>\n");
+        try {
+            sb.append("<textarea name=\"answer_" + answers.get(2).getId() + "\"");
+            sb.append(" rows=\"3\" cols=\"80\">" + answers.get(2).getText() + "</textarea>\n");
+        } catch (IndexOutOfBoundsException e) {
+            sb.append("<textarea name=\"answer_-3\" rows=\"3\" cols=\"80\"></textarea>\n");
+        }
+        sb.append("<br>");
+        sb.append("<p>Ответ 4</p>\n");
+        try {
+            sb.append("<textarea name=\"answer_" + answers.get(3).getId() + "\"");
+            sb.append(" rows=\"3\" cols=\"80\">" + answers.get(3).getText() + "</textarea>\n");
+        } catch (IndexOutOfBoundsException e) {
+            sb.append("<textarea name=\"answer_-4\" rows=\"3\" cols=\"80\"></textarea>\n");
+        }
+        sb.append("<br>");
+
+        return sb.toString();
     }
+
+    public String getAnswersCorrectHTML() {
+        List<Answer> answers = new ArrayList(getAnswerMap().values());
+        StringBuilder sb = new StringBuilder();
+        String selected = "";
+        try {
+            selected = (answers.get(0).isCorrect()) ? "selected" : "";
+            sb.append("<option value=\"" + answers.get(0).getId() + "\"" + selected + ">Ответ 1</option>\n");
+        } catch (IndexOutOfBoundsException e) {
+            sb.append("<option value=\"-1\">Ответ 1</option>\n");
+        }
+        try {
+            selected = (answers.get(1).isCorrect()) ? "selected" : "";
+            sb.append("<option value=\"" + answers.get(1).getId() + "\"" + selected + ">Ответ 2</option>\n");
+        } catch (IndexOutOfBoundsException e) {
+            sb.append("<option value=\"-2\">Ответ 2</option>\n");
+        }
+        try {
+            selected = (answers.get(2).isCorrect()) ? "selected" : "";
+            sb.append("<option value=\"" + answers.get(2).getId() + "\"" + selected + ">Ответ 3</option>\n");
+        } catch (IndexOutOfBoundsException e) {
+            sb.append("<option value=\"-3\">Ответ 3</option>\n");
+        }
+        try {
+            selected = (answers.get(3).isCorrect()) ? "selected" : "";
+            sb.append("<option value=\"" + answers.get(3).getId() + "\"" + selected + ">Ответ 4</option>\n");
+        } catch (IndexOutOfBoundsException e) {
+            sb.append("<option value=\"-4\">Ответ 4</option>\n");
+        }
+
+        return sb.toString();
+    }
+
+    public String getRealmsHTML() {
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<String, String> entry: getAvailableRealms().entrySet()) {
+            sb.append("<option value=\"" + entry.getKey() + "\"");
+            if (this.getRealm().equals(entry.getKey()))
+                sb.append(" selected");
+            sb.append(">" + entry.getValue() + "</option>\n");
+        }
+        return sb.toString();
+    }
+
+    public String getTypesHTML() {
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<Integer, String> entry: getAvailableTypes().entrySet()) {
+            sb.append("<option value=\"" + entry.getKey() + "\"");
+            if (this.getType() == entry.getKey())
+                sb.append(" selected");
+            sb.append(">" + entry.getValue() + "</option>\n");
+        }
+        return sb.toString();
+    }
+
 
     /**
      * Get the value of id

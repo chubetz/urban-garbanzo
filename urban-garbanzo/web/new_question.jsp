@@ -20,7 +20,7 @@
                     ${question.text}
                 </td>
             </tr>
-        ${question.getAnswersHTML()}
+        ${question.getAnswersTableHTML()}
         </table>
         <br>
         ${question.isValid() ? "Вопрос составлен корректно" : "<font color=red>Вопрос составлен некорректно</font>"}
