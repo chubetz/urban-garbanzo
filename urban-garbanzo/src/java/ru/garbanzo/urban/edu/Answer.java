@@ -9,6 +9,7 @@ package ru.garbanzo.urban.edu;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import ru.garbanzo.urban.db.JDBCUtils;
+import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.exception.NoQuestionException;
 import ru.garbanzo.urban.util.Utils;
 
@@ -82,7 +83,7 @@ public class Answer implements DBEntity{
         return s.toString();
     }
 
-    public static Answer saveAnswer(int id, Map<String, Object> data) throws NoQuestionException {
+    public static Answer saveAnswer(int id, Map<String, Object> data) throws NoQuestionException, JDBCException {
         int questionId = (Integer)data.get("questionId");
         Question question = Question.getQuestionMap().get(questionId);
         if (question == null) {

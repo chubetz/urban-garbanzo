@@ -16,7 +16,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import ru.garbanzo.urban.db.JDBCUtils;
+import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.exception.NoQuestionException;
 import ru.garbanzo.urban.util.Utils;
 
@@ -29,6 +32,36 @@ public class Question implements DBEntity {
     public static final int INFO_TYPE = 0;
     public static final int TEST_TYPE = 1;
     public static final int COMMON_TYPE = 2;
+    
+    private static Map<Integer, String> typeText = new HashMap<Integer, String>();
+    
+    public static String getTypeText(Object keyObj) {
+        Integer key = 0;
+        if (keyObj instanceof String) {
+            key = Integer.parseInt((String)keyObj);
+        } else if (keyObj instanceof Integer) {
+            key = (Integer)keyObj;
+        } else {
+            throw new RuntimeException("Аргумент должен быть Integer или String");
+        }
+            
+        if (!typeText.containsKey(key)) {
+            switch (key) {
+                case INFO_TYPE:
+                    typeText.put(key, "Информационный");
+                    break;
+                case TEST_TYPE:
+                    typeText.put(key, "Тест");
+                    break;
+                case COMMON_TYPE:
+                    typeText.put(key, "Общий");
+                    break;
+            }
+        }
+        return typeText.get(key);
+    }
+    
+    private static Exception staticException;
     
     private int id = -1;
     private final String tableName = "Question";
@@ -47,6 +80,10 @@ public class Question implements DBEntity {
 
     public String getText() {
         return text;
+    }
+    
+    public boolean isValid() {
+        return (text != "") && (getAnswerMap().size() != 0);
     }
 
     @Override
@@ -70,30 +107,80 @@ public class Question implements DBEntity {
     }
     
     private static Map<Integer, Question> questionMap = new HashMap<Integer, Question>();
-    public static Map<Integer, Question> getQuestionMap() {
+    public static Map<Integer, Question> getQuestionMap() throws JDBCException {
+        if (staticException instanceof JDBCException) { // при инициализации класса что-то случилось с БД
+            throw (JDBCException)staticException;
+        }
         return Collections.unmodifiableMap(questionMap);
     }
+    
+    public static Question getQuestionById(Object id){
+        try {
+            if (id instanceof String)
+                return getQuestionMap().get(Integer.parseInt((String)id));
+            else
+                return getQuestionMap().get((Integer)id);
+        } catch (JDBCException ex) { //сюда не должны попасть
+            return null; 
+        }
+    }
+
+    public static Question getQuestionById(int id){
+        return getQuestionById(new Integer(id));
+    }
+
+    public static Map<Integer, Question> getValidQuestionMap() throws JDBCException {
+        Map<Integer, Question> filteredMap = new HashMap<Integer, Question>();
+        for (Map.Entry<Integer, Question> entry: questionMap.entrySet()) {
+            if (entry.getValue().isValid()) {
+                filteredMap.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return filteredMap;
+    }
+    
     private Map<Integer, Answer> answerMap = new HashMap<Integer, Answer>();
     public Map<Integer, Answer> getAnswerMap() {
         return Collections.unmodifiableMap(answerMap);
     }
+    
+    public String getAnswersHTML() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<tr>");
+        for (Map.Entry<Integer, Answer> entry: getAnswerMap().entrySet()) {
+            sb.append("<td>");
+            String answerText = entry.getValue().getText();
+            if (entry.getValue().isCorrect()) {
+                answerText = "<b>" + answerText + "</b>";
+            }
+            sb.append(answerText);
+            sb.append("</td>");
+        }
+        sb.append("</tr>");
+        return sb.toString();
+    }
 
     static {
-        List<Map<String, Object>> data = JDBCUtils.loadEntitiesData(new Question());
-        for (Map<String, Object> entry : data) {
-            Question question = new Question();
-            question.id = (Integer)entry.get("id");
-            question.setState(entry);
-            questionMap.put(question.id, question);
-        }
-        data = JDBCUtils.loadEntitiesData(new Answer(-1)); //ответы
-        for (Map<String, Object> entry : data) {
-            Answer answer = new Answer((Integer)entry.get("id"));
-            answer.setState(entry);
-            Question question = questionMap.get(answer.getQuestionId());
-            if (question != null) {
-                question.answerMap.put(answer.getId(), answer);
+        try {
+            List<Map<String, Object>> data = JDBCUtils.loadEntitiesData(new Question());
+            for (Map<String, Object> entry : data) {
+                Question question = new Question();
+                question.id = (Integer)entry.get("id");
+                question.setState(entry);
+                questionMap.put(question.id, question);
             }
+            data = JDBCUtils.loadEntitiesData(new Answer(-1)); //ответы
+            for (Map<String, Object> entry : data) {
+                Answer answer = new Answer((Integer)entry.get("id"));
+                answer.setState(entry);
+                Question question = questionMap.get(answer.getQuestionId());
+                if (question != null) {
+                    question.answerMap.put(answer.getId(), answer);
+                }
+            }
+        } catch (JDBCException ex) {
+            Logger.getLogger(Question.class.getName()).log(Level.SEVERE, null, ex);
+            staticException = ex;
         }
         
     }
@@ -112,7 +199,7 @@ public class Question implements DBEntity {
 
     @Override
     public String toString() {
-        return "Вопрос {" + id + '}';
+        return "Вопрос {" + id + "} " + '{' + realm + "} " + "{" + Question.getTypeText(type) + "}";
     }
     
     private static Map<String, Object> translateWebData(Map<String, String[]> data) {
@@ -128,7 +215,7 @@ public class Question implements DBEntity {
         return tmp;
     }
     
-    private void saveAnswers(Map<String, ?> data) {
+    private void saveAnswers(Map<String, ?> data) throws JDBCException {
         for (Map.Entry<String, ?> entry: data.entrySet()) {
             String[] corrects = new String[0];
             if (data.get("correct") != null) {
@@ -162,11 +249,11 @@ public class Question implements DBEntity {
         }
     }
     
-    public static Question saveQuestionFromWeb(int id, Map<String, String[]> data) {
-        return saveQuestion(id, translateWebData(data));
-    }
+//    public static Question saveQuestionFromWeb(int id, Map<String, String[]> data) {
+//        return saveQuestion(id, translateWebData(data));
+//    }
     
-    public static Question saveQuestion(int id, Map<String, ?> data) {
+    public static Question saveQuestion(int id, Map<String, ?> data) throws JDBCException {
         Question question = questionMap.get(id);
         if (question == null) {
             question = new Question();
@@ -192,7 +279,7 @@ public class Question implements DBEntity {
         return question;
     }
     
-    public static Question createQuestion(Map<String, ?> data) {
+    public static Question createQuestion(Map<String, ?> data) throws JDBCException {
         return saveQuestion(-1, data);
     }
 

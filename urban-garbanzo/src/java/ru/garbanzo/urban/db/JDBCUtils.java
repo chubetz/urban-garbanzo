@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import ru.garbanzo.urban.controller.MainServlet;
 import ru.garbanzo.urban.edu.DBEntity;
+import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
 
 /**
@@ -50,7 +51,7 @@ public class JDBCUtils {
         return getHSQLConnection("SA", "");
     }
     
-    public static List<Map<String, Object>> loadEntitiesData(DBEntity sample) {
+    public static List<Map<String, Object>> loadEntitiesData(DBEntity sample) throws JDBCException {
         Connection conn = null;
         Statement stmt = null;
         String sql = null;
@@ -78,21 +79,19 @@ public class JDBCUtils {
             }            
             rs.close();
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw new JDBCException(e, sql, null);
         } finally {
             try {
                 if (stmt != null) stmt.close();
                 if (conn != null) conn.close();
             } catch (SQLException ex) {
-                ex.printStackTrace();
-                return null;
+                throw new JDBCException(ex, sql, null);
             }
         }
         return list;
     }
     
-    public static int saveEntity(DBEntity entity) {
+    public static int saveEntity(DBEntity entity) throws JDBCException {
         Connection conn = null;
         Statement stmt = null;
         String sql = null;
@@ -137,15 +136,13 @@ public class JDBCUtils {
             }
             rs.close();
         } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
+            throw new JDBCException(e, sql, null);
         } finally {
             try {
                 if (stmt != null) stmt.close();
                 if (conn != null) conn.close();
             } catch (SQLException ex) {
-                ex.printStackTrace();
-                return -1;
+                throw new JDBCException(ex, sql, null);
             }
         }
         return id;

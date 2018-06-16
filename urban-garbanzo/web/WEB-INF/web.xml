@@ -20,10 +20,15 @@
 
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
-        <url-pattern>/add_q</url-pattern>
+        <url-pattern>/controller</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GenerateHTML</servlet-name>
         <url-pattern>/view</url-pattern>
     </servlet-mapping>
+
+    <error-page>
+        <exception-type>ru.garbanzo.urban.exception.JDBCException</exception-type>
+        <location>/db_error.jsp</location>
+    </error-page>
 </web-app>

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import ru.garbanzo.urban.edu.Answer;
 import ru.garbanzo.urban.edu.Question;
+import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
 
 /**
@@ -45,24 +46,32 @@ public class GenerateHTML extends HttpServlet {
             case "questions":
                 title = "Список загруженных вопросов";
                 body.append("<table>");
-                for (Map.Entry<Integer, Question> question: Question.getQuestionMap().entrySet()) {
-                    body.append("<tr>");
-                    body.append("<td>");
-                    body.append(question.getValue().toString());
-                    body.append("</td>");
-                    body.append("<td>");
-                    body.append(question.getValue().getText());
-                    body.append("</td>");
-                    for (Map.Entry<Integer, Answer> answer: question.getValue().getAnswerMap().entrySet()) {
+                try {
+                    for (Map.Entry<Integer, Question> question: Question.getQuestionMap().entrySet()) {
+                        body.append("<tr>");
+                        body.append("<td><form name=\"edit\" action=\"controller\" method=\"POST\">");
+                        body.append("<input type=\"hidden\" name=\"action\" value=\"edit_question\">");
+                        body.append("<input type=\"hidden\" name=\"qid\" value=\"" + question.getKey() + "\">");
+                        body.append("<input type=\"submit\" value=\"Edit\" /></form></td>");
                         body.append("<td>");
-                        String ansText = answer.getValue().getText();
-                        if (answer.getValue().isCorrect()) {
-                            ansText = "<b>" + ansText + "</b>";
-                        }
-                        body.append(ansText);
+                        body.append(question.getValue().toString());
                         body.append("</td>");
+                        body.append("<td>");
+                        body.append(question.getValue().getText());
+                        body.append("</td>");
+                        for (Map.Entry<Integer, Answer> answer: question.getValue().getAnswerMap().entrySet()) {
+                            body.append("<td>");
+                            String ansText = answer.getValue().getText();
+                            if (answer.getValue().isCorrect()) {
+                                ansText = "<b>" + ansText + "</b>";
+                            }
+                            body.append(ansText);
+                            body.append("</td>");
+                        }
+                        body.append("</tr>");
                     }
-                    body.append("</tr>");
+                } catch (JDBCException e) {
+                    getServletContext().getRequestDispatcher("/db_error.jsp").forward(request, response);                    
                 }
                 body.append("</table>");
         }

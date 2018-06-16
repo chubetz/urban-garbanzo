@@ -13,6 +13,16 @@
     </head>
     <body>
         <h2>Вопрос добавлен</h2>
-        Тип: ${pageContext.request.getParameter("type")}
+        ${question}<br>
+        <table>
+            <tr>
+                <td colspan="${question.getAnswerMap().size()}">
+                    ${question.text}
+                </td>
+            </tr>
+        ${question.getAnswersHTML()}
+        </table>
+        <br>
+        ${question.isValid() ? "Вопрос составлен корректно" : "<font color=red>Вопрос составлен некорректно</font>"}
     </body>
 </html>

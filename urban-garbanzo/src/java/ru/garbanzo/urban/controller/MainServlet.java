@@ -22,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import ru.garbanzo.urban.db.JDBCUtils;
 import ru.garbanzo.urban.edu.Question;
+import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
 
 /**
@@ -53,13 +54,31 @@ public class MainServlet extends HttpServlet {
         
         request.setCharacterEncoding ("UTF-8");
         String action = request.getParameter("action");
+        String url = null;
         switch (action) {
             case "add_question":
                 Utils.print("Servlet.add_question", request.getParameterMap());
-                Map<String, Object> data = new HashMap<String, Object>(); 
-                Question.createQuestion(request.getParameterMap());
+                Question question;
+                try {
+                    question = Question.createQuestion(request.getParameterMap());
+                } catch (JDBCException ex) {
+                    Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    url = "/db_error.jsp";
+                    break;
+                }
+                url = "/new_question.jsp";
+                request.setAttribute("question", question);
+                break;
+            case "edit_question":
+                url = "/edit_question.jsp";
+                Utils.print("Servlet.edit_question", request.getParameterMap());
+                Utils.print(request.getParameter("qid"));
+                request.setAttribute("question", Question.getQuestionById(request.getParameter("qid")));
+                break;
+            case "update_question":
+                
         }
-        getServletContext().getRequestDispatcher("/new_question.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher(url).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
