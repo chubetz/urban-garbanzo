@@ -55,10 +55,10 @@ public class MainServlet extends HttpServlet {
         request.setCharacterEncoding ("UTF-8");
         String action = request.getParameter("action");
         String url = null;
+        Question question;
         switch (action) {
             case "add_question":
                 Utils.print("Servlet.add_question", request.getParameterMap());
-                Question question;
                 try {
                     question = Question.createQuestion(request.getParameterMap());
                 } catch (JDBCException ex) {
@@ -69,13 +69,25 @@ public class MainServlet extends HttpServlet {
                 url = "/new_question.jsp";
                 request.setAttribute("question", question);
                 break;
-            case "edit_question":
+            case "load_edit_form":
                 url = "/edit_question.jsp";
                 Utils.print("Servlet.edit_question", request.getParameterMap());
                 Utils.print(request.getParameter("qid"));
                 request.setAttribute("question", Question.getQuestionById(request.getParameter("qid")));
+                request.setAttribute("action", "update_question");
                 break;
             case "update_question":
+                Utils.print("Servlet.update_question", request.getParameterMap());
+//                try {
+//                    question = Question.saveQuestion(request.getParameterMap());
+//                } catch (JDBCException ex) {
+//                    Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
+//                    url = "/db_error.jsp";
+//                    break;
+//                }
+//                url = "/new_question.jsp";
+//                request.setAttribute("question", question);
+                break;
                 
         }
         getServletContext().getRequestDispatcher(url).forward(request, response);

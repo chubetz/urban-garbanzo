@@ -107,6 +107,26 @@ public class JDBCUtils {
             ResultSet rs = stmt.executeQuery(sql);
             if (rs.first()) {
                 // обновляем запись
+                StringBuilder set_info = new StringBuilder();
+                boolean first = true;
+                for (Map.Entry<String, Object> entry: entity.getState().entrySet()) {
+                    if (first) {
+                        first = false;
+                    } else {
+                        set_info.append(",");
+                    }
+                    set_info.append(entry.getKey());
+                    set_info.append("=");
+                    if (entry.getValue() instanceof String) {
+                        set_info.append("'" + entry.getValue() + "'");
+                    } else {
+                        set_info.append(entry.getValue().toString());
+                    }
+                }
+                sql = "UPDATE " + entity.getTableName() + " SET " + set_info.toString() + " WHERE id = " + entity.getId();
+                Utils.print(sql);
+                //stmt.executeQuery(sql);
+                id = entity.getId();
             } else {
                 //вставляем новую запись (id, скорее всего, будет -1)
                 StringBuilder fields = new StringBuilder("("), values = new StringBuilder(" VALUES (");

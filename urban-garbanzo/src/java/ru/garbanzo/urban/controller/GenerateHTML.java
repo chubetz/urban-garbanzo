@@ -54,7 +54,7 @@ public class GenerateHTML extends HttpServlet {
                         }
                         body.append("<tr>");
                         body.append("<td" + bgcolor + "><form name=\"edit\" action=\"controller\" method=\"POST\">");
-                        body.append("<input type=\"hidden\" name=\"action\" value=\"edit_question\">");
+                        body.append("<input type=\"hidden\" name=\"action\" value=\"load_edit_form\">");
                         body.append("<input type=\"hidden\" name=\"qid\" value=\"" + question.getKey() + "\">");
                         body.append("<input type=\"submit\" value=\"Edit\" /></form></td>");
                         body.append("<td>");

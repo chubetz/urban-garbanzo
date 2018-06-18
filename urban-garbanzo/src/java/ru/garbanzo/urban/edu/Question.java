@@ -378,7 +378,8 @@ public class Question implements DBEntity {
         if (validId >= 0) { // удалось записать объект в БД с валидным id
             question.id = validId;
             questionMap.put(question.id, question);
-            question.saveAnswers(data);
+            Utils.print("НАДО ВКЛЮЧИТЬ saveAnswers!!!!");
+            //question.saveAnswers(data);
             Utils.print("validId: " + validId);
         } else {
             return null;
