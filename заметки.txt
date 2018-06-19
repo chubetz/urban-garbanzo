@@ -21,7 +21,7 @@ https://www.tutorialspoint.com/jdbc/jdbc-sample-code.htm
 https://www.tutorialspoint.com/jdbc/jdbc-statements.htm
 https://www.tutorialspoint.com/jdbc/preparestatement-object-example.htm
 
-http://hsqldb.org/doc/guide/guide.html
+http://hsqldb.org/doc/guide/guide.html 
 
 Servlet cookbook
 
