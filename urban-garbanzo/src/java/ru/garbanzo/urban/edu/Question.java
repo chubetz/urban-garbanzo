@@ -129,7 +129,7 @@ public class Question implements DBEntity {
                 break;
             }
         }
-        return correctExists && (text != "") && (getAnswerMap().size() != 0);
+        return correctExists && (!text.equals("")) && (text != null) && (getAnswerMap().size() != 0);
     }
 
     @Override
