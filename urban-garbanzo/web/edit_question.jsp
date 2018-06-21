@@ -12,7 +12,7 @@
         <title>Редактировать вопрос</title>
     </head>
     <body>
-        <p>${question == null ? "<Новый вопрос>" : question}</p>
+        <p>${question.getId() == null ? "<Новый вопрос>" : question}</p>
         <form name="${action}" action="controller" method="POST">
             <input type="hidden" name="action" value="${action}">        
             <input type="hidden" name="qid" value="${question.getId()}">        

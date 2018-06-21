@@ -64,10 +64,17 @@ public class MainServlet extends HttpServlet {
                 } catch (JDBCException ex) {
                     Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
                     url = "/db_error.jsp";
+                    request.setAttribute("exception", ex);
                     break;
                 }
                 url = "/new_question.jsp";
                 request.setAttribute("question", question);
+                break;
+            case "new_question":
+                url = "/edit_question.jsp";
+                Utils.print("Servlet.new_question", request.getParameterMap());
+                request.setAttribute("question", Question.getMockQuestion());
+                request.setAttribute("action", "add_question");
                 break;
             case "load_edit_form":
                 url = "/edit_question.jsp";
@@ -78,19 +85,56 @@ public class MainServlet extends HttpServlet {
                 break;
             case "update_question":
                 Utils.print("Servlet.update_question", request.getParameterMap());
-//                try {
-//                    question = Question.saveQuestion(request.getParameterMap());
-//                } catch (JDBCException ex) {
-//                    Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
-//                    url = "/db_error.jsp";
-//                    break;
-//                }
-//                url = "/new_question.jsp";
-//                request.setAttribute("question", question);
+                try {
+                    question = Question.saveQuestion(request.getParameter("qid"), request.getParameterMap());
+                } catch (JDBCException ex) {
+                    Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    url = "/db_error.jsp";
+                    request.setAttribute("exception", ex);
+                    break;
+                }
+                url = "/new_question.jsp";
+                request.setAttribute("question", question);
+                break;
+
+            case "export":
+                try {
+                    StringBuilder sb = new StringBuilder();
+                        sb.append("DELETE FROM Question\r\n");
+                    for (Question q: Question.getQuestionMap().values()) {
+                        Map<String, Object> state = q.getState();
+                        sb.append("INSERT INTO Question (id");
+                        for (String s: state.keySet()) {
+                            sb.append("," + s);
+                        }
+                        sb.append(") VALUES (" + q.getId());
+                        for (Object o: state.values()) {
+                            String ooo;
+                            if (o instanceof String) 
+                                ooo = "'" + o + "'";
+                            else
+                                ooo=o.toString();
+                            sb.append("," + ooo);
+                        }
+                        sb.append(")\r\n");
+                    }
+                    Utils.print(sb);
+                    response.setContentType("text/plain");
+                    response.setCharacterEncoding("UTF-8");
+                    response.setHeader("Content-Disposition", "attachment; filename=\"questions.sql\"");
+                    PrintWriter out = response.getWriter();
+                    out.print(sb.toString());
+                } catch (JDBCException ex) {
+                    Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    url = "/db_error.jsp";
+                    request.setAttribute("exception", ex);
+                    break;
+                }
                 break;
                 
         }
-        getServletContext().getRequestDispatcher(url).forward(request, response);
+        if (url != null)
+            getServletContext().getRequestDispatcher(url).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -105,7 +149,15 @@ public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String action = request.getParameter("action");
+        if (action.equals("new_question") || action.equals("export"))
+            processRequest(request, response);
+        else {
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("Недопустимые параметры");
+        }
     }
 
     /**

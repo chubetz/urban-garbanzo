@@ -13,5 +13,9 @@
     </head>
     <body>
         <h1>Ошибка Базы Данных</h1>
+        <p>
+        ${exception}
+        <p>
+        ${exception.getExceptionInfoHTML()}
     </body>
 </html>

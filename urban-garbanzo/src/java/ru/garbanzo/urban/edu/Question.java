@@ -34,6 +34,12 @@ public class Question implements DBEntity {
     public static final int TEST_TYPE = 1;
     public static final int COMMON_TYPE = 2;
     
+    private static MockQuestion mockQuestion = new MockQuestion(new Question());
+    
+    public static MockQuestion getMockQuestion() { //обертка для Question - для jsp
+        return mockQuestion;
+    }
+    
     private static Map<Integer, Question> questionMap = new HashMap<Integer, Question>();
     public static Map<Integer, Question> getQuestionMap() throws JDBCException {
         if (staticException instanceof JDBCException) { // при инициализации класса что-то случилось с БД
@@ -78,6 +84,7 @@ public class Question implements DBEntity {
         availableRealms = new HashMap<String, String>();
         availableRealms.put("java", "Java");
         availableRealms.put("kotlin", "Kotlin");
+        availableRealms.put("sql", "SQL");
         
         availableTypes = new HashMap<Integer, String>();
         availableTypes.put(INFO_TYPE, "Информационный");
@@ -324,6 +331,7 @@ public class Question implements DBEntity {
     }
     
     private void saveAnswers(Map<String, ?> data) throws JDBCException {
+        Utils.print("sae answers 1", data);
         for (Map.Entry<String, ?> entry: data.entrySet()) {
             String[] corrects = new String[0];
             if (data.get("correct") != null) {
@@ -335,8 +343,19 @@ public class Question implements DBEntity {
                 Arrays.sort(corrects);
             }
             String[] ans = entry.getKey().split("_");
-            if ((ans.length == 2) && ans[0].equals("answer") && !entry.getValue().equals("")) { // данные ответа
+            if ((ans.length == 2) && ans[0].equals("answer")) { // данные ответа
+                
                 int answerId = Integer.parseInt(ans[1]);
+
+                if (entry.getValue().equals("")) { // ответ надо стереть (если был) или не создавать (если не было)
+                    boolean wasDeleted = JDBCUtils.deleteEntity(new Answer(answerId));
+                    Utils.print("Стерлось ли?", wasDeleted);
+                    if (wasDeleted) { // нужно удалить из памяти
+                        this.answerMap.remove(answerId);
+                    }
+                    continue;
+                }
+
                 Map<String, Object> answerData = new HashMap<String, Object>();
                 answerData.put("questionId", this.id);
                 if (Arrays.binarySearch(corrects, ans[1]) >= 0)
@@ -379,7 +398,7 @@ public class Question implements DBEntity {
             question.id = validId;
             questionMap.put(question.id, question);
             Utils.print("НАДО ВКЛЮЧИТЬ saveAnswers!!!!");
-            //question.saveAnswers(data);
+            question.saveAnswers(data);
             Utils.print("validId: " + validId);
         } else {
             return null;
@@ -388,6 +407,10 @@ public class Question implements DBEntity {
         return question;
     }
     
+    public static Question saveQuestion(String id, Map<String, ?> data) throws JDBCException {
+        return saveQuestion(Integer.parseInt(id), data);
+    }
+
     public static Question createQuestion(Map<String, ?> data) throws JDBCException {
         return saveQuestion(-1, data);
     }

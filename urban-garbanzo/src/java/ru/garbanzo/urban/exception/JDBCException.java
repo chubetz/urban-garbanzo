@@ -5,6 +5,8 @@
  */
 package ru.garbanzo.urban.exception;
 
+import org.apache.catalina.tribes.util.Arrays;
+
 /**
  *
  * @author mithia
@@ -22,5 +24,25 @@ public class JDBCException extends Exception {
         this.addInfo = addInfo;
     }
     
+    public Exception getException() {
+        return this.orig;
+    }
+    
+    public String getExceptionInfo() {
+        return Arrays.toString(this.orig.getStackTrace());
+    }
+    
+    public String getExceptionInfoHTML() {
+        StringBuilder sb = new StringBuilder();
+        for (StackTraceElement ste: this.orig.getStackTrace()) {
+            sb.append(ste.toString());
+            sb.append("<br>");
+        }
+        return sb.toString();
+    }
+
+    public String toString() {
+        return "Ошибка JDBC: " + orig.toString();
+    }
     
 }

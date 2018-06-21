@@ -126,7 +126,7 @@ public class JDBCUtils {
                 sql = "UPDATE " + entity.getTableName() + " SET " + set_info.toString() + " WHERE id = " + entity.getId();
                 Utils.print("update===>", sql);
                 
-                //stmt.executeQuery(sql);
+                stmt.executeQuery(sql);
                 id = entity.getId();
             } else {
                 //вставляем новую запись (id, скорее всего, будет -1)
@@ -169,7 +169,30 @@ public class JDBCUtils {
         return id;
     }
     
-    private void testCode() {
+    public static boolean deleteEntity(DBEntity entity) throws JDBCException {
+        Connection conn = null;
+        Statement stmt = null;
+        String sql = null;
+        try {
+            conn = JDBCUtils.getHSQLConnection();
+            sql = "DELETE FROM " + entity.getTableName() + " WHERE id = " + entity.getId();
+            Utils.print("deleteEntity request", sql);
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            int total = stmt.executeUpdate(sql);
+            return total > 0;
+        } catch (Exception e) {
+            throw new JDBCException(e, sql, null);
+        } finally {
+            try {
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException ex) {
+                throw new JDBCException(ex, sql, null);
+            }
+        }
+    }
+
+        private void testCode() {
         /*
         Connection conn = null;
         Statement stmt = null;
