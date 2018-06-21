@@ -124,7 +124,8 @@ public class JDBCUtils {
                     }
                 }
                 sql = "UPDATE " + entity.getTableName() + " SET " + set_info.toString() + " WHERE id = " + entity.getId();
-                Utils.print(sql);
+                Utils.print("update===>", sql);
+                
                 //stmt.executeQuery(sql);
                 id = entity.getId();
             } else {

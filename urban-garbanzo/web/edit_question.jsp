@@ -15,6 +15,7 @@
         <p>${question == null ? "<Новый вопрос>" : question}</p>
         <form name="${action}" action="controller" method="POST">
             <input type="hidden" name="action" value="${action}">        
+            <input type="hidden" name="qid" value="${question.getId()}">        
             <label>Область</label>
             <select name="realm">
                 ${question.getRealmsHTML()}

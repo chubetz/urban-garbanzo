@@ -65,7 +65,7 @@ public class Answer implements DBEntity{
             questionId = (Integer)map.get("questionId");
         }
         this.questionId = questionId;
-        Utils.print("map-->", map);
+        //Utils.print("map-->", map);
         this.correct = (Boolean)map.get("correct");
     }
 
