@@ -40,7 +40,7 @@ public class Question implements DBEntity {
         return mockQuestion;
     }
     
-    private static Map<Integer, Question> questionMap = new HashMap<Integer, Question>();
+    private static Map<Integer, Question> questionMap;
     public static Map<Integer, Question> getQuestionMap() throws JDBCException {
         if (staticException instanceof JDBCException) { // при инициализации класса что-то случилось с БД
             throw (JDBCException)staticException;
@@ -57,9 +57,10 @@ public class Question implements DBEntity {
     public static Map<Integer, String> getAvailableTypes() {
         return Collections.unmodifiableMap(availableTypes);
     }
-
-    static {
+    
+    public static void init() {
         try {
+            questionMap = new HashMap<Integer, Question>();
             List<Map<String, Object>> data = JDBCUtils.loadEntitiesData(new Question());
             for (Map<String, Object> entry : data) {
                 Question question = new Question();
@@ -90,6 +91,11 @@ public class Question implements DBEntity {
         availableTypes.put(INFO_TYPE, "Информационный");
         availableTypes.put(TEST_TYPE, "Тест");
         availableTypes.put(COMMON_TYPE, "Общий");
+        
+    }
+
+    static {
+        init();
     }
 
     

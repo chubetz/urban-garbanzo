@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ru.garbanzo.urban.db.JDBCUtils;
+import ru.garbanzo.urban.edu.Answer;
 import ru.garbanzo.urban.edu.Question;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
@@ -98,16 +99,18 @@ public class MainServlet extends HttpServlet {
                 break;
 
             case "export":
+                Question.init(); // реинициализация, чтобы выгрузка была строго из БД
                 try {
                     StringBuilder sb = new StringBuilder();
-                        sb.append("DELETE FROM Question\r\n");
+                        sb.append("DELETE FROM Question;\r\n");
+                        sb.append("\tDELETE FROM Answer;\r\n");
                     for (Question q: Question.getQuestionMap().values()) {
                         Map<String, Object> state = q.getState();
                         sb.append("INSERT INTO Question (id");
                         for (String s: state.keySet()) {
                             sb.append("," + s);
                         }
-                        sb.append(") VALUES (" + q.getId());
+                        sb.append(") OVERRIDING SYSTEM VALUE VALUES (" + q.getId());
                         for (Object o: state.values()) {
                             String ooo;
                             if (o instanceof String) 
@@ -116,7 +119,26 @@ public class MainServlet extends HttpServlet {
                                 ooo=o.toString();
                             sb.append("," + ooo);
                         }
-                        sb.append(")\r\n");
+                        sb.append(");\r\n");
+                        
+                        for (Answer a: q.getAnswerMap().values()) {
+                            Map<String, Object> stateA = a.getState();
+                            sb.append("\tINSERT INTO Answer (id");
+                            for (String s: stateA.keySet()) {
+                                sb.append("," + s);
+                            }
+                            sb.append(") OVERRIDING SYSTEM VALUE VALUES (" + a.getId());
+                            for (Object o: stateA.values()) {
+                                String ooo;
+                                if (o instanceof String) 
+                                    ooo = "'" + o + "'";
+                                else
+                                    ooo=o.toString();
+                                sb.append("," + ooo);
+                            }
+                            sb.append(");\r\n");
+                            
+                        }
                     }
                     Utils.print(sb);
                     response.setContentType("text/plain");
