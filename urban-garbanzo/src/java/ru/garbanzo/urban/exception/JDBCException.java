@@ -32,6 +32,10 @@ public class JDBCException extends Exception {
         return Arrays.toString(this.orig.getStackTrace());
     }
     
+    public String getRequest() {
+        return this.request;
+    }
+
     public String getExceptionInfoHTML() {
         StringBuilder sb = new StringBuilder();
         for (StackTraceElement ste: this.orig.getStackTrace()) {

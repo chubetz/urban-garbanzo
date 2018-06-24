@@ -16,6 +16,8 @@
         <p>
         ${exception}
         <p>
+            <b>${exception.getRequest()}</b>
+        <p>
         ${exception.getExceptionInfoHTML()}
     </body>
 </html>

@@ -187,3 +187,16 @@ http://yan.zlobin.name/86
 Calendar!
 
 JUnit?
+
+
+Java Certification
+==================
+
+Exam Number: 1Z0-808
+Exam Title: Java SE 8 Programmer I
+
+
+Список ошибок: https://www.selikoff.net/java-oca-8-programmer-i-study-guide/
+
+p.358
+Identifying Your Weakest Link

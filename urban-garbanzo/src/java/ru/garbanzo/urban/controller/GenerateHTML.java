@@ -75,6 +75,7 @@ public class GenerateHTML extends HttpServlet {
                         body.append("</tr>");
                     }
                 } catch (JDBCException e) {
+                    request.setAttribute("exception", e);
                     getServletContext().getRequestDispatcher("/db_error.jsp").forward(request, response);                    
                 }
                 body.append("</table>");
@@ -88,7 +89,8 @@ public class GenerateHTML extends HttpServlet {
             out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
             out.println("<title>" + title + "</title>");            
             out.println("</head>");
-            out.println("<body>");
+            out.println("<body bgcolor = #d8cFaA>");
+            
 
             out.println("<h2>" + title + "</h2>");
             out.println(body.toString());

@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Редактировать вопрос</title>
     </head>
-    <body>
+    <body bgcolor = #DAD644>
         <p>${question.getId() == null ? "<Новый вопрос>" : question}</p>
         <form name="${action}" action="controller" method="POST">
             <input type="hidden" name="action" value="${action}">        

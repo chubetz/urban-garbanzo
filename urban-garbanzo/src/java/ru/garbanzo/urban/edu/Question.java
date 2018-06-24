@@ -60,6 +60,7 @@ public class Question implements DBEntity {
     
     public static void init() {
         try {
+            staticException = null; //сносим исключение, хранившееся с момента предыдущего неудачного запуска
             questionMap = new HashMap<Integer, Question>();
             List<Map<String, Object>> data = JDBCUtils.loadEntitiesData(new Question());
             for (Map<String, Object> entry : data) {
@@ -86,11 +87,13 @@ public class Question implements DBEntity {
         availableRealms.put("java", "Java");
         availableRealms.put("kotlin", "Kotlin");
         availableRealms.put("sql", "SQL");
+        availableRealms.put("minecraft", "MINECRAFT");
+        availableRealms.put("oca_1", "OCA I");
         
         availableTypes = new HashMap<Integer, String>();
-        availableTypes.put(INFO_TYPE, "Информационный");
+        availableTypes.put(INFO_TYPE, "Информационный"); //односторонняя флеш-карточка
         availableTypes.put(TEST_TYPE, "Тест");
-        availableTypes.put(COMMON_TYPE, "Общий");
+        availableTypes.put(COMMON_TYPE, "Общий"); //двусторонняя флеш-карточка
         
     }
 
@@ -142,7 +145,8 @@ public class Question implements DBEntity {
                 break;
             }
         }
-        return correctExists && (!text.equals("")) && (text != null) && (getAnswerMap().size() != 0);
+        return (!text.equals("")) && (text != null) && 
+                (this.getType() == Question.INFO_TYPE || (correctExists && getAnswerMap().size() != 0));
     }
 
     @Override
