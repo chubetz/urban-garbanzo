@@ -72,17 +72,34 @@ Servlet cookbook
 
 	6.4) поместить скрипт в гит - сделано
 
+7) Realm - вынос в БД
+	7.0) универсальная работа со state - готово
+	7.1) класс Realm, его состояние - готово
+	7.11) static getRealmMap(), объектовый getQuestionMap()
+	7.12) вынос метода init() в класс Init
+	7.2) хранение в БД. ID, Метка, описание
+		7.2.1) редактирование/создание Realm, заведение с интерфейса имеющихся областей
+		7.2.2) переделка скрипта Question. Вместо текстового поля realm - числовое поле realmid, накат этого скрипта
+		7.2.3) переделка атрибута Question.realm на int, добавление метода getRealmId(), метод getRealm должен возвращать объект Realm
+		7.2.4) в Answer - добавить метод getQuestion(), возвращающий Question
+	7.25) добавление в init() загрузку данных по Realm	
+	7.3) метод Question.toString, выводы в JSP
+	7.4) доступ к областям в JSP - напрямую из Realm
+	7.5) выгрузка/загрузка SQL
+	7.6) переделка на новый state сущностей Question и Answer
+	7.7) Сделать родительский неинстанциируемый класс Entity и вынести в него общие методы сущностей
+
+8) что-то похожее с Theme < Realm + реализация связи многие-ко-многим: Theme <-> Question
 
 
 
+9) Сделать сущность Theme, чтоьбы привязывать вопросы
 
-8) Сделать сущность Theme, чтоьбы привязывать вопросы
+10) Сделать Answer внутренним классом Question!! Переработать static clause в Question
 
-9) Сделать Answer внутренним классом Question!! Переработать static clause в Question
+11) Сделать MockQuestion внутренним классом
 
-10) Сделать MockQuestion внутренним классом
-
-11) Сделать MockAnswer?
+12) Сделать MockAnswer?
 
 4.9) Сделать утилиту поиска элемента в коллекции/массиве
 
@@ -153,6 +170,11 @@ DROP TABLE Answer IF EXISTS
 CREATE TABLE Answer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean, text VARCHAR(2000))
 
 
+DROP TABLE Realm IF EXISTS;
+
+CREATE TABLE Realm (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, text VARCHAR(20), description VARCHAR(2000))
+
+
 
 
 
@@ -164,7 +186,6 @@ CREATE TABLE Answer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questi
 public static <T extends Object & Comparable<? super T>> T max(Collection<? extends T> coll
 
 
-Сервис: Человек сам составляет для себя вопросы!
 
 
 
@@ -189,6 +210,20 @@ Calendar!
 JUnit?
 
 
+Идеи
+====
+
+Сервис: Человек сам составляет для себя вопросы!
+
+- возможность подключить к аккаунту электронную книгу
+
+- флеш-карточки - красивый вывод => хранить форматирование
+
+- изображения в вопросах - чтобы нельзя было скопировать в IDE и проверить
+
+- вопрос-задача? продумать
+
+
 Java Certification
 ==================
 
@@ -198,5 +233,6 @@ Exam Title: Java SE 8 Programmer I
 
 Список ошибок: https://www.selikoff.net/java-oca-8-programmer-i-study-guide/
 
-p.358
-Identifying Your Weakest Link
+p.1
+Java Building Blocks
+

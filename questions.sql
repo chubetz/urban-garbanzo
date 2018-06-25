@@ -1,10 +1,9 @@
-DELETE FROM Question;
-	DELETE FROM Answer;
+DROP TABLE Question IF EXISTS;
+CREATE TABLE Question (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realm VARCHAR(20), type int, text VARCHAR(2000));
+	DROP TABLE Answer IF EXISTS;
+	CREATE TABLE Answer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean, text VARCHAR(2000));
 INSERT INTO Question (id,realm,type,text) OVERRIDING SYSTEM VALUE VALUES (0,'oca_1',0,'Тесты экзамена предполагают обычно 5 или 6 ответов, со множественным выбором.');
-INSERT INTO Question (id,realm,type,text) OVERRIDING SYSTEM VALUE VALUES (1,'java',0,'А вот еще вопрос');
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (1,1,'Первый',false);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (2,1,'Третий',true);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (3,1,'Второй',true);
+INSERT INTO Question (id,realm,type,text) OVERRIDING SYSTEM VALUE VALUES (1,'oca_1',0,'Нельзя реализовать в классе два интерфейса с общим дефолтным методом, если не переопределить этот метод в классе.');
 INSERT INTO Question (id,realm,type,text) OVERRIDING SYSTEM VALUE VALUES (2,'java',0,'');
 INSERT INTO Question (id,realm,type,text) OVERRIDING SYSTEM VALUE VALUES (3,'java',0,'');
 INSERT INTO Question (id,realm,type,text) OVERRIDING SYSTEM VALUE VALUES (4,'java',0,'');
@@ -12,7 +11,7 @@ INSERT INTO Question (id,realm,type,text) OVERRIDING SYSTEM VALUE VALUES (5,'jav
 INSERT INTO Question (id,realm,type,text) OVERRIDING SYSTEM VALUE VALUES (6,'kotlin',0,'');
 INSERT INTO Question (id,realm,type,text) OVERRIDING SYSTEM VALUE VALUES (7,'java',0,'');
 INSERT INTO Question (id,realm,type,text) OVERRIDING SYSTEM VALUE VALUES (8,'java',0,'');
-INSERT INTO Question (id,realm,type,text) OVERRIDING SYSTEM VALUE VALUES (9,'sql',0,'Какой оператор?');
+INSERT INTO Question (id,realm,type,text) OVERRIDING SYSTEM VALUE VALUES (9,'sql',0,'Какой оператор1?');
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (65,9,'SELECT FROM',true);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (66,9,'GOPRKD',false);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (67,9,'UPDATE SET',true);

@@ -102,8 +102,10 @@ public class MainServlet extends HttpServlet {
                 Question.init(); // реинициализация, чтобы выгрузка была строго из БД
                 try {
                     StringBuilder sb = new StringBuilder();
-                        sb.append("DELETE FROM Question;\r\n");
-                        sb.append("\tDELETE FROM Answer;\r\n");
+                        sb.append("DROP TABLE Question IF EXISTS;\r\n");
+                        sb.append("CREATE TABLE Question (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realm VARCHAR(20), type int, text VARCHAR(2000));\r\n");
+                        sb.append("\tDROP TABLE Answer IF EXISTS;\r\n");
+                        sb.append("\tCREATE TABLE Answer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean, text VARCHAR(2000));\r\n");
                     for (Question q: Question.getQuestionMap().values()) {
                         Map<String, Object> state = q.getState();
                         sb.append("INSERT INTO Question (id");
