@@ -17,7 +17,7 @@ import ru.garbanzo.urban.util.Utils;
  *
  * @author d.gorshenin
  */
-public class Answer implements DBEntity{
+public class Answer extends Entity{
     
     private Answer() {
         
@@ -85,7 +85,7 @@ public class Answer implements DBEntity{
 
     public static Answer saveAnswer(int id, Map<String, Object> data) throws NoQuestionException, JDBCException {
         int questionId = (Integer)data.get("questionId");
-        Question question = Question.getQuestionMap().get(questionId);
+        Question question = Question.getMap().get(questionId);
         if (question == null) {
             throw new NoQuestionException("В системе нет вопроса с id = " + questionId);
         }

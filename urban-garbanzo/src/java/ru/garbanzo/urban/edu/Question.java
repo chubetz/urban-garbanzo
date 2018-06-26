@@ -5,20 +5,13 @@
  */
 package ru.garbanzo.urban.edu;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.util.Util;
-import java.sql.Connection;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import ru.garbanzo.urban.db.JDBCUtils;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.exception.NoQuestionException;
@@ -28,7 +21,7 @@ import ru.garbanzo.urban.util.Utils;
  *
  * @author d.gorshenin
  */
-public class Question implements DBEntity {
+public class Question extends Entity {
     
     public static final int INFO_TYPE = 0;
     public static final int TEST_TYPE = 1;
@@ -40,63 +33,22 @@ public class Question implements DBEntity {
         return mockQuestion;
     }
     
-    private static Map<Integer, Question> questionMap;
-    public static Map<Integer, Question> getQuestionMap() throws JDBCException {
-        if (staticException instanceof JDBCException) { // при инициализации класса что-то случилось с БД
-            throw (JDBCException)staticException;
-        }
-        return Collections.unmodifiableMap(questionMap);
+    
+    public static Map<Integer, Question> getMap() {
+        acquireStorage();
+        return Collections.unmodifiableMap(storage.getQuestionMap());
+    }
+    private static Map<Integer, Question> getEditableMap() {
+        acquireStorage();
+        return storage.getQuestionMap();
     }
 
-    private static Map<String, String> availableRealms;
-    public static Map<String, String> getAvailableRealms() {
-        return Collections.unmodifiableMap(availableRealms);
-    }
 
     private static Map<Integer, String> availableTypes;
     public static Map<Integer, String> getAvailableTypes() {
         return Collections.unmodifiableMap(availableTypes);
     }
     
-    static void init() {
-//        try {
-//            staticException = null; //сносим исключение, хранившееся с момента предыдущего неудачного запуска
-//            questionMap = new HashMap<Integer, Question>();
-//            List<Map<String, Object>> data = JDBCUtils.loadEntitiesData(new Question());
-//            for (Map<String, Object> entry : data) {
-//                Question question = new Question();
-//                question.id = (Integer)entry.get("id");
-//                question.setState(entry);
-//                questionMap.put(question.id, question);
-//            }
-//            data = JDBCUtils.loadEntitiesData(new Answer(-1)); //ответы
-//            for (Map<String, Object> entry : data) {
-//                Answer answer = new Answer((Integer)entry.get("id"));
-//                answer.setState(entry);
-//                Question question = questionMap.get(answer.getQuestionId());
-//                if (question != null) {
-//                    question.answerMap.put(answer.getId(), answer);
-//                }
-//            }
-//        } catch (JDBCException ex) {
-//            Logger.getLogger(Question.class.getName()).log(Level.SEVERE, null, ex);
-//            staticException = ex;
-//        }
-//        
-//        availableRealms = new HashMap<String, String>();
-//        availableRealms.put("java", "Java");
-//        availableRealms.put("kotlin", "Kotlin");
-//        availableRealms.put("sql", "SQL");
-//        availableRealms.put("minecraft", "MINECRAFT");
-//        availableRealms.put("oca_1", "OCA I");
-//        
-//        availableTypes = new HashMap<Integer, String>();
-//        availableTypes.put(INFO_TYPE, "Информационный"); //односторонняя флеш-карточка
-//        availableTypes.put(TEST_TYPE, "Тест");
-//        availableTypes.put(COMMON_TYPE, "Общий"); //двусторонняя флеш-карточка
-//        
-    }
-
     static {
         availableTypes = new HashMap<Integer, String>();
         availableTypes.put(INFO_TYPE, "Информационный"); //односторонняя флеш-карточка
@@ -104,8 +56,6 @@ public class Question implements DBEntity {
         availableTypes.put(COMMON_TYPE, "Общий"); //двусторонняя флеш-карточка
     }
 
-    
-    
     public static String getTypeText(Object keyObj) {
         Integer key = 0;
         if (keyObj instanceof String) {
@@ -118,8 +68,6 @@ public class Question implements DBEntity {
             
         return getAvailableTypes().get(key);
     }
-    
-    private static Exception staticException;
     
     private int id = -1;
     private final String tableName = "Question";
@@ -173,24 +121,20 @@ public class Question implements DBEntity {
     }
     
     
-    public static Question getQuestionById(Object id){
-        try {
-            if (id instanceof String)
-                return getQuestionMap().get(Integer.parseInt((String)id));
-            else
-                return getQuestionMap().get((Integer)id);
-        } catch (JDBCException ex) { //сюда не должны попасть
-            return null; 
-        }
+    public static Question getById(Object id){
+        if (id instanceof String)
+            return getMap().get(Integer.parseInt((String)id));
+        else
+            return getMap().get((Integer)id);
     }
 
-    public static Question getQuestionById(int id){
-        return getQuestionById(new Integer(id));
+    public static Question getById(int id){
+        return Question.getById(new Integer(id));
     }
 
-    public static Map<Integer, Question> getValidQuestionMap() throws JDBCException {
+    public static Map<Integer, Question> getValidMap() throws JDBCException {
         Map<Integer, Question> filteredMap = new HashMap<Integer, Question>();
-        for (Map.Entry<Integer, Question> entry: questionMap.entrySet()) {
+        for (Map.Entry<Integer, Question> entry: storage.getQuestionMap().entrySet()) {
             if (entry.getValue().isValid()) {
                 filteredMap.put(entry.getKey(), entry.getValue());
             }
@@ -198,9 +142,13 @@ public class Question implements DBEntity {
         return filteredMap;
     }
     
-    private Map<Integer, Answer> answerMap = new HashMap<Integer, Answer>();
     public Map<Integer, Answer> getAnswerMap() {
-        return Collections.unmodifiableMap(answerMap);
+        acquireStorage();
+        return Collections.unmodifiableMap(storage.getAnswerMap(id));
+    }
+    private Map<Integer, Answer> getEditableAnswerMap() { //эту мапу можно редактировать
+        acquireStorage();
+        return storage.getAnswerMap(id);
     }
     
     public String getAnswersTableHTML() {
@@ -289,6 +237,14 @@ public class Question implements DBEntity {
 
         return sb.toString();
     }
+    
+    private Map<String, String> getAvailableRealms() {
+        Map<String, String> map = new HashMap<String, String>();
+        for (Realm realm: Realm.getMap().values()) {
+            map.put(realm.getStr("text"), realm.getStr("description"));
+        }
+        return map;
+    }
 
     public String getRealmsHTML() {
         StringBuilder sb = new StringBuilder();
@@ -367,7 +323,8 @@ public class Question implements DBEntity {
                     boolean wasDeleted = JDBCUtils.deleteEntity(new Answer(answerId));
                     Utils.print("Стерлось ли?", wasDeleted);
                     if (wasDeleted) { // нужно удалить из памяти
-                        this.answerMap.remove(answerId);
+                        getEditableAnswerMap().remove(answerId);
+                        storage.getAnswerMap().remove(answerId);
                     }
                     continue;
                 }
@@ -383,7 +340,8 @@ public class Question implements DBEntity {
                 Utils.print("answerData", answerData);
                 try {
                     Answer answer = Answer.saveAnswer(answerId, answerData);
-                    this.answerMap.put(answer.getId(), answer);
+                    getEditableAnswerMap().put(answer.getId(), answer);
+                    storage.getAnswerMap().put(answer.getId(), answer);
                 } catch(NoQuestionException nqe) {
                     nqe.printStackTrace();
                 }
@@ -397,7 +355,7 @@ public class Question implements DBEntity {
 //    }
     
     public static Question saveQuestion(int id, Map<String, ?> data) throws JDBCException {
-        Question question = questionMap.get(id);
+        Question question = getMap().get(id);
         if (question == null) {
             question = new Question();
         }
@@ -412,7 +370,7 @@ public class Question implements DBEntity {
         int validId = JDBCUtils.saveEntity(question);
         if (validId >= 0) { // удалось записать объект в БД с валидным id
             question.id = validId;
-            questionMap.put(question.id, question);
+            getEditableMap().put(question.id, question);
             Utils.print("НАДО ВКЛЮЧИТЬ saveAnswers!!!!");
             question.saveAnswers(data);
             Utils.print("validId: " + validId);

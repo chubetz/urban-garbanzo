@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import ru.garbanzo.urban.edu.Answer;
 import ru.garbanzo.urban.edu.Question;
+import ru.garbanzo.urban.edu.Storage;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
 
@@ -47,7 +48,10 @@ public class GenerateHTML extends HttpServlet {
                 title = "Список загруженных вопросов";
                 body.append("<table>");
                 try {
-                    for (Map.Entry<Integer, Question> question: Question.getQuestionMap().entrySet()) {
+                    if (Storage.getJdbcException() != null) {
+                        throw Storage.getJdbcException();
+                    }
+                    for (Map.Entry<Integer, Question> question: Question.getMap().entrySet()) {
                         String bgcolor = " bgcolor=red";
                         if (question.getValue().isValid()) {
                             bgcolor = ""; //вопрос валидный, подсчетки не надо

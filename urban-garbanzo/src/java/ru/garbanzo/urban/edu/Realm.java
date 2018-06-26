@@ -8,12 +8,13 @@ package ru.garbanzo.urban.edu;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import ru.garbanzo.urban.exception.JDBCException;
 
 /**
  *
  * @author d.gorshenin
  */
-public class Realm implements DBEntity {
+public class Realm extends Entity {
     
     private Realm() {}
     
@@ -29,6 +30,11 @@ public class Realm implements DBEntity {
         defaultState.put("description", "");
     }
     
+    public static Map<Integer, Realm> getMap() {
+        acquireStorage();
+        return Collections.unmodifiableMap(storage.getRealmMap());
+    }
+
     private int id = -1;
     private final String tableName = "Realm";
 

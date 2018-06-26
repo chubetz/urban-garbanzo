@@ -24,13 +24,18 @@ import ru.garbanzo.urban.exception.JDBCException;
 public class Storage {
     
     private static Storage storage;
-    private static Exception staticException;
+    private JDBCException jdbcException;
+    public static JDBCException getJdbcException() {
+        return storage.jdbcException;
+    }
     
     private Map<Integer, Question> questionMap;    
     private Map<Integer, Answer> answerMap;    
     private Map<Integer, Map<Integer, Answer>> answerMapForQuestion;    
     private Map<Integer, Realm> realmMap;    
     
+    private Map<Integer, Answer> emptyAnswerMap = new HashMap<Integer, Answer>();    
+
     Map<Integer, Question> getQuestionMap() {
         return questionMap;
     }
@@ -40,7 +45,8 @@ public class Storage {
     }
 
     Map<Integer, Answer> getAnswerMap(int questionId) {
-        return answerMapForQuestion.get(questionId);
+        Map<Integer, Answer> answerMap = answerMapForQuestion.get(questionId);
+        return answerMap == null ?  emptyAnswerMap : answerMap;
     }
 
     Map<Integer, Realm> getRealmMap() {
@@ -57,8 +63,9 @@ public class Storage {
         storage = new Storage();
 
         try {
-            staticException = null; //сносим исключение, хранившееся с момента предыдущего неудачного запуска
+            storage.jdbcException = null; //сносим исключение, хранившееся с момента предыдущего неудачного запуска
             storage.questionMap = new HashMap<Integer, Question>();
+            storage.answerMapForQuestion = new HashMap<Integer, Map<Integer, Answer>>();
             List<Map<String, Object>> data = JDBCUtils.loadEntitiesData(new Question(-1));
             for (Map<String, Object> entry : data) {
                 Question question = new Question((Integer)entry.get("id"));
@@ -78,7 +85,7 @@ public class Storage {
             }
         } catch (JDBCException ex) {
             Logger.getLogger(Question.class.getName()).log(Level.SEVERE, null, ex);
-            staticException = ex;
+            storage.jdbcException = ex;
         }
         
         storage.realmMap = new HashMap<Integer, Realm>();
