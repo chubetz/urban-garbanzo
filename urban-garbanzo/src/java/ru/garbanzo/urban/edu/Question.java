@@ -58,47 +58,50 @@ public class Question implements DBEntity {
         return Collections.unmodifiableMap(availableTypes);
     }
     
-    public static void init() {
-        try {
-            staticException = null; //сносим исключение, хранившееся с момента предыдущего неудачного запуска
-            questionMap = new HashMap<Integer, Question>();
-            List<Map<String, Object>> data = JDBCUtils.loadEntitiesData(new Question());
-            for (Map<String, Object> entry : data) {
-                Question question = new Question();
-                question.id = (Integer)entry.get("id");
-                question.setState(entry);
-                questionMap.put(question.id, question);
-            }
-            data = JDBCUtils.loadEntitiesData(new Answer(-1)); //ответы
-            for (Map<String, Object> entry : data) {
-                Answer answer = new Answer((Integer)entry.get("id"));
-                answer.setState(entry);
-                Question question = questionMap.get(answer.getQuestionId());
-                if (question != null) {
-                    question.answerMap.put(answer.getId(), answer);
-                }
-            }
-        } catch (JDBCException ex) {
-            Logger.getLogger(Question.class.getName()).log(Level.SEVERE, null, ex);
-            staticException = ex;
-        }
-        
-        availableRealms = new HashMap<String, String>();
-        availableRealms.put("java", "Java");
-        availableRealms.put("kotlin", "Kotlin");
-        availableRealms.put("sql", "SQL");
-        availableRealms.put("minecraft", "MINECRAFT");
-        availableRealms.put("oca_1", "OCA I");
-        
+    static void init() {
+//        try {
+//            staticException = null; //сносим исключение, хранившееся с момента предыдущего неудачного запуска
+//            questionMap = new HashMap<Integer, Question>();
+//            List<Map<String, Object>> data = JDBCUtils.loadEntitiesData(new Question());
+//            for (Map<String, Object> entry : data) {
+//                Question question = new Question();
+//                question.id = (Integer)entry.get("id");
+//                question.setState(entry);
+//                questionMap.put(question.id, question);
+//            }
+//            data = JDBCUtils.loadEntitiesData(new Answer(-1)); //ответы
+//            for (Map<String, Object> entry : data) {
+//                Answer answer = new Answer((Integer)entry.get("id"));
+//                answer.setState(entry);
+//                Question question = questionMap.get(answer.getQuestionId());
+//                if (question != null) {
+//                    question.answerMap.put(answer.getId(), answer);
+//                }
+//            }
+//        } catch (JDBCException ex) {
+//            Logger.getLogger(Question.class.getName()).log(Level.SEVERE, null, ex);
+//            staticException = ex;
+//        }
+//        
+//        availableRealms = new HashMap<String, String>();
+//        availableRealms.put("java", "Java");
+//        availableRealms.put("kotlin", "Kotlin");
+//        availableRealms.put("sql", "SQL");
+//        availableRealms.put("minecraft", "MINECRAFT");
+//        availableRealms.put("oca_1", "OCA I");
+//        
+//        availableTypes = new HashMap<Integer, String>();
+//        availableTypes.put(INFO_TYPE, "Информационный"); //односторонняя флеш-карточка
+//        availableTypes.put(TEST_TYPE, "Тест");
+//        availableTypes.put(COMMON_TYPE, "Общий"); //двусторонняя флеш-карточка
+//        
+    }
+
+    static {
         availableTypes = new HashMap<Integer, String>();
         availableTypes.put(INFO_TYPE, "Информационный"); //односторонняя флеш-карточка
         availableTypes.put(TEST_TYPE, "Тест");
         availableTypes.put(COMMON_TYPE, "Общий"); //двусторонняя флеш-карточка
-        
-    }
-
-    static {
-        init();
     }
 
     
@@ -318,8 +321,11 @@ public class Question implements DBEntity {
     public int getId() {
         return id;
     }
+    
+    private Question() {}
 
-    private Question() {
+    Question(int id) {
+        this.id = id;
     }
 
     @Override

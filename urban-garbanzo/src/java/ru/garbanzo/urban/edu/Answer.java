@@ -23,7 +23,7 @@ public class Answer implements DBEntity{
         
     }
     
-    Answer(int id) { // TODO! обязательно перенести весь класс Answer внутрь класса Question
+    Answer(int id) { // TODO! обязательно перенести весь класс Answer внутрь класса Question ::: а надо ли? все в одном пакете
         this.id = id;
     }
     
