@@ -27,7 +27,7 @@ public class Question extends Entity {
     public static final int TEST_TYPE = 1;
     public static final int COMMON_TYPE = 2;
     
-    private static MockQuestion mockQuestion = new MockQuestion(new Question());
+    private static MockQuestion mockQuestion = new MockQuestion(new Question(-1));
     
     public static MockQuestion getMockQuestion() { //обертка для Question - для jsp
         return mockQuestion;
@@ -49,7 +49,14 @@ public class Question extends Entity {
         return Collections.unmodifiableMap(availableTypes);
     }
     
+    private static Map<String, Object> defaultState;
+
     static {
+        defaultState = new LinkedHashMap<String, Object>();
+        defaultState.put("realm", "");
+        defaultState.put("type", -1);
+        defaultState.put("text", "");
+
         availableTypes = new HashMap<Integer, String>();
         availableTypes.put(INFO_TYPE, "Информационный"); //односторонняя флеш-карточка
         availableTypes.put(TEST_TYPE, "Тест");
@@ -69,8 +76,6 @@ public class Question extends Entity {
         return getAvailableTypes().get(key);
     }
     
-    private int id = -1;
-    private final String tableName = "Question";
     private Map<String, Object> state = new LinkedHashMap<String, Object>();
 
     private String realm = "";
@@ -99,6 +104,7 @@ public class Question extends Entity {
         return (!text.equals("")) && (text != null) && 
                 (this.getType() == Question.INFO_TYPE || (correctExists && getAnswerMap().size() != 0));
     }
+
 
     @Override
     synchronized public Map<String, Object> getState() {
@@ -278,10 +284,8 @@ public class Question extends Entity {
         return id;
     }
     
-    private Question() {}
-
     Question(int id) {
-        this.id = id;
+        super(id, "Question");
     }
 
     @Override
@@ -357,7 +361,7 @@ public class Question extends Entity {
     public static Question saveQuestion(int id, Map<String, ?> data) throws JDBCException {
         Question question = getMap().get(id);
         if (question == null) {
-            question = new Question();
+            question = new Question(-1);
         }
         if (data != null) {
             if (data.get("realm").getClass().isArray()) { //список параметров с фронта
@@ -389,10 +393,6 @@ public class Question extends Entity {
         return saveQuestion(-1, data);
     }
 
-    @Override
-    public String getTableName() {
-        return this.tableName;
-    }
 
 
     

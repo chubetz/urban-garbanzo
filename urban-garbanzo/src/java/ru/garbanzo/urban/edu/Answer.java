@@ -19,17 +19,10 @@ import ru.garbanzo.urban.util.Utils;
  */
 public class Answer extends Entity{
     
-    private Answer() {
-        
-    }
-    
     Answer(int id) { // TODO! обязательно перенести весь класс Answer внутрь класса Question ::: а надо ли? все в одном пакете
-        this.id = id;
+        super(id, "Answer");
     }
     
-    private int id = -1;
-    
-    private final String tableName = "Answer";
     private Map<String, Object> state = new LinkedHashMap<String, Object>();
     
     private int questionId = -1;
@@ -69,20 +62,6 @@ public class Answer extends Entity{
         this.correct = (Boolean)map.get("correct");
     }
 
-    @Override
-    public int getId() {
-        return id; 
-    }
-
-    @Override
-    public String getTableName() {
-        return this.tableName;
-    }
-    
-    public String to_s(Object s) {
-        return s.toString();
-    }
-
     public static Answer saveAnswer(int id, Map<String, Object> data) throws NoQuestionException, JDBCException {
         int questionId = (Integer)data.get("questionId");
         Question question = Question.getMap().get(questionId);
@@ -98,7 +77,7 @@ public class Answer extends Entity{
         }
         
         if (answer == null)
-            answer = new Answer();
+            answer = new Answer(-1);
         Utils.print("saveAnswer", data);
         answer.setState(data);
 
