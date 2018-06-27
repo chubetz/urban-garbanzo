@@ -17,49 +17,24 @@ import ru.garbanzo.urban.util.Utils;
  *
  * @author d.gorshenin
  */
-public class Answer extends Entity{
+public class Answer extends Entity {
     
     Answer(int id) { // TODO! обязательно перенести весь класс Answer внутрь класса Question ::: а надо ли? все в одном пакете
         super(id, "Answer");
     }
     
-    private Map<String, Object> state = new LinkedHashMap<String, Object>();
-    
-    private int questionId = -1;
-    private String text = "";
-    private boolean correct;
-
-    public int getQuestionId() {
-        return questionId;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public boolean isCorrect() {
-        return correct;
-    }
+    private static Map<String, Object> defaultState;
 
     @Override
-    synchronized public Map<String, Object> getState() {
-        state.put("questionId", questionId);
-        state.put("text", text);
-        state.put("correct", correct);
-        return state;
+    protected Map<String, Object> getDefaultState() {
+        return defaultState;
     }
-    @Override
-    synchronized public void setState(Map<String, ?> map) {
-        this.text = (String)map.get("text");
-        int questionId = -1;
-        if (map.get("questionId") instanceof String) {
-            questionId = Integer.parseInt( (String)map.get("questionId") );
-        } else if (map.get("questionId") instanceof Integer) {
-            questionId = (Integer)map.get("questionId");
-        }
-        this.questionId = questionId;
-        //Utils.print("map-->", map);
-        this.correct = (Boolean)map.get("correct");
+
+    static {
+        defaultState = new LinkedHashMap<String, Object>();
+        defaultState.put("questionId", -1);
+        defaultState.put("text", "");
+        defaultState.put("correct", false);
     }
 
     public static Answer saveAnswer(int id, Map<String, Object> data) throws NoQuestionException, JDBCException {

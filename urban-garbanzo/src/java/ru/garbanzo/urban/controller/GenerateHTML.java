@@ -65,12 +65,12 @@ public class GenerateHTML extends HttpServlet {
                         body.append(question.getValue().toString());
                         body.append("</td>");
                         body.append("<td>");
-                        body.append(question.getValue().getText());
+                        body.append(question.getValue().getStr("text"));
                         body.append("</td>");
                         for (Map.Entry<Integer, Answer> answer: question.getValue().getAnswerMap().entrySet()) {
                             body.append("<td>");
-                            String ansText = answer.getValue().getText();
-                            if (answer.getValue().isCorrect()) {
+                            String ansText = answer.getValue().getStr("text");
+                            if (answer.getValue().getBool("correct")) {
                                 ansText = "<b>" + ansText + "</b>";
                             }
                             body.append(ansText);

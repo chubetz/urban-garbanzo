@@ -17,7 +17,7 @@
         <table>
             <tr>
                 <td colspan="${question.getAnswerMap().size()}">
-                    ${question.text}
+                    ${question.getStr("text")}
                 </td>
             </tr>
         ${question.getAnswersTableHTML()}

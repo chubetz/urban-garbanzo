@@ -19,9 +19,15 @@ public class Realm extends Entity {
     
     Realm(int id) {
         super(id, "Realm");
-        state = new LinkedHashMap<String, Object>(defaultState);
     }
     
+    private static Map<String, Object> defaultState;
+
+    @Override
+    protected Map<String, Object> getDefaultState() {
+        return defaultState;
+    }
+
     static {
         defaultState = new LinkedHashMap<String, Object>();
         defaultState.put("text", "");

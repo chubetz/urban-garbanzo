@@ -27,9 +27,7 @@ public class Question extends Entity {
     public static final int TEST_TYPE = 1;
     public static final int COMMON_TYPE = 2;
     
-    private static MockQuestion mockQuestion = new MockQuestion(new Question(-1));
-    
-    public static MockQuestion getMockQuestion() { //обертка для Question - для jsp
+    public static Question getMockQuestion() { //обертка для Question - для jsp
         return mockQuestion;
     }
     
@@ -37,10 +35,6 @@ public class Question extends Entity {
     public static Map<Integer, Question> getMap() {
         acquireStorage();
         return Collections.unmodifiableMap(storage.getQuestionMap());
-    }
-    private static Map<Integer, Question> getEditableMap() {
-        acquireStorage();
-        return storage.getQuestionMap();
     }
 
 
@@ -51,6 +45,11 @@ public class Question extends Entity {
     
     private static Map<String, Object> defaultState;
 
+    @Override
+    protected Map<String, Object> getDefaultState() {
+        return defaultState;
+    }
+    
     static {
         defaultState = new LinkedHashMap<String, Object>();
         defaultState.put("realm", "");
@@ -76,56 +75,20 @@ public class Question extends Entity {
         return getAvailableTypes().get(key);
     }
     
-    private Map<String, Object> state = new LinkedHashMap<String, Object>();
 
-    private String realm = "";
-    private int type = -1;
-    private String text = "";
-    public String getRealm() {
-        return realm;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public String getText() {
-        return text;
-    }
-    
     public boolean isValid() {
         boolean correctExists = false;
         for (Answer answer: getAnswerMap().values()) {
-            if (answer.isCorrect()) {
+            if (answer.getBool("correct")) {
                 correctExists = true;
                 break;
             }
         }
-        return (!text.equals("")) && (text != null) && 
-                (this.getType() == Question.INFO_TYPE || (correctExists && getAnswerMap().size() != 0));
+        return (!getStr("text").equals("")) && (getStr("text") != null) && 
+                (this.getInt("type") == Question.INFO_TYPE || (correctExists && !getAnswerMap().isEmpty()));
     }
 
 
-    @Override
-    synchronized public Map<String, Object> getState() {
-        state.put("realm", realm);
-        state.put("type", type);
-        state.put("text", text);
-        return state;
-    }
-    @Override
-    synchronized public void setState(Map<String, ?> map) {
-        this.realm = (String)map.get("realm");
-        int type = -1;
-        if (map.get("type") instanceof String) {
-            type = Integer.parseInt( (String)map.get("type") );
-        } else if (map.get("type") instanceof Integer) {
-            type = (Integer)map.get("type");
-        }
-        this.type = type;
-        this.text = (String)map.get("text");
-    }
-    
     
     public static Question getById(Object id){
         if (id instanceof String)
@@ -152,18 +115,14 @@ public class Question extends Entity {
         acquireStorage();
         return Collections.unmodifiableMap(storage.getAnswerMap(id));
     }
-    private Map<Integer, Answer> getEditableAnswerMap() { //эту мапу можно редактировать
-        acquireStorage();
-        return storage.getAnswerMap(id);
-    }
     
     public String getAnswersTableHTML() {
         StringBuilder sb = new StringBuilder();
         sb.append("<tr>");
         for (Map.Entry<Integer, Answer> entry: getAnswerMap().entrySet()) {
             sb.append("<td>");
-            String answerText = entry.getValue().getText();
-            if (entry.getValue().isCorrect()) {
+            String answerText = entry.getValue().getStr("text");
+            if (entry.getValue().getBool("correct")) {
                 answerText = "<b>" + answerText + "</b>";
             }
             sb.append(answerText);
@@ -179,7 +138,7 @@ public class Question extends Entity {
         sb.append("<p>Ответ 1</p>\n");
         try {
             sb.append("<textarea name=\"answer_" + answers.get(0).getId() + "\"");
-            sb.append(" rows=\"3\" cols=\"80\">" + answers.get(0).getText() + "</textarea>\n");
+            sb.append(" rows=\"3\" cols=\"80\">" + answers.get(0).getStr("text") + "</textarea>\n");
         } catch (IndexOutOfBoundsException e) {
             sb.append("<textarea name=\"answer_-1\" rows=\"3\" cols=\"80\"></textarea>\n");
         }
@@ -187,7 +146,7 @@ public class Question extends Entity {
         sb.append("<p>Ответ 2</p>\n");
         try {
             sb.append("<textarea name=\"answer_" + answers.get(1).getId() + "\"");
-            sb.append(" rows=\"3\" cols=\"80\">" + answers.get(1).getText() + "</textarea>\n");
+            sb.append(" rows=\"3\" cols=\"80\">" + answers.get(1).getStr("text") + "</textarea>\n");
         } catch (IndexOutOfBoundsException e) {
             sb.append("<textarea name=\"answer_-2\" rows=\"3\" cols=\"80\"></textarea>\n");
         }
@@ -195,7 +154,7 @@ public class Question extends Entity {
         sb.append("<p>Ответ 3</p>\n");
         try {
             sb.append("<textarea name=\"answer_" + answers.get(2).getId() + "\"");
-            sb.append(" rows=\"3\" cols=\"80\">" + answers.get(2).getText() + "</textarea>\n");
+            sb.append(" rows=\"3\" cols=\"80\">" + answers.get(2).getStr("text") + "</textarea>\n");
         } catch (IndexOutOfBoundsException e) {
             sb.append("<textarea name=\"answer_-3\" rows=\"3\" cols=\"80\"></textarea>\n");
         }
@@ -203,7 +162,7 @@ public class Question extends Entity {
         sb.append("<p>Ответ 4</p>\n");
         try {
             sb.append("<textarea name=\"answer_" + answers.get(3).getId() + "\"");
-            sb.append(" rows=\"3\" cols=\"80\">" + answers.get(3).getText() + "</textarea>\n");
+            sb.append(" rows=\"3\" cols=\"80\">" + answers.get(3).getStr("text") + "</textarea>\n");
         } catch (IndexOutOfBoundsException e) {
             sb.append("<textarea name=\"answer_-4\" rows=\"3\" cols=\"80\"></textarea>\n");
         }
@@ -217,25 +176,25 @@ public class Question extends Entity {
         StringBuilder sb = new StringBuilder();
         String selected = "";
         try {
-            selected = (answers.get(0).isCorrect()) ? "selected" : "";
+            selected = (answers.get(0).getBool("correct")) ? "selected" : "";
             sb.append("<option value=\"" + answers.get(0).getId() + "\"" + selected + ">Ответ 1</option>\n");
         } catch (IndexOutOfBoundsException e) {
             sb.append("<option value=\"-1\">Ответ 1</option>\n");
         }
         try {
-            selected = (answers.get(1).isCorrect()) ? "selected" : "";
+            selected = (answers.get(1).getBool("correct")) ? "selected" : "";
             sb.append("<option value=\"" + answers.get(1).getId() + "\"" + selected + ">Ответ 2</option>\n");
         } catch (IndexOutOfBoundsException e) {
             sb.append("<option value=\"-2\">Ответ 2</option>\n");
         }
         try {
-            selected = (answers.get(2).isCorrect()) ? "selected" : "";
+            selected = (answers.get(2).getBool("correct")) ? "selected" : "";
             sb.append("<option value=\"" + answers.get(2).getId() + "\"" + selected + ">Ответ 3</option>\n");
         } catch (IndexOutOfBoundsException e) {
             sb.append("<option value=\"-3\">Ответ 3</option>\n");
         }
         try {
-            selected = (answers.get(3).isCorrect()) ? "selected" : "";
+            selected = (answers.get(3).getBool("correct")) ? "selected" : "";
             sb.append("<option value=\"" + answers.get(3).getId() + "\"" + selected + ">Ответ 4</option>\n");
         } catch (IndexOutOfBoundsException e) {
             sb.append("<option value=\"-4\">Ответ 4</option>\n");
@@ -256,7 +215,7 @@ public class Question extends Entity {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<String, String> entry: getAvailableRealms().entrySet()) {
             sb.append("<option value=\"" + entry.getKey() + "\"");
-            if (this.getRealm().equals(entry.getKey()))
+            if (this.getStr("realm").equals(entry.getKey()))
                 sb.append(" selected");
             sb.append(">" + entry.getValue() + "</option>\n");
         }
@@ -267,7 +226,7 @@ public class Question extends Entity {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<Integer, String> entry: getAvailableTypes().entrySet()) {
             sb.append("<option value=\"" + entry.getKey() + "\"");
-            if (this.getType() == entry.getKey())
+            if (this.getInt("type") == entry.getKey())
                 sb.append(" selected");
             sb.append(">" + entry.getValue() + "</option>\n");
         }
@@ -280,17 +239,16 @@ public class Question extends Entity {
      *
      * @return the value of id
      */
-    public int getId() {
-        return id;
-    }
     
+    private static Question mockQuestion = new Question(-100);
+
     Question(int id) {
         super(id, "Question");
     }
 
     @Override
     public String toString() {
-        return "Вопрос {" + id + "} " + '{' + realm + "} " + "{" + Question.getTypeText(type) + "}";
+        return "Вопрос {" + id + "} " + '{' + getStr("realm") + "} " + "{" + Question.getTypeText(getInt("type")) + "}";
     }
     
     private static Map<String, Object> translateWebData(Map<String, String[]> data) {
@@ -327,7 +285,7 @@ public class Question extends Entity {
                     boolean wasDeleted = JDBCUtils.deleteEntity(new Answer(answerId));
                     Utils.print("Стерлось ли?", wasDeleted);
                     if (wasDeleted) { // нужно удалить из памяти
-                        getEditableAnswerMap().remove(answerId);
+                        storage.getAnswerMap(this.getId()).remove(answerId);
                         storage.getAnswerMap().remove(answerId);
                     }
                     continue;
@@ -344,7 +302,7 @@ public class Question extends Entity {
                 Utils.print("answerData", answerData);
                 try {
                     Answer answer = Answer.saveAnswer(answerId, answerData);
-                    getEditableAnswerMap().put(answer.getId(), answer);
+                    storage.getAnswerMap(this.getId()).put(answer.getId(), answer);
                     storage.getAnswerMap().put(answer.getId(), answer);
                 } catch(NoQuestionException nqe) {
                     nqe.printStackTrace();
@@ -374,7 +332,7 @@ public class Question extends Entity {
         int validId = JDBCUtils.saveEntity(question);
         if (validId >= 0) { // удалось записать объект в БД с валидным id
             question.id = validId;
-            getEditableMap().put(question.id, question);
+            storage.getQuestionMap().put(question.id, question);
             Utils.print("НАДО ВКЛЮЧИТЬ saveAnswers!!!!");
             question.saveAnswers(data);
             Utils.print("validId: " + validId);

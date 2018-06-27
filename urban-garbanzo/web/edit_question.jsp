@@ -12,7 +12,7 @@
         <title>Редактировать вопрос</title>
     </head>
     <body bgcolor = #DAD644>
-        <p>${question.getId() == null ? "<Новый вопрос>" : question}</p>
+        <p>${question.getId() < 0  ? "<Новый вопрос>" : question}</p>
         <form name="${action}" action="controller" method="POST">
             <input type="hidden" name="action" value="${action}">        
             <input type="hidden" name="qid" value="${question.getId()}">        
@@ -30,7 +30,7 @@
                 <tr>
                     <td>
                         <p>Текст вопроса</p>
-                        <textarea name="text" rows="10" cols="80">${question.getText()}</textarea>
+                        <textarea name="text" rows="10" cols="80">${question.getStr("text")}</textarea>
                     </td>
                     <td style="vertical-align: top">
                         <p>Правильные ответы</p>

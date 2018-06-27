@@ -34,7 +34,6 @@ public class Storage {
     private Map<Integer, Map<Integer, Answer>> answerMapForQuestion;    
     private Map<Integer, Realm> realmMap;    
     
-    private Map<Integer, Answer> emptyAnswerMap = new HashMap<Integer, Answer>();    
 
     Map<Integer, Question> getQuestionMap() {
         return questionMap;
@@ -45,8 +44,14 @@ public class Storage {
     }
 
     Map<Integer, Answer> getAnswerMap(int questionId) {
-        Map<Integer, Answer> answerMap = answerMapForQuestion.get(questionId);
-        return answerMap == null ?  emptyAnswerMap : answerMap;
+        if (questionId >= 0) {
+            if (answerMapForQuestion.get(questionId) == null) {
+                answerMapForQuestion.put(questionId, new HashMap<Integer, Answer>());
+            }
+            return answerMapForQuestion.get(questionId);
+        } else {
+            return new HashMap<Integer, Answer>();
+        }
     }
 
     Map<Integer, Realm> getRealmMap() {
@@ -79,7 +84,7 @@ public class Storage {
                 Answer answer = new Answer((Integer)entry.get("id"));
                 answer.setState(entry);
                 storage.answerMap.put(answer.getId(), answer);
-                Map<Integer, Answer> answerMap = storage.answerMapForQuestion.get(answer.getQuestionId());
+                Map<Integer, Answer> answerMap = storage.answerMapForQuestion.get(answer.getInt("questionId"));
                 if (answerMap != null)
                     answerMap.put(answer.getId(), answer);
             }

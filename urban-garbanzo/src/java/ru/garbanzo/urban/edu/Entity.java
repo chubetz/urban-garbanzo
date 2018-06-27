@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public abstract class Entity implements DBEntity {
 
-    protected static Map<String, Object> defaultState;
+    abstract protected Map<String, Object> getDefaultState();
 
     //state
     protected Map<String, Object> state;
@@ -25,6 +25,7 @@ public abstract class Entity implements DBEntity {
     protected Entity(int id, String tableName) {
         this.id = id;
         this.tableName = tableName;
+        state = new LinkedHashMap<String, Object>(getDefaultState());
     }
 
     public int getId() {
