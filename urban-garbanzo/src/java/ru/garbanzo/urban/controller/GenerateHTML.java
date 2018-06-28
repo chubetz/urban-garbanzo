@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import ru.garbanzo.urban.edu.Answer;
 import ru.garbanzo.urban.edu.Question;
+import ru.garbanzo.urban.edu.Realm;
 import ru.garbanzo.urban.edu.Storage;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
@@ -76,6 +77,36 @@ public class GenerateHTML extends HttpServlet {
                             body.append(ansText);
                             body.append("</td>");
                         }
+                        body.append("</tr>");
+                    }
+                } catch (JDBCException e) {
+                    request.setAttribute("exception", e);
+                    getServletContext().getRequestDispatcher("/db_error.jsp").forward(request, response);                    
+                }
+                body.append("</table>");
+                break;
+            case "realms":
+                title = "Список имеющихся областей";
+                body.append("<table>");
+                try {
+                    if (Storage.getJdbcException() != null) {
+                        throw Storage.getJdbcException();
+                    }
+                    for (Map.Entry<Integer, Realm> realm: Realm.getMap().entrySet()) {
+                        body.append("<tr>");
+                        body.append("<td><form name=\"edit\" action=\"controller\" method=\"POST\">");
+                        body.append("<input type=\"hidden\" name=\"action\" value=\"edit_realm\">");
+                        body.append("<input type=\"hidden\" name=\"rid\" value=\"" + realm.getKey() + "\">");
+                        body.append("<input type=\"submit\" value=\"Edit\" /></form></td>");
+                        body.append("<td>");
+                        body.append(realm.getValue().toString());
+                        body.append("</td>");
+                        body.append("<td>");
+                        body.append(realm.getValue().getStr("text"));
+                        body.append("</td>");
+                        body.append("<td>");
+                        body.append(realm.getValue().getStr("description"));
+                        body.append("</td>");
                         body.append("</tr>");
                     }
                 } catch (JDBCException e) {

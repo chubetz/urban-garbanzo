@@ -39,6 +39,9 @@ public class Realm extends Entity {
         return Collections.unmodifiableMap(storage.getRealmMap());
     }
 
+    public String toString() {
+        return "Область {" + id + "}";
+    }
 
     
 }
