@@ -17,7 +17,7 @@
             <input type="hidden" name="action" value="${action}">        
             <input type="hidden" name="qid" value="${question.getId()}">        
             <label>Область</label>
-            <select name="realm">
+            <select name="realmId">
                 ${question.getRealmsHTML()}
             </select>
             <br>

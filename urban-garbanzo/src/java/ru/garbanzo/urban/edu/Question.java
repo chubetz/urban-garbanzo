@@ -52,7 +52,7 @@ public class Question extends Entity {
     
     static {
         defaultState = new LinkedHashMap<String, Object>();
-        defaultState.put("realm", "");
+        defaultState.put("realmId", -1);
         defaultState.put("type", -1);
         defaultState.put("text", "");
 
@@ -114,6 +114,10 @@ public class Question extends Entity {
     public Map<Integer, Answer> getAnswerMap() {
         acquireStorage();
         return Collections.unmodifiableMap(storage.getAnswerMap(id));
+    }
+    
+    public Realm getRealm() {
+        return Realm.getMap().get(this.getInt("realmId"));
     }
     
     public String getAnswersTableHTML() {
@@ -206,7 +210,7 @@ public class Question extends Entity {
     private Map<String, String> getAvailableRealms() {
         Map<String, String> map = new HashMap<String, String>();
         for (Realm realm: Realm.getMap().values()) {
-            map.put(realm.getStr("text"), realm.getStr("description"));
+            map.put(""+realm.getId(), realm.getStr("description"));
         }
         return map;
     }
@@ -215,7 +219,7 @@ public class Question extends Entity {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<String, String> entry: getAvailableRealms().entrySet()) {
             sb.append("<option value=\"" + entry.getKey() + "\"");
-            if (this.getStr("realm").equals(entry.getKey()))
+            if ((""+this.getInt("realmId")).equals(entry.getKey()))
                 sb.append(" selected");
             sb.append(">" + entry.getValue() + "</option>\n");
         }
@@ -248,7 +252,7 @@ public class Question extends Entity {
 
     @Override
     public String toString() {
-        return "Вопрос {" + id + "} " + '{' + getStr("realm") + "} " + "{" + Question.getTypeText(getInt("type")) + "}";
+        return "Вопрос {" + id + "} " + '{' + getRealm().getStr("text") + "} " + "{" + Question.getTypeText(getInt("type")) + "}";
     }
     
     private void saveAnswers(Map<String, ?> data) throws JDBCException {
@@ -309,7 +313,7 @@ public class Question extends Entity {
             question = new Question(-1);
         }
         if (data != null) {
-            if (data.get("realm").getClass().isArray()) { //список параметров с фронта
+            if (data.get("realmId").getClass().isArray()) { //список параметров с фронта
                 data = Utils.translateWebData( (Map<String, String[]>)data );
             }
             Utils.print("saveQuestion", data);
