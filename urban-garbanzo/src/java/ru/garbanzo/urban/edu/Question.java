@@ -251,19 +251,6 @@ public class Question extends Entity {
         return "Вопрос {" + id + "} " + '{' + getStr("realm") + "} " + "{" + Question.getTypeText(getInt("type")) + "}";
     }
     
-    private static Map<String, Object> translateWebData(Map<String, String[]> data) {
-        Map<String, Object> tmp = new HashMap<>();
-        for (String key: data.keySet()) {
-            String[] current = data.get(key);
-            if (current.length == 1) {
-                tmp.put(key, current[0]);
-            } else {
-                tmp.put(key, current);
-            }
-        }
-        return tmp;
-    }
-    
     private void saveAnswers(Map<String, ?> data) throws JDBCException {
         Utils.print("sae answers 1", data);
         for (Map.Entry<String, ?> entry: data.entrySet()) {
@@ -323,7 +310,7 @@ public class Question extends Entity {
         }
         if (data != null) {
             if (data.get("realm").getClass().isArray()) { //список параметров с фронта
-                data = translateWebData( (Map<String, String[]>)data );
+                data = Utils.translateWebData( (Map<String, String[]>)data );
             }
             Utils.print("saveQuestion", data);
             question.setState(data);

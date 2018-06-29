@@ -74,7 +74,7 @@ public abstract class Entity implements DBEntity {
 
     protected static Storage storage;
     protected static void acquireStorage() {
-        if (storage == null) storage = Storage.getStorage();
+        storage = Storage.getStorage();
     }
     
 }

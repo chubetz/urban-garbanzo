@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 import ru.garbanzo.urban.db.JDBCUtils;
 import ru.garbanzo.urban.edu.Answer;
 import ru.garbanzo.urban.edu.Question;
+import ru.garbanzo.urban.edu.Realm;
 import ru.garbanzo.urban.edu.Storage;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
@@ -99,6 +100,34 @@ public class MainServlet extends HttpServlet {
                 request.setAttribute("question", question);
                 break;
 
+            case "new_realm":
+                url = "/edit_realm.jsp";
+                Utils.print("Servlet.new_realm", request.getParameterMap());
+                request.setAttribute("realm", Realm.getMock());
+                request.setAttribute("action", "update_realm");
+                break;
+            case "edit_realm":
+                url = "/edit_realm.jsp";
+                Utils.print("Servlet.edit_realm", request.getParameterMap());
+                Utils.print(request.getParameter("rid"));
+                request.setAttribute("realm", Realm.getById(request.getParameter("rid")));
+                request.setAttribute("action", "update_realm");
+                break;
+            case "update_realm":
+                Realm realm;
+                Utils.print("Servlet.update_realm", request.getParameterMap());
+                try {
+                    realm = Realm.saveRealm(request.getParameter("rid"), request.getParameterMap());
+                } catch (JDBCException ex) {
+                    Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    url = "/db_error.jsp";
+                    request.setAttribute("exception", ex);
+                    break;
+                }
+                url = "/saved_realm.jsp";
+                request.setAttribute("realm", realm);
+                break;
+
             case "export":
                 Storage.init(); // реинициализация, чтобы выгрузка была строго из БД
                 try {
@@ -106,6 +135,27 @@ public class MainServlet extends HttpServlet {
                         throw Storage.getJdbcException();
                     }
                     StringBuilder sb = new StringBuilder();
+                        sb.append("DROP TABLE Realm IF EXISTS;\r\n");
+                        sb.append("CREATE TABLE Realm (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, text VARCHAR(20), description VARCHAR(2000));\r\n");
+                    for (Realm r: Realm.getMap().values()) {
+                        Map<String, Object> state = r.getState();
+                        sb.append("INSERT INTO Realm (id");
+                        for (String s: state.keySet()) {
+                            sb.append("," + s);
+                        }
+                        sb.append(") OVERRIDING SYSTEM VALUE VALUES (" + r.getId());
+                        for (Object o: state.values()) {
+                            String ooo;
+                            if (o instanceof String) 
+                                ooo = "'" + o + "'";
+                            else
+                                ooo=o.toString();
+                            sb.append("," + ooo);
+                        }
+                        sb.append(");\r\n");
+
+                    }
+
                         sb.append("DROP TABLE Question IF EXISTS;\r\n");
                         sb.append("CREATE TABLE Question (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realm VARCHAR(20), type int, text VARCHAR(2000));\r\n");
                         sb.append("\tDROP TABLE Answer IF EXISTS;\r\n");
@@ -179,7 +229,7 @@ public class MainServlet extends HttpServlet {
             throws ServletException, IOException {
         
         String action = request.getParameter("action");
-        if (action.equals("new_question") || action.equals("export"))
+        if (action.equals("new_realm") || action.equals("new_question") || action.equals("export"))
             processRequest(request, response);
         else {
             response.setContentType("text/html;charset=UTF-8");

@@ -87,6 +87,7 @@ public class GenerateHTML extends HttpServlet {
                 break;
             case "realms":
                 title = "Список имеющихся областей";
+                body.append("<div style='font-family:Tahoma; color:black; font-weight:bold'><a style='color:black;' href='controller?action=new_realm'>Создать</a></div>");
                 body.append("<table>");
                 try {
                     if (Storage.getJdbcException() != null) {

@@ -8,6 +8,7 @@ package ru.garbanzo.urban.util;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -105,5 +106,18 @@ public class Utils {
     
     public static void print(String label, Object obj) {
         System.out.println(label + ": " + convertToString(obj));
+    }
+
+    public static Map<String, Object> translateWebData(Map<String, String[]> data) {
+        Map<String, Object> tmp = new HashMap<>();
+        for (String key: data.keySet()) {
+            String[] current = data.get(key);
+            if (current.length == 1) {
+                tmp.put(key, current[0]);
+            } else {
+                tmp.put(key, current);
+            }
+        }
+        return tmp;
     }
 }

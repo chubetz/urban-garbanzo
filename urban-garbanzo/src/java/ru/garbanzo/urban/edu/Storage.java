@@ -69,6 +69,7 @@ public class Storage {
 
         try {
             storage.jdbcException = null; //сносим исключение, хранившееся с момента предыдущего неудачного запуска
+            
             storage.questionMap = new HashMap<Integer, Question>();
             storage.answerMapForQuestion = new HashMap<Integer, Map<Integer, Answer>>();
             List<Map<String, Object>> data = JDBCUtils.loadEntitiesData(new Question(-1));
@@ -78,6 +79,7 @@ public class Storage {
                 storage.questionMap.put(question.getId(), question);
                 storage.answerMapForQuestion.put(question.getId(), new HashMap<Integer, Answer>());
             }
+            
             storage.answerMap = new HashMap<Integer, Answer>();
             data = JDBCUtils.loadEntitiesData(new Answer(-1)); //ответы
             for (Map<String, Object> entry : data) {
@@ -88,49 +90,20 @@ public class Storage {
                 if (answerMap != null)
                     answerMap.put(answer.getId(), answer);
             }
+    
+            storage.realmMap = new HashMap<Integer, Realm>();
+            data = JDBCUtils.loadEntitiesData(new Realm(-1)); //области
+            for (Map<String, Object> entry : data) {
+                Realm realm = new Realm((Integer)entry.get("id"));
+                realm.setState(entry);
+                storage.realmMap.put(realm.getId(), realm);
+            }
+
         } catch (JDBCException ex) {
             Logger.getLogger(Question.class.getName()).log(Level.SEVERE, null, ex);
             storage.jdbcException = ex;
         }
         
-        storage.realmMap = new HashMap<Integer, Realm>();
-        
-        Realm realm = new Realm(0);
-        Map<String, Object> state = new LinkedHashMap<String, Object>();
-        state.put("text", "java");
-        state.put("description", "Java");
-        realm.setState(state);
-        storage.realmMap.put(realm.getId(), realm);
-        
-        realm = new Realm(1);
-        state = new LinkedHashMap<String, Object>();
-        state.put("text", "kotlin");
-        state.put("description", "Kotlin");
-        realm.setState(state);
-        storage.realmMap.put(realm.getId(), realm);
-
-        realm = new Realm(2);
-        state = new LinkedHashMap<String, Object>();
-        state.put("text", "sql");
-        state.put("description", "SQL");
-        realm.setState(state);
-        storage.realmMap.put(realm.getId(), realm);
-
-        realm = new Realm(3);
-        state = new LinkedHashMap<String, Object>();
-        state.put("text", "minecraft");
-        state.put("description", "MINECRAFT");
-        realm.setState(state);
-        storage.realmMap.put(realm.getId(), realm);
-
-        realm = new Realm(4);
-        state = new LinkedHashMap<String, Object>();
-        state.put("text", "oca_1");
-        state.put("description", "OCA I");
-        realm.setState(state);
-        storage.realmMap.put(realm.getId(), realm);
-
-       
     }
     
     static {
