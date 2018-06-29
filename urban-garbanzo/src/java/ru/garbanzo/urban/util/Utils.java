@@ -120,4 +120,13 @@ public class Utils {
         }
         return tmp;
     }
+
+    public static boolean canBeCastedAgainst(Object obj, Class<?> clazz) {
+        try {
+            clazz.cast(obj);
+        } catch (ClassCastException cce) {
+            return false;
+        }
+        return true;
+    }
 }

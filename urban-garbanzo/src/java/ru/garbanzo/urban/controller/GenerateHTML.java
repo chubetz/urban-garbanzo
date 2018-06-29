@@ -17,6 +17,7 @@ import ru.garbanzo.urban.edu.Answer;
 import ru.garbanzo.urban.edu.Question;
 import ru.garbanzo.urban.edu.Realm;
 import ru.garbanzo.urban.edu.Storage;
+import ru.garbanzo.urban.edu.Theme;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
 
@@ -115,6 +116,39 @@ public class GenerateHTML extends HttpServlet {
                     getServletContext().getRequestDispatcher("/db_error.jsp").forward(request, response);                    
                 }
                 body.append("</table>");
+                break;
+            case "themes":
+                title = "Список имеющихся тем";
+                body.append("<div style='font-family:Tahoma; color:black; font-weight:bold'><a style='color:black;' href='controller?action=new_theme'>Создать</a></div>");
+                body.append("<table>");
+                try {
+                    if (Storage.getJdbcException() != null) {
+                        throw Storage.getJdbcException();
+                    }
+                    for (Map.Entry<Integer, Theme> theme: Theme.getMap().entrySet()) {
+                        body.append("<tr>");
+                        body.append("<td><form name=\"edit\" action=\"controller\" method=\"POST\">");
+                        body.append("<input type=\"hidden\" name=\"action\" value=\"edit_theme\">");
+                        body.append("<input type=\"hidden\" name=\"tid\" value=\"" + theme.getKey() + "\">");
+                        body.append("<input type=\"submit\" value=\"Edit\" /></form></td>");
+                        body.append("<td>");
+                        body.append(theme.getValue().toString());
+                        body.append("</td>");
+                        body.append("<td>");
+                        body.append(theme.getValue().roundToIntStr(theme.getValue().getDbl("number")));
+                        //body.append(theme.getValue().getDbl("number"));
+                        body.append("</td>");
+                        body.append("<td>");
+                        body.append(theme.getValue().getStr("text"));
+                        body.append("</td>");
+                        body.append("</tr>");
+                    }
+                } catch (JDBCException e) {
+                    request.setAttribute("exception", e);
+                    getServletContext().getRequestDispatcher("/db_error.jsp").forward(request, response);                    
+                }
+                body.append("</table>");
+                break;
         }
 
 

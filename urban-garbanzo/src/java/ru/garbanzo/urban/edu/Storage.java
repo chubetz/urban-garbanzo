@@ -33,6 +33,7 @@ public class Storage {
     private Map<Integer, Answer> answerMap;    
     private Map<Integer, Map<Integer, Answer>> answerMapForQuestion;    
     private Map<Integer, Realm> realmMap;    
+    private Map<Integer, Theme> themeMap;    
     
 
     Map<Integer, Question> getQuestionMap() {
@@ -56,6 +57,10 @@ public class Storage {
 
     Map<Integer, Realm> getRealmMap() {
         return realmMap;
+    }
+
+    Map<Integer, Theme> getThemeMap() {
+        return themeMap;
     }
 
     private Storage() {}
@@ -97,6 +102,14 @@ public class Storage {
                 Realm realm = new Realm((Integer)entry.get("id"));
                 realm.setState(entry);
                 storage.realmMap.put(realm.getId(), realm);
+            }
+
+            storage.themeMap = new HashMap<Integer, Theme>();
+            data = JDBCUtils.loadEntitiesData(new Theme(-1)); //области
+            for (Map<String, Object> entry : data) {
+                Theme theme = new Theme((Integer)entry.get("id"));
+                theme.setState(entry);
+                storage.themeMap.put(theme.getId(), theme);
             }
 
         } catch (JDBCException ex) {

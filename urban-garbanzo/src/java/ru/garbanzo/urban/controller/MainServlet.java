@@ -25,6 +25,7 @@ import ru.garbanzo.urban.edu.Answer;
 import ru.garbanzo.urban.edu.Question;
 import ru.garbanzo.urban.edu.Realm;
 import ru.garbanzo.urban.edu.Storage;
+import ru.garbanzo.urban.edu.Theme;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
 
@@ -128,6 +129,34 @@ public class MainServlet extends HttpServlet {
                 request.setAttribute("realm", realm);
                 break;
 
+            case "new_theme":
+                url = "/edit_theme.jsp";
+                Utils.print("Servlet.new_theme", request.getParameterMap());
+                request.setAttribute("theme", Theme.getMock());
+                request.setAttribute("action", "update_theme");
+                break;
+            case "edit_theme":
+                url = "/edit_theme.jsp";
+                Utils.print("Servlet.edit_theme", request.getParameterMap());
+                Utils.print(request.getParameter("tid"));
+                request.setAttribute("theme", Theme.getById(request.getParameter("tid")));
+                request.setAttribute("action", "update_theme");
+                break;
+            case "update_theme":
+                Theme theme;
+                Utils.print("Servlet.update_theme", request.getParameterMap());
+                try {
+                    theme = Theme.saveTheme(request.getParameter("tid"), request.getParameterMap());
+                } catch (JDBCException ex) {
+                    Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    url = "/db_error.jsp";
+                    request.setAttribute("exception", ex);
+                    break;
+                }
+                url = "/saved_theme.jsp";
+                request.setAttribute("theme", theme);
+                break;
+
             case "export":
                 Storage.init(); // реинициализация, чтобы выгрузка была строго из БД
                 try {
@@ -144,6 +173,27 @@ public class MainServlet extends HttpServlet {
                             sb.append("," + s);
                         }
                         sb.append(") OVERRIDING SYSTEM VALUE VALUES (" + r.getId());
+                        for (Object o: state.values()) {
+                            String ooo;
+                            if (o instanceof String) 
+                                ooo = "'" + o + "'";
+                            else
+                                ooo=o.toString();
+                            sb.append("," + ooo);
+                        }
+                        sb.append(");\r\n");
+
+                    }
+
+                        sb.append("DROP TABLE Theme IF EXISTS;\r\n");
+                        sb.append("CREATE TABLE Theme (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, text VARCHAR(2000), number DOUBLE);\r\n");
+                    for (Theme t: Theme.getMap().values()) {
+                        Map<String, Object> state = t.getState();
+                        sb.append("INSERT INTO Theme (id");
+                        for (String s: state.keySet()) {
+                            sb.append("," + s);
+                        }
+                        sb.append(") OVERRIDING SYSTEM VALUE VALUES (" + t.getId());
                         for (Object o: state.values()) {
                             String ooo;
                             if (o instanceof String) 
@@ -229,7 +279,7 @@ public class MainServlet extends HttpServlet {
             throws ServletException, IOException {
         
         String action = request.getParameter("action");
-        if (action.equals("new_realm") || action.equals("new_question") || action.equals("export"))
+        if (action.equals("new_theme") || action.equals("new_realm") || action.equals("new_question") || action.equals("export"))
             processRequest(request, response);
         else {
             response.setContentType("text/html;charset=UTF-8");

@@ -207,24 +207,6 @@ public class Question extends Entity {
         return sb.toString();
     }
     
-    private Map<String, String> getAvailableRealms() {
-        Map<String, String> map = new HashMap<String, String>();
-        for (Realm realm: Realm.getMap().values()) {
-            map.put(""+realm.getId(), realm.getStr("description"));
-        }
-        return map;
-    }
-
-    public String getRealmsHTML() {
-        StringBuilder sb = new StringBuilder();
-        for (Map.Entry<String, String> entry: getAvailableRealms().entrySet()) {
-            sb.append("<option value=\"" + entry.getKey() + "\"");
-            if ((""+this.getInt("realmId")).equals(entry.getKey()))
-                sb.append(" selected");
-            sb.append(">" + entry.getValue() + "</option>\n");
-        }
-        return sb.toString();
-    }
 
     public String getTypesHTML() {
         StringBuilder sb = new StringBuilder();

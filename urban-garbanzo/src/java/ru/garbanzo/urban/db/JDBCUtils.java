@@ -74,6 +74,9 @@ public class JDBCUtils {
                     if (entry.getValue() instanceof Boolean) {
                         data.put(entry.getKey(), rs.getBoolean(entry.getKey()));
                     }
+                    if (entry.getValue() instanceof Double) {
+                        data.put(entry.getKey(), rs.getDouble(entry.getKey()));
+                    }
                 }
                 list.add(data);
             }            

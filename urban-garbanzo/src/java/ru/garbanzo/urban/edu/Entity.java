@@ -5,8 +5,10 @@
  */
 package ru.garbanzo.urban.edu;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import ru.garbanzo.urban.util.Utils;
 
 /**
  *
@@ -38,6 +40,9 @@ public abstract class Entity implements DBEntity {
     public int getInt(String field) {
         return (Integer)this.state.get(field);
     }
+    public double getDbl(String field) {
+        return (Double)this.state.get(field);
+    }
     public String getStr(String field) {
         return (String)this.state.get(field);
     }
@@ -45,6 +50,9 @@ public abstract class Entity implements DBEntity {
         return (Boolean)this.state.get(field);
     }
 
+    public String roundToIntStr(double dbl) {
+        return (dbl == (int)dbl) ? (""+(int)dbl) : (""+dbl);
+    }
 
     synchronized public Map<String, Object> getState() {
         return state;
@@ -62,6 +70,11 @@ public abstract class Entity implements DBEntity {
                     state.put(key, (Integer)value);
                 else if (value instanceof String)
                      state.put(key, Integer.parseInt((String)value));
+            } else if (current instanceof Double) {
+                if (Utils.canBeCastedAgainst(value, Double.class))
+                    state.put(key, (Double)value);
+                else if (value instanceof String)
+                     state.put(key, Double.parseDouble((String)value));
             } else if (current instanceof String) {
                 state.put(key, (String)value);
             } else if (current instanceof Boolean) {
@@ -77,4 +90,22 @@ public abstract class Entity implements DBEntity {
         storage = Storage.getStorage();
     }
     
+    private Map<Integer, String> getAvailableRealms() {
+        Map<Integer, String> map = new HashMap<Integer, String>();
+        for (Realm realm: Realm.getMap().values()) {
+            map.put(realm.getId(), realm.getStr("description"));
+        }
+        return map;
+    }
+
+    public String getRealmsHTML() {
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<Integer, String> entry: getAvailableRealms().entrySet()) {
+            sb.append("<option value=\"" + entry.getKey() + "\"");
+            if (this.getInt("realmId") == entry.getKey())
+                sb.append(" selected");
+            sb.append(">" + entry.getValue() + "</option>\n");
+        }
+        return sb.toString();
+    }
 }
