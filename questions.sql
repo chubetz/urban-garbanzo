@@ -5,8 +5,15 @@ INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (1,'kotli
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (2,'sql','SQL');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (3,'minecraft','MINECRAFT');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (4,'oca_1','Сертификат OCA I');
+INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (5,'test','ТЕСТ');
+INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (6,'test2','TEST 2');
+INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (7,'history','История');
 DROP TABLE Theme IF EXISTS;
 CREATE TABLE Theme (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, text VARCHAR(2000), number DOUBLE);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (0,4,'Темочка',2.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (1,2,'А вот еще такая тема',2.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (2,0,'вапвапвап',3.45);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (3,0,'вавап',4.0);
 DROP TABLE Question IF EXISTS;
 CREATE TABLE Question (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, type int, text VARCHAR(2000));
 	DROP TABLE Answer IF EXISTS;
@@ -16,8 +23,12 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (1,4,
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (2,0,0,'');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (3,0,0,'');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (4,0,0,'');
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (5,0,0,'');
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (6,1,0,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (5,7,1,'В каком веке родился Александр Македонский?');
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (75,5,'III до н.э.',true);
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (76,5,'II н.э.',false);
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (77,5,'II до н.э.',false);
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (78,5,'XX век',false);
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (6,3,0,'');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (7,0,0,'');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (8,0,0,'');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (9,2,0,'Какой оператор1?');
@@ -38,14 +49,10 @@ fs
 dfs');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (14,0,0,'А если так?');
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (62,14,'то будет так, а не иначе',true);
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (15,0,0,'fsfsd
-f
-sd
-fs
-dfs');
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (7,15,'sdf',false);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (8,15,'jkl',false);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (9,15,'hjk',false);
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (15,3,1,'Minecraft - это очень классная игра?');
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (7,15,'Да',true);
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (8,15,'Нет',false);
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (9,15,'Конечно',true);
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (16,0,0,'fsfsd
 f
 sd
@@ -143,3 +150,4 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (41,3
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (72,41,'Фейерверки',false);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (73,41,'Динамит(ТНТ)',false);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (74,41,'Пластинки',true);
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (42,6,0,'');
