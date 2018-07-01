@@ -20,17 +20,25 @@ import ru.garbanzo.urban.util.Utils;
 public class Answer extends Entity {
     
     Answer(int id) { // TODO! обязательно перенести весь класс Answer внутрь класса Question ::: а надо ли? все в одном пакете
-        super(id, "Answer");
+        super("Answer", id);
     }
     
-    private static Map<String, Object> defaultState;
+    private static Map<String, Object> defaultState, defaultPrimaryKey;
 
     @Override
     protected Map<String, Object> getDefaultState() {
         return defaultState;
     }
 
+    @Override
+    protected Map<String, Object> getDefaultPrimaryKey() {
+        return defaultPrimaryKey;
+    }
+
     static {
+        defaultPrimaryKey = new LinkedHashMap<String, Object>();
+        defaultPrimaryKey.put("id", -1);
+        
         defaultState = new LinkedHashMap<String, Object>();
         defaultState.put("questionId", -1);
         defaultState.put("text", "");
@@ -56,10 +64,10 @@ public class Answer extends Entity {
         Utils.print("saveAnswer", data);
         answer.setState(data);
 
-        int validId = JDBCUtils.saveEntity(answer);
-        if (validId >= 0) { // удалось записать объект в БД с валидным id
-            answer.id = validId;
-            Utils.print("Answer validId: " + validId);
+        Map<String, Object> pk = JDBCUtils.saveEntity(answer);
+        if (pk != null) { // удалось записать объект в БД
+            answer.setPrimaryKey(pk);
+            Utils.print("Answer pk: ", pk);
         } else {
             return null;
         }

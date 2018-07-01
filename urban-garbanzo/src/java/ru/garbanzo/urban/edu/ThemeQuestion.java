@@ -14,20 +14,26 @@ import java.util.Map;
  */
 public class ThemeQuestion extends Entity {
 
-    ThemeQuestion(int id) {
-        super(id, "Theme");
+    ThemeQuestion(int themeId, int questionId) {
+        super("ThemeQuestion", themeId, questionId);
     }
 
-    private static Map<String, Object> defaultState;
+    private static Map<String, Object> defaultState, defaultPrimaryKey;
 
     @Override
     protected Map<String, Object> getDefaultState() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    @Override
+    protected Map<String, Object> getDefaultPrimaryKey() {
+        return defaultPrimaryKey;
+    }
     
     static {
-        defaultState = new LinkedHashMap<String, Object>();
-        defaultState.put("questionId", -1);
-        defaultState.put("themeId", -1);
+        defaultPrimaryKey = new LinkedHashMap<String, Object>();
+        defaultPrimaryKey.put("themeId", -1);
+        defaultPrimaryKey.put("questionId", -1);
+
+        defaultState = new LinkedHashMap<String, Object>(); //нет полей, кроме PK
     }
 }

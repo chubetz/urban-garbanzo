@@ -7,6 +7,7 @@ package ru.garbanzo.urban.edu;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import ru.garbanzo.urban.util.Utils;
 
@@ -17,37 +18,56 @@ import ru.garbanzo.urban.util.Utils;
 public abstract class Entity implements DBEntity {
 
     abstract protected Map<String, Object> getDefaultState();
+    abstract protected Map<String, Object> getDefaultPrimaryKey();
 
     //state
-    protected Map<String, Object> state;
-    
-    protected int id = -1;
+    protected Map<String, Object> state, primaryKey;
+
     protected final String tableName;
     
-    protected Entity(int id, String tableName) {
-        this.id = id;
+    protected Entity(String tableName, Object... primaryKey) {
+        this.primaryKey = new LinkedHashMap<String, Object>(getDefaultPrimaryKey());
+        String[] pk_fields = this.primaryKey.keySet().toArray(new String[0]);
+        for (int i = 0; i < pk_fields.length; i++) {
+            if (this.primaryKey.get(pk_fields[i]).getClass() != primaryKey[i].getClass())
+                throw new RuntimeException("Неверное поле в составе первичного ключа! Ожидается " + pk_fields[i].getClass() + ", получено " + primaryKey[i].getClass() + " (" + primaryKey[i] + ")");
+            this.primaryKey.put(pk_fields[i], primaryKey[i]);
+        }
         this.tableName = tableName;
         state = new LinkedHashMap<String, Object>(getDefaultState());
     }
 
-    public int getId() {
-        return this.id; 
-    }
     public String getTableName() {
         return this.tableName;
+    }
+
+    public int getId() { //у большинства сущностей id - первичный ключ, так что удобен отдельный геттер
+        return getPKInt("id");
     }
 
     public int getInt(String field) {
         return (Integer)this.state.get(field);
     }
+    public int getPKInt(String field) {
+        return (Integer)this.primaryKey.get(field);
+    }
     public double getDbl(String field) {
         return (Double)this.state.get(field);
+    }
+    public double getPKDbl(String field) {
+        return (Double)this.primaryKey.get(field);
     }
     public String getStr(String field) {
         return (String)this.state.get(field);
     }
+    public String getPKStr(String field) {
+        return (String)this.primaryKey.get(field);
+    }
     public boolean getBool(String field) {
         return (Boolean)this.state.get(field);
+    }
+    public boolean getPKBool(String field) {
+        return (Boolean)this.primaryKey.get(field);
     }
 
     public String roundToIntStr(double dbl) {
@@ -57,28 +77,38 @@ public abstract class Entity implements DBEntity {
     synchronized public Map<String, Object> getState() {
         return state;
     }
+    synchronized public Map<String, Object> getPrimaryKey() {
+        return primaryKey;
+    }
     synchronized public void setState(Map<String, ?> map) {
+        setPKOrState(state, map);
+    }
+    synchronized public void setPrimaryKey(Map<String, ?> map) {
+        setPKOrState(primaryKey, map);
+    }
+
+    synchronized private void setPKOrState(Map<String, Object> pkOrState, Map<String, ?> map) {
         for (Map.Entry<String, ?> entry: map.entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();
-            if (!state.containsKey(key))
+            if (!pkOrState.containsKey(key))
                 continue;
             
-            Object current = state.get(key);
+            Object current = pkOrState.get(key);
             if (current instanceof Integer) { //необходимо привести целевое значение к численному, т.к. может прийти и строка
                 if (value instanceof Integer)
-                    state.put(key, (Integer)value);
+                    pkOrState.put(key, (Integer)value);
                 else if (value instanceof String)
-                     state.put(key, Integer.parseInt((String)value));
+                     pkOrState.put(key, Integer.parseInt((String)value));
             } else if (current instanceof Double) {
                 if (Utils.canBeCastedAgainst(value, Double.class))
-                    state.put(key, (Double)value);
+                    pkOrState.put(key, (Double)value);
                 else if (value instanceof String)
-                     state.put(key, Double.parseDouble((String)value));
+                     pkOrState.put(key, Double.parseDouble((String)value));
             } else if (current instanceof String) {
-                state.put(key, (String)value);
+                pkOrState.put(key, (String)value);
             } else if (current instanceof Boolean) {
-                state.put(key, (Boolean)value);
+                pkOrState.put(key, (Boolean)value);
             }
             
         }
@@ -93,7 +123,7 @@ public abstract class Entity implements DBEntity {
     private Map<Integer, String> getAvailableRealms() {
         Map<Integer, String> map = new HashMap<Integer, String>();
         for (Realm realm: Realm.getMap().values()) {
-            map.put(realm.getId(), realm.getStr("description"));
+            map.put(realm.getPKInt("id"), realm.getStr("description"));
         }
         return map;
     }

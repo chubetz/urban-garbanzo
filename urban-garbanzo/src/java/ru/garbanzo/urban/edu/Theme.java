@@ -21,17 +21,24 @@ import ru.garbanzo.urban.util.Utils;
 public class Theme extends Entity {
 
     Theme(int id) {
-        super(id, "Theme");
+        super("Theme", id);
     }
 
-    private static Map<String, Object> defaultState;
+    private static Map<String, Object> defaultState, defaultPrimaryKey;
 
     @Override
     protected Map<String, Object> getDefaultState() {
         return defaultState;        
     }
+    @Override
+    protected Map<String, Object> getDefaultPrimaryKey() {
+        return defaultPrimaryKey;
+    }
     
     static {
+        defaultPrimaryKey = new LinkedHashMap<String, Object>();
+        defaultPrimaryKey.put("id", -1);
+
         defaultState = new LinkedHashMap<String, Object>();
         defaultState.put("realmId", -1);
         defaultState.put("text", "");
@@ -53,7 +60,7 @@ public class Theme extends Entity {
     }
 
     public String toString() {
-        return "Тема {" + id + "} {" + getRealm().getStr("text") + "}";
+        return "Тема {" + getId() + "} {" + getRealm().getStr("text") + "}";
     }
 
     public static Theme getById(Object id){
@@ -84,11 +91,11 @@ public class Theme extends Entity {
             theme.setState(data);
 
         }
-        int validId = JDBCUtils.saveEntity(theme);
-        if (validId >= 0) { // удалось записать объект в БД с валидным id
-            theme.id = validId;
-            storage.getThemeMap().put(theme.id, theme);
-            Utils.print("theme validId: " + validId);
+        Map<String, Object> pk = JDBCUtils.saveEntity(theme);
+        if (pk != null) { // удалось записать объект в БД
+            theme.setPrimaryKey(pk);
+            storage.getThemeMap().put(theme.getId(), theme);
+            Utils.print("Theme pk: ", pk);
         } else {
             return null;
         }

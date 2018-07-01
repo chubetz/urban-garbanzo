@@ -20,19 +20,26 @@ public class Realm extends Entity {
     
     
     Realm(int id) {
-        super(id, "Realm");
+        super("Realm", id);
     }
     
     
 
-    private static Map<String, Object> defaultState;
+    private static Map<String, Object> defaultState, defaultPrimaryKey;
 
     @Override
     protected Map<String, Object> getDefaultState() {
         return defaultState;
     }
+    @Override
+    protected Map<String, Object> getDefaultPrimaryKey() {
+        return defaultPrimaryKey;
+    }
 
     static {
+        defaultPrimaryKey = new LinkedHashMap<String, Object>();
+        defaultPrimaryKey.put("id", -1);
+
         defaultState = new LinkedHashMap<String, Object>();
         defaultState.put("text", "");
         defaultState.put("description", "");
@@ -49,7 +56,7 @@ public class Realm extends Entity {
     }
 
     public String toString() {
-        return "Область {" + id + "}";
+        return "Область {" + getId() + "}";
     }
 
     public static Realm getById(Object id){
@@ -80,11 +87,11 @@ public class Realm extends Entity {
             realm.setState(data);
 
         }
-        int validId = JDBCUtils.saveEntity(realm);
-        if (validId >= 0) { // удалось записать объект в БД с валидным id
-            realm.id = validId;
-            storage.getRealmMap().put(realm.id, realm);
-            Utils.print("realm validId: " + validId);
+        Map<String, Object> pk = JDBCUtils.saveEntity(realm);
+        if (pk != null) { // удалось записать объект в БД
+            realm.setPrimaryKey(pk);
+            storage.getRealmMap().put(realm.getId(), realm);
+            Utils.print("Realm pk: ", pk);
         } else {
             return null;
         }

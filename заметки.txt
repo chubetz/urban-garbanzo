@@ -25,6 +25,12 @@ http://hsqldb.org/doc/guide/guide.html
 
 Servlet cookbook
 
+https://www.amazon.com/Iron-Clad-Java-Building-Secure-Applications/dp/0071835881
+https://www.amazon.com/Java-Security-Writing-Deploying-Applications-ebook/dp/B00DDZPC8Y/ref=sr_1_10?s=books&ie=UTF8&qid=1530394244&sr=1-10&keywords=java+secure
+
+
+ключевые слова - Java Secure
+
 =====
 дома:
 
@@ -109,10 +115,16 @@ Servlet cookbook
 
 9) + реализация связи многие-ко-многим: Theme <-> Question
 	Предварительная переработка! Механизм PRIMARY KEY в сущностях
-		1) 
+		0) добавить в интерфейс DBEntity методы getPrimaryKey и setPrimaryKey - готово
+		1) класс Entity - добавить поддержку primaryKey (аналогично state), 
+добавить методы вида getPKStr; убрать все ссылки на id - готово
+		2) переделать все Entity-классы, чтобы не было ошибок (долго!) - готово
+		3) переделать JDBCUtils. Если запись не удалась - возвращать pk=null
+		4) переделать все методы сохранения в Entity-классах
+		5) тотальное тестирование: составить план тестирования.
 	
-
-	1) Сущность ThemeQuestion: id, questionId, themeId
+		x) выгрузка DROP/CREATE Table единым блоком
+	1) Сущность ThemeQuestion: только PK questionId-themeId
 	2) getThemeMap() в Question, getQuestionMap() в Theme
 	3) в редактировании вопроса - привязывать тему
 	4) в редактировании темы - отображать вопросы
@@ -134,6 +146,8 @@ Servlet cookbook
 12) Сделать MockAnswer?
 
 4.9) Сделать утилиту поиска элемента в коллекции/массиве
+
+*) обеспечить безопасное заполнение state и primaryKey - как в конструкторе Entity
 
 *) форматирование текстов вопросов - прикрутить внешний модуль
 

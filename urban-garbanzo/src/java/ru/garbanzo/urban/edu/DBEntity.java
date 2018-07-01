@@ -13,9 +13,11 @@ import java.util.Map;
  */
 public interface DBEntity {
     
-    int getId();
     String getTableName();
+
     Map<String, Object> getState();
     void setState(Map<String, ?> map);
     
+    Map<String, Object> getPrimaryKey();
+    void setPrimaryKey(Map<String, ?> map);
 }

@@ -43,14 +43,22 @@ public class Question extends Entity {
         return Collections.unmodifiableMap(availableTypes);
     }
     
-    private static Map<String, Object> defaultState;
+    private static Map<String, Object> defaultState, defaultPrimaryKey;
 
     @Override
     protected Map<String, Object> getDefaultState() {
         return defaultState;
     }
     
+    @Override
+    protected Map<String, Object> getDefaultPrimaryKey() {
+        return defaultPrimaryKey;
+    }
+
     static {
+        defaultPrimaryKey = new LinkedHashMap<String, Object>();
+        defaultPrimaryKey.put("id", -1);
+
         defaultState = new LinkedHashMap<String, Object>();
         defaultState.put("realmId", -1);
         defaultState.put("type", -1);
@@ -113,7 +121,7 @@ public class Question extends Entity {
     
     public Map<Integer, Answer> getAnswerMap() {
         acquireStorage();
-        return Collections.unmodifiableMap(storage.getAnswerMap(id));
+        return Collections.unmodifiableMap(storage.getAnswerMap(getId()));
     }
     
     public Realm getRealm() {
@@ -229,12 +237,12 @@ public class Question extends Entity {
     private static Question mockQuestion = new Question(-100);
 
     Question(int id) {
-        super(id, "Question");
+        super("Question", id);
     }
 
     @Override
     public String toString() {
-        return "Вопрос {" + id + "} " + '{' + getRealm().getStr("text") + "} " + "{" + Question.getTypeText(getInt("type")) + "}";
+        return "Вопрос {" + getId() + "} " + '{' + getRealm().getStr("text") + "} " + "{" + Question.getTypeText(getInt("type")) + "}";
     }
     
     private void saveAnswers(Map<String, ?> data) throws JDBCException {
@@ -265,7 +273,7 @@ public class Question extends Entity {
                 }
 
                 Map<String, Object> answerData = new HashMap<String, Object>();
-                answerData.put("questionId", this.id);
+                answerData.put("questionId", this.getId());
                 if (Arrays.binarySearch(corrects, ans[1]) >= 0)
                     answerData.put("correct", true);
                 else
@@ -302,13 +310,12 @@ public class Question extends Entity {
             question.setState(data);
 
         }
-        int validId = JDBCUtils.saveEntity(question);
-        if (validId >= 0) { // удалось записать объект в БД с валидным id
-            question.id = validId;
-            storage.getQuestionMap().put(question.id, question);
-            Utils.print("НАДО ВКЛЮЧИТЬ saveAnswers!!!!");
+        Map<String, Object> pk = JDBCUtils.saveEntity(question);
+        if (pk != null) { // удалось записать объект в БД
+            question.setPrimaryKey(pk);
+            storage.getQuestionMap().put(question.getId(), question);
             question.saveAnswers(data);
-            Utils.print("validId: " + validId);
+            Utils.print("Question pk: ", pk);
         } else {
             return null;
         }
