@@ -26,6 +26,10 @@ public class Theme extends Entity {
 
     private static Map<String, Object> defaultState, defaultPrimaryKey;
 
+    public boolean isPkAuto() {
+        return true;
+    }
+
     @Override
     protected Map<String, Object> getDefaultState() {
         return defaultState;        

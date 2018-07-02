@@ -5,6 +5,7 @@
  */
 package ru.garbanzo.urban.edu;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -19,6 +20,7 @@ public abstract class Entity implements DBEntity {
 
     abstract protected Map<String, Object> getDefaultState();
     abstract protected Map<String, Object> getDefaultPrimaryKey();
+    public abstract boolean isPkAuto();
 
     //state
     protected Map<String, Object> state, primaryKey;
@@ -75,15 +77,15 @@ public abstract class Entity implements DBEntity {
     }
 
     synchronized public Map<String, Object> getState() {
-        return state;
+        return Collections.unmodifiableMap(state);
     }
     synchronized public Map<String, Object> getPrimaryKey() {
-        return primaryKey;
+        return Collections.unmodifiableMap(primaryKey);
     }
-    synchronized public void setState(Map<String, ?> map) {
+    synchronized protected void setState(Map<String, ?> map) {
         setPKOrState(state, map);
     }
-    synchronized public void setPrimaryKey(Map<String, ?> map) {
+    synchronized protected void setPrimaryKey(Map<String, ?> map) {
         setPKOrState(primaryKey, map);
     }
 

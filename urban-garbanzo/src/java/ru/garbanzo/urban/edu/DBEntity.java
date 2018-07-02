@@ -16,8 +16,8 @@ public interface DBEntity {
     String getTableName();
 
     Map<String, Object> getState();
-    void setState(Map<String, ?> map);
     
     Map<String, Object> getPrimaryKey();
-    void setPrimaryKey(Map<String, ?> map);
+    
+    boolean isPkAuto();
 }

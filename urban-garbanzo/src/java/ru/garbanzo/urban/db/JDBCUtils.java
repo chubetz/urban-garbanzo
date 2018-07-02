@@ -13,12 +13,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ru.garbanzo.urban.controller.MainServlet;
 import ru.garbanzo.urban.edu.DBEntity;
+import ru.garbanzo.urban.edu.Entity;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
 
@@ -51,34 +55,48 @@ public class JDBCUtils {
         return getHSQLConnection("SA", "");
     }
     
-    public static List<Map<String, Object>> loadEntitiesData(DBEntity sample) throws JDBCException {
+    private static void fillEntityFromRecordSet(LoadedEntity entity, ResultSet rs) throws SQLException {
+        List<Map<String, Object>> stateMaps = new ArrayList<Map<String, Object>>();
+        Map<String, Object> primaryKey = new LinkedHashMap<String, Object>(entity.getPrimaryKey());
+        Map<String, Object> state = new LinkedHashMap<String, Object>(entity.getState());
+        stateMaps.add(primaryKey);
+        stateMaps.add(state);
+        for (Map<String, Object> stateMap : stateMaps) {
+            for (String field : stateMap.keySet()) {
+                if (stateMap.get(field) instanceof String) {
+                    stateMap.put(field, rs.getString(field));
+                }
+                if (stateMap.get(field) instanceof Integer) {
+                    stateMap.put(field, rs.getInt(field));
+                }
+                if (stateMap.get(field) instanceof Boolean) {
+                    stateMap.put(field, rs.getBoolean(field));
+                }
+                if (stateMap.get(field) instanceof Double) {
+                    stateMap.put(field, rs.getDouble(field));
+                }
+            }
+            
+        }
+        entity.setPrimaryKey(primaryKey);
+        entity.setState(state);
+        
+    }
+    
+    public static List<Entity> loadEntitiesData(DBEntity sample) throws JDBCException {
         Connection conn = null;
         Statement stmt = null;
         String sql = null;
-        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+        List<Entity> list = new ArrayList<Entity>();
         try {
             conn = JDBCUtils.getHSQLConnection();
             sql = "SELECT * FROM " + sample.getTableName();
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet rs = stmt.executeQuery(sql);
             while(rs.next()){
-                Map<String, Object> data = new HashMap<String, Object>();
-                data.put("id", rs.getInt("id"));
-                for (Map.Entry<String, Object> entry : sample.getState().entrySet()) {
-                    if (entry.getValue() instanceof String) {
-                        data.put(entry.getKey(), rs.getString(entry.getKey()));
-                    }
-                    if (entry.getValue() instanceof Integer) {
-                        data.put(entry.getKey(), rs.getInt(entry.getKey()));
-                    }
-                    if (entry.getValue() instanceof Boolean) {
-                        data.put(entry.getKey(), rs.getBoolean(entry.getKey()));
-                    }
-                    if (entry.getValue() instanceof Double) {
-                        data.put(entry.getKey(), rs.getDouble(entry.getKey()));
-                    }
-                }
-                list.add(data);
+                LoadedEntity entity = new LoadedEntity();
+                fillEntityFromRecordSet(entity, rs);
+                list.add(entity);
             }            
             rs.close();
         } catch (Exception e) {
@@ -94,14 +112,32 @@ public class JDBCUtils {
         return list;
     }
     
-    public static int saveEntity(DBEntity entity) throws JDBCException {
+    public static Map<String, Object> saveEntity(DBEntity entity) throws JDBCException {
+        Map<String, Object> result = null;
         Connection conn = null;
         Statement stmt = null;
         String sql = null;
         int id = -1;
         try {
             conn = JDBCUtils.getHSQLConnection();
-            sql = "SELECT * FROM " + entity.getTableName() + " WHERE id = " + entity.getId();
+            StringBuilder where_info = new StringBuilder();
+            boolean first = true;
+            for (Map.Entry<String, Object> entry: entity.getPrimaryKey().entrySet()) {
+                if (first) {
+                    first = false;
+                } else {
+                    where_info.append(" AND ");
+                }
+                where_info.append(entry.getKey());
+                where_info.append("=");
+                if (entry.getValue() instanceof String) {
+                    where_info.append("'" + entry.getValue() + "'");
+                } else {
+                    where_info.append(entry.getValue().toString());
+                }
+            }
+            sql = "SELECT * FROM " + entity.getTableName() + " WHERE " + where_info;
+            Utils.print("select======>", sql);
             //stmt = conn.prepareStatement(sql, 
              //       ResultSet.TYPE_SCROLL_SENSITIVE,
               //      ResultSet.CONCUR_UPDATABLE);
@@ -111,7 +147,7 @@ public class JDBCUtils {
             if (rs.first()) {
                 // обновляем запись
                 StringBuilder set_info = new StringBuilder();
-                boolean first = true;
+                first = true;
                 for (Map.Entry<String, Object> entry: entity.getState().entrySet()) {
                     if (first) {
                         first = false;
@@ -126,16 +162,21 @@ public class JDBCUtils {
                         set_info.append(entry.getValue().toString());
                     }
                 }
-                sql = "UPDATE " + entity.getTableName() + " SET " + set_info.toString() + " WHERE id = " + entity.getId();
+                sql = "UPDATE " + entity.getTableName() + " SET " + set_info.toString() + " WHERE " + where_info;
                 Utils.print("update===>", sql);
                 
                 stmt.executeQuery(sql);
-                id = entity.getId();
+                result = entity.getPrimaryKey();
             } else {
-                //вставляем новую запись (id, скорее всего, будет -1)
+                //вставляем новую запись 
                 StringBuilder fields = new StringBuilder("("), values = new StringBuilder(" VALUES (");
-                boolean first = true;
-                for (Map.Entry<String, Object> entry: entity.getState().entrySet()) {
+                first = true;
+                Set<Map.Entry<String, Object>> entrySet = new LinkedHashSet<Map.Entry<String, Object>>();
+                if (!entity.isPkAuto()) {
+                    entrySet.addAll(entity.getPrimaryKey().entrySet());
+                }
+                entrySet.addAll(entity.getState().entrySet());
+                for (Map.Entry<String, Object> entry: entrySet) {
                     if (first) {
                         first = false;
                     } else {
@@ -153,10 +194,17 @@ public class JDBCUtils {
                 sql = "INSERT INTO " + entity.getTableName() + " " + fields.toString() + values.toString();
                 Utils.print(sql);
                 stmt.executeQuery(sql);
-                sql = "SELECT MAX(ID) FROM " + entity.getTableName();
-                rs = stmt.executeQuery(sql);
-                rs.first();
-                id = rs.getInt(1);
+                if (entity.isPkAuto()) {
+                    sql = "SELECT MAX(ID) FROM " + entity.getTableName();
+                    rs = stmt.executeQuery(sql);
+                    rs.first();
+                    id = rs.getInt(1);
+                    result = new HashMap<String, Object>();
+                    result.put("id", id);
+                } else {
+                    result = entity.getPrimaryKey();
+                }
+                    
             }
             rs.close();
         } catch (Exception e) {
@@ -169,7 +217,7 @@ public class JDBCUtils {
                 throw new JDBCException(ex, sql, null);
             }
         }
-        return id;
+        return result;
     }
     
     public static boolean deleteEntity(DBEntity entity) throws JDBCException {
@@ -178,8 +226,24 @@ public class JDBCUtils {
         String sql = null;
         try {
             conn = JDBCUtils.getHSQLConnection();
-            sql = "DELETE FROM " + entity.getTableName() + " WHERE id = " + entity.getId();
-            Utils.print("deleteEntity request", sql);
+            StringBuilder where_info = new StringBuilder();
+            boolean first = true;
+            for (Map.Entry<String, Object> entry: entity.getPrimaryKey().entrySet()) {
+                if (first) {
+                    first = false;
+                } else {
+                    where_info.append(" AND ");
+                }
+                where_info.append(entry.getKey());
+                where_info.append("=");
+                if (entry.getValue() instanceof String) {
+                    where_info.append("'" + entry.getValue() + "'");
+                } else {
+                    where_info.append(entry.getValue().toString());
+                }
+            }
+            sql = "DELETE FROM " + entity.getTableName() + " WHERE " + where_info;
+            Utils.print("delete=========>", sql);
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             int total = stmt.executeUpdate(sql);
             return total > 0;

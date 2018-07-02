@@ -20,6 +20,10 @@ public class ThemeQuestion extends Entity {
 
     private static Map<String, Object> defaultState, defaultPrimaryKey;
 
+    public boolean isPkAuto() {
+        return false;
+    }
+
     @Override
     protected Map<String, Object> getDefaultState() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
