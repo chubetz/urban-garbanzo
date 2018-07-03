@@ -26,7 +26,7 @@ public class ThemeQuestion extends Entity {
 
     @Override
     protected Map<String, Object> getDefaultState() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return defaultState;
     }
     @Override
     protected Map<String, Object> getDefaultPrimaryKey() {
