@@ -55,8 +55,7 @@ public class Realm extends Entity {
     }
 
     public static Map<Integer, Realm> getMap() {
-        acquireStorage();
-        return Collections.unmodifiableMap(storage.getRealmMap());
+        return Collections.unmodifiableMap(getStorage().getRealmMap());
     }
 
     public String toString() {
@@ -94,7 +93,7 @@ public class Realm extends Entity {
         Map<String, Object> pk = JDBCUtils.saveEntity(realm);
         if (pk != null) { // удалось записать объект в БД
             realm.setPrimaryKey(pk);
-            storage.getRealmMap().put(realm.getId(), realm);
+            getStorage().getRealmMap().put(realm.getId(), realm);
             Utils.print("Realm pk: ", pk);
         } else {
             return null;

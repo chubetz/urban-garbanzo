@@ -117,9 +117,8 @@ public abstract class Entity implements DBEntity {
         
     }
 
-    protected static Storage storage;
-    protected static void acquireStorage() {
-        storage = Storage.getStorage();
+    protected static Storage getStorage() {
+        return Storage.getStorage();
     }
     
     private Map<Integer, String> getAvailableRealms() {

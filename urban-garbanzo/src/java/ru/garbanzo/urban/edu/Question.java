@@ -33,8 +33,7 @@ public class Question extends Entity {
     
     
     public static Map<Integer, Question> getMap() {
-        acquireStorage();
-        return Collections.unmodifiableMap(storage.getQuestionMap());
+        return Collections.unmodifiableMap(getStorage().getQuestionMap());
     }
 
 
@@ -115,7 +114,7 @@ public class Question extends Entity {
 
     public static Map<Integer, Question> getValidMap() throws JDBCException {
         Map<Integer, Question> filteredMap = new HashMap<Integer, Question>();
-        for (Map.Entry<Integer, Question> entry: storage.getQuestionMap().entrySet()) {
+        for (Map.Entry<Integer, Question> entry: getStorage().getQuestionMap().entrySet()) {
             if (entry.getValue().isValid()) {
                 filteredMap.put(entry.getKey(), entry.getValue());
             }
@@ -124,8 +123,7 @@ public class Question extends Entity {
     }
     
     public Map<Integer, Answer> getAnswerMap() {
-        acquireStorage();
-        return Collections.unmodifiableMap(storage.getAnswerMap(getId()));
+        return Collections.unmodifiableMap(getStorage().getAnswerMap(getId()));
     }
     
     public Realm getRealm() {
@@ -270,8 +268,8 @@ public class Question extends Entity {
                     boolean wasDeleted = JDBCUtils.deleteEntity(new Answer(answerId));
                     Utils.print("Стерлось ли?", wasDeleted);
                     if (wasDeleted) { // нужно удалить из памяти
-                        storage.getAnswerMap(this.getId()).remove(answerId);
-                        storage.getAnswerMap().remove(answerId);
+                        getStorage().getAnswerMap(this.getId()).remove(answerId);
+                        getStorage().getAnswerMap().remove(answerId);
                     }
                     continue;
                 }
@@ -287,8 +285,8 @@ public class Question extends Entity {
                 Utils.print("answerData", answerData);
                 try {
                     Answer answer = Answer.saveAnswer(answerId, answerData);
-                    storage.getAnswerMap(this.getId()).put(answer.getId(), answer);
-                    storage.getAnswerMap().put(answer.getId(), answer);
+                    getStorage().getAnswerMap(this.getId()).put(answer.getId(), answer);
+                    getStorage().getAnswerMap().put(answer.getId(), answer);
                 } catch(NoQuestionException nqe) {
                     nqe.printStackTrace();
                 }
@@ -317,7 +315,7 @@ public class Question extends Entity {
         Map<String, Object> pk = JDBCUtils.saveEntity(question);
         if (pk != null) { // удалось записать объект в БД
             question.setPrimaryKey(pk);
-            storage.getQuestionMap().put(question.getId(), question);
+            getStorage().getQuestionMap().put(question.getId(), question);
             question.saveAnswers(data);
             Utils.print("Question pk: ", pk);
         } else {
@@ -333,6 +331,10 @@ public class Question extends Entity {
 
     public static Question createQuestion(Map<String, ?> data) throws JDBCException {
         return saveQuestion(-1, data);
+    }
+    
+    public Map<Integer, Theme> getThemeMap() {
+        return Collections.unmodifiableMap(getStorage().getThemeMap(this.getId()));
     }
 
 

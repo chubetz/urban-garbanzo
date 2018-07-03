@@ -12,7 +12,7 @@ import java.util.Map;
  *
  * @author mithia
  */
-public class ThemeQuestion extends Entity {
+class ThemeQuestion extends Entity {
 
     ThemeQuestion(int themeId, int questionId) {
         super("ThemeQuestion", themeId, questionId);
@@ -40,4 +40,12 @@ public class ThemeQuestion extends Entity {
 
         defaultState = new LinkedHashMap<String, Object>(); //нет полей, кроме PK
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof ThemeQuestion) && 
+                ((ThemeQuestion)obj).getPrimaryKey().equals(this.getPrimaryKey());
+    }
+    
+    
 }

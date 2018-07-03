@@ -151,11 +151,12 @@ https://www.amazon.com/Java-Security-Writing-Deploying-Applications-ebook/dp/B00
 	
 		x) выгрузка DROP/CREATE Table единым блоком - готово
 	1) Сущность ThemeQuestion: только PK questionId-themeId
-	2) getThemeMap() в Question, getQuestionMap() в Theme
+	2) getThemeMap() в Question, getQuestionMap() в Theme - готово
 	3) в редактировании вопроса - привязывать тему
 	4) в редактировании темы - отображать вопросы
+	5) сохранение в БД
+	6) проверить загрузку из БД
 	5) выгрузка в SQL
-	6) загрузка из БД
 
 
 
@@ -172,6 +173,8 @@ https://www.amazon.com/Java-Security-Writing-Deploying-Applications-ebook/dp/B00
 12) Сделать MockAnswer?
 
 4.9) Сделать утилиту поиска элемента в коллекции/массиве
+
+*) синхронизация обращений к storage, а также init()
 
 *) интернационализация когда-нибудь
 
@@ -273,6 +276,11 @@ DROP TABLE Realm IF EXISTS;
 CREATE TABLE Realm (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, text VARCHAR(20), description VARCHAR(2000))
 
 
+DROP TABLE Theme IF EXISTS;
+CREATE TABLE Theme (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, text VARCHAR(2000), number DOUBLE);
+
+DROP TABLE ThemeQuestion IF EXISTS;
+CREATE TABLE ThemeQuestion (themeId int, questionId int, PRIMARY KEY(themeId, questionId));
 
 
 

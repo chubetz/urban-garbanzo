@@ -9,7 +9,6 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import ru.garbanzo.urban.db.JDBCUtils;
-import static ru.garbanzo.urban.edu.Entity.acquireStorage;
 import static ru.garbanzo.urban.edu.Realm.getMap;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
@@ -55,8 +54,7 @@ public class Theme extends Entity {
     }
     
     public static Map<Integer, Theme> getMap() {
-        acquireStorage();
-        return Collections.unmodifiableMap(storage.getThemeMap());
+        return Collections.unmodifiableMap(getStorage().getThemeMap());
     }
     
     public Realm getRealm() {
@@ -98,7 +96,7 @@ public class Theme extends Entity {
         Map<String, Object> pk = JDBCUtils.saveEntity(theme);
         if (pk != null) { // удалось записать объект в БД
             theme.setPrimaryKey(pk);
-            storage.getThemeMap().put(theme.getId(), theme);
+            getStorage().getThemeMap().put(theme.getId(), theme);
             Utils.print("Theme pk: ", pk);
         } else {
             return null;
@@ -106,4 +104,9 @@ public class Theme extends Entity {
             
         return theme;
     }
+    
+    public Map<Integer, Question> getQuestionMap() {
+        return Collections.unmodifiableMap(getStorage().getQuestionMap(this.getId()));
+    }
+    
 }

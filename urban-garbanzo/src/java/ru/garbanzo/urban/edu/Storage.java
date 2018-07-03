@@ -6,9 +6,11 @@
 package ru.garbanzo.urban.edu;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ru.garbanzo.urban.db.JDBCUtils;
@@ -34,6 +36,9 @@ public class Storage {
     private Map<Integer, Map<Integer, Answer>> answerMapForQuestion;    
     private Map<Integer, Realm> realmMap;    
     private Map<Integer, Theme> themeMap;    
+    private Set<ThemeQuestion> themeQuestionSet;    
+    private Map<Integer, Map<Integer, Question>> questionMapForTheme;    
+    private Map<Integer, Map<Integer, Theme>> themeMapForQuestion;    
     
 
     Map<Integer, Question> getQuestionMap() {
@@ -52,6 +57,28 @@ public class Storage {
             return answerMapForQuestion.get(questionId);
         } else {
             return new HashMap<Integer, Answer>();
+        }
+    }
+
+    Map<Integer, Theme> getThemeMap(int questionId) { //для вопросов
+        if (questionId >= 0) {
+            if (themeMapForQuestion.get(questionId) == null) {
+                themeMapForQuestion.put(questionId, new HashMap<Integer, Theme>());
+            }
+            return themeMapForQuestion.get(questionId);
+        } else {
+            return new HashMap<Integer, Theme>();
+        }
+    }
+
+    Map<Integer, Question> getQuestionMap(int themeId) { //для тем
+        if (themeId >= 0) {
+            if (questionMapForTheme.get(themeId) == null) {
+                questionMapForTheme.put(themeId, new HashMap<Integer, Question>());
+            }
+            return questionMapForTheme.get(themeId);
+        } else {
+            return new HashMap<Integer, Question>();
         }
     }
 
@@ -115,6 +142,35 @@ public class Storage {
                 theme.setState(entity.getState());
                 storage.themeMap.put(theme.getId(), theme);
             }
+            
+            storage.themeQuestionSet = new HashSet<ThemeQuestion>();    
+            storage.questionMapForTheme = new HashMap<Integer, Map<Integer, Question>>();    
+            storage.themeMapForQuestion = new HashMap<Integer, Map<Integer, Theme>>();    
+            data = JDBCUtils.loadEntitiesData(new ThemeQuestion(-1,-1)); //связки тем и вопросов
+            for (DBEntity entity : data) {
+                ThemeQuestion tq = new ThemeQuestion(-1,-1);
+                tq.setPrimaryKey(entity.getPrimaryKey());
+                storage.themeQuestionSet.add(tq);
+                
+                Map<Integer, Theme> themeMap = storage.themeMapForQuestion.get(tq.getPKInt("questionId"));
+                if (themeMap ==  null) {
+                    themeMap = new HashMap<Integer, Theme>();
+                    storage.themeMapForQuestion.put(tq.getPKInt("questionId"), themeMap);
+                }
+                Theme theme = storage.themeMap.get(tq.getPKInt("themeId"));
+                if (theme != null)
+                    themeMap.put(theme.getId(), theme);
+
+                Map<Integer, Question> questionMap = storage.questionMapForTheme.get(tq.getPKInt("themeId"));
+                if (questionMap ==  null) {
+                    questionMap = new HashMap<Integer, Question>();
+                    storage.questionMapForTheme.put(tq.getPKInt("themeId"), questionMap);
+                }
+                Question question = storage.questionMap.get(tq.getPKInt("questionId"));
+                if (question != null)
+                    questionMap.put(question.getId(), question);
+            }
+            
 
         } catch (JDBCException ex) {
             Logger.getLogger(Question.class.getName()).log(Level.SEVERE, null, ex);
