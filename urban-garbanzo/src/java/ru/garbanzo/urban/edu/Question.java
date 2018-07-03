@@ -123,7 +123,7 @@ public class Question extends Entity {
     }
     
     public Map<Integer, Answer> getAnswerMap() {
-        return Collections.unmodifiableMap(getStorage().getAnswerMap(getId()));
+        return Collections.unmodifiableMap(getStorage().getAnswerMap(this));
     }
     
     public Realm getRealm() {
@@ -268,7 +268,7 @@ public class Question extends Entity {
                     boolean wasDeleted = JDBCUtils.deleteEntity(new Answer(answerId));
                     Utils.print("Стерлось ли?", wasDeleted);
                     if (wasDeleted) { // нужно удалить из памяти
-                        getStorage().getAnswerMap(this.getId()).remove(answerId);
+                        getStorage().getAnswerMap(this).remove(answerId);
                         getStorage().getAnswerMap().remove(answerId);
                     }
                     continue;
@@ -285,7 +285,7 @@ public class Question extends Entity {
                 Utils.print("answerData", answerData);
                 try {
                     Answer answer = Answer.saveAnswer(answerId, answerData);
-                    getStorage().getAnswerMap(this.getId()).put(answer.getId(), answer);
+                    getStorage().addAnswer(answer, this);
                     getStorage().getAnswerMap().put(answer.getId(), answer);
                 } catch(NoQuestionException nqe) {
                     nqe.printStackTrace();
@@ -333,11 +333,20 @@ public class Question extends Entity {
         return saveQuestion(-1, data);
     }
     
-    public Map<Integer, Theme> getThemeMap() {
-        return Collections.unmodifiableMap(getStorage().getThemeMap(this.getId()));
+//    public Map<Integer, Theme> getThemeMap() {
+//        return Collections.unmodifiableMap(getStorage().getThemeMap(this.getId()));
+//    }
+
+    public void linkThemes(String[] ids) {
+        if (ids != null) {
+            for (String themeId: ids) {
+                Theme theme = Theme.getById(themeId);
+                if (theme != null) {
+                    getStorage().linkQuestionTheme(this, theme);
+                }
+            }
+        }
     }
-
-
 
     
 }

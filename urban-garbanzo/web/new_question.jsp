@@ -24,5 +24,17 @@
         </table>
         <br>
         ${question.isValid() ? "Вопрос составлен корректно" : "<font color=red>Вопрос составлен некорректно</font>"}
+        <p>
+        Выбранные темы:
+        <p>
+        Доступные темы:
+        
+        <form name="link_themes" action="controller" method="POST">
+            <input type="hidden" name="action" value="link_themes">        
+            <input type="hidden" name="qid" value="${question.getId()}">        
+            ${question.getRealm().getThemesForSelectHTML()}
+            <input type="submit" value="Отправить" /> 
+            
+        </form>
     </body>
 </html>

@@ -5,8 +5,10 @@
  */
 package ru.garbanzo.urban.edu;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import ru.garbanzo.urban.db.JDBCUtils;
 import ru.garbanzo.urban.exception.JDBCException;
@@ -100,5 +102,31 @@ public class Realm extends Entity {
         }
             
         return realm;
+    }
+    
+
+    public Map<Integer, Theme> getThemeMap() {
+        return Collections.unmodifiableMap(getStorage().getThemeMap(this));
+    }
+
+    public String getThemesHTML() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<ul>\r\n");
+        for (Theme theme: getThemeMap().values()) {
+            sb.append("\t<li>" + theme.getDbl("number") + " " + theme.getStr("text") + "\r\n");
+        }
+        sb.append("</ul>");
+        return sb.toString();
+    }
+    
+    public String getThemesForSelectHTML() {
+        List<Theme> themes = new ArrayList<Theme>(getThemeMap().values());
+        StringBuilder sb = new StringBuilder();
+        sb.append("<select name=\"themes\" size=\"" + themes.size() + "\" multiple>\r\n");
+        for (Theme theme: themes) {
+            sb.append("\t<option value=\"" + theme.getId() + "\">" + theme.roundToIntStr(theme.getDbl("number")) + " " + theme.getStr("text") + "</option>\n");
+        }
+        sb.append("</select>");
+        return sb.toString();
     }
 }

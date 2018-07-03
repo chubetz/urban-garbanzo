@@ -14,10 +14,12 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ru.garbanzo.urban.db.JDBCUtils;
+import static ru.garbanzo.urban.edu.Entity.getStorage;
 import static ru.garbanzo.urban.edu.Question.COMMON_TYPE;
 import static ru.garbanzo.urban.edu.Question.INFO_TYPE;
 import static ru.garbanzo.urban.edu.Question.TEST_TYPE;
 import ru.garbanzo.urban.exception.JDBCException;
+import ru.garbanzo.urban.util.Utils;
 
 /**
  *
@@ -39,6 +41,15 @@ public class Storage {
     private Set<ThemeQuestion> themeQuestionSet;    
     private Map<Integer, Map<Integer, Question>> questionMapForTheme;    
     private Map<Integer, Map<Integer, Theme>> themeMapForQuestion;    
+    private Map<Integer, Map<Integer, Theme>> themeMapForRealm; 
+    
+    private <T> void provideDefaultMap(Map<Integer, Map<Integer, T>> map, int key) {
+        if (key >= 0) {
+            if (map.get(key) == null) {
+                map.put(key, new HashMap<Integer, T>());
+            }
+        }
+    }
     
 
     Map<Integer, Question> getQuestionMap() {
@@ -49,38 +60,91 @@ public class Storage {
         return answerMap;
     }
 
-    Map<Integer, Answer> getAnswerMap(int questionId) {
+    Map<Integer, Answer> getAnswerMap(Question question) {
+        int questionId = question.getId();
+        provideDefaultMap(answerMapForQuestion, questionId);
         if (questionId >= 0) {
-            if (answerMapForQuestion.get(questionId) == null) {
-                answerMapForQuestion.put(questionId, new HashMap<Integer, Answer>());
-            }
             return answerMapForQuestion.get(questionId);
         } else {
             return new HashMap<Integer, Answer>();
         }
     }
+    
+    void addAnswer(Answer answer, Question question) {
+        if (question == null) return;
+        int questionId = question.getId();
+        provideDefaultMap(answerMapForQuestion, questionId);
+        answerMapForQuestion.get(questionId).put(answer.getId(), answer);
+    }
 
-    Map<Integer, Theme> getThemeMap(int questionId) { //для вопросов
+    Map<Integer, Theme> getThemeMap(Realm realm) { //для вопросов
+        int realmId = realm.getId();
+        provideDefaultMap(themeMapForRealm, realmId);
+        if (realmId >= 0) {
+            return themeMapForRealm.get(realmId);
+        } else {
+            return new HashMap<Integer, Theme>();
+        }
+    }
+
+    void addTheme(Theme theme, Realm realm) {
+        if (realm == null) return;
+        int realmId = realm.getId();
+        provideDefaultMap(themeMapForRealm, realmId);
+        themeMapForRealm.get(realmId).put(theme.getId(), theme);
+    }
+    
+    void deleteTheme(Theme theme, Realm realm) {
+        if (realm != null) {
+            Map<Integer, Theme> map = themeMapForRealm.get(realm.getId());
+            map.remove(theme.getId());
+        }
+    }
+
+    Map<Integer, Theme> getThemeMap(Question question) { //для вопросов
+        int questionId = question.getId();
+        provideDefaultMap(themeMapForQuestion, questionId);
         if (questionId >= 0) {
-            if (themeMapForQuestion.get(questionId) == null) {
-                themeMapForQuestion.put(questionId, new HashMap<Integer, Theme>());
-            }
             return themeMapForQuestion.get(questionId);
         } else {
             return new HashMap<Integer, Theme>();
         }
     }
 
-    Map<Integer, Question> getQuestionMap(int themeId) { //для тем
+    Map<Integer, Question> getQuestionMap(Theme theme) { //для вопросов
+        int themeId = theme.getId();
+        provideDefaultMap(questionMapForTheme, themeId);
         if (themeId >= 0) {
-            if (questionMapForTheme.get(themeId) == null) {
-                questionMapForTheme.put(themeId, new HashMap<Integer, Question>());
-            }
             return questionMapForTheme.get(themeId);
         } else {
             return new HashMap<Integer, Question>();
         }
     }
+    
+    void linkQuestionTheme(Question question, Theme theme) {
+        Utils.print("linked question: ", question);
+        Utils.print("linked theme: ", theme);
+    }
+
+    void unlinkQuestionTheme(Question question, Theme theme) {
+        
+    }
+
+//    void addTheme(Theme theme, Question question) {
+//        if (question == null) return;
+//        int questionId = question.getId();
+//        provideDefaultMap(themeMapForQuestion, questionId);
+//        themeMapForQuestion.get(questionId).put(theme.getId(), theme);
+//    }
+
+
+//    void addQuestion(Question question, Theme theme) {
+//        if (theme == null) return;
+//        int themeId = theme.getId();
+//        provideDefaultMap(questionMapForTheme, themeId);
+//        questionMapForTheme.get(themeId).put(question.getId(), question);
+//    }
+
 
     Map<Integer, Realm> getRealmMap() {
         return realmMap;
@@ -110,7 +174,6 @@ public class Storage {
                 question.setPrimaryKey(entity.getPrimaryKey());
                 question.setState(entity.getState());
                 storage.questionMap.put(question.getId(), question);
-                storage.answerMapForQuestion.put(question.getId(), new HashMap<Integer, Answer>());
             }
             
             storage.answerMap = new HashMap<Integer, Answer>();
@@ -120,9 +183,8 @@ public class Storage {
                 answer.setPrimaryKey(entity.getPrimaryKey());
                 answer.setState(entity.getState());
                 storage.answerMap.put(answer.getId(), answer);
-                Map<Integer, Answer> answerMap = storage.answerMapForQuestion.get(answer.getInt("questionId"));
-                if (answerMap != null)
-                    answerMap.put(answer.getId(), answer);
+                Question question = storage.questionMap.get(answer.getInt("questionId")); //извлекаем вручную, т.к. данные только заполняются
+                storage.addAnswer(answer, question);
             }
     
             storage.realmMap = new HashMap<Integer, Realm>();
@@ -135,12 +197,15 @@ public class Storage {
             }
 
             storage.themeMap = new HashMap<Integer, Theme>();
+            storage.themeMapForRealm = new HashMap<Integer, Map<Integer, Theme>>();
             data = JDBCUtils.loadEntitiesData(new Theme(-1)); //области
             for (DBEntity entity : data) {
                 Theme theme = new Theme(-1);
                 theme.setPrimaryKey(entity.getPrimaryKey());
                 theme.setState(entity.getState());
                 storage.themeMap.put(theme.getId(), theme);
+                Realm realm = storage.realmMap.get(theme.getInt("realmId")); //извлекаем вручную, т.к. данные только заполняются
+                storage.addTheme(theme, realm);
             }
             
             storage.themeQuestionSet = new HashSet<ThemeQuestion>();    
@@ -152,23 +217,11 @@ public class Storage {
                 tq.setPrimaryKey(entity.getPrimaryKey());
                 storage.themeQuestionSet.add(tq);
                 
-                Map<Integer, Theme> themeMap = storage.themeMapForQuestion.get(tq.getPKInt("questionId"));
-                if (themeMap ==  null) {
-                    themeMap = new HashMap<Integer, Theme>();
-                    storage.themeMapForQuestion.put(tq.getPKInt("questionId"), themeMap);
-                }
+                Question question = storage.questionMap.get(tq.getPKInt("questionId")); //извлекаем вручную, т.к. данные только заполняются
                 Theme theme = storage.themeMap.get(tq.getPKInt("themeId"));
-                if (theme != null)
-                    themeMap.put(theme.getId(), theme);
 
-                Map<Integer, Question> questionMap = storage.questionMapForTheme.get(tq.getPKInt("themeId"));
-                if (questionMap ==  null) {
-                    questionMap = new HashMap<Integer, Question>();
-                    storage.questionMapForTheme.put(tq.getPKInt("themeId"), questionMap);
-                }
-                Question question = storage.questionMap.get(tq.getPKInt("questionId"));
-                if (question != null)
-                    questionMap.put(question.getId(), question);
+                storage.linkQuestionTheme(question, theme);
+
             }
             
 

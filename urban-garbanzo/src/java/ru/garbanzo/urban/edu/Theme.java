@@ -82,8 +82,11 @@ public class Theme extends Entity {
     public static Theme saveTheme(int id, Map<String, ?> data) throws JDBCException {
         Theme theme = getMap().get(id);
         Utils.print("saveTheme", data);
+        Realm oldRealm = null;
         if (theme == null) {
             theme = new Theme(-1);
+        } else { // надо потом отвязать из предыдущей области
+            oldRealm = theme.getRealm();
         }
         if (data != null && !data.isEmpty()) {
             if (data.get(data.keySet().toArray()[0]).getClass().isArray()) { //параметры пришли с фронта
@@ -97,6 +100,8 @@ public class Theme extends Entity {
         if (pk != null) { // удалось записать объект в БД
             theme.setPrimaryKey(pk);
             getStorage().getThemeMap().put(theme.getId(), theme);
+            getStorage().deleteTheme(theme, oldRealm);
+            getStorage().addTheme(theme, theme.getRealm());
             Utils.print("Theme pk: ", pk);
         } else {
             return null;
@@ -106,7 +111,7 @@ public class Theme extends Entity {
     }
     
     public Map<Integer, Question> getQuestionMap() {
-        return Collections.unmodifiableMap(getStorage().getQuestionMap(this.getId()));
+        return Collections.unmodifiableMap(getStorage().getQuestionMap(this));
     }
     
 }

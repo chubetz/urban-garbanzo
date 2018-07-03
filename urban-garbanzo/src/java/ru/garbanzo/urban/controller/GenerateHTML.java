@@ -110,6 +110,12 @@ public class GenerateHTML extends HttpServlet {
                         body.append(realm.getValue().getStr("description"));
                         body.append("</td>");
                         body.append("</tr>");
+                        body.append("<tr>");
+                        body.append("<td colspan=4>");
+                        body.append(realm.getValue().getThemesHTML());
+                        body.append("</td>");
+                        body.append("</tr>");
+                        body.append("</tr>");
                     }
                 } catch (JDBCException e) {
                     request.setAttribute("exception", e);
