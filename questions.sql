@@ -1,5 +1,11 @@
 ﻿DROP TABLE Realm IF EXISTS;
 CREATE TABLE Realm (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, text VARCHAR(20), description VARCHAR(2000));
+DROP TABLE Theme IF EXISTS;
+CREATE TABLE Theme (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, text VARCHAR(2000), number DOUBLE);
+DROP TABLE Question IF EXISTS;
+CREATE TABLE Question (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, type int, text VARCHAR(2000));
+	DROP TABLE Answer IF EXISTS;
+	CREATE TABLE Answer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean, text VARCHAR(2000));
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (0,'java','Java');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (1,'kotlin','Kotlin');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (2,'sql','SQL');
@@ -8,16 +14,10 @@ INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (4,'oca_1
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (5,'test','ТЕСТ');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (6,'test2','TEST 2');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (7,'history','История');
-DROP TABLE Theme IF EXISTS;
-CREATE TABLE Theme (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, text VARCHAR(2000), number DOUBLE);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (0,4,'Темочка',2.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (1,2,'А вот еще такая тема',2.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (2,0,'вапвапвап',3.45);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (3,0,'вавап',4.0);
-DROP TABLE Question IF EXISTS;
-CREATE TABLE Question (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, type int, text VARCHAR(2000));
-	DROP TABLE Answer IF EXISTS;
-	CREATE TABLE Answer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean, text VARCHAR(2000));
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (0,4,0,'Тесты экзамена предполагают обычно 5 или 6 ответов, со множественным выбором.');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (1,4,0,'Нельзя реализовать в классе два интерфейса с общим дефолтным методом, если не переопределить этот метод в классе.');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (2,0,0,'');

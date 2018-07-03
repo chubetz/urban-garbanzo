@@ -166,6 +166,12 @@ public class MainServlet extends HttpServlet {
                     StringBuilder sb = new StringBuilder();
                         sb.append("DROP TABLE Realm IF EXISTS;\r\n");
                         sb.append("CREATE TABLE Realm (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, text VARCHAR(20), description VARCHAR(2000));\r\n");
+                        sb.append("DROP TABLE Theme IF EXISTS;\r\n");
+                        sb.append("CREATE TABLE Theme (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, text VARCHAR(2000), number DOUBLE);\r\n");
+                        sb.append("DROP TABLE Question IF EXISTS;\r\n");
+                        sb.append("CREATE TABLE Question (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, type int, text VARCHAR(2000));\r\n");
+                        sb.append("\tDROP TABLE Answer IF EXISTS;\r\n");
+                        sb.append("\tCREATE TABLE Answer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean, text VARCHAR(2000));\r\n");
                     for (Realm r: Realm.getMap().values()) {
                         Map<String, Object> state = r.getState();
                         sb.append("INSERT INTO Realm (id");
@@ -185,8 +191,6 @@ public class MainServlet extends HttpServlet {
 
                     }
 
-                        sb.append("DROP TABLE Theme IF EXISTS;\r\n");
-                        sb.append("CREATE TABLE Theme (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, text VARCHAR(2000), number DOUBLE);\r\n");
                     for (Theme t: Theme.getMap().values()) {
                         Map<String, Object> state = t.getState();
                         sb.append("INSERT INTO Theme (id");
@@ -206,10 +210,6 @@ public class MainServlet extends HttpServlet {
 
                     }
 
-                        sb.append("DROP TABLE Question IF EXISTS;\r\n");
-                        sb.append("CREATE TABLE Question (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, type int, text VARCHAR(2000));\r\n");
-                        sb.append("\tDROP TABLE Answer IF EXISTS;\r\n");
-                        sb.append("\tCREATE TABLE Answer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean, text VARCHAR(2000));\r\n");
                     for (Question q: Question.getMap().values()) {
                         Map<String, Object> state = q.getState();
                         sb.append("INSERT INTO Question (id");

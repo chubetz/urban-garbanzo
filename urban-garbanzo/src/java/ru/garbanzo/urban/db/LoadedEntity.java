@@ -7,43 +7,46 @@ package ru.garbanzo.urban.db;
 
 import java.util.HashMap;
 import java.util.Map;
+import ru.garbanzo.urban.edu.DBEntity;
 import ru.garbanzo.urban.edu.Entity;
 
 /**
  *
  * @author mithia
  */
-class LoadedEntity extends Entity {
+class LoadedEntity implements DBEntity {
     
-    LoadedEntity() {
-        super(null, null);
-    }
-
-    @Override
-    public synchronized void setPrimaryKey(Map<String, ?> map) {
-        super.setPrimaryKey(map); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public synchronized void setState(Map<String, ?> map) {
-        super.setState(map); //To change body of generated methods, choose Tools | Templates.
-    }
+    private Map<String, Object> primaryKey, state;
     
-    
+    void setPrimaryKey(Map<String, Object> map) {
+        this.primaryKey = map;
+    }
+    void setState(Map<String, Object> map) {
+        this.state = map;
+    }
 
-    @Override
-    protected Map<String, Object> getDefaultState() {
-        return new HashMap<String, Object>();
+    public String toString() {
+        return "Loaded Entity " + getPrimaryKey().get("id");
     }
 
     @Override
-    protected Map<String, Object> getDefaultPrimaryKey() {
-        return new HashMap<String, Object>();
+    public String getTableName() {
+        return null;
+    }
+
+    @Override
+    public Map<String, Object> getState() {
+        return state;
+    }
+
+    @Override
+    public Map<String, Object> getPrimaryKey() {
+        return primaryKey;
     }
 
     @Override
     public boolean isPkAuto() {
-        throw new UnsupportedOperationException("Не табличный, а вспомогательный объект"); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
     
     

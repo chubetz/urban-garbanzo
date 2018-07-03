@@ -77,8 +77,8 @@ public class Storage {
             
             storage.questionMap = new HashMap<Integer, Question>();
             storage.answerMapForQuestion = new HashMap<Integer, Map<Integer, Answer>>();
-            List<Entity> data = JDBCUtils.loadEntitiesData(new Question(-1));
-            for (Entity entity : data) {
+            List<DBEntity> data = JDBCUtils.loadEntitiesData(new Question(-1));
+            for (DBEntity entity : data) {
                 Question question = new Question(-1);
                 question.setPrimaryKey(entity.getPrimaryKey());
                 question.setState(entity.getState());
@@ -88,7 +88,7 @@ public class Storage {
             
             storage.answerMap = new HashMap<Integer, Answer>();
             data = JDBCUtils.loadEntitiesData(new Answer(-1)); //ответы
-            for (Entity entity : data) {
+            for (DBEntity entity : data) {
                 Answer answer = new Answer(-1);
                 answer.setPrimaryKey(entity.getPrimaryKey());
                 answer.setState(entity.getState());
@@ -100,7 +100,7 @@ public class Storage {
     
             storage.realmMap = new HashMap<Integer, Realm>();
             data = JDBCUtils.loadEntitiesData(new Realm(-1)); //области
-            for (Entity entity : data) {
+            for (DBEntity entity : data) {
                 Realm realm = new Realm(-1);
                 realm.setPrimaryKey(entity.getPrimaryKey());
                 realm.setState(entity.getState());
@@ -109,7 +109,7 @@ public class Storage {
 
             storage.themeMap = new HashMap<Integer, Theme>();
             data = JDBCUtils.loadEntitiesData(new Theme(-1)); //области
-            for (Entity entity : data) {
+            for (DBEntity entity : data) {
                 Theme theme = new Theme(-1);
                 theme.setPrimaryKey(entity.getPrimaryKey());
                 theme.setState(entity.getState());

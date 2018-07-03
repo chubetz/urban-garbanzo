@@ -55,10 +55,10 @@ public class JDBCUtils {
         return getHSQLConnection("SA", "");
     }
     
-    private static void fillEntityFromRecordSet(LoadedEntity entity, ResultSet rs) throws SQLException {
+    private static void fillEntityFromRecordSet(LoadedEntity entity, ResultSet rs, DBEntity stateSource) throws SQLException {
         List<Map<String, Object>> stateMaps = new ArrayList<Map<String, Object>>();
-        Map<String, Object> primaryKey = new LinkedHashMap<String, Object>(entity.getPrimaryKey());
-        Map<String, Object> state = new LinkedHashMap<String, Object>(entity.getState());
+        Map<String, Object> primaryKey = new LinkedHashMap<String, Object>(stateSource.getPrimaryKey());
+        Map<String, Object> state = new LinkedHashMap<String, Object>(stateSource.getState());
         stateMaps.add(primaryKey);
         stateMaps.add(state);
         for (Map<String, Object> stateMap : stateMaps) {
@@ -83,19 +83,20 @@ public class JDBCUtils {
         
     }
     
-    public static List<Entity> loadEntitiesData(DBEntity sample) throws JDBCException {
+    public static List<DBEntity> loadEntitiesData(DBEntity sample) throws JDBCException {
         Connection conn = null;
         Statement stmt = null;
         String sql = null;
-        List<Entity> list = new ArrayList<Entity>();
+        List<DBEntity> list = new ArrayList<DBEntity>();
         try {
             conn = JDBCUtils.getHSQLConnection();
             sql = "SELECT * FROM " + sample.getTableName();
+            Utils.print("select_init=-==========>", sql);
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet rs = stmt.executeQuery(sql);
             while(rs.next()){
                 LoadedEntity entity = new LoadedEntity();
-                fillEntityFromRecordSet(entity, rs);
+                fillEntityFromRecordSet(entity, rs, sample);
                 list.add(entity);
             }            
             rs.close();
@@ -109,6 +110,7 @@ public class JDBCUtils {
                 throw new JDBCException(ex, sql, null);
             }
         }
+        Utils.print("loaded_list:::", list);
         return list;
     }
     
