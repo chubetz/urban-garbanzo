@@ -88,7 +88,9 @@ public class Utils {
 
     public static String convertToString(Object obj) {
         String str = null;
-        if (obj instanceof Map) {
+        if (obj == null) {
+            str = "null";
+        } else if (obj instanceof Map) {
             str = mapToString((Map)obj);
         } else if (obj instanceof Collection) {
             str = collectionToString((Collection)obj);

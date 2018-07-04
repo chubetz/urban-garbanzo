@@ -114,4 +114,14 @@ public class Theme extends Entity {
         return Collections.unmodifiableMap(getStorage().getQuestionMap(this));
     }
     
+
+    public String getQuestionsHTML() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<div style=\"font-size: 8px;\">\r\n");
+        for (Question question: getQuestionMap().values()) {
+            sb.append("" + question + " " + question.getStr("text") + "<br>\r\n");
+        }
+        sb.append("</div>");
+        return sb.toString();
+    }
 }

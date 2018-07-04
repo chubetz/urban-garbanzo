@@ -56,6 +56,10 @@ public class Storage {
         return questionMap;
     }
 
+    Set<ThemeQuestion> getThemeQuestionSet() {
+        return themeQuestionSet;
+    }
+
     Map<Integer, Answer> getAnswerMap() {
         return answerMap;
     }
@@ -124,11 +128,29 @@ public class Storage {
     void linkQuestionTheme(Question question, Theme theme) {
         Utils.print("linked question: ", question);
         Utils.print("linked theme: ", theme);
+        int questionId = question.getId();
+        int themeId = theme.getId();
+        provideDefaultMap(themeMapForQuestion, questionId);
+        provideDefaultMap(questionMapForTheme, themeId);
+        ThemeQuestion newLink = new ThemeQuestion(themeId, questionId);
+        Utils.print("ThemeQuestion hashcode " + newLink, newLink.hashCode());
+        themeQuestionSet.add(newLink);
+        themeMapForQuestion.get(questionId).put(themeId, theme);
+        questionMapForTheme.get(themeId).put(questionId, question);
     }
 
     void unlinkQuestionTheme(Question question, Theme theme) {
-        
+        Utils.print("question to unlink: ", question);
+        Utils.print("theme to unlink: ", theme);
+        int questionId = question.getId();
+        int themeId = theme.getId();
+        provideDefaultMap(themeMapForQuestion, questionId);
+        provideDefaultMap(questionMapForTheme, themeId);
+        themeQuestionSet.remove(new ThemeQuestion(themeId, questionId));
+        themeMapForQuestion.get(questionId).remove(themeId);
+        questionMapForTheme.get(themeId).remove(questionId);
     }
+
 
 //    void addTheme(Theme theme, Question question) {
 //        if (question == null) return;

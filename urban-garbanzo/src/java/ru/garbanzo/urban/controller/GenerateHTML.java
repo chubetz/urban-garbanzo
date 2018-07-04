@@ -148,6 +148,13 @@ public class GenerateHTML extends HttpServlet {
                         body.append(theme.getValue().getStr("text"));
                         body.append("</td>");
                         body.append("</tr>");
+                        body.append("<tr>");
+                        body.append("<td colspan=2>");
+                        body.append("</td>");
+                        body.append("<td colspan=2>");
+                        body.append(theme.getValue().getQuestionsHTML());
+                        body.append("</td>");
+                        body.append("</tr>");
                     }
                 } catch (JDBCException e) {
                     request.setAttribute("exception", e);

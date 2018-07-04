@@ -337,16 +337,41 @@ public class Question extends Entity {
 //        return Collections.unmodifiableMap(getStorage().getThemeMap(this.getId()));
 //    }
 
-    public void linkThemes(String[] ids) {
+    public void linkThemes(String[] ids) throws JDBCException {
+        //сначала убираем из вопроса все имеющиеся темы
+        List<Theme> tList = new ArrayList<Theme>(getThemeMap().values());
+        for (Theme t: tList) {
+            ThemeQuestion link = new ThemeQuestion(t.getId(), this.getId());
+            if (link.delete()) { // удалось стереть из базы
+                getStorage().unlinkQuestionTheme(this, t);
+            }
+        }
+        
         if (ids != null) {
             for (String themeId: ids) {
                 Theme theme = Theme.getById(themeId);
                 if (theme != null) {
-                    getStorage().linkQuestionTheme(this, theme);
+                    ThemeQuestion link = new ThemeQuestion(theme.getId(), this.getId());
+                    if (link.save() == link) { //записалось успешно
+                        getStorage().linkQuestionTheme(this, theme);
+                    }
                 }
             }
         }
     }
 
+    public Map<Integer, Theme> getThemeMap() {
+        return Collections.unmodifiableMap(getStorage().getThemeMap(this));
+    }
+
+    public String getThemesHTML() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<ul>\r\n");
+        for (Theme theme: getThemeMap().values()) {
+            sb.append("\t<li>" + theme.getDbl("number") + " " + theme.getStr("text") + "\r\n");
+        }
+        sb.append("</ul>");
+        return sb.toString();
+    }
     
 }

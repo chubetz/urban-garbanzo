@@ -22,6 +22,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import ru.garbanzo.urban.db.JDBCUtils;
 import ru.garbanzo.urban.edu.Answer;
+import ru.garbanzo.urban.edu.EduAccess;
+import ru.garbanzo.urban.edu.Entity;
 import ru.garbanzo.urban.edu.Question;
 import ru.garbanzo.urban.edu.Realm;
 import ru.garbanzo.urban.edu.Storage;
@@ -161,7 +163,14 @@ public class MainServlet extends HttpServlet {
                 Utils.print("Servlet.link_themes", request.getParameterMap());
                 Utils.print("Servlet.link_themes", request.getParameterMap().get("themes"));
                 Question qq = Question.getById(request.getParameter("qid"));
-                qq.linkThemes(request.getParameterMap().get("themes"));
+                try {
+                    qq.linkThemes(request.getParameterMap().get("themes"));
+                } catch (JDBCException ex) {
+                    Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    url = "/db_error.jsp";
+                    request.setAttribute("exception", ex);
+                    break;
+                }
                 request.setAttribute("question", qq);
                 url = "/new_question.jsp";
                 break;
@@ -257,6 +266,39 @@ public class MainServlet extends HttpServlet {
                             
                         }
                     }
+
+                    for (Entity themeQuestion :  EduAccess.getThemeQuestionSet()) {
+                        Map<String, Object> pk = themeQuestion.getPrimaryKey();
+                        sb.append("INSERT INTO ThemeQuestion (");
+                        boolean first = true;
+                        for (String s: pk.keySet()) {
+                            if (first) {
+                                sb.append(s);
+                                first = false;
+                            } else {
+                                sb.append("," + s);
+                            }
+                        }
+                        sb.append(") VALUES (");
+                        first = true;
+                        for (String s: pk.keySet()) {
+                            Object o = pk.get(s);
+                            String ooo;
+                            if (o instanceof String) 
+                                ooo = "'" + o + "'";
+                            else
+                                ooo=o.toString();
+                            if (first) {
+                                sb.append(ooo);
+                                first = false;
+                            } else {
+                                sb.append("," + ooo);
+                            }
+                        }
+                        sb.append(");\r\n");
+
+                    }
+
                     Utils.print(sb);
                     response.setContentType("text/plain");
                     response.setCharacterEncoding("UTF-8");

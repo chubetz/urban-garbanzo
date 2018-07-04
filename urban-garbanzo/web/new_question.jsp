@@ -26,6 +26,7 @@
         ${question.isValid() ? "Вопрос составлен корректно" : "<font color=red>Вопрос составлен некорректно</font>"}
         <p>
         Выбранные темы:
+        ${question.getThemesHTML()}
         <p>
         Доступные темы:
         

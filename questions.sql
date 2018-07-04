@@ -6,6 +6,8 @@ DROP TABLE Question IF EXISTS;
 CREATE TABLE Question (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, type int, text VARCHAR(2000));
 	DROP TABLE Answer IF EXISTS;
 	CREATE TABLE Answer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean, text VARCHAR(2000));
+DROP TABLE ThemeQuestion IF EXISTS;
+CREATE TABLE ThemeQuestion (themeId int, questionId int, PRIMARY KEY(themeId, questionId));
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (0,'java','Java');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (1,'kotlin','Kotlin');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (2,'sql','SQL');
