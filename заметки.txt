@@ -28,6 +28,10 @@ Servlet cookbook
 https://www.amazon.com/Iron-Clad-Java-Building-Secure-Applications/dp/0071835881
 https://www.amazon.com/Java-Security-Writing-Deploying-Applications-ebook/dp/B00DDZPC8Y/ref=sr_1_10?s=books&ie=UTF8&qid=1530394244&sr=1-10&keywords=java+secure
 
+Effectiva Java
+
+Java Concurrency in practice (Goetz)
+
 
 ключевые слова - Java Secure
 
@@ -195,6 +199,8 @@ https://www.amazon.com/Java-Security-Writing-Deploying-Applications-ebook/dp/B00
 12) Сделать MockAnswer?
 
 4.9) Сделать утилиту поиска элемента в коллекции/массиве
+
+*) возможность оставлять комментарии к вопросу
 
 *) конкукрентные хеши! есть риск одновлеменного доступа
 

@@ -368,7 +368,7 @@ public class Question extends Entity {
         StringBuilder sb = new StringBuilder();
         sb.append("<ul>\r\n");
         for (Theme theme: getThemeMap().values()) {
-            sb.append("\t<li>" + theme.getDbl("number") + " " + theme.getStr("text") + "\r\n");
+            sb.append("\t<li>" + theme.getDblStr("number") + " " + theme.getStr("text") + "\r\n");
         }
         sb.append("</ul>");
         return sb.toString();

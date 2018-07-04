@@ -72,6 +72,9 @@ public abstract class Entity implements DBEntity {
         return (Boolean)this.primaryKey.get(field);
     }
 
+    public String getDblStr(String field) {
+        return roundToIntStr(getDbl(field));
+    }
     public String roundToIntStr(double dbl) {
         return (dbl == (int)dbl) ? (""+(int)dbl) : (""+dbl);
     }
