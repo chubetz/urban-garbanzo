@@ -16,22 +16,44 @@ INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (4,'oca_1
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (5,'test','ТЕСТ');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (6,'test2','TEST 2');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (7,'history','История');
-INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (0,4,'Темочка',2.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (0,4,'Основы',1.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (1,2,'А вот еще такая тема',2.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (2,0,'вапвапвап',3.45);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (3,0,'вавап',4.0);
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (0,4,0,'Тесты экзамена предполагают обычно 5 или 6 ответов, со множественным выбором.');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (1,4,0,'Нельзя реализовать в классе два интерфейса с общим дефолтным методом, если не переопределить этот метод в классе.');
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (2,0,0,'');
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (3,0,0,'');
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (4,0,0,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (2,4,2,'Перечислите 3 вида комментариев в Java');
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (79,2,'1. Комменарий до конца строки:
+// comment until end of line
+2. Многострочный комментарий (звездочки на промежуточных строках необязательны):
+/* Multiple
+  [*] line comment
+*/
+3. Комментарий Javadoc
+/**
+[*] Javadoc multiple-line comment
+[*] @author Jeanne and Scott
+*/',true);
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (3,4,0,'Особенности комментариев.
+- Любые символы между /* и */ - часть многострочного комментария
+- Любые символы после // - часть однострочного комментария
+- Вкладывать многострочные комментарии друг в друга нельзя - компилятор реагирует на первый закрывающий, и последующие закрывающие остаются неинтерпретируемыми.
+/*
+* /* ferret */
+*/
+(для компилятора то же самое, что просто */)');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (4,4,0,'В одном файле может быть определено несколько классов. Только один из них может быть объявлен как public, и в этом случае имя файла должно совпадать с именем класса.');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (5,7,1,'В каком веке родился Александр Македонский?');
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (75,5,'III до н.э.',true);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (76,5,'II н.э.',false);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (77,5,'II до н.э.',false);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (78,5,'XX век',false);
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (6,3,0,'');
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (7,0,0,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (6,4,2,'Как скомпилировать и запустить java-файл из командной строки?');
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (80,6,'$ javac Zoo.java
+$ java Zoo',true);
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (7,4,0,'Очень полезно следовать следующим правилам именования:
+1. Один файл - один класс
+2. Имя класса = имя файла');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (8,0,0,'');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (9,2,0,'Какой оператор1?');
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (65,9,'SELECT FROM',true);
@@ -153,3 +175,8 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (41,3
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (73,41,'Динамит(ТНТ)',false);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (74,41,'Пластинки',true);
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (42,6,0,'');
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,7);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,2);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,3);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,4);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,6);

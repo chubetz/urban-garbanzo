@@ -23,17 +23,31 @@ https://www.tutorialspoint.com/jdbc/preparestatement-object-example.htm
 
 http://hsqldb.org/doc/guide/guide.html 
 
+
+
+Планы по Java
+=============
+
+научиться разрабатывать от тестов
+
+Calendar!
+
+JUnit?
+
+Javadoc
+
 Servlet cookbook
 
 https://www.amazon.com/Iron-Clad-Java-Building-Secure-Applications/dp/0071835881
 https://www.amazon.com/Java-Security-Writing-Deploying-Applications-ebook/dp/B00DDZPC8Y/ref=sr_1_10?s=books&ie=UTF8&qid=1530394244&sr=1-10&keywords=java+secure
+ключевые слова - Java Secure
 
-Effectiva Java
+
+Effective Java
 
 Java Concurrency in practice (Goetz)
 
 
-ключевые слова - Java Secure
 
 =====
 дома:
@@ -200,6 +214,14 @@ Java Concurrency in practice (Goetz)
 
 4.9) Сделать утилиту поиска элемента в коллекции/массиве
 
+*) все-таки постепенно делать более удобный интерфейс, с кнопками перехода, а не с клавишей "назад"
+
+*) возможность пометить вопрос как ненужный для конкретного пользователя
+
+*) работа с "предварительными" темами
+
+*) возможность иерархии тем
+
 *) возможность оставлять комментарии к вопросу
 
 *) конкукрентные хеши! есть риск одновлеменного доступа
@@ -207,6 +229,7 @@ Java Concurrency in practice (Goetz)
 *) removeIf в сете
 
 *) новый тип вопроса - расширенный информационный - для обучения - с порядковым номером!
+их надо показывать все и подряд!
 
 *) save-методы сделать объектовыми?
 
@@ -354,15 +377,14 @@ http://yan.zlobin.name/86
 
 
 
-научиться разрабатывать от тестов
-
-Calendar!
-
-JUnit?
 
 
 Идеи
-====
+===
+
+!!!главная - изучить и не забыть. Человек либо обучает себя сам, либо его ведет преподаватель.
+
+
 
 Сервис: Человек сам составляет для себя вопросы!
 
@@ -374,6 +396,18 @@ JUnit?
 
 - вопрос-задача? продумать
 
+- схема обучения: обучающие карточки предоставляются ученику заранее, вопросы по ним составляет он сам
+
+- вопросы-тесты с произвольным числом правильных и неправильных ответов - каждый раз генерится новый набор ответов!
+
+- экспорт-импорт своей базы знаний&вопросов
+
+- пользователь сам вносит в систему задачи и ответы. Могут быть и предзаданные.
+
+- мнозоязычность
+
+
+
 
 Java Certification
 ==================
@@ -384,6 +418,6 @@ Exam Title: Java SE 8 Programmer I
 
 Список ошибок: https://www.selikoff.net/java-oca-8-programmer-i-study-guide/
 
-p.1
-Java Building Blocks
+p.3
+Suppose we replace line 3 in Zoo.
 
