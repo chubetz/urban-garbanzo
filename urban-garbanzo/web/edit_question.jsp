@@ -10,6 +10,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Редактировать вопрос</title>
+        <script type="text/javascript" src="tinymce/tinymce.js"></script>
+        <!-- TinyMCE -->
+        <script type="text/javascript">
+        tinyMCE.init({
+            mode : "exact",
+            elements : "rrr"
+         });
+        </script>
+        <!-- /TinyMCE -->
     </head>
     <body bgcolor = #DAD644>
         <p>${question.getId() < 0  ? "<Новый вопрос>" : question}</p>
@@ -30,7 +39,7 @@
                 <tr>
                     <td>
                         <p>Текст вопроса</p>
-                        <textarea name="text" rows="10" cols="80">${question.getStr("text")}</textarea>
+                        <textarea id="rrr" name="text" rows="10" cols="80">${question.getStr("text")}</textarea>
                     </td>
                     <td style="vertical-align: top">
                         <p>Правильные ответы</p>

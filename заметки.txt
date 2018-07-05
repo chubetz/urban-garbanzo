@@ -24,6 +24,14 @@ https://www.tutorialspoint.com/jdbc/preparestatement-object-example.htm
 http://hsqldb.org/doc/guide/guide.html 
 
 
+TinyMCE
+
+добавить tinymce в Web Pages
+
+http://r-band.ru/how-to/ustanovka-i-nastroyka-tinymce-inicializaciya-i-parametry-redaktora.html
+
+
+
 
 Планы по Java
 =============
