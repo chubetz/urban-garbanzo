@@ -14,8 +14,10 @@
         <!-- TinyMCE -->
         <script type="text/javascript">
         tinyMCE.init({
-            mode : "exact",
-            elements : "rrr"
+            //mode : "exact",
+            //elements : "rrr", "a1", "a2", "a3", "a4"
+            selector: 'textarea',
+            forced_root_block : false
          });
         </script>
         <!-- /TinyMCE -->
@@ -35,11 +37,11 @@
                 ${question.getTypesHTML()}
             </select>
             <br>
-            <table cellpadding="10">
+            <table width="800" cellpadding="10">
                 <tr>
                     <td>
                         <p>Текст вопроса</p>
-                        <textarea id="rrr" name="text" rows="10" cols="80">${question.getStr("text")}</textarea>
+                        <textarea name="text" rows="10" cols="80">${question.getStr("text")}</textarea>
                     </td>
                     <td style="vertical-align: top">
                         <p>Правильные ответы</p>

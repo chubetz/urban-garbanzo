@@ -151,34 +151,34 @@ public class Question extends Entity {
         StringBuilder sb = new StringBuilder();
         sb.append("<p>Ответ 1</p>\n");
         try {
-            sb.append("<textarea name=\"answer_" + answers.get(0).getId() + "\"");
-            sb.append(" rows=\"3\" cols=\"80\">" + answers.get(0).getStr("text") + "</textarea>\n");
+            sb.append("<textarea style=\"width: 80%;\" name=\"answer_" + answers.get(0).getId() + "\"");
+            sb.append(" rows=\"3\" cols=\"40\">" + answers.get(0).getStr("text") + "</textarea>\n");
         } catch (IndexOutOfBoundsException e) {
-            sb.append("<textarea name=\"answer_-1\" rows=\"3\" cols=\"80\"></textarea>\n");
+            sb.append("<textarea style=\"width: 80%;\" name=\"answer_-1\" rows=\"3\" cols=\"40\"></textarea>\n");
         }
         sb.append("<br>");
         sb.append("<p>Ответ 2</p>\n");
         try {
-            sb.append("<textarea name=\"answer_" + answers.get(1).getId() + "\"");
-            sb.append(" rows=\"3\" cols=\"80\">" + answers.get(1).getStr("text") + "</textarea>\n");
+            sb.append("<textarea style=\"width: 80%;\" name=\"answer_" + answers.get(1).getId() + "\"");
+            sb.append(" rows=\"3\" cols=\"40\">" + answers.get(1).getStr("text") + "</textarea>\n");
         } catch (IndexOutOfBoundsException e) {
-            sb.append("<textarea name=\"answer_-2\" rows=\"3\" cols=\"80\"></textarea>\n");
+            sb.append("<textarea style=\"width: 80%;\" name=\"answer_-2\" rows=\"3\" cols=\"40\"></textarea>\n");
         }
         sb.append("<br>");
         sb.append("<p>Ответ 3</p>\n");
         try {
-            sb.append("<textarea name=\"answer_" + answers.get(2).getId() + "\"");
+            sb.append("<textarea style=\"width: 80%;\" name=\"answer_" + answers.get(2).getId() + "\"");
             sb.append(" rows=\"3\" cols=\"80\">" + answers.get(2).getStr("text") + "</textarea>\n");
         } catch (IndexOutOfBoundsException e) {
-            sb.append("<textarea name=\"answer_-3\" rows=\"3\" cols=\"80\"></textarea>\n");
+            sb.append("<textarea style=\"width: 80%;\" name=\"answer_-3\" rows=\"3\" cols=\"80\"></textarea>\n");
         }
         sb.append("<br>");
         sb.append("<p>Ответ 4</p>\n");
         try {
-            sb.append("<textarea name=\"answer_" + answers.get(3).getId() + "\"");
+            sb.append("<textarea style=\"width: 80%;\" name=\"answer_" + answers.get(3).getId() + "\"");
             sb.append(" rows=\"3\" cols=\"80\">" + answers.get(3).getStr("text") + "</textarea>\n");
         } catch (IndexOutOfBoundsException e) {
-            sb.append("<textarea name=\"answer_-4\" rows=\"3\" cols=\"80\"></textarea>\n");
+            sb.append("<textarea style=\"width: 80%;\" name=\"answer_-4\" rows=\"3\" cols=\"80\"></textarea>\n");
         }
         sb.append("<br>");
 

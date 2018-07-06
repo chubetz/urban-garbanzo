@@ -202,7 +202,11 @@ Java Concurrency in practice (Goetz)
 	8) проверить загрузку из БД - особенно в части связей тем и вопросов
 	9) выгрузка в SQL
 
+10) Повторное редактирование вопроса (чтобы можно было вернуться со страницы new_question)
 
+
+
+11) только один вопрос по умолчанию, остальные добавлять по кнопке, и без ограничений на кол-во
 
 9) новый тип info вопроса - Code Snippet ? 
 
@@ -221,6 +225,10 @@ Java Concurrency in practice (Goetz)
 12) Сделать MockAnswer?
 
 4.9) Сделать утилиту поиска элемента в коллекции/массиве
+
+*) запрет возврата кнопкой "назад" - чтобы нельзя было дважды один и тот же новый вопрос создать
+
+*) вынести в CSS все style
 
 *) все-таки постепенно делать более удобный интерфейс, с кнопками перехода, а не с клавишей "назад"
 
@@ -426,6 +434,5 @@ Exam Title: Java SE 8 Programmer I
 
 Список ошибок: https://www.selikoff.net/java-oca-8-programmer-i-study-guide/
 
-p.3
-Suppose we replace line 3 in Zoo.
-
+p.8
+All command-line arguments are treated as String objects
