@@ -25,7 +25,7 @@ import ru.garbanzo.urban.exception.JDBCException;
  * @author mithia
  */
 @WebServlet(name = "GenerateHTML", urlPatterns = {"/GenerateHTML"})
-public class GenerateHTML extends HttpServlet {
+public class Viewer extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

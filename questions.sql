@@ -17,7 +17,7 @@ INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (5,'test'
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (6,'test2','TEST 2');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (7,'history','История');
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (0,4,'Основы',1.0);
-INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (1,2,'А вот еще такая тема',2.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (1,4,'Особенности экзамена',0.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (2,0,'вапвапвап',3.45);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (3,0,'вавап',4.0);
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (0,4,0,'Тесты экзамена предполагают обычно 5 или 6 ответов, со множественным выбором.');
@@ -130,7 +130,7 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (33,0
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (49,33,'4',false);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (50,33,'6',true);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (51,33,'5',false);
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (34,1,2,'общий вопрос ::::');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (34,4,0,'Названия пакетов подчиняются тем же правилам именования, что и переменные.');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (35,1,2,'общий вопрос 3');
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (52,35,'Т\акой ответ 4',true);
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (36,0,0,'Как меня зовут?');
@@ -158,6 +158,8 @@ INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,8);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,10);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,12);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,2);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,34);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,3);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,4);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,0);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,6);
