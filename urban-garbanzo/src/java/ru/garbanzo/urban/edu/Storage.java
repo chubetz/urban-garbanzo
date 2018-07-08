@@ -40,6 +40,7 @@ public class Storage {
     private Map<Integer, Theme> themeMap;    
     private Set<ThemeQuestion> themeQuestionSet;    
     private Map<Integer, Map<Integer, Question>> questionMapForTheme;    
+    private Map<Integer, Map<Integer, Question>> questionMapForRealm;    
     private Map<Integer, Map<Integer, Theme>> themeMapForQuestion;    
     private Map<Integer, Map<Integer, Theme>> themeMapForRealm; 
     
@@ -74,13 +75,6 @@ public class Storage {
         }
     }
     
-    void addAnswer(Answer answer, Question question) {
-        if (question == null) return;
-        int questionId = question.getId();
-        provideDefaultMap(answerMapForQuestion, questionId);
-        answerMapForQuestion.get(questionId).put(answer.getId(), answer);
-    }
-
     Map<Integer, Theme> getThemeMap(Realm realm) { //для вопросов
         int realmId = realm.getId();
         provideDefaultMap(themeMapForRealm, realmId);
@@ -91,20 +85,7 @@ public class Storage {
         }
     }
 
-    void addTheme(Theme theme, Realm realm) {
-        if (realm == null) return;
-        int realmId = realm.getId();
-        provideDefaultMap(themeMapForRealm, realmId);
-        themeMapForRealm.get(realmId).put(theme.getId(), theme);
-    }
     
-    void deleteTheme(Theme theme, Realm realm) {
-        if (realm != null) {
-            Map<Integer, Theme> map = themeMapForRealm.get(realm.getId());
-            map.remove(theme.getId());
-        }
-    }
-
     Map<Integer, Theme> getThemeMap(Question question) { //для вопросов
         int questionId = question.getId();
         provideDefaultMap(themeMapForQuestion, questionId);
@@ -125,31 +106,6 @@ public class Storage {
         }
     }
     
-    void linkQuestionTheme(Question question, Theme theme) {
-        Utils.print("linked question: ", question);
-        Utils.print("linked theme: ", theme);
-        int questionId = question.getId();
-        int themeId = theme.getId();
-        provideDefaultMap(themeMapForQuestion, questionId);
-        provideDefaultMap(questionMapForTheme, themeId);
-        ThemeQuestion newLink = new ThemeQuestion(themeId, questionId);
-        Utils.print("ThemeQuestion hashcode " + newLink, newLink.hashCode());
-        themeQuestionSet.add(newLink);
-        themeMapForQuestion.get(questionId).put(themeId, theme);
-        questionMapForTheme.get(themeId).put(questionId, question);
-    }
-
-    void unlinkQuestionTheme(Question question, Theme theme) {
-        Utils.print("question to unlink: ", question);
-        Utils.print("theme to unlink: ", theme);
-        int questionId = question.getId();
-        int themeId = theme.getId();
-        provideDefaultMap(themeMapForQuestion, questionId);
-        provideDefaultMap(questionMapForTheme, themeId);
-        themeQuestionSet.remove(new ThemeQuestion(themeId, questionId));
-        themeMapForQuestion.get(questionId).remove(themeId);
-        questionMapForTheme.get(themeId).remove(questionId);
-    }
 
 
 //    void addTheme(Theme theme, Question question) {
@@ -182,41 +138,132 @@ public class Storage {
         return storage;
     }
     
+    void register(Realm realm) {
+        realmMap.put(realm.getId(), realm);
+    }
+    void register(Question question) {
+        questionMap.put(question.getId(), question);
+        
+        int realmId = question.getInt("realmId");
+        if (realmMap.get(realmId) ==  null)
+            throw new RuntimeException("Область с идентификатором " + realmId + ", для которой производится попытка зарегистрировать вопрос, не найдена в памяти");
+        provideDefaultMap(questionMapForRealm, realmId);
+        questionMapForRealm.get(realmId).put(question.getId(), question);
+            
+    }
+    void unbind(Question question, Realm realm) {
+        provideDefaultMap(questionMapForRealm, realm.getId());
+        Map map = questionMapForRealm.get(realm.getId());
+        if (map != null)
+            map.remove(question.getId());
+        Integer[] themeIds = question.getThemeMap().keySet().toArray(new Integer[0]);
+        for (int themeId: themeIds) { //стираем связи с темами
+            unregisterLink(new ThemeQuestion(themeId, question.getId()));
+        }
+        
+    }
+    void register(Answer answer) {
+        answerMap.put(answer.getId(), answer);
+        
+        int questionId = answer.getInt("questionId");
+        if (questionMap.get(questionId) == null)
+            throw new RuntimeException("Ответ с идентификатором " + questionId + ", для которого производится попытка зарегистрировать ответ, не найден в памяти");
+        provideDefaultMap(answerMapForQuestion, questionId);
+        answerMapForQuestion.get(questionId).put(answer.getId(), answer);
+    }
+    void unregister(Answer answer) {
+        answerMap.remove(answer.getId());
+        int questionId = answer.getInt("questionId");
+        provideDefaultMap(answerMapForQuestion, questionId);
+        Map map = answerMapForQuestion.get(questionId);
+        if (map != null)
+            map.remove(answer.getId());
+    }
+    void register(Theme theme) {
+        themeMap.put(theme.getId(), theme);
+        
+        int realmId = theme.getInt("realmId");
+        if (realmMap.get(realmId) == null)
+            throw new RuntimeException("Область с идентификатором " + realmId + ", для которой производится попытка зарегистрировать тему, не найдена в памяти");
+        provideDefaultMap(themeMapForRealm, realmId);
+        themeMapForRealm.get(realmId).put(theme.getId(), theme);
+    }
+    void unbind(Theme theme, Realm realm) {
+        provideDefaultMap(themeMapForRealm, realm.getId());
+        Map map = themeMapForRealm.get(realm.getId());
+        if (map != null)
+            map.remove(theme.getId());
+        Integer[] questionIds = theme.getQuestionMap().keySet().toArray(new Integer[0]);
+        for (int questionId: questionIds) { //стираем связи с вопросами
+            unregisterLink(new ThemeQuestion(theme.getId(), questionId));
+        }
+        
+    }
+    void registerLink(ThemeQuestion tq) {
+        themeQuestionSet.add(tq);
+        int questionId = tq.getPKInt("questionId");
+        int themeId = tq.getPKInt("themeId");
+        Question question = getQuestionMap().get(questionId);
+        if (question == null)
+            throw new RuntimeException("Вопрос с идентификатором " + questionId + ", который связывается с темой, не найден в памяти");
+        Theme theme = getThemeMap().get(themeId);
+        if (theme == null)
+            throw new RuntimeException("Тема с идентификатором " + themeId + ", которая связывается с вопросом, не найдена в памяти");
+        provideDefaultMap(themeMapForQuestion, questionId);
+        provideDefaultMap(questionMapForTheme, themeId);
+        Utils.print("ThemeQuestion hashcode " + tq, tq.hashCode());
+        themeMapForQuestion.get(questionId).put(themeId, theme);
+        questionMapForTheme.get(themeId).put(questionId, question);
+        
+    }
+    
+    void unregisterLink(ThemeQuestion tq) {
+        int questionId = tq.getPKInt("questionId");
+        int themeId = tq.getPKInt("themeId");
+        provideDefaultMap(themeMapForQuestion, questionId);
+        provideDefaultMap(questionMapForTheme, themeId);
+        themeQuestionSet.remove(tq);
+        themeMapForQuestion.get(questionId).remove(themeId);
+        questionMapForTheme.get(themeId).remove(questionId);
+        
+    }
+
     public static void init() {
         storage = new Storage();
+        List<DBEntity> data;
 
         try {
             storage.jdbcException = null; //сносим исключение, хранившееся с момента предыдущего неудачного запуска
             
-            storage.questionMap = new HashMap<Integer, Question>();
-            storage.answerMapForQuestion = new HashMap<Integer, Map<Integer, Answer>>();
-            List<DBEntity> data = JDBCUtils.loadEntitiesData(new Question(-1));
-            for (DBEntity entity : data) {
-                Question question = new Question(-1);
-                question.setPrimaryKey(entity.getPrimaryKey());
-                question.setState(entity.getState());
-                storage.questionMap.put(question.getId(), question);
-            }
-            
-            storage.answerMap = new HashMap<Integer, Answer>();
-            data = JDBCUtils.loadEntitiesData(new Answer(-1)); //ответы
-            for (DBEntity entity : data) {
-                Answer answer = new Answer(-1);
-                answer.setPrimaryKey(entity.getPrimaryKey());
-                answer.setState(entity.getState());
-                storage.answerMap.put(answer.getId(), answer);
-                Question question = storage.questionMap.get(answer.getInt("questionId")); //извлекаем вручную, т.к. данные только заполняются
-                storage.addAnswer(answer, question);
-            }
-    
             storage.realmMap = new HashMap<Integer, Realm>();
             data = JDBCUtils.loadEntitiesData(new Realm(-1)); //области
             for (DBEntity entity : data) {
                 Realm realm = new Realm(-1);
                 realm.setPrimaryKey(entity.getPrimaryKey());
                 realm.setState(entity.getState());
-                storage.realmMap.put(realm.getId(), realm);
+                storage.register(realm);
             }
+
+            storage.questionMap = new HashMap<Integer, Question>();
+            storage.questionMapForRealm = new HashMap<Integer, Map<Integer, Question>>();
+            data = JDBCUtils.loadEntitiesData(new Question(-1));
+            for (DBEntity entity : data) {
+                Question question = new Question(-1);
+                question.setPrimaryKey(entity.getPrimaryKey());
+                question.setState(entity.getState());
+                storage.register(question);
+            }
+            
+            storage.answerMap = new HashMap<Integer, Answer>();
+            storage.answerMapForQuestion = new HashMap<Integer, Map<Integer, Answer>>();
+            data = JDBCUtils.loadEntitiesData(new Answer(-1)); //ответы
+            for (DBEntity entity : data) {
+                Answer answer = new Answer(-1);
+                answer.setPrimaryKey(entity.getPrimaryKey());
+                answer.setState(entity.getState());
+                storage.register(answer);
+            }
+    
 
             storage.themeMap = new HashMap<Integer, Theme>();
             storage.themeMapForRealm = new HashMap<Integer, Map<Integer, Theme>>();
@@ -225,9 +272,7 @@ public class Storage {
                 Theme theme = new Theme(-1);
                 theme.setPrimaryKey(entity.getPrimaryKey());
                 theme.setState(entity.getState());
-                storage.themeMap.put(theme.getId(), theme);
-                Realm realm = storage.realmMap.get(theme.getInt("realmId")); //извлекаем вручную, т.к. данные только заполняются
-                storage.addTheme(theme, realm);
+                storage.register(theme);
             }
             
             storage.themeQuestionSet = new HashSet<ThemeQuestion>();    
@@ -237,12 +282,7 @@ public class Storage {
             for (DBEntity entity : data) {
                 ThemeQuestion tq = new ThemeQuestion(-1,-1);
                 tq.setPrimaryKey(entity.getPrimaryKey());
-                storage.themeQuestionSet.add(tq);
-                
-                Question question = storage.questionMap.get(tq.getPKInt("questionId")); //извлекаем вручную, т.к. данные только заполняются
-                Theme theme = storage.themeMap.get(tq.getPKInt("themeId"));
-
-                storage.linkQuestionTheme(question, theme);
+                storage.registerLink(tq);
 
             }
             

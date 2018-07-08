@@ -12,6 +12,24 @@
         <title>Новый вопрос</title>
     </head>
     <body>
+        <table>
+            <tr>
+                <td>
+                    <form name="back_to_edit" action="controller" method="POST">
+                        <input type="hidden" name="action" value="load_edit_form">        
+                        <input type="hidden" name="qid" value="${question.getId()}">        
+                        <input type="submit" value="Вернуться к редактированию" /> 
+                    </form>                    
+                </td>
+                <td>
+                    <form name="back_to_edit" action="view" method="GET">
+                        <input type="hidden" name="info" value="questions">        
+                        <input type="hidden" name="realmId" value="${question.getRealm().getId()}">        
+                        <input type="submit" value="Переход к списку вопросов" /> 
+                    </form>                    
+                </td>
+            </tr>
+        </table>
         <h2>Вопрос добавлен</h2>
         ${question}<br>
         <table>

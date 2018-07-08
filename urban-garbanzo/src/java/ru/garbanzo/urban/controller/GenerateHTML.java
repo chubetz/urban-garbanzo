@@ -19,7 +19,6 @@ import ru.garbanzo.urban.edu.Realm;
 import ru.garbanzo.urban.edu.Storage;
 import ru.garbanzo.urban.edu.Theme;
 import ru.garbanzo.urban.exception.JDBCException;
-import ru.garbanzo.urban.util.Utils;
 
 /**
  *
@@ -45,6 +44,7 @@ public class GenerateHTML extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
         String action = request.getParameter("info");
+        String realmId = request.getParameter("realmId");
         switch (action) {
             case "questions":
                 title = "Список загруженных вопросов";
@@ -54,6 +54,8 @@ public class GenerateHTML extends HttpServlet {
                         throw Storage.getJdbcException();
                     }
                     for (Map.Entry<Integer, Question> question: Question.getMap().entrySet()) {
+                        if (realmId != null && question.getValue().getRealm().getId() != Integer.parseInt(realmId))
+                            continue;
                         String bgcolor = " bgcolor=red";
                         if (question.getValue().isValid()) {
                             bgcolor = ""; //вопрос валидный, подсчетки не надо
@@ -118,9 +120,17 @@ public class GenerateHTML extends HttpServlet {
                         body.append("<td>");
                         body.append(realm.getValue().getStr("description"));
                         body.append("</td>");
+                        body.append("<td>");
+                        body.append("                    <form name=\"questions\" action=\"view\" method=\"GET\">\n" +
+"                        <input type=\"hidden\" name=\"info\" value=\"questions\">        \n" +
+"                        <input type=\"hidden\" name=\"realmId\" value=\"" + realm.getKey() + "\">        \n" +
+"                        <input type=\"submit\" value=\"Список вопросов\" /> \n" +
+"                    </form>                    \n" +
+"");
+                        body.append("</td>");
                         body.append("</tr>");
                         body.append("<tr>");
-                        body.append("<td colspan=4>");
+                        body.append("<td colspan=5>");
                         body.append(realm.getValue().getThemesHTML());
                         body.append("</td>");
                         body.append("</tr>");

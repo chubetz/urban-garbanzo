@@ -82,26 +82,28 @@ public class Theme extends Entity {
     public static Theme saveTheme(int id, Map<String, ?> data) throws JDBCException {
         Theme theme = getMap().get(id);
         Utils.print("saveTheme", data);
-        Realm oldRealm = null;
-        if (theme == null) {
+        if (theme == null) 
             theme = new Theme(-1);
-        } else { // надо потом отвязать из предыдущей области
-            oldRealm = theme.getRealm();
-        }
         if (data != null && !data.isEmpty()) {
             if (data.get(data.keySet().toArray()[0]).getClass().isArray()) { //параметры пришли с фронта
                 data = Utils.translateWebData( (Map<String, String[]>)data );
             }
             Utils.print("saveThemeAfterTranslation", data);
+            Realm oldRealm = theme.getRealm();
             theme.setState(data);
+            Realm realm = theme.getRealm();
+            if (realm != null && oldRealm != null && realm.getId() != oldRealm.getId()) {
+                for (int questionId: theme.getQuestionMap().keySet()) {
+                    new ThemeQuestion(theme.getId(), questionId).delete();
+                }
+                getStorage().unbind(theme, oldRealm);
+            }
 
         }
         Map<String, Object> pk = JDBCUtils.saveEntity(theme);
         if (pk != null) { // удалось записать объект в БД
             theme.setPrimaryKey(pk);
-            getStorage().getThemeMap().put(theme.getId(), theme);
-            getStorage().deleteTheme(theme, oldRealm);
-            getStorage().addTheme(theme, theme.getRealm());
+            getStorage().register(theme);
             Utils.print("Theme pk: ", pk);
         } else {
             return null;

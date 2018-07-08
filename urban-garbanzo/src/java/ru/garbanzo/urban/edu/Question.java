@@ -265,11 +265,13 @@ public class Question extends Entity {
                 int answerId = Integer.parseInt(ans[1]);
 
                 if (entry.getValue().equals("")) { // ответ надо стереть (если был) или не создавать (если не было)
-                    boolean wasDeleted = JDBCUtils.deleteEntity(new Answer(answerId));
-                    Utils.print("Стерлось ли?", wasDeleted);
-                    if (wasDeleted) { // нужно удалить из памяти
-                        getStorage().getAnswerMap(this).remove(answerId);
-                        getStorage().getAnswerMap().remove(answerId);
+                    Answer answer = getStorage().getAnswerMap().get(answerId);
+                    if (answer != null) {
+                        boolean wasDeleted = JDBCUtils.deleteEntity(answer);
+                        Utils.print("Стерлось ли?", wasDeleted);
+                        if (wasDeleted) { // нужно удалить из памяти
+                            getStorage().unregister(answer);
+                        }
                     }
                     continue;
                 }
@@ -284,9 +286,7 @@ public class Question extends Entity {
                 
                 Utils.print("answerData", answerData);
                 try {
-                    Answer answer = Answer.saveAnswer(answerId, answerData);
-                    getStorage().addAnswer(answer, this);
-                    getStorage().getAnswerMap().put(answer.getId(), answer);
+                    Answer.saveAnswer(answerId, answerData);
                 } catch(NoQuestionException nqe) {
                     nqe.printStackTrace();
                 }
@@ -309,13 +309,21 @@ public class Question extends Entity {
                 data = Utils.translateWebData( (Map<String, String[]>)data );
             }
             Utils.print("saveQuestion", data);
+            Realm oldRealm = question.getRealm();
             question.setState(data);
+            Realm realm = question.getRealm();
+            if (realm != null && oldRealm != null && realm.getId() != oldRealm.getId()) {
+                for (int themeId: question.getThemeMap().keySet()) {
+                    new ThemeQuestion(themeId, question.getId()).delete();
+                }
+                getStorage().unbind(question, oldRealm);
+            }
 
         }
         Map<String, Object> pk = JDBCUtils.saveEntity(question);
         if (pk != null) { // удалось записать объект в БД
             question.setPrimaryKey(pk);
-            getStorage().getQuestionMap().put(question.getId(), question);
+            getStorage().register(question);
             question.saveAnswers(data);
             Utils.print("Question pk: ", pk);
         } else {
@@ -343,7 +351,7 @@ public class Question extends Entity {
         for (Theme t: tList) {
             ThemeQuestion link = new ThemeQuestion(t.getId(), this.getId());
             if (link.delete()) { // удалось стереть из базы
-                getStorage().unlinkQuestionTheme(this, t);
+                getStorage().unregisterLink(link);
             }
         }
         
@@ -353,7 +361,7 @@ public class Question extends Entity {
                 if (theme != null) {
                     ThemeQuestion link = new ThemeQuestion(theme.getId(), this.getId());
                     if (link.save() == link) { //записалось успешно
-                        getStorage().linkQuestionTheme(this, theme);
+                        getStorage().registerLink(link);
                     }
                 }
             }

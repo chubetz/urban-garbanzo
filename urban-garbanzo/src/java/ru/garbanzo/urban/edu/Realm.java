@@ -95,7 +95,7 @@ public class Realm extends Entity {
         Map<String, Object> pk = JDBCUtils.saveEntity(realm);
         if (pk != null) { // удалось записать объект в БД
             realm.setPrimaryKey(pk);
-            getStorage().getRealmMap().put(realm.getId(), realm);
+            getStorage().register(realm);
             Utils.print("Realm pk: ", pk);
         } else {
             return null;
