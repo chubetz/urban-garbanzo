@@ -12,6 +12,7 @@
         <title>Редактировать область</title>
     </head>
     <body>
+<%@ include file="header.jsp" %>
         <p>${realm.getId() < 0  ? "<Новая область>" : realm}</p>
         <form name="${action}" action="controller" method="POST">
             <input type="hidden" name="action" value="${action}">        

@@ -12,6 +12,7 @@
         <title>Редактировать тему</title>
     </head>
     <body>
+<%@ include file="header.jsp" %>
         <p>${theme.getId() < 0  ? "<Новая область>" : theme}</p>
         <form name="${action}" action="controller" method="POST">
             <input type="hidden" name="action" value="${action}">        

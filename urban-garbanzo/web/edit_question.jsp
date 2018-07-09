@@ -15,14 +15,16 @@
         <script type="text/javascript">
         tinyMCE.init({
             //mode : "exact",
-            //elements : "rrr", "a1", "a2", "a3", "a4"
+            //elements : "rrr"
             selector: 'textarea',
-            forced_root_block : false
+            forced_root_block : false,
+            menubar: false
          });
         </script>
         <!-- /TinyMCE -->
     </head>
     <body bgcolor = #DAD644>
+<%@ include file="header.jsp" %>
         <p>${question.getId() < 0  ? "<Новый вопрос>" : question}</p>
         <form name="${action}" action="controller" method="POST">
             <input type="hidden" name="action" value="${action}">        

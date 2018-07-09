@@ -41,14 +41,14 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (9,2,
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (67,9,'UPDATE SET',true);
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (10,4,2,'Как можно корректно задать строковый параметр метода <em>main()?</em>');
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (81,10,'String[] args<br />String args[]<br />String... args',true);
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (11,0,0,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (11,4,1,'Сколько wildcard-звездочек может быть в строке импорта?');
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (83,11,'Сколько угодно:<br /><strong>import java.nio.*.*;</strong>',false);
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (84,11,'Только одна, в любом месте импорта:<br /><strong>import java.nio.*.Files;</strong>',false);
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (85,11,'Только одна,&nbsp;в конце импорта:<br /><strong>import java.nio.file.*;</strong>',true);
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (12,4,2,'Как задать строковые параметры при старте программы из командной строки?');
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (82,12,'$ javac Zoo.java<br />$ java Zoo Bronx Сat<br />$ java Zoo "San Diego" Gon',true);
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (13,0,0,'fsfsd
-f
-sd
-fs
-dfs');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (13,4,2,'Может ли обычный импорт импортировать методы и поля класса?<br /><strong>import java.nio.files.Paths.*;</strong>');
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (86,13,'Нет.',true);
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (14,0,0,'А если так?');
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (62,14,'то будет так, а не иначе',true);
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (15,3,1,'Minecraft - это очень классная игра?');
@@ -153,13 +153,19 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (41,3
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (73,41,'Динамит(ТНТ)',false);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (74,41,'Пластинки',true);
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (42,6,0,'');
-INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,7);
-INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,8);
-INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,10);
-INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,12);
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (43,4,0,'Wildcard при импорте распространяется только на классы, вложенные пакеты не просматриваются:<br />
+<p><strong>import java.nio.*;</strong></p>
+не импортирует класс java.nio.file.Files');
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,2);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,34);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,3);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,4);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,0);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,6);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,7);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,8);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,10);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,11);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,43);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,12);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,13);

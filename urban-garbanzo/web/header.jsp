@@ -5,5 +5,5 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<h1>Hello World!</h1>
-<%@ include file="header.jsp" %>
+<a href="index.html"><img width="3%" height="3%" src="images/Home.png"></a>
+
