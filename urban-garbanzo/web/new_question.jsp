@@ -22,7 +22,7 @@
                     </form>                    
                 </td>
                 <td>
-                    <form name="back_to_edit" action="view" method="GET">
+                    <form name="back_to_list" action="view" method="GET">
                         <input type="hidden" name="info" value="questions">        
                         <input type="hidden" name="realmId" value="${question.getRealm().getId()}">        
                         <input type="submit" value="Переход к списку вопросов" /> 

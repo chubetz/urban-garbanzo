@@ -14,7 +14,7 @@ INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (2,'sql',
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (3,'minecraft','MINECRAFT');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (4,'oca_1','Сертификат OCA I');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (5,'test','ТЕСТ');
-INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (6,'test2','TEST 2');
+INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (6,'common','Общие вопросы');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (7,'history','История');
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (0,4,'Основы',1.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (1,4,'Особенности экзамена',0.0);
@@ -49,79 +49,43 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (12,4
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (82,12,'$ javac Zoo.java<br />$ java Zoo Bronx Сat<br />$ java Zoo "San Diego" Gon',true);
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (13,4,2,'Может ли обычный импорт импортировать методы и поля класса?<br /><strong>import java.nio.files.Paths.*;</strong>');
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (86,13,'Нет.',true);
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (14,0,0,'А если так?');
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (62,14,'то будет так, а не иначе',true);
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (14,4,0,'<p>Прямой импорт нескольких классов с одинаковыми именами не скомпилируется:<br />import java.util.<strong>Date;</strong><br />import java.sql.<strong>Date; </strong>// <em>DOES NOT COMPILE</em><br /><br />Импорт с wildcald скомпилируется:<br />import java.util.*;<br />import java.sql.*;<br />...<br /><em>но если в коде будет ссылка на тип, который есть в обоих пакетах, также будет ошибка:</em><br />...<br />public class Test {<br />&nbsp;&nbsp;&nbsp; Date date; // <em>DOES NOT COMPILE</em><br />}</p>');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (15,3,1,'Minecraft - это очень классная игра?');
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (7,15,'Да',true);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (8,15,'Нет',false);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (9,15,'Конечно',true);
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (16,0,0,'fsfsd
-f
-sd
-fs
-dfs');
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (10,16,'sdf',false);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (11,16,'jkl',false);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (12,16,'hjk',false);
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (17,0,0,'fsfsd
-f
-sd
-fs
-dfs');
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (13,17,'sdf',false);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (14,17,'jkl',false);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (15,17,'hjk',false);
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (18,0,0,'fsfsd
-f
-sd
-fs
-dfs');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (16,4,2,'<p>Почему<br /><em><br />import java.util.Date;</em><br /><em>import java.sql.Date;</em><br /><br />не скомпилируется, а <br /><em><br />import java.util.*;<br /></em><em>import java.sql.Date;<br /><br /></em>скомпилируется?<br /><br /></p>');
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (12,16,'<p>Потому что эксплицитное указание имени класса имеет преимущество над любым wildcard-выражением.</p>',true);
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (17,4,2,'<p>Как быть, если в коде одновременно нужно использовать классы с одинаковым именем из разных пакетов?</p>');
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (14,17,'<p>Использовать полное (fully qualified) имя класса.</p>',true);
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (18,4,0,'Classpath можно задать в командной строке:<br /><br />1. Windows<br /><br />java -cp ".;C:\temp\someOtherLocation;c:\temp\myJar.jar" myPackage.MyClass<br /><br />2. Linux<br /><br />java -cp ".:/tmp/someOtherLocation:/tmp/myJar.jar" myPackage.MyClass<br /><br />. (точка) означает, что текущая папка включается в Classpath. <br /><br />Можно использовать wildcard, чтобы включить все jar-файлы в конкретной папке:<br /><br />java -cp "C:\temp\directoryWithJars\*" myPackage.MyClass');
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (16,18,'sdf',false);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (17,18,'jkl',false);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (18,18,'hjk',false);
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (19,0,0,'fsfsd
-f
-sd
-fs
-dfs');
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (19,19,'sdf',false);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (22,19,'pppp',false);
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (20,0,2,'Что такое язык программирования Котлин?');
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (57,20,'Хорошая вещь',true);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (60,20,'Ужасная вещь',false);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (61,20,'прекрасная вещь',false);
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (21,0,0,'111');
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (22,0,0,'111');
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (23,0,0,'111');
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (23,23,'2',false);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (24,23,'4',false);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (25,23,'3',true);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (26,23,'5',false);
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (24,0,0,'Что такое Котлин?');
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (27,24,'Это язык программирования.',true);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (28,24,'Это марка машины.',false);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (29,24,'Это такой торт.',false);
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (25,0,0,'Что такое Apple?');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (19,4,1,'Отметьте фрагменты кода, которые скомпилируются.');
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (19,19,'6: public void method(ArrayList list) {<br />7:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (list.isEmpty()) { System.out.println("e");<br />8:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else { System.out.println("n");<br />9:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } }',true);
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (22,19,'1: public class LineNumbers {<br />2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public void method(ArrayList list) {<br />3:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (list.isEmpty()) { System.out.println("e");<br />4:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else { System.out.println("n");<br />5:&nbsp;&nbsp;&nbsp;&nbsp; } } }',false);
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (20,4,2,'<p>Может ли имя метода совпадать с именем конструктора (класса).</p>');
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (57,20,'<p>Да</p>',true);
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (21,4,0,'<strong>Указания по запуску классов в пакетах из командной строки.</strong><br /><br />Пусть есть два класса:<br /><br />C:\temp\packagea\<strong>ClassA</strong>.java<br /><em>package packagea;</em><br /><em>public class ClassA {</em><br /><em>}</em><br /><br />C:\temp\packageb\<strong>ClassB</strong>.java<br /><br />package packageb;<br />import packagea.ClassA;<br />public class ClassB {<br />&nbsp;public static void main(String[] args) {<br />&nbsp;&nbsp;ClassA a;<br />&nbsp;&nbsp;System.out.println("Got it");<br />&nbsp;}<br />}<br /><br />Для компиляции:<br /><br /><em>cd c:\temp</em><br /><em>javac packagea/ClassA.java packageb/ClassB.java</em><br /><br />Для запуска:<br /><br /><em>java packageb.ClassB<br /><br /></em>ClassPath будет отсчитываться от папки вызова java-утилит');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (22,4,0,'<p>Порядок определения членов класса важен!<br /><br />public class Name {<br />&nbsp;&nbsp;&nbsp; String first = "Theodore";<br />&nbsp;&nbsp;&nbsp; String last = "Moose";<br />&nbsp;&nbsp;&nbsp; String full = first + last;<br />}<br /><br /></p>');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (23,4,0,'Если пакет не указан, то говорят о пакете по умолчанию (<em>default package</em>). Создавать классы в пакете по умолчанию следует только для тестовых и отладочных целей.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (24,4,0,'Основная цель конструктора - инициализация полей класса.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (25,6,1,'Что такое Apple?');
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (32,25,'Это бренд техники.',true);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (33,25,'Это операционная система.',false);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (30,25,'Это телефоны.',false);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (31,25,'Это яблоко.',true);
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (26,0,0,'Как правильно пишется слово ш..колад?');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (26,6,1,'Как правильно пишется слово ш..колад?');
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (34,26,'Шакалад',false);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (35,26,'Шоколад',true);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (36,26,'Шиколад',false);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (59,26,'Шуколад',false);
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (27,0,0,'444');
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (28,0,0,'444');
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (29,0,0,'444');
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (30,0,0,'444');
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (40,30,'4',false);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (41,30,'6',true);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (42,30,'5',false);
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (31,0,0,'444');
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (43,31,'4',false);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (44,31,'6',true);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (45,31,'5',false);
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (27,4,0,'Блок кода (<em>code block</em>) - код в фигурных скобках.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (28,4,0,'Если в вопросе экзамена не идет речь об импорте, строки импорта могут быть опущены, но подразумевается, что они есть (нумерация строк не начинается с единицы).<br /><br />Аналогичным образом отсутствие метода <em>main()</em> не является признаком ошибочности - он так же опускается.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (29,4,0,'Инициализатор экземпляра (<em>instance initializer</em>) может быть только один в классе.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (30,4,2,'Каков порядок выполнения кода в классе?');
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (40,30,'* Поля и инициализатор экземпляра выполняются в том порядке, в каком они идут в файле.<br />* Конструктор выполняется после всех полей&nbsp;экземпляра и инициализатора экземпляра.',true);
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (31,4,2,'<p>Скомпилируется ли следующий код?<br /><br />class Clazz {<br />&nbsp;{ System.out.println(name); }<br />&nbsp;private String name = "Fluffy";<br />}</p>');
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (43,31,'<p>Нет. Нельзя ссылаться на переменную, которая еще не инициализирована.</p>',true);
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (32,0,0,'444');
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (48,32,'5',false);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (46,32,'4',false);
@@ -133,20 +97,17 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (33,0
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (34,4,0,'Названия пакетов подчиняются тем же правилам именования, что и переменные.');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (35,1,2,'общий вопрос 3');
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (52,35,'Т\акой ответ 4',true);
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (36,0,0,'Как меня зовут?');
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (53,36,'Папа',false);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (54,36,'Клон',false);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (55,36,'Митя',true);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (56,36,'Голем',false);
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (36,4,1,'Что будет напечатано после выполнения следующего кода?<br /><br />public class Egg {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public Egg() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number = 5;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Egg egg = new Egg();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(egg.number);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; private int number = 3;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { number = 4; } <br />}');
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (53,36,'<p>3</p>',false);
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (54,36,'<p>4</p>',false);
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (55,36,'<p>5</p>',true);
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (37,0,0,'Никакой не хочу');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (38,1,1,'Ну-ка, попробуем?!!');
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (64,38,'Вот Вам Ответ!',true);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (63,38,'Вот Вам Неверный Ответ!',false);
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (39,0,0,'');
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (40,0,2,'Машуня - самая любимая?');
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (68,40,'Да!!!!!',true);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (69,40,'Однозначно!!!!!!!!!!',true);
-	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (70,40,'Да!!!!!!!',true);
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (40,4,2,'Чем конструктор отличается от метода?');
+	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (68,40,'1) имя конструктора совпадает с именем класса<br />2) у конструктора нет типа возвращаемого значения',true);
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (41,3,1,'Какой дроп у Крипера?');
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (71,41,'порох',true);
 	INSERT INTO Answer (id,questionId,text,correct) OVERRIDING SYSTEM VALUE VALUES (72,41,'Фейерверки',false);
@@ -156,16 +117,34 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (42,6
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (43,4,0,'Wildcard при импорте распространяется только на классы, вложенные пакеты не просматриваются:<br />
 <p><strong>import java.nio.*;</strong></p>
 не импортирует класс java.nio.file.Files');
-INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,2);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,23);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,24);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,27);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,29);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,30);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,31);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,34);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,36);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,0);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,40);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,43);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,19);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,28);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,2);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,3);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,4);
-INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,0);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,6);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,7);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,8);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,10);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,11);
-INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,43);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,12);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,13);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,14);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,16);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,17);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,18);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,19);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,20);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,21);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,22);

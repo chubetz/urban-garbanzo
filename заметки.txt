@@ -74,6 +74,12 @@ Effective Java
 
 Java Concurrency in practice (Goetz)
 
+Maven
+
+Spring
+
+Логирование
+
 
 
 =====
@@ -244,11 +250,27 @@ Java Concurrency in practice (Goetz)
 	1) переписать на JSP сервлет GenerateHTML, переименовать в Viewer - готово
 	2) добавить хедер - готово
 
-14) подсчет загруженных сущностей
+14) подсчет загруженных сущностей - готово
 
+15) кнопки перехода в итоговых окнах областей и тем - готово
+	
 
 
 -------
+
+) сделать добавление вопросов на форме по одному и произвольное количество
+
+) комментарии к ответу
+
+) сущность Image: id int, filename varchar(100)
+
+15) новая сущность Chapter, ссылающаяся на тему: id int, themeId int, number double, title char(2000), text char(10000)
+
+	связка ImageRealm: int imageId, int realmId (composite key)
+	связка ImageChapter: int imageId, int chapterId (composite key), description char(100)
+
+Сделать редактор глав - с рисунками
+
 
 11) только один вопрос по умолчанию, остальные добавлять по кнопке, и без ограничений на кол-во
 
@@ -269,6 +291,12 @@ Java Concurrency in practice (Goetz)
 12) Сделать MockAnswer?
 
 4.9) Сделать утилиту поиска элемента в коллекции/массиве
+
+*) простые кнопки обрабатывать Javascriptoм, а не формами
+
+
+*) реализовать для всех сущностей методы save и delete на уровне package. Элиминировать статичные методы сохранения
+в методах save и delete работать и с памятью, и с БД.
 
 
 *) реализовать хранение предыдущих значений полей?
@@ -485,6 +513,12 @@ http://yan.zlobin.name/86
 
 - возможность пометить вопрос как ненужный
 
+- комментарии к ответу!
+
+- в перспективе - standalone-client
+
+- поиск по сущностям
+
 Вопросы для меня:
 что будет, если использовать try без catch?
 
@@ -499,5 +533,10 @@ Exam Title: Java SE 8 Programmer I
 
 Список ошибок: https://www.selikoff.net/java-oca-8-programmer-i-study-guide/
 
-p.12
-Naming Conflicts
+p.20
+Distinguishing Between Object
+References and Primitives
+
+======
+собирать задачки в интернете. 
+======

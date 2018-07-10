@@ -12,6 +12,23 @@
         <title>Область сохранена</title>
     </head>
     <body>
+        <table>
+            <tr>
+                <td>
+                    <form name="back_to_edit" action="controller" method="POST">
+                        <input type="hidden" name="action" value="edit_realm">        
+                        <input type="hidden" name="rid" value="${realm.getId()}">        
+                        <input type="submit" value="Вернуться к редактированию" /> 
+                    </form>                    
+                </td>
+                <td>
+                    <form name="back_to_list" action="view" method="GET">
+                        <input type="hidden" name="info" value="realms">        
+                        <input type="submit" value="Переход к списку областей" /> 
+                    </form>                    
+                </td>
+            </tr>
+        </table>
         <h2>Область сохранена</h2>
         ${realm}<br>
         <br>
