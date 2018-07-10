@@ -62,6 +62,7 @@ public class MainServlet extends HttpServlet {
         String action = request.getParameter("action");
         String url = null;
         Question question;
+        Utils.print("Servlet.BEFORE!!!", request.getParameterMap());
         switch (action) {
             case "add_question":
                 Utils.print("Servlet.add_question", request.getParameterMap());

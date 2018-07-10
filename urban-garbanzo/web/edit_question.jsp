@@ -27,7 +27,7 @@
 <%@ include file="header.jsp" %>
         <p>${question.getId() < 0  ? "<Новый вопрос>" : question}</p>
         <form name="${action}" action="controller" method="POST">
-            <input type="hidden" name="action" value="${action}">        
+            <input id="actiontag" type="hidden" name="action" value="${action}">        
             <input type="hidden" name="qid" value="${question.getId()}">        
             <label>Область</label>
             <select name="realmId">
@@ -56,6 +56,7 @@
             </table>
             <br>
             ${question.getAnswersEditHTML()}
+            <!--input type="submit" onclick="document.getElementById('actiontag').value = 'add_answer';" value="Отправить" /--> 
             <input type="submit" value="Отправить" /> 
         </form>
     </body>
