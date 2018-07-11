@@ -78,6 +78,12 @@ public class MainServlet extends HttpServlet {
                 request.setAttribute("question", Question.getMockQuestion());
                 request.setAttribute("action", "update_question");
                 break;
+            case "add_answer":
+                url = "/edit_question2.jsp";
+                Utils.print("Servlet.add_answer", request.getParameterMap());
+                request.setAttribute("question", Question.getQuestionFromParameterMap(request.getParameterMap()));
+                request.setAttribute("action", "update_question");
+                break;
             case "load_edit_form":
                 url = "/edit_question.jsp";
                 Utils.print("Servlet.edit_question", request.getParameterMap());

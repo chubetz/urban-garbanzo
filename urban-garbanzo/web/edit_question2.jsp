@@ -55,7 +55,7 @@
                 </tr>
             </table>
             <br>
-            ${question.getAnswersEditHTML()}
+            ${question.getAnswersEditHTML2()}
             <input type="submit" onclick="document.getElementById('actiontag').value = 'add_answer';" value="Добавить ответ"/> 
             <input type="submit" value="Отправить" /> 
         </form>

@@ -23,6 +23,12 @@ import ru.garbanzo.urban.util.Utils;
  */
 public class Question extends Entity {
     
+    private boolean neededNewAnswer;
+    
+    public boolean isSaveable() {
+        return true;
+    }
+    
     public static final int INFO_TYPE = 0;
     public static final int TEST_TYPE = 1;
     public static final int COMMON_TYPE = 2;
@@ -31,6 +37,14 @@ public class Question extends Entity {
         return mockQuestion;
     }
     
+    public static Question getQuestionFromParameterMap(Map<String, ?> data) { //изготовить объект вопроса по параметрам с фронта (и не только)
+        if (data.get("realmId").getClass().isArray()) { //список параметров с фронта
+            data = Utils.translateWebData( (Map<String, String[]>)data );
+        }
+        Question question = new MockQuestion(data); //возвращает полностью заполненный объект, с которого можно сгенерить формы для редактирования
+        question.neededNewAnswer = true;
+        return question;
+    }
     
     public static Map<Integer, Question> getMap() {
         return Collections.unmodifiableMap(getStorage().getQuestionMap());
@@ -179,6 +193,27 @@ public class Question extends Entity {
             sb.append(" rows=\"3\" cols=\"80\">" + answers.get(3).getStr("text") + "</textarea>\n");
         } catch (IndexOutOfBoundsException e) {
             sb.append("<textarea style=\"width: 80%;\" name=\"answer_-4\" rows=\"3\" cols=\"80\"></textarea>\n");
+        }
+        sb.append("<br>");
+
+        return sb.toString();
+    }
+
+    public String getAnswersEditHTML2() {
+        List<Answer> answers = new ArrayList(getAnswerMap().values());
+        StringBuilder sb = new StringBuilder();
+        for (int i=0; i<answers.size(); i++) {
+            sb.append("<p>Ответ " + (i+1) + "</p>\n");
+            sb.append("<textarea style=\"width: 80%;\" name=\"answer_" + answers.get(i).getId() + "\"");
+            sb.append(" rows=\"3\" cols=\"40\">" + answers.get(i).getStr("text") + "</textarea>\n");
+        }
+        if (neededNewAnswer) { //с фронта прилетел флаг добавления нового ответа
+            neededNewAnswer = false;
+            int answerNum = answers.size()+1;
+            sb.append("<br>");
+            sb.append("<p>Ответ " + answerNum + "</p>\n");
+            sb.append("<textarea style=\"width: 80%;\" name=\"answer_" + (-answerNum) + "\"");
+            sb.append(" rows=\"3\" cols=\"40\"></textarea>\n");
         }
         sb.append("<br>");
 
