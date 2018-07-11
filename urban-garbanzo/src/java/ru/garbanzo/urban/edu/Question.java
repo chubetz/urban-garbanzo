@@ -337,10 +337,6 @@ public class Question extends Entity {
         return saveQuestion(Integer.parseInt(id), data);
     }
 
-    public static Question createQuestion(Map<String, ?> data) throws JDBCException {
-        return saveQuestion(-1, data);
-    }
-    
 //    public Map<Integer, Theme> getThemeMap() {
 //        return Collections.unmodifiableMap(getStorage().getThemeMap(this.getId()));
 //    }

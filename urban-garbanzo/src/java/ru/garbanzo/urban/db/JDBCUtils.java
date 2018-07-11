@@ -159,7 +159,7 @@ public class JDBCUtils {
                     set_info.append(entry.getKey());
                     set_info.append("=");
                     if (entry.getValue() instanceof String) {
-                        set_info.append("'" + entry.getValue() + "'");
+                        set_info.append("'" + ((String)entry.getValue()).replace("'","''") + "'");
                     } else {
                         set_info.append(entry.getValue().toString());
                     }
@@ -187,7 +187,7 @@ public class JDBCUtils {
                     }
                     fields.append(entry.getKey());
                     if (entry.getValue() instanceof String) {
-                        values.append("'" + entry.getValue() + "'");
+                        values.append("'" + ((String)entry.getValue()).replace("'","''") + "'");
                     } else {
                         values.append(entry.getValue().toString());
                     }

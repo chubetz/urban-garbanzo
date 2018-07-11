@@ -16,8 +16,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ru.garbanzo.urban.db.JDBCUtils;
@@ -64,24 +66,17 @@ public class MainServlet extends HttpServlet {
         Question question;
         Utils.print("Servlet.BEFORE!!!", request.getParameterMap());
         switch (action) {
-            case "add_question":
-                Utils.print("Servlet.add_question", request.getParameterMap());
-                try {
-                    question = Question.createQuestion(request.getParameterMap());
-                } catch (JDBCException ex) {
-                    Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
-                    url = "/db_error.jsp";
-                    request.setAttribute("exception", ex);
-                    break;
-                }
-                url = "/new_question.jsp";
-                request.setAttribute("question", question);
-                break;
             case "new_question":
                 url = "/edit_question.jsp";
                 Utils.print("Servlet.new_question", request.getParameterMap());
                 request.setAttribute("question", Question.getMockQuestion());
-                request.setAttribute("action", "add_question");
+                request.setAttribute("action", "update_question");
+                break;
+            case "new_question2":
+                url = "/edit_question2.jsp";
+                Utils.print("Servlet.new_question2", request.getParameterMap());
+                request.setAttribute("question", Question.getMockQuestion());
+                request.setAttribute("action", "update_question");
                 break;
             case "load_edit_form":
                 url = "/edit_question.jsp";
@@ -202,8 +197,10 @@ public class MainServlet extends HttpServlet {
                         sb.append(") OVERRIDING SYSTEM VALUE VALUES (" + r.getId());
                         for (Object o: state.values()) {
                             String ooo;
-                            if (o instanceof String) 
+                            if (o instanceof String) {
+                                o = ((String)o).replace("'","''");
                                 ooo = "'" + o + "'";
+                            } 
                             else
                                 ooo=o.toString();
                             sb.append("," + ooo);
@@ -221,8 +218,10 @@ public class MainServlet extends HttpServlet {
                         sb.append(") OVERRIDING SYSTEM VALUE VALUES (" + t.getId());
                         for (Object o: state.values()) {
                             String ooo;
-                            if (o instanceof String) 
+                            if (o instanceof String) {
+                                o = ((String)o).replace("'","''");
                                 ooo = "'" + o + "'";
+                            } 
                             else
                                 ooo=o.toString();
                             sb.append("," + ooo);
@@ -240,8 +239,10 @@ public class MainServlet extends HttpServlet {
                         sb.append(") OVERRIDING SYSTEM VALUE VALUES (" + q.getId());
                         for (Object o: state.values()) {
                             String ooo;
-                            if (o instanceof String) 
+                            if (o instanceof String) {
+                                o = ((String)o).replace("'","''");
                                 ooo = "'" + o + "'";
+                            } 
                             else
                                 ooo=o.toString();
                             sb.append("," + ooo);
@@ -257,8 +258,10 @@ public class MainServlet extends HttpServlet {
                             sb.append(") OVERRIDING SYSTEM VALUE VALUES (" + a.getId());
                             for (Object o: stateA.values()) {
                                 String ooo;
-                                if (o instanceof String) 
+                                if (o instanceof String) {
+                                    o = ((String)o).replace("'","''");
                                     ooo = "'" + o + "'";
+                                } 
                                 else
                                     ooo=o.toString();
                                 sb.append("," + ooo);
@@ -285,8 +288,10 @@ public class MainServlet extends HttpServlet {
                         for (String s: pk.keySet()) {
                             Object o = pk.get(s);
                             String ooo;
-                            if (o instanceof String) 
+                            if (o instanceof String) {
+                                o = ((String)o).replace("'","''");
                                 ooo = "'" + o + "'";
+                            } 
                             else
                                 ooo=o.toString();
                             if (first) {
@@ -333,7 +338,13 @@ public class MainServlet extends HttpServlet {
             throws ServletException, IOException {
         
         String action = request.getParameter("action");
-        if (action.equals("new_theme") || action.equals("new_realm") || action.equals("new_question") || action.equals("export"))
+        Set<String> allowedActions= new HashSet<String>();
+        allowedActions.add("new_theme");
+        allowedActions.add("new_realm");
+        allowedActions.add("new_question");
+        allowedActions.add("export");
+        allowedActions.add("new_question2");
+        if (allowedActions.contains(action))
             processRequest(request, response);
         else {
             response.setContentType("text/html;charset=UTF-8");

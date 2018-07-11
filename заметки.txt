@@ -80,6 +80,8 @@ Spring
 
 Логирование
 
+JDBC
+
 
 
 =====
@@ -255,9 +257,11 @@ Spring
 15) кнопки перехода в итоговых окнах областей и тем - готово
 
 16) добавление вопросов по одному
-	0) убрать кейс add_question, оставить только update_question
+	0) убрать кейс add_question, оставить только update_question - готово
 	1) javascriptом отправлять action add_answer и перерисовывать страницу с новым ответом. Опираться
 	на имеющиеся ответы (с идентификаторами -1, -2 и т.д.)
+	..
+	) убедиться, что более 4 ответов корректно сохраняются и считываются
 
 
 	
@@ -298,6 +302,8 @@ Spring
 12) Сделать MockAnswer?
 
 4.9) Сделать утилиту поиска элемента в коллекции/массиве
+
+*) разобраться, чем PreparedStatement (conn.prepareStatement) лучше conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
 *) простые кнопки обрабатывать Javascriptoм, а не формами
 
@@ -528,6 +534,9 @@ http://yan.zlobin.name/86
 
 - генерация единого документа из Chapters
 
+- возможность редактирования данных в табличном виде
+
+
 Вопросы для меня:
 что будет, если использовать try без catch?
 
@@ -542,10 +551,8 @@ Exam Title: Java SE 8 Programmer I
 
 Список ошибок: https://www.selikoff.net/java-oca-8-programmer-i-study-guide/
 
-p.20
-Distinguishing Between Object
-References and Primitives
-
+p.22
+Another way to specify numbers is to change the “base.”
 ======
 собирать задачки в интернете. 
 ======
