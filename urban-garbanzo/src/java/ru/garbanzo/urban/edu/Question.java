@@ -163,52 +163,12 @@ public class Question extends Entity {
     public String getAnswersEditHTML() {
         List<Answer> answers = new ArrayList(getAnswerMap().values());
         StringBuilder sb = new StringBuilder();
-        sb.append("<p>Ответ 1</p>\n");
-        try {
-            sb.append("<textarea style=\"width: 80%;\" name=\"answer_" + answers.get(0).getId() + "\"");
-            sb.append(" rows=\"3\" cols=\"40\">" + answers.get(0).getStr("text") + "</textarea>\n");
-        } catch (IndexOutOfBoundsException e) {
-            sb.append("<textarea style=\"width: 80%;\" name=\"answer_-1\" rows=\"3\" cols=\"40\"></textarea>\n");
-        }
-        sb.append("<br>");
-        sb.append("<p>Ответ 2</p>\n");
-        try {
-            sb.append("<textarea style=\"width: 80%;\" name=\"answer_" + answers.get(1).getId() + "\"");
-            sb.append(" rows=\"3\" cols=\"40\">" + answers.get(1).getStr("text") + "</textarea>\n");
-        } catch (IndexOutOfBoundsException e) {
-            sb.append("<textarea style=\"width: 80%;\" name=\"answer_-2\" rows=\"3\" cols=\"40\"></textarea>\n");
-        }
-        sb.append("<br>");
-        sb.append("<p>Ответ 3</p>\n");
-        try {
-            sb.append("<textarea style=\"width: 80%;\" name=\"answer_" + answers.get(2).getId() + "\"");
-            sb.append(" rows=\"3\" cols=\"80\">" + answers.get(2).getStr("text") + "</textarea>\n");
-        } catch (IndexOutOfBoundsException e) {
-            sb.append("<textarea style=\"width: 80%;\" name=\"answer_-3\" rows=\"3\" cols=\"80\"></textarea>\n");
-        }
-        sb.append("<br>");
-        sb.append("<p>Ответ 4</p>\n");
-        try {
-            sb.append("<textarea style=\"width: 80%;\" name=\"answer_" + answers.get(3).getId() + "\"");
-            sb.append(" rows=\"3\" cols=\"80\">" + answers.get(3).getStr("text") + "</textarea>\n");
-        } catch (IndexOutOfBoundsException e) {
-            sb.append("<textarea style=\"width: 80%;\" name=\"answer_-4\" rows=\"3\" cols=\"80\"></textarea>\n");
-        }
-        sb.append("<br>");
-
-        return sb.toString();
-    }
-
-    public String getAnswersEditHTML2() {
-        List<Answer> answers = new ArrayList(getAnswerMap().values());
-        StringBuilder sb = new StringBuilder();
         for (int i=0; i<answers.size(); i++) {
             sb.append("<p>Ответ " + (i+1) + "</p>\n");
             sb.append("<textarea style=\"width: 80%;\" name=\"answer_" + answers.get(i).getId() + "\"");
             sb.append(" rows=\"3\" cols=\"40\">" + answers.get(i).getStr("text") + "</textarea>\n");
         }
         if (neededNewAnswer) { //с фронта прилетел флаг добавления нового ответа
-            neededNewAnswer = false;
             int answerNum = answers.size()+1;
             sb.append("<br>");
             sb.append("<p>Ответ " + answerNum + "</p>\n");
@@ -224,34 +184,22 @@ public class Question extends Entity {
         List<Answer> answers = new ArrayList(getAnswerMap().values());
         StringBuilder sb = new StringBuilder();
         String selected = "";
-        try {
-            selected = (answers.get(0).getBool("correct")) ? "selected" : "";
-            sb.append("<option value=\"" + answers.get(0).getId() + "\"" + selected + ">Ответ 1</option>\n");
-        } catch (IndexOutOfBoundsException e) {
-            sb.append("<option value=\"-1\">Ответ 1</option>\n");
+        for (int i=0; i<answers.size(); i++) {
+            selected = (answers.get(i).getBool("correct")) ? "selected" : "";
+            sb.append("<option value=\"" + answers.get(i).getId() + "\"" + selected + ">Ответ " + (i+1) + "</option>\n");
         }
-        try {
-            selected = (answers.get(1).getBool("correct")) ? "selected" : "";
-            sb.append("<option value=\"" + answers.get(1).getId() + "\"" + selected + ">Ответ 2</option>\n");
-        } catch (IndexOutOfBoundsException e) {
-            sb.append("<option value=\"-2\">Ответ 2</option>\n");
-        }
-        try {
-            selected = (answers.get(2).getBool("correct")) ? "selected" : "";
-            sb.append("<option value=\"" + answers.get(2).getId() + "\"" + selected + ">Ответ 3</option>\n");
-        } catch (IndexOutOfBoundsException e) {
-            sb.append("<option value=\"-3\">Ответ 3</option>\n");
-        }
-        try {
-            selected = (answers.get(3).getBool("correct")) ? "selected" : "";
-            sb.append("<option value=\"" + answers.get(3).getId() + "\"" + selected + ">Ответ 4</option>\n");
-        } catch (IndexOutOfBoundsException e) {
-            sb.append("<option value=\"-4\">Ответ 4</option>\n");
+
+        if (neededNewAnswer) { //с фронта прилетел флаг добавления нового ответа
+            int answerNum = answers.size()+1;
+            sb.append("<option value=\"" + (-answerNum) + "\">Ответ " + answerNum + "</option>\n");
         }
 
         return sb.toString();
     }
-    
+
+    public int getAnswersSizeForHTML() {
+        return getAnswerMap().size() + (neededNewAnswer ? 1 : 0);
+    }
 
     public String getTypesHTML() {
         StringBuilder sb = new StringBuilder();
@@ -284,16 +232,16 @@ public class Question extends Entity {
     
     private void saveAnswers(Map<String, ?> data) throws JDBCException {
         Utils.print("sae answers 1", data);
-        for (Map.Entry<String, ?> entry: data.entrySet()) {
-            String[] corrects = new String[0];
-            if (data.get("correct") != null) {
-                try {
-                    corrects = (String[])data.get("correct");
-                } catch (ClassCastException cce) {
-                    corrects = new String[] {(String)data.get("correct")};
-                }
-                Arrays.sort(corrects);
+        String[] corrects = new String[0];
+        if (data.get("correct") != null) {
+            try {
+                corrects = (String[])data.get("correct");
+            } catch (ClassCastException cce) {
+                corrects = new String[] {(String)data.get("correct")};
             }
+            Arrays.sort(corrects);
+        }
+        for (Map.Entry<String, ?> entry: data.entrySet()) {
             String[] ans = entry.getKey().split("_");
             if ((ans.length == 2) && ans[0].equals("answer")) { // данные ответа
                 

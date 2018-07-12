@@ -72,29 +72,23 @@ public class MainServlet extends HttpServlet {
                 request.setAttribute("question", Question.getMockQuestion());
                 request.setAttribute("action", "update_question");
                 break;
-            case "new_question2":
-                url = "/edit_question2.jsp";
-                Utils.print("Servlet.new_question2", request.getParameterMap());
-                request.setAttribute("question", Question.getMockQuestion());
-                request.setAttribute("action", "update_question");
-                break;
             case "add_answer":
-                url = "/edit_question2.jsp";
+                url = "/edit_question.jsp";
                 Utils.print("Servlet.add_answer", request.getParameterMap());
                 request.setAttribute("question", Question.getQuestionFromParameterMap(request.getParameterMap()));
                 request.setAttribute("action", "update_question");
                 break;
             case "load_edit_form":
                 url = "/edit_question.jsp";
-                Utils.print("Servlet.edit_question", request.getParameterMap());
-                Utils.print(request.getParameter("qid"));
-                request.setAttribute("question", Question.getById(request.getParameter("qid")));
+                Utils.print("Servlet.load_edit_form", request.getParameterMap());
+                Utils.print(request.getParameter("id"));
+                request.setAttribute("question", Question.getById(request.getParameter("id")));
                 request.setAttribute("action", "update_question");
                 break;
             case "update_question":
                 Utils.print("Servlet.update_question", request.getParameterMap());
                 try {
-                    question = Question.saveQuestion(request.getParameter("qid"), request.getParameterMap());
+                    question = Question.saveQuestion(request.getParameter("id"), request.getParameterMap());
                 } catch (JDBCException ex) {
                     Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
                     url = "/db_error.jsp";
@@ -164,7 +158,7 @@ public class MainServlet extends HttpServlet {
             case "link_themes":
                 Utils.print("Servlet.link_themes", request.getParameterMap());
                 Utils.print("Servlet.link_themes", request.getParameterMap().get("themes"));
-                Question qq = Question.getById(request.getParameter("qid"));
+                Question qq = Question.getById(request.getParameter("id"));
                 try {
                     qq.linkThemes(request.getParameterMap().get("themes"));
                 } catch (JDBCException ex) {
@@ -191,7 +185,7 @@ public class MainServlet extends HttpServlet {
                         sb.append("DROP TABLE Question IF EXISTS;\r\n");
                         sb.append("CREATE TABLE Question (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, type int, text VARCHAR(2000));\r\n");
                         sb.append("\tDROP TABLE Answer IF EXISTS;\r\n");
-                        sb.append("\tCREATE TABLE Answer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean, text VARCHAR(2000));\r\n");
+                        sb.append("\tCREATE TABLE Answer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean, text VARCHAR(2000), comment VARCHAR(2000));\r\n");
                         sb.append("DROP TABLE ThemeQuestion IF EXISTS;\r\n");
                         sb.append("CREATE TABLE ThemeQuestion (themeId int, questionId int, PRIMARY KEY(themeId, questionId));\r\n");
                     for (Realm r: Realm.getMap().values()) {
@@ -206,7 +200,8 @@ public class MainServlet extends HttpServlet {
                             if (o instanceof String) {
                                 o = ((String)o).replace("'","''");
                                 ooo = "'" + o + "'";
-                            } 
+                            } else if (o == null)
+                                ooo = "NULL";
                             else
                                 ooo=o.toString();
                             sb.append("," + ooo);
@@ -227,7 +222,8 @@ public class MainServlet extends HttpServlet {
                             if (o instanceof String) {
                                 o = ((String)o).replace("'","''");
                                 ooo = "'" + o + "'";
-                            } 
+                            } else if (o == null)
+                                ooo = "NULL";
                             else
                                 ooo=o.toString();
                             sb.append("," + ooo);
@@ -248,7 +244,8 @@ public class MainServlet extends HttpServlet {
                             if (o instanceof String) {
                                 o = ((String)o).replace("'","''");
                                 ooo = "'" + o + "'";
-                            } 
+                            } else if (o == null)
+                                ooo = "NULL";
                             else
                                 ooo=o.toString();
                             sb.append("," + ooo);
@@ -267,7 +264,8 @@ public class MainServlet extends HttpServlet {
                                 if (o instanceof String) {
                                     o = ((String)o).replace("'","''");
                                     ooo = "'" + o + "'";
-                                } 
+                                } else if (o == null)
+                                    ooo = "NULL";
                                 else
                                     ooo=o.toString();
                                 sb.append("," + ooo);
@@ -297,7 +295,8 @@ public class MainServlet extends HttpServlet {
                             if (o instanceof String) {
                                 o = ((String)o).replace("'","''");
                                 ooo = "'" + o + "'";
-                            } 
+                            } else if (o == null)
+                                ooo = "NULL";
                             else
                                 ooo=o.toString();
                             if (first) {

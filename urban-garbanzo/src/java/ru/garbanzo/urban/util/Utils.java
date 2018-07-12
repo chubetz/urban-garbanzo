@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -111,7 +112,7 @@ public class Utils {
     }
 
     public static Map<String, Object> translateWebData(Map<String, String[]> data) {
-        Map<String, Object> tmp = new HashMap<>();
+        Map<String, Object> tmp = new LinkedHashMap<>();
         for (String key: data.keySet()) {
             String[] current = data.get(key);
             if (current.length == 1) {

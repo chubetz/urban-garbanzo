@@ -28,7 +28,7 @@
         <p>${question.getId() < 0  ? "<Новый вопрос>" : question}</p>
         <form name="${action}" action="controller" method="POST">
             <input id="actiontag" type="hidden" name="action" value="${action}">        
-            <input type="hidden" name="qid" value="${question.getId()}">        
+            <input type="hidden" name="id" value="${question.getId()}">        
             <label>Область</label>
             <select name="realmId">
                 ${question.getRealmsHTML()}
@@ -47,7 +47,7 @@
                     </td>
                     <td style="vertical-align: top">
                         <p>Правильные ответы</p>
-                        <select name="correct" size="4" multiple>
+                        <select name="correct" size="${question.getAnswersSizeForHTML()}" multiple>
                             ${question.getAnswersCorrectHTML()}
                         </select>
                         
@@ -56,7 +56,7 @@
             </table>
             <br>
             ${question.getAnswersEditHTML()}
-            <!--input type="submit" onclick="document.getElementById('actiontag').value = 'add_answer';" value="Отправить" /--> 
+            <input type="submit" onclick="document.getElementById('actiontag').value = 'add_answer';" value="Добавить ответ"/> 
             <input type="submit" value="Отправить" /> 
         </form>
     </body>

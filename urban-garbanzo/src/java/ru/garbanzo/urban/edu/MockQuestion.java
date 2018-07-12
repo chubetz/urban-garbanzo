@@ -7,6 +7,7 @@ package ru.garbanzo.urban.edu;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import ru.garbanzo.urban.db.JDBCUtils;
 import static ru.garbanzo.urban.edu.Entity.getStorage;
@@ -37,7 +38,7 @@ class MockQuestion extends Question{ // Этот класс нужен, чтоб
     @Override
     public Map<Integer, Answer> getAnswerMap() {
         if (answerMap == null) {
-            answerMap = new HashMap<Integer, Answer>();
+            answerMap = new LinkedHashMap<Integer, Answer>();
             String[] corrects = new String[0];
             if (data.get("correct") != null) {
                 try {

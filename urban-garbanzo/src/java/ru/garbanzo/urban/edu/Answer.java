@@ -49,6 +49,7 @@ public class Answer extends Entity {
         defaultState.put("questionId", -1);
         defaultState.put("text", "");
         defaultState.put("correct", false);
+        defaultState.put("comment", "");
     }
 
     public static Map<Integer, Answer> getMap() {

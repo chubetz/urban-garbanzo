@@ -17,7 +17,7 @@
                 <td>
                     <form name="back_to_edit" action="controller" method="POST">
                         <input type="hidden" name="action" value="load_edit_form">        
-                        <input type="hidden" name="qid" value="${question.getId()}">        
+                        <input type="hidden" name="id" value="${question.getId()}">        
                         <input type="submit" value="Вернуться к редактированию" /> 
                     </form>                    
                 </td>
@@ -50,7 +50,7 @@
         
         <form name="link_themes" action="controller" method="POST">
             <input type="hidden" name="action" value="link_themes">        
-            <input type="hidden" name="qid" value="${question.getId()}">        
+            <input type="hidden" name="id" value="${question.getId()}">        
             ${question.getRealm().getThemesForSelectHTML()}
             <input type="submit" value="Отправить" /> 
             
