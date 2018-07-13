@@ -9,9 +9,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import ru.garbanzo.urban.db.JDBCUtils;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.exception.NoQuestionException;
@@ -164,16 +166,46 @@ public class Question extends Entity {
         List<Answer> answers = new ArrayList(getAnswerMap().values());
         StringBuilder sb = new StringBuilder();
         for (int i=0; i<answers.size(); i++) {
-            sb.append("<p>Ответ " + (i+1) + "</p>\n");
-            sb.append("<textarea style=\"width: 80%;\" name=\"answer_" + answers.get(i).getId() + "\"");
+            sb.append("<table width=\"80%\">\n");
+            sb.append("<tr>\n");
+            sb.append("<td width=\"60%\">Ответ " + (i+1) + "</td>\n");
+            sb.append("<td width=\"40%\">" + "Комментарий к ответу" + "</td>\n");
+            sb.append("</tr>\n");
+            sb.append("<tr>\n");
+            sb.append("<td width=\"60%\">");
+            sb.append("<textarea style=\"width: 100%;\" name=\"answer_" + answers.get(i).getId() + "\"");
             sb.append(" rows=\"3\" cols=\"40\">" + answers.get(i).getStr("text") + "</textarea>\n");
+            sb.append("</td>\n");
+            sb.append("<td width=\"40%\">");
+            sb.append("<textarea style=\"width: 100%;\" name=\"comment_" + answers.get(i).getId() + "\"");
+            sb.append(" rows=\"3\" cols=\"30\">" + answers.get(i).getStr("comment") + "</textarea>\n");
+            sb.append("</td>\n");
+            sb.append("</tr>\n");
+            sb.append("</table><p>\n");
+            
+
+
+
         }
         if (neededNewAnswer) { //с фронта прилетел флаг добавления нового ответа
             int answerNum = answers.size()+1;
-            sb.append("<br>");
-            sb.append("<p>Ответ " + answerNum + "</p>\n");
-            sb.append("<textarea style=\"width: 80%;\" name=\"answer_" + (-answerNum) + "\"");
+            sb.append("<table width=\"80%\">\n");
+            sb.append("<tr>\n");
+            sb.append("<td width=\"60%\">Ответ " + answerNum + "</td>\n");
+            sb.append("<td width=\"40%\">" + "Комментарий к ответу" + "</td>\n");
+            sb.append("</tr>\n");
+            sb.append("<tr>\n");
+            sb.append("<td width=\"60%\">");
+            sb.append("<textarea style=\"width: 100%;\" name=\"answer_" + (-answerNum) + "\"");
             sb.append(" rows=\"3\" cols=\"40\"></textarea>\n");
+            sb.append("</td>\n");
+            sb.append("<td width=\"40%\">");
+            sb.append("<textarea style=\"width: 100%;\" name=\"comment_" + (-answerNum) + "\"");
+            sb.append(" rows=\"3\" cols=\"30\"></textarea>\n");
+            sb.append("</td>\n");
+            sb.append("</tr>\n");
+            sb.append("</table><p>\n");
+
         }
         sb.append("<br>");
 
@@ -231,56 +263,30 @@ public class Question extends Entity {
     }
     
     private void saveAnswers(Map<String, ?> data) throws JDBCException {
-        Utils.print("sae answers 1", data);
-        String[] corrects = new String[0];
-        if (data.get("correct") != null) {
-            try {
-                corrects = (String[])data.get("correct");
-            } catch (ClassCastException cce) {
-                corrects = new String[] {(String)data.get("correct")};
-            }
-            Arrays.sort(corrects);
-        }
-        for (Map.Entry<String, ?> entry: data.entrySet()) {
-            String[] ans = entry.getKey().split("_");
-            if ((ans.length == 2) && ans[0].equals("answer")) { // данные ответа
-                
-                int answerId = Integer.parseInt(ans[1]);
-
-                if (entry.getValue().equals("")) { // ответ надо стереть (если был) или не создавать (если не было)
-                    Answer answer = getStorage().getAnswerMap().get(answerId);
-                    if (answer != null) {
-                        boolean wasDeleted = JDBCUtils.deleteEntity(answer);
-                        Utils.print("Стерлось ли?", wasDeleted);
-                        if (wasDeleted) { // нужно удалить из памяти
-                            getStorage().unregister(answer);
-                        }
+        for (Answer answer : Answer.getGeneratedFromFrontendAnswerList(data)) {
+            if (answer.getStr("text").equals("")) { //ответ надо стереть (если был) или не создавать (если не было)
+                Answer realAnswer = getStorage().getAnswerMap().get(answer.getId());
+                if (realAnswer != null) {
+                    boolean wasDeleted = JDBCUtils.deleteEntity(realAnswer);
+                    Utils.print("Стерлось ли?", wasDeleted);
+                    if (wasDeleted) { // нужно удалить из памяти
+                        getStorage().unregister(realAnswer);
                     }
-                    continue;
                 }
-
-                Map<String, Object> answerData = new HashMap<String, Object>();
-                answerData.put("questionId", this.getId());
-                if (Arrays.binarySearch(corrects, ans[1]) >= 0)
-                    answerData.put("correct", true);
-                else
-                    answerData.put("correct", false);
-                answerData.put("text", entry.getValue());
-                
-                Utils.print("answerData", answerData);
-                try {
-                    Answer.saveAnswer(answerId, answerData);
-                } catch(NoQuestionException nqe) {
-                    nqe.printStackTrace();
-                }
+                continue;
             }
-            
+
+            Map<String, Object> answerData = new HashMap<String, Object>(answer.getState());
+            answerData.put("questionId", this.getId());
+            try {
+                Answer.saveAnswer(answer.getId(), answerData);
+            } catch(NoQuestionException nqe) {
+                nqe.printStackTrace();
+            }
+        
         }
+        
     }
-    
-//    public static Question saveQuestionFromWeb(int id, Map<String, String[]> data) {
-//        return saveQuestion(id, translateWebData(data));
-//    }
     
     public static Question saveQuestion(int id, Map<String, ?> data) throws JDBCException {
         Question question = getMap().get(id);

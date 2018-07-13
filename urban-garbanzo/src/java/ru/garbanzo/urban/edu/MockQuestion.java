@@ -39,38 +39,12 @@ class MockQuestion extends Question{ // Этот класс нужен, чтоб
     public Map<Integer, Answer> getAnswerMap() {
         if (answerMap == null) {
             answerMap = new LinkedHashMap<Integer, Answer>();
-            String[] corrects = new String[0];
-            if (data.get("correct") != null) {
-                try {
-                    corrects = (String[])data.get("correct");
-                } catch (ClassCastException cce) {
-                    corrects = new String[] {(String)data.get("correct")};
-                }
-                Arrays.sort(corrects);
+            for (Answer answer : Answer.getGeneratedFromFrontendAnswerList(data)) {
+                    answerMap.put(answer.getId(), answer);
             }
-            for (Map.Entry<String, ?> entry: data.entrySet()) {
-                String[] ans = entry.getKey().split("_");
-                if ((ans.length == 2) && ans[0].equals("answer")) { // данные ответа
 
-                    int answerId = Integer.parseInt(ans[1]);
-
-                    Map<String, Object> answerData = new HashMap<String, Object>();
-                    if (Arrays.binarySearch(corrects, ans[1]) >= 0)
-                        answerData.put("correct", true);
-                    else
-                        answerData.put("correct", false);
-                    answerData.put("text", entry.getValue());
-
-                    Answer answer = new Answer(answerId);
-                    answer.setState(answerData);
-                    answerMap.put(answerId, answer);
-                }
-
-            }
-            
         } 
         return answerMap;
-            
 
     }
     
