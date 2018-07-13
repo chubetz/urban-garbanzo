@@ -67,6 +67,16 @@ public class Viewer extends HttpServlet {
                     getServletContext().getRequestDispatcher("/db_error.jsp").forward(request, response);                    
                 }
                 break;
+            case "images":
+                url = "/view_list.jsp";
+                request.setAttribute("title", "Библиотека изображений");
+                try {
+                    ViewUtils.fillAttributesImages(request);
+                } catch (JDBCException e) {
+                    request.setAttribute("exception", e);
+                    getServletContext().getRequestDispatcher("/db_error.jsp").forward(request, response);                    
+                }
+                break;
         }
             
         if (url != null) 

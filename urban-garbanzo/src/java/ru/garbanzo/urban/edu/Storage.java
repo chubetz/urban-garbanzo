@@ -38,6 +38,7 @@ public class Storage {
     private Map<Integer, Map<Integer, Answer>> answerMapForQuestion;    
     private Map<Integer, Realm> realmMap;    
     private Map<Integer, Theme> themeMap;    
+    private Map<Integer, Image> imageMap;    
     private Set<ThemeQuestion> themeQuestionSet;    
     private Map<Integer, Map<Integer, Question>> questionMapForTheme;    
     private Map<Integer, Map<Integer, Question>> questionMapForRealm;    
@@ -132,6 +133,10 @@ public class Storage {
         return themeMap;
     }
 
+    Map<Integer, Image> getImageMap() {
+        return imageMap;
+    }
+
     private Storage() {}
     
     static Storage getStorage() {
@@ -187,6 +192,9 @@ public class Storage {
             throw new RuntimeException("Область с идентификатором " + realmId + ", для которой производится попытка зарегистрировать тему, не найдена в памяти");
         provideDefaultMap(themeMapForRealm, realmId);
         themeMapForRealm.get(realmId).put(theme.getId(), theme);
+    }
+    void register(Image image) {
+        imageMap.put(image.getId(), image);
     }
     void unbind(Theme theme, Realm realm) {
         provideDefaultMap(themeMapForRealm, realm.getId());
@@ -286,6 +294,14 @@ public class Storage {
 
             }
             
+            storage.imageMap = new HashMap<Integer, Image>();
+            data = JDBCUtils.loadEntitiesData(new Image(-1)); //изображения
+            for (DBEntity entity : data) {
+                Image image = new Image(-1);
+                image.setPrimaryKey(entity.getPrimaryKey());
+                image.setState(entity.getState());
+                storage.register(image);
+            }
 
         } catch (JDBCException ex) {
             Logger.getLogger(Question.class.getName()).log(Level.SEVERE, null, ex);

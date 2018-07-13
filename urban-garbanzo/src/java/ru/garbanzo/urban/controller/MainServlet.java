@@ -6,7 +6,9 @@
 package ru.garbanzo.urban.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.file.Paths;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,6 +24,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.Part;
 import ru.garbanzo.urban.db.JDBCUtils;
 import ru.garbanzo.urban.edu.Answer;
 import ru.garbanzo.urban.edu.EduAccess;
@@ -65,6 +69,13 @@ public class MainServlet extends HttpServlet {
         String url = null;
         Question question;
         Utils.print("Servlet.BEFORE!!!", request.getParameterMap());
+//        try {
+//            Utils.print("Servlet.GET_PAR", request.getPart("file"));
+//            
+//        } catch (Exception e) {
+//            Utils.print("Servlet.GET_PAR_EXCEPTION", e);
+//        }
+
         switch (action) {
             case "new_question":
                 url = "/edit_question.jsp";
@@ -171,6 +182,20 @@ public class MainServlet extends HttpServlet {
                 url = "/new_question.jsp";
                 break;
 
+            case "new_image":
+                url = "/upload_image.jsp";
+                Utils.print("Servlet.new_image", request.getParameterMap());
+                break;
+            case "upload_image":
+                url = "/view?info=images";
+                Part filePart = request.getPart("file");
+                String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+                InputStream fileContent = filePart.getInputStream();
+                Utils.print("Servlet.upload_image", request.getParameterMap());
+                Utils.print("Servlet.fileName", fileName);
+                Utils.print("Servlet.fileContent", fileContent);
+                break;
+
             case "export":
                 Storage.init(); // реинициализация, чтобы выгрузка была строго из БД
                 try {
@@ -188,6 +213,8 @@ public class MainServlet extends HttpServlet {
                         sb.append("\tCREATE TABLE Answer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean, text VARCHAR(2000), comment VARCHAR(2000));\r\n");
                         sb.append("DROP TABLE ThemeQuestion IF EXISTS;\r\n");
                         sb.append("CREATE TABLE ThemeQuestion (themeId int, questionId int, PRIMARY KEY(themeId, questionId));\r\n");
+                        sb.append("DROP TABLE Image IF EXISTS;\r\n");
+                        sb.append("CREATE TABLE Image (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, filename VARCHAR(2000), extension VARCHAR(10));\r\n");
                     for (Realm r: Realm.getMap().values()) {
                         Map<String, Object> state = r.getState();
                         sb.append("INSERT INTO Realm (id");
@@ -349,6 +376,8 @@ public class MainServlet extends HttpServlet {
         allowedActions.add("new_question");
         allowedActions.add("export");
         allowedActions.add("new_question2");
+        allowedActions.add("new_image");
+        allowedActions.add("upload_image");
         if (allowedActions.contains(action))
             processRequest(request, response);
         else {

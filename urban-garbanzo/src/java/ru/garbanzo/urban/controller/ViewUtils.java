@@ -8,6 +8,7 @@ package ru.garbanzo.urban.controller;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import ru.garbanzo.urban.edu.Answer;
+import ru.garbanzo.urban.edu.Image;
 import ru.garbanzo.urban.edu.Question;
 import ru.garbanzo.urban.edu.Realm;
 import ru.garbanzo.urban.edu.Storage;
@@ -169,5 +170,29 @@ class ViewUtils {
         
     }
 
+    static void fillAttributesImages(HttpServletRequest request) throws JDBCException {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<div style='font-family:Tahoma; color:black; font-weight:bold'><a style='color:black;' href='controller?action=new_image'>Загрузить</a></div>");
+        sb.append("<table>");
+        if (Storage.getJdbcException() != null) {
+            throw Storage.getJdbcException();
+        }
+        int counter = 0;
+        for (Map.Entry<Integer, Image> entry: Image.getMap().entrySet()) {
+            Image image = entry.getValue();
+            counter++;
+            sb.append("<tr>");
+            sb.append("<td>");
+            sb.append(image.getStr("filename") + "." + image.getStr("extension"));
+            sb.append("</td>");
+            sb.append("</tr>");
+        }
+        sb.append("</table>");
+    
+        request.setAttribute("list_table", sb.toString());
+        request.setAttribute("total", counter);
+        
+        
+    }
     
 }

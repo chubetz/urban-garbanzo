@@ -4,6 +4,17 @@
 И в проект надо положить
 
 
+Tomcat:
+Ups. Seems like this is not a bug. For Tomcat you have to set allowCasualMultipartParsing to true to get it to work correctly.
+
+From the docs:
+
+    Set to true if Tomcat should automatically parse multipart/form-data request bodies when HttpServletRequest.getPart* or HttpServletRequest.getParameter* is called, even when the target servlet isn't marked with the @MultipartConfig annotation (See Servlet Specification 3.0, Section 3.2 for details). Note that any setting other than false causes Tomcat to behave in a way that is not technically spec-compliant. The default is false
+
+(https://docs.oracle.com/javaee/6/tutorial/doc/gmhal.html)
+
+
+
 runserver.bat --help - список доступных аргументов
 
 новая БД:
@@ -29,6 +40,12 @@ TinyMCE
 добавить tinymce в Web Pages
 
 http://r-band.ru/how-to/ustanovka-i-nastroyka-tinymce-inicializaciya-i-parametry-redaktora.html
+
+
+
+Загрузка файлов 
+https://stackoverflow.com/questions/2422468/how-to-upload-files-to-server-using-jsp-servlet
+
 
 
 Настройка DDNS:
@@ -81,6 +98,8 @@ Spring
 Логирование
 
 JDBC
+
+Apache Commons
 
 
 
@@ -290,6 +309,22 @@ JDBC
 
 
 		) полное тестирование после чистого наката - готово
+
+18) сущность Image
+	1) добавить класс Image:
+		3) в скрипт заметок
+		1) defaultState
+		5) в storage
+		2) getMap
+		4) в скрипт export
+	2) реализовать загрузку картинок
+		1) прочитать ByteArrayImputStream, положить файл в папку images с именем <id> и без расширения
+		2) придумать, как хранить картинки на сервере, в проекте, в репозитории
+		3) создать объект Image и положить его в БД и в память
+	3) добавить просмотр картинок во Viewer
+	4) удаление картинок
+	
+
 		
 
 
@@ -297,9 +332,7 @@ JDBC
 -------
 
 
-) комментарии к ответу
-
-) сущность Image: id int, filename varchar(100)
+) сущность Image: id int, filename varchar(100), extension varchar(10)
 
 15) новая сущность Chapter, ссылающаяся на тему: id int, themeId int, number double, title char(2000), text char(10000)
 
@@ -308,8 +341,6 @@ JDBC
 
 Сделать редактор глав - с рисунками
 
-
-11) только один вопрос по умолчанию, остальные добавлять по кнопке, и без ограничений на кол-во
 
 9) новый тип info вопроса - Code Snippet ? 
 
@@ -328,6 +359,8 @@ JDBC
 12) Сделать MockAnswer?
 
 4.9) Сделать утилиту поиска элемента в коллекции/массиве
+
+*) выводить информацию обо всех ошибках, а не только об ошибках БД
 
 *) Очень долго работает перенос темы в другую область, если в теме куча вопросов!
 
@@ -501,6 +534,10 @@ CREATE TABLE Theme (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId
 DROP TABLE ThemeQuestion IF EXISTS;
 CREATE TABLE ThemeQuestion (themeId int, questionId int, PRIMARY KEY(themeId, questionId));
 
+DROP TABLE Image IF EXISTS;
+CREATE TABLE Image (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, filename VARCHAR(2000), extension VARCHAR(10));
+
+) сущность Image: id int, filename varchar(100), extension varchar(10)
 
 
 ============= поразмыслить 
