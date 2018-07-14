@@ -5,7 +5,12 @@
  */
 package ru.garbanzo.urban.controller;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Map;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import ru.garbanzo.urban.edu.Answer;
 import ru.garbanzo.urban.edu.Image;
@@ -170,7 +175,7 @@ class ViewUtils {
         
     }
 
-    static void fillAttributesImages(HttpServletRequest request) throws JDBCException {
+    static void fillAttributesImages(HttpServletRequest request, ServletContext context) throws JDBCException {
         StringBuilder sb = new StringBuilder();
         sb.append("<div style='font-family:Tahoma; color:black; font-weight:bold'><a style='color:black;' href='controller?action=new_image'>Загрузить</a></div>");
         sb.append("<table>");
@@ -178,12 +183,18 @@ class ViewUtils {
             throw Storage.getJdbcException();
         }
         int counter = 0;
+        String uploads = context.getInitParameter("upload.location");
+        if (uploads.startsWith("/"))
+            uploads = new String(Arrays.copyOfRange(uploads.toCharArray(), 1, uploads.toCharArray().length));
         for (Map.Entry<Integer, Image> entry: Image.getMap().entrySet()) {
             Image image = entry.getValue();
             counter++;
             sb.append("<tr>");
             sb.append("<td>");
             sb.append(image.getStr("filename") + "." + image.getStr("extension"));
+            sb.append("</td>");
+            sb.append("<td>");
+            sb.append("<img src=\"" + uploads + "/" + image.getId() + "\" width=\"20%\" height=\"20%\">");
             sb.append("</td>");
             sb.append("</tr>");
         }

@@ -71,7 +71,7 @@ public class Viewer extends HttpServlet {
                 url = "/view_list.jsp";
                 request.setAttribute("title", "Библиотека изображений");
                 try {
-                    ViewUtils.fillAttributesImages(request);
+                    ViewUtils.fillAttributesImages(request, getServletContext());
                 } catch (JDBCException e) {
                     request.setAttribute("exception", e);
                     getServletContext().getRequestDispatcher("/db_error.jsp").forward(request, response);                    

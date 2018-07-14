@@ -5,9 +5,13 @@
  */
 package ru.garbanzo.urban.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,6 +34,7 @@ import ru.garbanzo.urban.db.JDBCUtils;
 import ru.garbanzo.urban.edu.Answer;
 import ru.garbanzo.urban.edu.EduAccess;
 import ru.garbanzo.urban.edu.Entity;
+import ru.garbanzo.urban.edu.Image;
 import ru.garbanzo.urban.edu.Question;
 import ru.garbanzo.urban.edu.Realm;
 import ru.garbanzo.urban.edu.Storage;
@@ -189,11 +194,60 @@ public class MainServlet extends HttpServlet {
             case "upload_image":
                 url = "/view?info=images";
                 Part filePart = request.getPart("file");
-                String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+                String fileFullName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
                 InputStream fileContent = filePart.getInputStream();
                 Utils.print("Servlet.upload_image", request.getParameterMap());
-                Utils.print("Servlet.fileName", fileName);
+                Utils.print("Servlet.fileName", fileFullName);
                 Utils.print("Servlet.fileContent", fileContent);
+                Image image;
+                if (!fileFullName.equals("")) { //пришел непустой файл
+                    String[] fileNameParts = fileFullName.split("\\.");
+                    String extension = fileNameParts[fileNameParts.length-1];
+                    String[] name = new String[fileNameParts.length-1];
+                    for (int i=0; i < fileNameParts.length-1 ; i++) {
+                        name[i] = fileNameParts[i];
+                    }
+                    String fileName = String.join(".", name);
+                    Map<String, Object> data = new HashMap<String, Object>();
+                    data.put("filename", fileName);
+                    data.put("extension", extension);
+                    try {
+                        image = Image.saveImage(-1, data);
+                    } catch (JDBCException ex) {
+                        Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
+                        url = "/db_error.jsp";
+                        request.setAttribute("exception", ex);
+                        break;
+                    }
+
+                    int myByte = fileContent.read();
+                    if (myByte != -1) {
+                        String pathStr = this.getServletContext().getRealPath(File.separator) + getServletContext().getInitParameter("upload.location");
+                        //Path path = Paths.get(pathStr);
+                        File uploadsDir = new File(pathStr);
+                        //if (Files.notExists(path)){
+                        if (!uploadsDir.exists()) {
+                            uploadsDir.mkdir();
+                            // If you require it to make the entire directory path including parents,
+                            // use uploadsDir.mkdirs(); here instead.
+                        }
+                        File file = new File(uploadsDir, "" + image.getId());
+                        FileOutputStream fos = new FileOutputStream(file);
+                        try {
+                            while (myByte != -1) {
+                                fos.write(myByte);
+                                myByte = fileContent.read();
+                            }
+                        } catch (IOException e) {
+                            image.delete();
+                            throw new RuntimeException(e);
+                            
+                        } finally {
+                            fos.close();
+                        }
+                        
+                    }
+                }
                 break;
 
             case "export":
@@ -332,6 +386,28 @@ public class MainServlet extends HttpServlet {
                             } else {
                                 sb.append("," + ooo);
                             }
+                        }
+                        sb.append(");\r\n");
+
+                    }
+
+                    for (Image i: Image.getMap().values()) {
+                        Map<String, Object> state = i.getState();
+                        sb.append("INSERT INTO Image (id");
+                        for (String s: state.keySet()) {
+                            sb.append("," + s);
+                        }
+                        sb.append(") OVERRIDING SYSTEM VALUE VALUES (" + i.getId());
+                        for (Object o: state.values()) {
+                            String ooo;
+                            if (o instanceof String) {
+                                o = ((String)o).replace("'","''");
+                                ooo = "'" + o + "'";
+                            } else if (o == null)
+                                ooo = "NULL";
+                            else
+                                ooo=o.toString();
+                            sb.append("," + ooo);
                         }
                         sb.append(");\r\n");
 
