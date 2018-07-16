@@ -142,4 +142,9 @@ public abstract class Entity implements DBEntity {
         }
         return sb.toString();
     }
+    
+    public String getCardLink() {
+        String className = this.getClass().getSimpleName().toLowerCase();
+        return "<a href=\"viewCard?" + className + "=" + this.getId() + "\">Подробности</a>";
+    }
 }

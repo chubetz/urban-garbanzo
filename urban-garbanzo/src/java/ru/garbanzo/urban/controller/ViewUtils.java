@@ -28,6 +28,7 @@ class ViewUtils {
     
     static void fillAttributesQuestions(HttpServletRequest request) throws JDBCException {
         String realmId = request.getParameter("realmId");
+        String themeId = request.getParameter("themeId");
 
         StringBuilder sb = new StringBuilder();
         
@@ -39,6 +40,8 @@ class ViewUtils {
         for (Map.Entry<Integer, Question> entry: Question.getMap().entrySet()) {
             Question question = entry.getValue();
             if (realmId != null && question.getRealm().getId() != Integer.parseInt(realmId))
+                continue;
+            if (themeId != null && !question.getThemeMap().containsKey(Integer.parseInt(themeId)))
                 continue;
             counter++;
             String bgcolor = " bgcolor=red";
@@ -157,15 +160,21 @@ class ViewUtils {
             sb.append("</td>");
             sb.append("<td>");
             sb.append(theme.getStr("text"));
+            if (theme.getQuestionMap().size() > 0) {
+                //sb.append(" (" + theme.getQuestionMap().size() + " вопр.)");
+                sb.append(" (" + theme.getQuestionsHTMLLink("" + theme.getQuestionMap().size() + " вопр.") + ")");
+            }
+            sb.append("</td>");
+            sb.append("<td>");
+            sb.append(theme.getCardLink());
             sb.append("</td>");
             sb.append("</tr>");
-            sb.append("<tr>");
-            sb.append("<td colspan=2>");
-            sb.append("</td>");
-            sb.append("<td colspan=2>");
-            sb.append(theme.getQuestionsHTML());
-            sb.append("</td>");
-            sb.append("</tr>");
+//            sb.append("<tr>");
+//            sb.append("<td colspan=2>");
+//            sb.append("</td>");
+//            sb.append("<td colspan=2>");
+//            sb.append("</td>");
+//            sb.append("</tr>");
         }
         sb.append("</table>");
     

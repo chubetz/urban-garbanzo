@@ -47,6 +47,15 @@ public class Theme extends Entity {
         defaultState.put("text", "");
         defaultState.put("number", 0.0);
     }
+    
+    public String getText() { //вспомогательный геттер
+        return this.getStr("text");
+    }
+
+    public String getNumberStr() { //вспомогательный геттер
+        return this.getDblStr("number");
+    }
+
 
     private static Theme mock = new Theme(-100);
     public static Theme getMock() { //обертка для использования в jsp
@@ -116,14 +125,12 @@ public class Theme extends Entity {
         return Collections.unmodifiableMap(getStorage().getQuestionMap(this));
     }
     
-
-    public String getQuestionsHTML() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("<div style=\"font-size: 8px;\">\r\n");
-        for (Question question: getQuestionMap().values()) {
-            sb.append("" + question + " " + question.getStr("text") + "<br>\r\n");
-        }
-        sb.append("</div>");
-        return sb.toString();
+    public String getQuestionsHTMLLink(String linkText) {
+        return "<a href=view?info=questions&themeId=" + this.getId() + ">" + linkText + "</a>";
     }
+    public String getQuestionsHTMLLink() {
+        return getQuestionsHTMLLink("Вопросы");
+    }
+    
+
 }

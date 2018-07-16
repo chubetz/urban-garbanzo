@@ -24,6 +24,10 @@
         <servlet-name>GenerateHTML</servlet-name>
         <servlet-class>ru.garbanzo.urban.controller.Viewer</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EntityCard</servlet-name>
+        <servlet-class>ru.garbanzo.urban.controller.EntityCard</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>/controller</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>GenerateHTML</servlet-name>
         <url-pattern>/view</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EntityCard</servlet-name>
+        <url-pattern>/viewCard</url-pattern>
     </servlet-mapping>
     <error-page>
         <exception-type>ru.garbanzo.urban.exception.JDBCException</exception-type>

@@ -51,6 +51,14 @@ public class Realm extends Entity {
         defaultState.put("description", "");
     }
     
+    public String getText() { //вспомогательный геттер
+        return this.getStr("text");
+    }
+    
+    public String getDescription() { //вспомогательный геттер
+        return this.getStr("description");
+    }
+
     private static Realm mock = new Realm(-100);
     public static Realm getMock() { //обертка для использования в jsp
         return mock;

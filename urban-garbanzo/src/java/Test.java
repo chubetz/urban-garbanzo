@@ -22,10 +22,23 @@ class Test {
     public static void main(String args[]) {
         //aaa(1);
         //bbb(5.5);
-        byte b = 13;
+        //byte b = 13;
         
         //ccc(3.5);
         //long max = 3123456789.5;
+        
+        int i = 1_000_00;
+        int j = 01627_3;
+        int k = 0XC____AFE;
+//        float m = 13.34234;
+//        
+//        float n = -9.342__3_4f;
+//        double o = __190.0;
+//        byte p = 198_;
+//        double q = 1_00_0_._0_0; // this one compiles
+        float r = 1_00_0.5_5_6F; // this one compiles
+        
+        
     }
     
 }
