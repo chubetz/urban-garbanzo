@@ -13,7 +13,7 @@
     </head>
     <body>
 <%@ include file="header.jsp" %>
-        <p>${theme.getId() < 0  ? "<Новая область>" : theme}</p>
+        <p>${theme.getId() < 0  ? "<Новая тема>" : theme}</p>
         <form name="${action}" action="controller" method="POST">
             <input type="hidden" name="action" value="${action}">        
             <input type="hidden" name="tid" value="${theme.getId()}">        
