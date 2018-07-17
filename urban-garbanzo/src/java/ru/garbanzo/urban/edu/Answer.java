@@ -98,7 +98,7 @@ public class Answer extends Entity {
             }
             Arrays.sort(corrects);
         }
-        Map<Integer, Map<String, Object>> answerDataMap = new HashMap<Integer, Map<String, Object>>();
+        Map<Integer, Map<String, Object>> answerDataMap = new LinkedHashMap<Integer, Map<String, Object>>();
         for (Map.Entry<String, ?> entry: data.entrySet()) {
             String[] fieldInfo = entry.getKey().split("_");
             if (fieldInfo.length == 2) {
