@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 import ru.garbanzo.urban.db.JDBCUtils;
 import static ru.garbanzo.urban.edu.Entity.getStorage;
 import static ru.garbanzo.urban.edu.Question.COMMON_TYPE;
-import static ru.garbanzo.urban.edu.Question.INFO_TYPE;
+import static ru.garbanzo.urban.edu.Question.NB_TYPE;
 import static ru.garbanzo.urban.edu.Question.TEST_TYPE;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;

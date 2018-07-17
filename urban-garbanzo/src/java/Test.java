@@ -37,6 +37,9 @@ class Test {
 //        byte p = 198_;
 //        double q = 1_00_0_._0_0; // this one compiles
         float r = 1_00_0.5_5_6F; // this one compiles
+        String d,f;
+        String d1 = "asd", f1 = "dfg";
+        //d = "asd", f = "dfg";
         
         
     }

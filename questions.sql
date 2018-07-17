@@ -141,6 +141,23 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (54,4
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (102,54,'double q = 1_00_0_._0_0;',false,'разделитель разрядов не может быть перед или после десятичной точки');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (103,54,'float r = 1_00_0.5_5_6F;',true,'float-литерал с корректным (хоть и странным) использованием разделителя разрядов');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (95,54,'int i = 1_000_00;',true,'целочисленный литерал с корректным разделителем разрядов');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (55,4,0,'Примитивным типам нельзя присваивать <strong>null</strong>.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (56,4,0,'Можно объявлять и инициализировать несколько переменных <strong>одного типа</strong> в одном выражении:<br />String s3 = "yes", s4 = "no";');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (57,4,1,'Выберите строки, которые скомпилируются.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (112,57,'int i1; int i2;',true,'в одной строке может быть несколько отдельных выражений, разделенных точкой с запятой');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (104,57,'String d, f;',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (105,57,'<div>String d1, f1;</div>
+<div>d1 = "asd", f1 = "dfg";</div>',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (106,57,'<div>String d1 = "asd", f1 = "dfg";</div>
+<div>&nbsp;</div>',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (107,57,'String s1, s2, s3="ext";',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (109,57,'int num, String value;',false,'разные типы объявляемых переменных;&nbsp;<span style="line-height: 18.2000007629395px;">более одного раза упоминается тип</span>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (110,57,'String s1 = "1", s2;',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (111,57,'<div>double d1, double d2;</div>
+<div>&nbsp;</div>',false,'<span style="line-height: 18.2000007629395px;">более одного раза упоминается тип</span>');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (58,4,2,'Сколько переменных объявлено и инициализировано в следующем фрагменте кода?<br /><br />int i1, i2, i3 = 0;');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (108,58,'Одна переменная инициализирована (i3), другие две (i1 и i2) - только объявлены',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (59,4,0,'Именование переменных, методов, классов, полей в Java подчиняется одним и тем же правилам.');
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,23);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,24);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,27);
@@ -169,8 +186,14 @@ INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,51);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,52);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,53);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,54);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,55);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,56);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,19);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,57);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,58);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,59);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,28);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,58);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,2);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,3);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,4);

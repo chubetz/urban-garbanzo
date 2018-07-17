@@ -31,7 +31,7 @@ public class Question extends Entity {
         return true;
     }
     
-    public static final int INFO_TYPE = 0;
+    public static final int NB_TYPE = 0;
     public static final int TEST_TYPE = 1;
     public static final int COMMON_TYPE = 2;
     
@@ -84,7 +84,7 @@ public class Question extends Entity {
         defaultState.put("text", "");
 
         availableTypes = new HashMap<Integer, String>();
-        availableTypes.put(INFO_TYPE, "Информационный"); //односторонняя флеш-карточка
+        availableTypes.put(NB_TYPE, "Nota bene"); //односторонняя флеш-карточка
         availableTypes.put(TEST_TYPE, "Тест");
         availableTypes.put(COMMON_TYPE, "Общий"); //двусторонняя флеш-карточка
     }
@@ -112,7 +112,7 @@ public class Question extends Entity {
             }
         }
         return (!getStr("text").equals("")) && (getStr("text") != null) && 
-                (this.getInt("type") == Question.INFO_TYPE || (correctExists && !getAnswerMap().isEmpty()));
+                (this.getInt("type") == Question.NB_TYPE || (correctExists && !getAnswerMap().isEmpty()));
     }
 
 
