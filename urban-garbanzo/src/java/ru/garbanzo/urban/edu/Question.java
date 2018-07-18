@@ -366,5 +366,28 @@ public class Question extends Entity {
         sb.append("</ul>");
         return sb.toString();
     }
+    public String getExamHTML() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<table background=\"images/fon_nota_bene.jpg\" width=\"100%\" cellpadding=10 cellspacing=10>\n");
+        sb.append("<tr>\n");
+        sb.append("<td bgcolor=#FCFCC0 style=\"font-family:Arial;\">\n");
+        sb.append(getText());
+        sb.append("</td>\n");
+        sb.append("</tr>\n");
+        sb.append("</table>\n");
+        return sb.toString();
+    }
+    
+    public String getText() {
+        return getStr("text");
+    }
+    
+    public int getType() {
+        return getInt("type");
+    }
+
+    public String getTypeText() {
+        return Question.getTypeText(this.getType());
+    }
     
 }

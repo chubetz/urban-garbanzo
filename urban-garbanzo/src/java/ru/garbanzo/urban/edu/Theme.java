@@ -131,6 +131,17 @@ public class Theme extends Entity {
     public String getQuestionsHTMLLink() {
         return getQuestionsHTMLLink("Вопросы");
     }
-    
 
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof Theme) && 
+                ((Theme)obj).getPrimaryKey().equals(this.getPrimaryKey()) && 
+                ((Theme)obj).getQuestionMap().keySet().equals(this.getQuestionMap().keySet());
+    }
+    
+    public boolean isExaminable() {
+        return !getQuestionMap().isEmpty();
+    }
+    
+    
 }

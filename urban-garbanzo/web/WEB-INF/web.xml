@@ -28,6 +28,10 @@
         <servlet-name>EntityCard</servlet-name>
         <servlet-class>ru.garbanzo.urban.controller.EntityCard</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Activator</servlet-name>
+        <servlet-class>ru.garbanzo.urban.controller.Activator</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>/controller</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>EntityCard</servlet-name>
         <url-pattern>/viewCard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Activator</servlet-name>
+        <url-pattern>/doActive</url-pattern>
     </servlet-mapping>
     <error-page>
         <exception-type>ru.garbanzo.urban.exception.JDBCException</exception-type>
