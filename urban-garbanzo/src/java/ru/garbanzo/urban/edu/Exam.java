@@ -21,6 +21,7 @@ public class Exam implements Iterator<Question> {
     private Iterator<Question> iterator;
     private Question current;
     private int counter;
+    private Theme theme;
     
     @Override
     public boolean hasNext() {
@@ -48,10 +49,43 @@ public class Exam implements Iterator<Question> {
     }
     
     public Exam(Theme theme) {
+        this.theme = theme;
         questionSequence = new ArrayList(theme.getQuestionMap().values());
         Collections.shuffle(questionSequence);
         iterator = questionSequence.iterator();
     }
+    
+    public Theme getTheme() {
+        return theme;
+    }
+    
+    public String getNextButtonHTML() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("                    <form method=\"POST\" action=\"doActive\">\n" +
+"                        <input type=\"hidden\" name=\"id\" value=\"" + theme.getId() + "\">\n" +
+"                        <input type=\"hidden\" name=\"action\" value=\"doTheme\">\n" +
+"                        <input type=\"hidden\" name=\"subAction\" value=\"" + (hasNext() ? "next" : "stop") + "\">\n" +
+"                        <input type=\"Submit\" value=\"" + (hasNext() ? "Далее" : "Завершить") + "\" >\n" +
+"                    </form>\n" +
+"");
+        return sb.toString();
+        
+    }
 
+    public String getAnswerHTML() {
+        StringBuilder sb = new StringBuilder();
+        switch (getQuestion().getType()) {
+            case Question.COMMON_TYPE:
+                
+                break;
+        }
+        return sb.toString();
+        
+    }
+    
+    public void processWorkflow() {
+        
+    }
+    
     
 }

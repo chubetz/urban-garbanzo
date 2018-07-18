@@ -368,13 +368,35 @@ public class Question extends Entity {
     }
     public String getExamHTML() {
         StringBuilder sb = new StringBuilder();
-        sb.append("<table background=\"images/fon_nota_bene.jpg\" width=\"100%\" cellpadding=10 cellspacing=10>\n");
-        sb.append("<tr>\n");
-        sb.append("<td bgcolor=#FCFCC0 style=\"font-family:Arial;\">\n");
-        sb.append(getText());
-        sb.append("</td>\n");
-        sb.append("</tr>\n");
-        sb.append("</table>\n");
+        switch (getType()) {
+            case Question.NB_TYPE:
+                sb.append("<table background=\"images/fon_nota_bene.jpg\" width=\"100%\" cellpadding=10 cellspacing=10>\n");
+                sb.append("<tr>\n");
+                sb.append("<td bgcolor=#FCFCC0 style=\"font-family:Arial;\">\n");
+                sb.append(getText());
+                sb.append("</td>\n");
+                sb.append("</tr>\n");
+                sb.append("</table>\n");
+                break;
+            case Question.COMMON_TYPE:
+                sb.append("<table bgcolor=blue width=\"100%\" cellpadding=10 cellspacing=3>\n");
+                sb.append("<tr>\n");
+                sb.append("<td bgcolor=#D4F2F7 style=\"font-family:Arial;\">\n");
+                sb.append(getText());
+                sb.append("</td>\n");
+                sb.append("</tr>\n");
+                sb.append("</table>\n");
+                break;
+            case Question.TEST_TYPE:
+                sb.append("<table bgcolor=#21A211 width=\"100%\" cellpadding=10 cellspacing=3>\n");
+                sb.append("<tr>\n");
+                sb.append("<td bgcolor=#D3F4C7 style=\"font-family:Arial;\">\n");
+                sb.append(getText());
+                sb.append("</td>\n");
+                sb.append("</tr>\n");
+                sb.append("</table>\n");
+                break;
+        }
         return sb.toString();
     }
     
