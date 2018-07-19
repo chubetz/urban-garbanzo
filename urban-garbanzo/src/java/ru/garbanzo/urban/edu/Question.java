@@ -361,7 +361,7 @@ public class Question extends Entity {
         StringBuilder sb = new StringBuilder();
         sb.append("<ul>\r\n");
         for (Theme theme: getThemeMap().values()) {
-            sb.append("\t<li>" + theme.getDblStr("number") + " " + theme.getStr("text") + "\r\n");
+            sb.append("\t<li>" + theme.getCardLink(theme.getDblStr("number") + " " + theme.getStr("text"), "0") + "\r\n");
         }
         sb.append("</ul>");
         return sb.toString();
@@ -410,6 +410,12 @@ public class Question extends Entity {
 
     public String getTypeText() {
         return Question.getTypeText(this.getType());
+    }
+    
+    public List<Answer> getAnswersShuffled() {
+        List<Answer> list = new ArrayList<Answer>(getAnswerMap().values());
+        Collections.shuffle(list);
+        return list;
     }
     
 }

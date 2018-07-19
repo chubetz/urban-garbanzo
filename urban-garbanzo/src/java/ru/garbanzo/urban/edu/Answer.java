@@ -139,6 +139,10 @@ public class Answer extends Entity {
         return answerList;
         
     }
+    
+    public String getText() {
+        return this.getStr("text");
+    }
 
     
 }

@@ -46,8 +46,7 @@ public class Activator extends HttpServlet {
                 try {
                     Exam exam = state.getExam(theme);
                     request.setAttribute("exam", exam);
-                    if (subAction != null && subAction.equals("next"))
-                        exam.next();
+                    exam.processWorkflow(subAction);
                     request.setAttribute("theme", theme);
                     request.setAttribute("title", "Проверка знаний");
                     url = "/exam.jsp";

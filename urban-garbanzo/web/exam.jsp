@@ -28,15 +28,15 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="3" align="center">
                     ${exam.answerHTML}
                 </td>
             </tr>
-            <tr>
+            <!--tr>
                 <td colspan="3" align="center">
                     ${exam.nextButtonHTML}
                 </td>
-            </tr>
+            </tr-->
         </table>
     </body>
 </html>

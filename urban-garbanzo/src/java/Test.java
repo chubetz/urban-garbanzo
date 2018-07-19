@@ -40,6 +40,8 @@ class Test {
         String d,f;
         String d1 = "asd", f1 = "dfg";
         //d = "asd", f = "dfg";
+        double ff = 5.6d;
+        //long dd = 454.90L;
         
         
     }
