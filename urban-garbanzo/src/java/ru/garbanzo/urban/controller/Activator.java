@@ -8,6 +8,7 @@ package ru.garbanzo.urban.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
+import java.util.NoSuchElementException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import ru.garbanzo.urban.edu.Exam;
 import ru.garbanzo.urban.edu.Theme;
 import ru.garbanzo.urban.exception.ExamException;
+import ru.garbanzo.urban.exception.NoMoreQuestionException;
 import ru.garbanzo.urban.users.State;
 
 /**
@@ -23,6 +25,15 @@ import ru.garbanzo.urban.users.State;
  * @author d.gorshenin
  */
 public class Activator extends HttpServlet {
+    
+    private void stopTheme(Theme theme, HttpServletRequest request) {
+        State state = State.getUserState();
+        Exam exam = state.stopExam(theme);
+        request.setAttribute("exam", exam);
+        request.setAttribute("theme", theme);
+        request.setAttribute("title", "Итоги проверки");
+        request.setAttribute("examResult", "Проверка завершена");
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,11 +57,43 @@ public class Activator extends HttpServlet {
                 try {
                     Exam exam = state.getExam(theme);
                     request.setAttribute("exam", exam);
-                    exam.processWorkflow(subAction);
                     request.setAttribute("theme", theme);
+                    exam.processWorkflow(subAction);
                     request.setAttribute("title", "Проверка знаний");
                     url = "/exam.jsp";
-                } catch (ExamException ee) {
+                } catch (NoMoreQuestionException ex) { // все карточки отработаны
+                    try {
+                        stopTheme(theme, request);
+                        url = "/examFinished.jsp";
+                    } catch (Exception ee) {
+                        request.setAttribute("exception", ee);
+                        url = "/examError.jsp";
+                    }
+                } catch (Exception ee) {
+                    request.setAttribute("exception", ee);
+                    url = "/examError.jsp";
+                }
+                break;
+            case "stopTheme":
+                theme = Theme.getById(request.getParameter("id"));
+                try {
+                    stopTheme(theme, request);
+                    url = "/examFinished.jsp";
+                } catch (Exception ee) {
+                    request.setAttribute("exception", ee);
+                    url = "/examError.jsp";
+                }
+                break;
+            case "cancelTheme":
+                theme = Theme.getById(request.getParameter("id"));
+                try {
+                    Exam exam = state.cancelExam(theme);
+                    request.setAttribute("exam", exam);
+                    request.setAttribute("theme", theme);
+                    request.setAttribute("title", "Итоги проверки");
+                    request.setAttribute("examResult", "Проверка отменена");
+                    url = "/examFinished.jsp";
+                } catch (Exception ee) {
                     request.setAttribute("exception", ee);
                     url = "/examError.jsp";
                 }

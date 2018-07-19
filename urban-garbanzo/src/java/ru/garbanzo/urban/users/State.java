@@ -37,4 +37,19 @@ public class State {
 
     }
     
+    public Exam stopExam(Theme theme) {
+        Exam exam = themeExams.get(theme);
+        if (exam != null) {
+            
+        }   
+        return themeExams.remove(theme);
+    }
+
+    public Exam cancelExam(Theme theme) {
+        Exam exam = themeExams.get(theme);
+        if (exam != null) {
+            
+        }   
+        return themeExams.remove(theme);
+    }
 }

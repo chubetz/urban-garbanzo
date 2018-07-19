@@ -74,6 +74,10 @@ public class Theme extends Entity {
         return "Тема {" + getId() + "} {" + getRealm().getStr("text") + "}";
     }
 
+    public String getTitle() {
+        return "" + getDblStr("number") + " " + getText();
+    }
+
     public static Theme getById(Object id){
         if (id instanceof String)
             return getMap().get(Integer.parseInt((String)id));

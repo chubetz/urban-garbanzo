@@ -13,7 +13,22 @@
     </head>
     <body>
 <%@ include file="header.jsp" %>
-        <table width="50%" border="1">
+        <table width="75%">
+            <tr>
+                <td width="90%" align="right">
+                    <form method="POST" action="doActive">
+                        <input type="hidden" name="id" value="${theme.id}">
+                        <input type="hidden" name="action" value="cancelTheme">
+                        <input type="hidden" name="subAction" value="cancel">
+                        <input type="submit" value="Отменить">
+                    </form>
+                </td>
+                <td width="10%">
+                    ${exam.stopBtn}
+                </td>
+            </tr>
+        </table>
+        <table width="75%" border="1">
             <tr>
                 <td width="50%" bgcolor="black" style="color:white">
                     Область: <b>${theme.realm.description}</b><br>

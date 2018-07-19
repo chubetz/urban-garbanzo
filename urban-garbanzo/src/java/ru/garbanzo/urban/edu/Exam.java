@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.function.Consumer;
+import ru.garbanzo.urban.exception.NoMoreQuestionException;
 
 /**
  *
@@ -32,7 +34,11 @@ public class Exam implements Iterator<Question> {
     @Override
     public Question next() {
         counter++;
-        current = iterator.next();
+        try {
+            current = iterator.next();
+        } catch (NoSuchElementException ex) {
+            throw new NoMoreQuestionException();
+        }
         qState = QuestionState.New;
         return getQuestion();
 
@@ -216,6 +222,15 @@ public class Exam implements Iterator<Question> {
                 next();
                 break;
         }
+    }
+    
+    public String getStopBtn() {
+        return "                    <form method=\"POST\" action=\"doActive\">\n" +
+"                        <input type=\"hidden\" name=\"id\" value=\"" + getTheme().getId() + "\">\n" +
+"                        <input type=\"hidden\" name=\"action\" value=\"stopTheme\">\n" +
+"                        <input type=\"submit\" value=\"Завершить\">\n" +
+"                    </form>\n" +
+"";
     }
     
     private enum QuestionState {
