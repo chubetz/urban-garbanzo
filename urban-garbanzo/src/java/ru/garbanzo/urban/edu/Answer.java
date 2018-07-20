@@ -144,5 +144,8 @@ public class Answer extends Entity {
         return this.getStr("text");
     }
 
+    public boolean getCorrect() {
+        return this.getBool("correct");
+    }
     
 }

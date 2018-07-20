@@ -58,7 +58,7 @@ public class Activator extends HttpServlet {
                     Exam exam = state.getExam(theme);
                     request.setAttribute("exam", exam);
                     request.setAttribute("theme", theme);
-                    exam.processWorkflow(subAction);
+                    exam.processWorkflow(subAction, request.getParameterMap());
                     request.setAttribute("title", "Проверка знаний");
                     url = "/exam.jsp";
                 } catch (NoMoreQuestionException ex) { // все карточки отработаны

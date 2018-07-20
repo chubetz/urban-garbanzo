@@ -7,11 +7,14 @@ package ru.garbanzo.urban.edu;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 import ru.garbanzo.urban.exception.NoMoreQuestionException;
+import ru.garbanzo.urban.util.Utils;
 
 /**
  *
@@ -25,6 +28,8 @@ public class Exam implements Iterator<Question> {
     private QuestionState qState;
     private int counter;
     private Theme theme;
+    private Map<Integer, Boolean> userAnswers;
+    private List<Answer> answers;
     
     @Override
     public boolean hasNext() {
@@ -40,7 +45,9 @@ public class Exam implements Iterator<Question> {
             throw new NoMoreQuestionException();
         }
         qState = QuestionState.New;
-        return getQuestion();
+        userAnswers = new HashMap<Integer, Boolean>();
+        answers = current.getAnswersShuffled();
+        return current;
 
     }
     
@@ -51,11 +58,11 @@ public class Exam implements Iterator<Question> {
     public int getRemaining() {
         return questionSequence.size() - counter;
     }
-
+    
     public Question getQuestion() {
         return current;
     }
-    
+
     public Exam(Theme theme) {
         this.theme = theme;
         questionSequence = new ArrayList(theme.getQuestionMap().values());
@@ -71,7 +78,7 @@ public class Exam implements Iterator<Question> {
         
         
         String disabled = "";
-        if ((getQuestion().getType() == Question.COMMON_TYPE && qState == QuestionState.New) ||
+        if ((current.getType() == Question.COMMON_TYPE && qState == QuestionState.New) ||
                 (qState == QuestionState.AnswerShowed)) {
             disabled = "disabled";
         }
@@ -89,7 +96,7 @@ public class Exam implements Iterator<Question> {
 
     public String getAnswerHTML() {
         StringBuilder sb = new StringBuilder();
-        switch (getQuestion().getType()) {
+        switch (current.getType()) {
             case Question.NB_TYPE:
                 sb.append("                    <form method=\"POST\" action=\"doActive\">\n" +
         "                        <input type=\"hidden\" name=\"id\" value=\"" + theme.getId() + "\">\n" +
@@ -120,7 +127,7 @@ public class Exam implements Iterator<Question> {
                         sb.append("<table bgcolor=green width=\"100%\" cellpadding=10 cellspacing=3>\n");
                         sb.append("<tr>\n");
                         sb.append("<td bgcolor=#E6FDFE style=\"font-family:Arial; color:#48050C\">\n");
-                        sb.append(getQuestion().getAnswerMap().values().toArray(new Answer[0])[0].getText());
+                        sb.append(current.getAnswerMap().values().toArray(new Answer[0])[0].getText());
                         sb.append("</td>\n");
                         sb.append("</tr>\n");
                         sb.append("<tr>\n");
@@ -161,7 +168,7 @@ public class Exam implements Iterator<Question> {
                         sb.append("<table bgcolor=#CD7A18 width=\"100%\" cellpadding=10 cellspacing=3>\n");
                         int counter = 0;
                         StringBuilder row = new StringBuilder();
-                        Iterator<Answer> answerIterator = getQuestion().getAnswersShuffled().iterator();
+                        Iterator<Answer> answerIterator = answers.iterator();
                         while (answerIterator.hasNext()) {
                             counter++;
                             Answer answer = answerIterator.next();
@@ -195,6 +202,51 @@ public class Exam implements Iterator<Question> {
                         sb.append("</form>\n");
                         
                         break;
+                    case TestAnswered:
+                        sb.append("<table bgcolor=#CD7A18 width=\"100%\" cellpadding=10 cellspacing=3>\n");
+                        counter = 0;
+                        row = new StringBuilder();
+                        answerIterator = answers.iterator();
+                        while (answerIterator.hasNext()) {
+                            counter++;
+                            Answer answer = answerIterator.next();
+                            boolean userAnswer;
+                            try {
+                                userAnswer =  userAnswers.get(answer.getId());
+                            } catch (NullPointerException ex) {
+                                userAnswer = false;
+                            }
+                            if (userAnswer == answer.getCorrect()) { //пользователь ответил верно
+                                row.append("<td bgcolor=#3EAA08 width=\"5%\">\n");
+                            } else {
+                                row.append("<td bgcolor=#DA1617 width=\"5%\">\n");
+                            }
+                            row.append("<input type=\"checkbox\" " + (userAnswer ? "checked" : "") + " disabled>");
+                            row.append("</td>\n");
+                            row.append("<td width=\"45%\" bgcolor=#FAF5F5 style=\"font-family:Arial; color:#48050C\">\n");
+                            row.append(answer.getText());
+                            //row.append("<a href=\"sdf\" target=\"_blank\">" +  answer.getText() + "</a>");
+                            row.append("</td>\n");
+                            if (counter % 2 == 0 || !answerIterator.hasNext()) {
+                                if (counter % 2 != 0) {
+                                    row.append("<td width=\"50%\" colspan=\"2\" bgcolor=#FAF5F5></td>");
+                                }
+                                row.insert(0, "<tr>\n");
+                                row.append("</tr>\n");
+                                sb.append(row);
+                                row = new StringBuilder();
+                            }
+                        }
+                        sb.append("</table>\n");
+                sb.append("                    <form method=\"POST\" action=\"doActive\">\n" +
+        "                        <input type=\"hidden\" name=\"id\" value=\"" + theme.getId() + "\">\n" +
+        "                        <input type=\"hidden\" name=\"action\" value=\"doTheme\">\n" +
+        "                        <input type=\"hidden\" name=\"subAction\" value=\"next\">\n" +
+        "                        <input type=\"Submit\" value=\"Далее\">\n" +
+        "                    </form>\n" +
+        "");
+                        
+                        break;
                 }
                 break;
         }
@@ -202,24 +254,33 @@ public class Exam implements Iterator<Question> {
         
     }
     
-    public void processWorkflow(String subAction) {
+    public void processWorkflow(String subAction, Map<String, String[]> requestMap) {
         if (subAction == null)
             return;
         switch (subAction) {
             case "next":
                 this.next();
                 break;
-            case "showAnswer":
+            case "showAnswer": //показать ответ в общем вопросе
                 qState = QuestionState.AnswerShowed;
                 break;
-            case "yesAnswer":
+            case "yesAnswer": //подтверждение верного ответа на общий вопрос
                 next();
                 break;
-            case "noAnswer":
+            case "noAnswer": //подтверждение неверного ответа на общий вопрос
                 next();
                 break;
-            case "testAnswer":
-                next();
+            case "testAnswer": //произведен ответ на тестовый вопрос
+                for (Map.Entry<String, Object> entry : Utils.translateWebData(requestMap).entrySet()) {
+                    String[] splitted = entry.getKey().split("_");
+                    if (splitted.length == 2 && splitted[0].equals("answer")) {
+                        int answerId = Integer.parseInt(splitted[1]);
+                        if (((String)entry.getValue()).equals("on")) {
+                            userAnswers.put(answerId, Boolean.TRUE);
+                        }
+                    }
+                }
+                qState = QuestionState.TestAnswered;
                 break;
         }
     }
@@ -234,7 +295,7 @@ public class Exam implements Iterator<Question> {
     }
     
     private enum QuestionState {
-        New, AnswerShowed
+        New, AnswerShowed, TestAnswered
     }
     
     

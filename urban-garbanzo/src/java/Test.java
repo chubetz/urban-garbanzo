@@ -9,6 +9,8 @@
  * @author d.gorshenin
  */
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 class Test {
     
@@ -42,6 +44,15 @@ class Test {
         //d = "asd", f = "dfg";
         double ff = 5.6d;
         //long dd = 454.90L;
+        Map<Integer, Boolean> mmm= new HashMap<Integer, Boolean>();
+        mmm.put(0, false);
+        mmm.put(1, true);
+        mmm.put(2, true);
+        boolean b0 = mmm.get(0), b1 = mmm.get(1), b2 = mmm.get(2);
+        System.out.println(b0);
+        System.out.println(b1);
+        //System.out.println(mmm.get(2));
+        
         
         
     }

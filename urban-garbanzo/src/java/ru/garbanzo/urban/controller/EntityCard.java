@@ -41,7 +41,7 @@ public class EntityCard extends HttpServlet {
                 case "theme":
                     url = "/themeCard.jsp";
                     request.setAttribute("theme", Theme.getById(request.getParameter(parName)));
-                    request.setAttribute("title", "Карточка темы");
+                    request.setAttribute("title", "Профиль темы");
                     break;
                 
             }
