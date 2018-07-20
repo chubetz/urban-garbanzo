@@ -217,9 +217,9 @@ public class Exam implements Iterator<Question> {
                                 userAnswer = false;
                             }
                             if (userAnswer == answer.getCorrect()) { //пользователь ответил верно
-                                row.append("<td bgcolor=#3EAA08 width=\"5%\">\n");
+                                row.append("<td bgcolor=#3EAA08 onclick=\"getCommentHTML('" + answer.getId() + "', " + userAnswer + ")\" width=\"5%\">\n");
                             } else {
-                                row.append("<td bgcolor=#DA1617 width=\"5%\">\n");
+                                row.append("<td bgcolor=#DA1617 onclick=\"getCommentHTML('" + answer.getId() + "', " + userAnswer + ")\" width=\"5%\">\n");
                             }
                             row.append("<input type=\"checkbox\" " + (userAnswer ? "checked" : "") + " disabled>");
                             row.append("</td>\n");

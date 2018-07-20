@@ -10,6 +10,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>${title}</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="colorbox/jquery.colorbox-min.js"></script>
+        <script type="text/javascript">
+            function getCommentHTML(id, userAnswer) {
+                 url = "directInfo?entity=answer&field=commentHTML&id=" + id + "&userAnswer=" + userAnswer;
+                 jQuery.colorbox({href:url});
+            }
+        </script>
     </head>
     <body>
 <%@ include file="header.jsp" %>

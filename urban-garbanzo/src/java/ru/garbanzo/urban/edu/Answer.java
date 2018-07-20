@@ -148,4 +148,38 @@ public class Answer extends Entity {
         return this.getBool("correct");
     }
     
+    public String getComment() {
+        return this.getStr("comment");
+    }
+
+    public String getCommentHTML(boolean userAnswer) {
+        StringBuilder sb = new StringBuilder();
+        String message = "";
+        if (getCorrect() == false )
+            if (userAnswer != getCorrect())
+                message = "<p style=\"color:red\">Этот ответ не следовало выбирать</p>";
+            else
+                message = "<p style=\"color:green\">Вы правильно не отметили этот ответ</p>";
+        else 
+            if (userAnswer != getCorrect())
+                message = "<p style=\"color:red\">Следовало выбрать этот ответ</p>";
+            else
+                message = "<p style=\"color:green\">Вы правильно отметили этот ответ</p>";
+        
+        sb.append("<b>"+message+"</b>");
+        sb.append(getComment());
+        return sb.toString();
+    }
+    
+    public static Answer getById(Object id){
+        if (id instanceof String)
+            return getMap().get(Integer.parseInt((String)id));
+        else
+            return getMap().get((Integer)id);
+    }
+
+    public static Answer getById(int id){
+        return Answer.getById(new Integer(id));
+    }
+
 }
