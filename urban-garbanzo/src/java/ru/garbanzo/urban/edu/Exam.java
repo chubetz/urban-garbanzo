@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
+import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.exception.NoMoreQuestionException;
 import ru.garbanzo.urban.util.Utils;
 
@@ -28,7 +29,7 @@ public class Exam implements Iterator<Question> {
     private QuestionState qState;
     private int counter;
     private Theme theme;
-    private Map<Integer, Boolean> userAnswers;
+    private Map<Integer, Boolean> answersFromFront, userAnswers = new HashMap<Integer, Boolean>();
     private List<Answer> answers;
     
     @Override
@@ -45,7 +46,7 @@ public class Exam implements Iterator<Question> {
             throw new NoMoreQuestionException();
         }
         qState = QuestionState.New;
-        userAnswers = new HashMap<Integer, Boolean>();
+        answersFromFront = new HashMap<Integer, Boolean>();
         answers = current.getAnswersShuffled();
         return current;
 
@@ -142,7 +143,7 @@ public class Exam implements Iterator<Question> {
                         sb.append("                    <form method=\"POST\" action=\"doActive\">\n" +
 "                        <input type=\"hidden\" name=\"id\" value=\"" + getTheme().getId() + "\">\n" +
 "                        <input type=\"hidden\" name=\"action\" value=\"doTheme\">\n" +
-"                        <input type=\"hidden\" name=\"subAction\" value=\"yesAnswer\">\n" +
+"                        <input type=\"hidden\" name=\"subAction\" value=\"rightAnswer\">\n" +
 "                        <input type=\"Submit\" value=\"Да\">\n" +
 "                    </form>\n" +
 "");
@@ -151,7 +152,7 @@ public class Exam implements Iterator<Question> {
                         sb.append("                    <form method=\"POST\" action=\"doActive\">\n" +
 "                        <input type=\"hidden\" name=\"id\" value=\"" + getTheme().getId() + "\">\n" +
 "                        <input type=\"hidden\" name=\"action\" value=\"doTheme\">\n" +
-"                        <input type=\"hidden\" name=\"subAction\" value=\"noAnswer\">\n" +
+"                        <input type=\"hidden\" name=\"subAction\" value=\"wrongAnswer\">\n" +
 "                        <input type=\"Submit\" value=\"Нет\">\n" +
 "                    </form>\n" +
 "");
@@ -212,7 +213,7 @@ public class Exam implements Iterator<Question> {
                             Answer answer = answerIterator.next();
                             boolean userAnswer;
                             try {
-                                userAnswer =  userAnswers.get(answer.getId());
+                                userAnswer =  answersFromFront.get(answer.getId());
                             } catch (NullPointerException ex) {
                                 userAnswer = false;
                             }
@@ -264,22 +265,34 @@ public class Exam implements Iterator<Question> {
             case "showAnswer": //показать ответ в общем вопросе
                 qState = QuestionState.AnswerShowed;
                 break;
-            case "yesAnswer": //подтверждение верного ответа на общий вопрос
+            case "rightAnswer": //подтверждение верного ответа на общий вопрос
+                userAnswers.put(current.getId(), Boolean.TRUE);
                 next();
                 break;
-            case "noAnswer": //подтверждение неверного ответа на общий вопрос
+            case "wrongAnswer": //подтверждение неверного ответа на общий вопрос
+                userAnswers.put(current.getId(), Boolean.FALSE);
                 next();
                 break;
             case "testAnswer": //произведен ответ на тестовый вопрос
-                for (Map.Entry<String, Object> entry : Utils.translateWebData(requestMap).entrySet()) {
+                Map<String, Object> answerData = Utils.translateWebData(requestMap);
+                for (Map.Entry<String, Object> entry : answerData.entrySet()) {
                     String[] splitted = entry.getKey().split("_");
                     if (splitted.length == 2 && splitted[0].equals("answer")) {
                         int answerId = Integer.parseInt(splitted[1]);
                         if (((String)entry.getValue()).equals("on")) {
-                            userAnswers.put(answerId, Boolean.TRUE);
+                            answersFromFront.put(answerId, Boolean.TRUE);
                         }
                     }
                 }
+                boolean userAnsweredRight = true;
+                for (Answer answer : current.getAnswerMap().values()) {
+                    boolean usAns = answersFromFront.get(answer.getId()) != null && answersFromFront.get(answer.getId());
+                    if (answer.getCorrect() != usAns) {
+                       userAnsweredRight = false;
+                       break;
+                    }
+                }
+                userAnswers.put(current.getId(), userAnsweredRight);
                 qState = QuestionState.TestAnswered;
                 break;
         }
@@ -292,6 +305,15 @@ public class Exam implements Iterator<Question> {
 "                        <input type=\"submit\" value=\"Завершить\">\n" +
 "                    </form>\n" +
 "";
+    }
+    
+    public void saveStatistics() throws JDBCException {
+        for (Map.Entry<Integer, Boolean> entry : userAnswers.entrySet()) {
+            Map<String, Object> data = new HashMap<String, Object>();
+            data.put("questionId", entry.getKey());
+            data.put("correct", entry.getValue());
+            UserAnswer.saveUserAnswer(-1, data);
+        }
     }
     
     private enum QuestionState {

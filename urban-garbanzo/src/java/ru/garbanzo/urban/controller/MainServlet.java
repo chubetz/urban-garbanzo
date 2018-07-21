@@ -39,6 +39,7 @@ import ru.garbanzo.urban.edu.Question;
 import ru.garbanzo.urban.edu.Realm;
 import ru.garbanzo.urban.edu.Storage;
 import ru.garbanzo.urban.edu.Theme;
+import ru.garbanzo.urban.edu.UserAnswer;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
 
@@ -269,6 +270,8 @@ public class MainServlet extends HttpServlet {
                         sb.append("CREATE TABLE ThemeQuestion (themeId int, questionId int, PRIMARY KEY(themeId, questionId));\r\n");
                         sb.append("DROP TABLE Image IF EXISTS;\r\n");
                         sb.append("CREATE TABLE Image (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, filename VARCHAR(2000), extension VARCHAR(10));\r\n");
+                        sb.append("DROP TABLE UserAnswer IF EXISTS;\r\n");
+                        sb.append("CREATE TABLE UserAnswer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean);\r\n");
                     for (Realm r: Realm.getMap().values()) {
                         Map<String, Object> state = r.getState();
                         sb.append("INSERT INTO Realm (id");
@@ -394,6 +397,28 @@ public class MainServlet extends HttpServlet {
                     for (Image i: Image.getMap().values()) {
                         Map<String, Object> state = i.getState();
                         sb.append("INSERT INTO Image (id");
+                        for (String s: state.keySet()) {
+                            sb.append("," + s);
+                        }
+                        sb.append(") OVERRIDING SYSTEM VALUE VALUES (" + i.getId());
+                        for (Object o: state.values()) {
+                            String ooo;
+                            if (o instanceof String) {
+                                o = ((String)o).replace("'","''");
+                                ooo = "'" + o + "'";
+                            } else if (o == null)
+                                ooo = "NULL";
+                            else
+                                ooo=o.toString();
+                            sb.append("," + ooo);
+                        }
+                        sb.append(");\r\n");
+
+                    }
+
+                    for (UserAnswer i: UserAnswer.getMap().values()) {
+                        Map<String, Object> state = i.getState();
+                        sb.append("INSERT INTO UserAnswer (id");
                         for (String s: state.keySet()) {
                             sb.append("," + s);
                         }

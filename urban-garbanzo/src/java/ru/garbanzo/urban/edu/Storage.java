@@ -39,6 +39,7 @@ public class Storage {
     private Map<Integer, Realm> realmMap;    
     private Map<Integer, Theme> themeMap;    
     private Map<Integer, Image> imageMap;    
+    private Map<Integer, UserAnswer> userAnswerMap;    
     private Set<ThemeQuestion> themeQuestionSet;    
     private Map<Integer, Map<Integer, Question>> questionMapForTheme;    
     private Map<Integer, Map<Integer, Question>> questionMapForRealm;    
@@ -137,6 +138,10 @@ public class Storage {
         return imageMap;
     }
 
+    Map<Integer, UserAnswer> getUserAnswerMap() {
+        return userAnswerMap;
+    }
+
     private Storage() {}
     
     static Storage getStorage() {
@@ -195,6 +200,9 @@ public class Storage {
     }
     void register(Image image) {
         imageMap.put(image.getId(), image);
+    }
+    void register(UserAnswer userAnswer) {
+        userAnswerMap.put(userAnswer.getId(), userAnswer);
     }
     void unbind(Theme theme, Realm realm) {
         provideDefaultMap(themeMapForRealm, realm.getId());
@@ -301,6 +309,15 @@ public class Storage {
                 image.setPrimaryKey(entity.getPrimaryKey());
                 image.setState(entity.getState());
                 storage.register(image);
+            }
+
+            storage.userAnswerMap = new HashMap<Integer, UserAnswer>();
+            data = JDBCUtils.loadEntitiesData(new UserAnswer(-1)); //изображения
+            for (DBEntity entity : data) {
+                UserAnswer userAnswer = new UserAnswer(-1);
+                userAnswer.setPrimaryKey(entity.getPrimaryKey());
+                userAnswer.setState(entity.getState());
+                storage.register(userAnswer);
             }
 
         } catch (JDBCException ex) {

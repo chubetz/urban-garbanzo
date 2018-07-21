@@ -154,6 +154,7 @@ public class Answer extends Entity {
 
     public String getCommentHTML(boolean userAnswer) {
         StringBuilder sb = new StringBuilder();
+        sb.append("<table cellpadding=10 bgcolor=white border=1 width=\"400\"><tr><td>");
         String message = "";
         if (getCorrect() == false )
             if (userAnswer != getCorrect())
@@ -168,6 +169,7 @@ public class Answer extends Entity {
         
         sb.append("<b>"+message+"</b>");
         sb.append(getComment());
+        sb.append("</td></tr></table>");
         return sb.toString();
     }
     

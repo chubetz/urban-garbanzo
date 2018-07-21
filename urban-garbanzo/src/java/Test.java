@@ -50,7 +50,7 @@ class Test {
         mmm.put(2, true);
         boolean b0 = mmm.get(0), b1 = mmm.get(1), b2 = mmm.get(2);
         System.out.println(b0);
-        System.out.println(b1);
+        System.out.println(Boolean.FALSE);
         //System.out.println(mmm.get(2));
         
         

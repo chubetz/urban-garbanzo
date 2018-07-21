@@ -10,6 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import ru.garbanzo.urban.edu.Exam;
 import ru.garbanzo.urban.edu.Theme;
 import ru.garbanzo.urban.exception.ExamException;
+import ru.garbanzo.urban.exception.JDBCException;
 
 /**
  *
@@ -37,10 +38,10 @@ public class State {
 
     }
     
-    public Exam stopExam(Theme theme) {
+    public Exam stopExam(Theme theme) throws JDBCException {
         Exam exam = themeExams.get(theme);
         if (exam != null) {
-            
+            exam.saveStatistics();
         }   
         return themeExams.remove(theme);
     }

@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.NoSuchElementException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import ru.garbanzo.urban.edu.Exam;
 import ru.garbanzo.urban.edu.Theme;
 import ru.garbanzo.urban.exception.ExamException;
+import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.exception.NoMoreQuestionException;
 import ru.garbanzo.urban.users.State;
 
@@ -26,7 +29,7 @@ import ru.garbanzo.urban.users.State;
  */
 public class Activator extends HttpServlet {
     
-    private void stopTheme(Theme theme, HttpServletRequest request) {
+    private void stopTheme(Theme theme, HttpServletRequest request) throws JDBCException {
         State state = State.getUserState();
         Exam exam = state.stopExam(theme);
         request.setAttribute("exam", exam);
@@ -66,10 +69,12 @@ public class Activator extends HttpServlet {
                         stopTheme(theme, request);
                         url = "/examFinished.jsp";
                     } catch (Exception ee) {
+                        Logger.getLogger(Activator.class.getName()).log(Level.SEVERE, null, ee);
                         request.setAttribute("exception", ee);
                         url = "/examError.jsp";
                     }
                 } catch (Exception ee) {
+                    Logger.getLogger(Activator.class.getName()).log(Level.SEVERE, null, ee);
                     request.setAttribute("exception", ee);
                     url = "/examError.jsp";
                 }
@@ -79,7 +84,13 @@ public class Activator extends HttpServlet {
                 try {
                     stopTheme(theme, request);
                     url = "/examFinished.jsp";
+                } catch (JDBCException ex) {
+                    Logger.getLogger(Activator.class.getName()).log(Level.SEVERE, null, ex);
+                    url = "/db_error.jsp";
+                    request.setAttribute("exception", ex);
+                    break;
                 } catch (Exception ee) {
+                    Logger.getLogger(Activator.class.getName()).log(Level.SEVERE, null, ee);
                     request.setAttribute("exception", ee);
                     url = "/examError.jsp";
                 }
@@ -94,6 +105,7 @@ public class Activator extends HttpServlet {
                     request.setAttribute("examResult", "Проверка отменена");
                     url = "/examFinished.jsp";
                 } catch (Exception ee) {
+                    Logger.getLogger(Activator.class.getName()).log(Level.SEVERE, null, ee);
                     request.setAttribute("exception", ee);
                     url = "/examError.jsp";
                 }

@@ -359,8 +359,25 @@ Spring
 			1) подкраска чекбоксов - красным и зеленым - готово
 			2) открывать комментарий по щелчку на ответе - готово
 			3) кнопка далее - готово
-			4) поместить (в js-функции?) вывод в таблицу, чтобы красиво большой объем текста отображался
+			4) поместить (в js-функции?) вывод в таблицу, чтобы красиво большой объем текста отображался - готово
 		6) сохранять статистику по вопросам - пока по вопросам целиком
+			1) Сущность UserAnswer < Question : id, isCorrect boolean
+				1) в скрипт заметок
+				2) defaultState
+				3) в storage
+				4) getMap
+				5) в скрипт export
+			2) Сущность ThemeExam < Theme: date java.sql.Date, percentage int
+				1) в скрипт заметок
+				2) defaultState
+				3) в storage
+				4) getMap
+				5) в скрипт export
+			3) Запись статистики по вопросам - готово
+			4) запись статистики по экзаменам
+			5) после прохождения экзамена - отображать результаты
+			6) после прерывания экзамена - показывать красивую страничку.
+			7) на карточке темы - пока что показывать дату и процентаж последнего экзамена
 		) отмена экзамена
 		) сделать так, чтобы всегда проваливаться на то состояние, в котором оставил.
 		) в конце - завершать экзамен, сохранять статистику
@@ -384,6 +401,8 @@ if (userAnswer != getCorrect())
 
 
 -------
+
+!) рефакторинг работы с БД-сущностями
 
 !) переработать юзабилити!! Например - удобное создание вопросов прямо из темы
 
@@ -420,6 +439,10 @@ if (userAnswer != getCorrect())
 12) Сделать MockAnswer?
 
 4.9) Сделать утилиту поиска элемента в коллекции/массиве
+
+*) возможность очистки статистики по вопросам и экзаменам
+
+*) График процента выполнения темы
 
 *) directInfo должен быть доступен только по своим вопросам! (в многопольз. режиме)
 
@@ -630,7 +653,8 @@ CREATE TABLE ThemeQuestion (themeId int, questionId int, PRIMARY KEY(themeId, qu
 DROP TABLE Image IF EXISTS;
 CREATE TABLE Image (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, filename VARCHAR(2000), extension VARCHAR(10));
 
-) сущность Image: id int, filename varchar(100), extension varchar(10)
+DROP TABLE UserAnswer IF EXISTS;
+CREATE TABLE UserAnswer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean);
 
 
 ============= поразмыслить 
