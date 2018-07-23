@@ -52,6 +52,7 @@ class Test {
         System.out.println(b0);
         System.out.println(Boolean.FALSE);
         //System.out.println(mmm.get(2));
+        int папуся = 4;
         
         
         

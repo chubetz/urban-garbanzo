@@ -79,6 +79,8 @@ https://stackoverflow.com/questions/2422468/how-to-upload-files-to-server-using-
 
 Calendar!
 
+регекспы!
+
 JUnit?
 
 Javadoc
@@ -749,8 +751,8 @@ Exam Title: Java SE 8 Programmer I
 
 Список ошибок: https://www.selikoff.net/java-oca-8-programmer-i-study-guide/
 
-p.27
-Identifiers
+p.29
+Understanding Default Initialization of Variables
 ======
 собирать задачки в интернете. 
 ======

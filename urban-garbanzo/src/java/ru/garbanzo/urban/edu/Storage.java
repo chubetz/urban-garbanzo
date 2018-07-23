@@ -19,6 +19,7 @@ import static ru.garbanzo.urban.edu.Question.COMMON_TYPE;
 import static ru.garbanzo.urban.edu.Question.NB_TYPE;
 import static ru.garbanzo.urban.edu.Question.TEST_TYPE;
 import ru.garbanzo.urban.exception.JDBCException;
+import ru.garbanzo.urban.users.State;
 import ru.garbanzo.urban.util.Utils;
 
 /**
@@ -246,6 +247,7 @@ public class Storage {
 
     public static void init() {
         storage = new Storage();
+        State.resetState(storage);
         List<DBEntity> data;
 
         try {

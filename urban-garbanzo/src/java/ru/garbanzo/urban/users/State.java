@@ -8,6 +8,7 @@ package ru.garbanzo.urban.users;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import ru.garbanzo.urban.edu.Exam;
+import ru.garbanzo.urban.edu.Storage;
 import ru.garbanzo.urban.edu.Theme;
 import ru.garbanzo.urban.exception.ExamException;
 import ru.garbanzo.urban.exception.JDBCException;
@@ -18,6 +19,7 @@ import ru.garbanzo.urban.exception.JDBCException;
  */
 public class State {
     private static State state;
+    private static Storage storage;
     
     private Map<Theme, Exam> themeExams = new ConcurrentHashMap<Theme, Exam>();
     
@@ -25,6 +27,13 @@ public class State {
         if (state == null)
             state = new State();
         return state;
+    }
+    
+    public static void resetState(Storage storage) {
+        if (storage != null && State.storage != storage) {
+            State.storage = storage;
+            state = null;
+        }
     }
     
     public Exam getExam(Theme theme) throws ExamException {
