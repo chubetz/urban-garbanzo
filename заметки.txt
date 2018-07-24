@@ -738,6 +738,8 @@ http://yan.zlobin.name/86
 
 - если пользователь на вопросы темы отвечал плохо, программа может предложить ему ознакомиться с учебником (Chapter)
 
+- функционал избранных вопросов - чтобы легко их находить и к ним переходить
+
 
 Вопросы для меня:
 что будет, если использовать try без catch?
@@ -753,8 +755,8 @@ Exam Title: Java SE 8 Programmer I
 
 Список ошибок: https://www.selikoff.net/java-oca-8-programmer-i-study-guide/
 
-p.29
-Understanding Default Initialization of Variables
+p.34
+Ordering Elements in a Class
 ======
 собирать задачки в интернете. 
 ======

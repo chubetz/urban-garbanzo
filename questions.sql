@@ -25,6 +25,7 @@ INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (1,4,'
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (2,0,'вапвапвап',3.45);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (3,0,'вавап',4.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (4,0,'К собеседованию',100.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (5,4,'Пополняемые тесты',0.0);
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (0,4,0,'Тесты экзамена предполагают обычно 5 или 6 ответов, со множественным выбором.');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (1,4,0,'Нельзя реализовать в классе два интерфейса с общим дефолтным методом, если не переопределить этот метод в классе.');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (2,4,2,'<p>Перечислите 3 вида комментариев в Java</p>');
@@ -175,8 +176,20 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (63,4
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (120,63,'hollywood@vine',false,'@ - не входит в число допустимых символов');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (121,63,'*$coffee',false,'*&nbsp;- не входит в число допустимых символов');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (122,63,'public',false,'ключевое слово');
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (64,4,0,'На экзамене имеет смысл проверять корректность идентификаторов. Если имя идентификатора не соответствует правилам, можно сразу выбирать пункт "Doesn''t not compile".');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (64,4,0,'На экзамене имеет смысл проверять корректность идентификаторов. Если имя идентификатора не соответствует правилам, можно сразу выбирать пункт "Doesn''t not compile".<br /><br />Также следует проверить области видимости переменных, чтобы не думать над отвлекающим сложным вопросом, а сразу отвечать "Doesn''t compile"');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (65,0,0,'В идентификаторах Java могут использоваться все буквы Unicode (~45000 штук), а также несколько сотен не-арабских цифр.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (66,4,1,'Какие фрагменты кода из нижеперечисленных скомпилируются?');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (128,66,'<p>public class Mouse {<br />&nbsp;static int MAX_LENGTH = 5;<br />&nbsp;int length;</p>
+<p>&nbsp;public void grow(int inches) {<br />&nbsp;&nbsp;if (length &lt; MAX_LENGTH) {<br />&nbsp;&nbsp;&nbsp;int newSize = length + inches;<br />&nbsp;&nbsp;&nbsp;length = newSize;<br />&nbsp;&nbsp;}<br />&nbsp;}<br />}</p>',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (123,66,'4: public int notValid() {<br />5:&nbsp;&nbsp; int y = 10;<br />6:&nbsp;&nbsp; int x;<br />7:&nbsp;&nbsp; int reply = x + y; // DOES NOT COMPILE<br />8:&nbsp;&nbsp; return reply;<br />9: }',false,'Не инициализирована переменная <strong>x</strong>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (124,66,'public int valid() {<br />&nbsp; int y = 10;<br />&nbsp; int x;&nbsp;<br />&nbsp; x = 3;<br />&nbsp; int reply = x + y;<br />&nbsp; return reply;<br />}',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (125,66,'public void findAnswer(boolean check) {<br />&nbsp;int answer;<br />&nbsp;int onlyOneBranch;<br />&nbsp;if (check) {<br />&nbsp;&nbsp;onlyOneBranch = 1;<br />&nbsp;&nbsp;answer = 1;<br />&nbsp;} else {<br />&nbsp;&nbsp;answer = 2;<br />&nbsp;}<br />&nbsp;System.out.println(answer);<br />&nbsp;System.out.println(onlyOneBranch);<br />}',false,'Переменная <strong>onlyOneBranch</strong> может оказаться неинициализорованной в случае check==false');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (127,66,'public void eatIfHungry(boolean hungry) {<br />&nbsp;if (hungry) {<br />&nbsp;&nbsp;int bitesOfCheese = 1;<br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;boolean teenyBit = true;<br />&nbsp;&nbsp;&nbsp;System.out.println(bitesOfCheese);<br />&nbsp;&nbsp;}<br />&nbsp;}<br />&nbsp;System.out.println(teenyBit);<br />}',false,'Переменная <strong>teenyBit</strong> не видна за пределами своего блока.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (67,4,2,'Назовите все значения по умолчанию для переменных разных типов.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (126,67,'<strong>boolean: <em>false</em><br />byte, short, int, long: </strong><strong><em>0<br /></em>float, double: <em>0.0</em><br />char: </strong><strong><em>''\u0000''</em><br /></strong><strong>Объектные: <em>null</em></strong>',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (68,4,0,'<p>Во фрагменте</p>
+<p>&nbsp;public void eat(int piecesOfCheese) {<br />&nbsp;&nbsp;int bitesOfCheese = 1;<br />&nbsp;}</p>
+<p>ровно две локальные переменные.</p>');
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,23);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,24);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,27);
@@ -217,8 +230,12 @@ INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,62);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,63);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,64);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,28);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,67);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,68);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (4,65);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,58);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,64);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (5,66);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,2);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,3);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,4);
