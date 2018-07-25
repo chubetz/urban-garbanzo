@@ -22,7 +22,7 @@ INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (6,'commo
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (7,'history','История');
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (0,4,'Основы',1.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (1,4,'Особенности экзамена',0.0);
-INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (2,0,'вапвапвап',3.45);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (2,4,'Задания к теме',1.1);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (3,0,'вавап',4.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (4,0,'К собеседованию',100.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (5,4,'Пополняемые тесты',0.0);
@@ -190,13 +190,107 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (67,4
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (68,4,0,'<p>Во фрагменте</p>
 <p>&nbsp;public void eat(int piecesOfCheese) {<br />&nbsp;&nbsp;int bitesOfCheese = 1;<br />&nbsp;}</p>
 <p>ровно две локальные переменные.</p>');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (69,4,0,'Комментарии могут располагаться в любом месте кода');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (70,4,2,'Укажите основные элементы файла с java-программой и их расположение друг отностительно друга.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (129,70,'<strong>Объявление пакета</strong>: первая строка<br /><strong>Объявление импорта</strong>:&nbsp; сразу после объявления пакета<br /><strong>Объявление класса</strong>:&nbsp; сразу после объявления импорта<br /><strong>Объявление поля класса</strong>: в любом месте внутри класса, но не внутри вложенных блоков<br /><strong>Объявление&nbsp;метода класса</strong>: в любом месте внутри класса, но не внутри вложенных блоков',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (71,4,0,'В одном&nbsp;файле может быть объявлено несколько классов, но только один из них может быть <strong>public</strong>, причем в этом случае имя файла должно совпадать с именем класса. В файле может и не быть public-классов.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (72,4,0,'Метод <strong>System.gc()</strong> не запускает сборку мусора, а только рекомендует виртуальной машине ее запустить. Рекомендация может быть проигнорирована.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (73,4,0,'Отвечать на вопрос на тему сборки мусора лучше всего с карандашом и бумагой - если искать решение в уме, то легко ошибиться.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (74,4,2,'Какие объекты и в какой момент станут доступны для сборщика мусора?<br /><br />1: public class Scope {<br />2: &nbsp;public static void main(String[] args) {<br />3: &nbsp;&nbsp;String one, two;<br />4: &nbsp;&nbsp;one = new String("a");<br />5: &nbsp;&nbsp;two = new String("b");<br />6: &nbsp;&nbsp;one = two;<br />7: &nbsp;&nbsp;String three = one;<br />8: &nbsp;&nbsp;one = null;<br />9: } }');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (130,74,'"a" - после строки 6;<br />"b" - после отработки всего метода.',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (75,4,0,'Метод <strong>finalize()</strong> вызывается у объекта, когда он попадает в сборку мусора, причем если произошел сбой в работе gc и объект уничтожается повторно спустя некоторе время, вызов метода происходит только единожды - при первой попытке удаления. Таким образом, метод finalize() лучше не использовать, полагаться на него нельзя: либо он вообще не вызовется (JVM не сочтет необходимым вызывать gc), либо вызовется некорректно.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (76,4,0,'<p>Категорически нельзя делать следующее:</p>
+<p>public class Finalizer {<br />&nbsp;private static List objects = new ArrayList();<br />&nbsp;protected void finalize() {<br />&nbsp;&nbsp;objects.add(this); // Don''t do this<br />&nbsp;} <br />}</p>
+<p>При первой попытке удаления JVM поймет, что в статической переменной осталась ссылка на объект, и не удалит его. При повторном удалении (например, когда Finalizer.objects станет null) метод finalize(), в котором может быть какая-то важная логика, просто не будет запущен.</p>');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (77,4,0,'Инкапсуляция - защита данных от нежелательного доступа/модификации.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (78,4,1,'Укажите корректные идентификаторы Java.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (131,78,'A$B',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (132,78,'_helloWorld',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (133,78,'true',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (134,78,'java.lang',false,'в идентификаторах не может использоваться символ "."');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (135,78,'Public',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (136,78,'1980_s',false,'первым символом должна быть буква, $ или _');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (79,4,1,'Каким будет вывод следующей программы?<br /><br />1: public class WaterBottle {<br />2: &nbsp;private String brand;<br />3: &nbsp;private boolean empty;<br />4: &nbsp;&nbsp;public static void main(String[] args) {<br />5: &nbsp;&nbsp;&nbsp;WaterBottle wb = new WaterBottle();<br />6: &nbsp;&nbsp;&nbsp;System.out.print("Empty = " + wb.empty);<br />7: &nbsp;&nbsp;&nbsp;System.out.print(", Brand = " + wb.brand);<br />8: } }');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (137,79,'Ошибка компиляции в строке 6',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (138,79,'Ошибка компиляции в строке 7',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (139,79,'Вывода не будет',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (140,79,'Empty = false, Brand = null',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (141,79,'Empty = false, Brand =',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (142,79,'Empty = null, Brand = null',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (80,4,1,'<p>Which of the following are true? (Choose all that apply)</p>
+<p>4: short numPets = 5;<br />5: int numGrains = 5.6;<br />6: String name = "Scruffy";<br />7: numPets.length();<br />8: numGrains.length();<br />9: name.length();</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (144,80,'<p>Line 5 generates a compiler error.</p>',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (145,80,'<p>Line 6 generates a compiler error.</p>',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (146,80,'<p>Line 7 generates a compiler error.</p>',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (147,80,'<p>Line 8 generates a compiler error.</p>',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (148,80,'<p>Line 9 generates a compiler error.</p>',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (149,80,'<p>The code compiles as is.</p>',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (143,80,'<p>Line 4 generates a compiler error.</p>',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (81,4,1,'<p>Given the following class, which of the following is true? (Choose all that apply)</p>
+1: public class Snake {<br />2:<br />3: &nbsp;public void shed(boolean time) {<br />4:<br />5: &nbsp;&nbsp;if (time) {<br />6:<br />7: &nbsp;&nbsp;}<br />8: &nbsp;&nbsp;System.out.println(result);<br />9:<br />10: }<br />11:}');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (150,81,'If String result = "done"; is inserted on line 2, the code will compile.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (151,81,'If String result = "done"; is inserted on line 4, the code will compile.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (152,81,'If String result = "done"; is inserted on line 6, the code will compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (153,81,'If String result = "done"; is inserted on line 9, the code will compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (154,81,'None of the above changes will make the code compile.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (82,4,1,'<p>Given the following classes, which of the following can independently replace INSERT IMPORTS HERE to make the code compile? (Choose all that apply)<br /><br />package aquarium;<br />public class Tank { }</p>
+<p>package aquarium.jellies;<br />public class Jelly { }</p>
+<p>package visitor;<br />INSERT IMPORTS HERE<br />public class AquariumVisitor {<br />&nbsp;public void admire(Jelly jelly) { } }</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (160,82,'None of these can make the code compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (155,82,'import aquarium.*;',false,'импортирует только классы&nbsp;из aquarium, игнорируя aquarium.jellies');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (156,82,'import aquarium.*.Jelly;',false,'неверный импорт: <em>wildcards</em> могут использоваться только в конце строки импорта.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (157,82,'import aquarium.jellies.Jelly;',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (158,82,'import aquarium.jellies.*;',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (159,82,'import aquarium.jellies.Jelly.*;',false,'неверный импорт: нельзя импортировать члены класса регулярным импортом');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (83,4,1,'<p>Given the following classes, what is the maximum number of imports that can be removed and have the code still compile?<br /><br />package aquarium; public class Water { }</p>
+<p>package aquarium;<br />import java.lang.*;<br />import java.lang.System;<br />import aquarium.Water;<br />import aquarium.*;<br />public class Tank {<br />&nbsp;public void print(Water water) {<br />&nbsp;&nbsp;System.out.println(water); } }</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (161,83,'0',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (162,83,'1',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (163,83,'2',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (164,83,'3',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (165,83,'4',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (166,83,'Does not compile',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (84,4,1,'<p>Given the following classes, which of the following snippets can be inserted in place of INSERT IMPORTS HERE and have the code compile? (Choose all that apply)<br /><br />package aquarium;<br />public class Water {<br />&nbsp;boolean salty = false;<br />}</p>
+<p>package aquarium.jellies;<br />public class Water {<br />&nbsp;boolean salty = true;<br />}</p>
+<p>package employee;<br />INSERT IMPORTS HERE<br />public class WaterFiller {<br />&nbsp;Water water;<br />}</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (167,84,'import aquarium.*;',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (168,84,'import aquarium.Water;<br />import aquarium.jellies.*;',true,'импорт конкретного класса сильнее импорта с wildcard, поэтому двусмысленности здесь не будет.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (169,84,'import aquarium.*;<br />import aquarium.jellies.Water;',true,'импорт конкретного класса сильнее импорта с wildcard, поэтому двусмысленности здесь не будет.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (170,84,'import aquarium.*;<br />import aquarium.jellies.*;',false,'неопределенность&nbsp;- оба пакета имеют класс Water');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (171,84,'import aquarium.Water;<br />import aquarium.jellies.Water;',false,'компилятор не поймет, какой класс &nbsp;Water использовать');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (172,84,'None of these imports can make the code compile.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (85,4,1,'Given the following class, which of the following calls print out Blue Jay? (Choose all that apply)<br /><br />public class BirdDisplay {<br />&nbsp;public static void main(String[] name) {<br />&nbsp;&nbsp;System.out.println(name[1]);<br />} }');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (176,85,'java BirdDisplay "Blue Jay" Sparrow',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (177,85,'java BirdDisplay.class Sparrow "Blue Jay"',false,'будет выведено Error: Could not find or load main class BirdDisplay.class');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (178,85,'java BirdDisplay.class "Blue Jay" Sparrow',false,'будет выведено Error: Could not find or load main class BirdDisplay.class');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (179,85,'Does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (173,85,'java BirdDisplay Sparrow Blue Jay',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (174,85,'java BirdDisplay Sparrow "Blue Jay"',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (175,85,'java BirdDisplay Blue Jay Sparrow',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (86,4,1,'Which of the following legally fill in the blank so you can run the main() method from the command line? (Choose all that apply)<br /><br />public static void main(_______)');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (180,86,'String[] _names',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (181,86,'String[] 123',false,'неверное имя аргумента');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (182,86,'String abc[]',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (183,86,'String _Names[]',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (184,86,'String... $n',true,'varargs допускаются вместо массива');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (185,86,'String names',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (186,86,'None of the above.',false,'');
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,23);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,24);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (2,78);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (2,79);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (2,80);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,27);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (2,81);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (2,82);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,29);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (2,83);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,30);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (2,84);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,31);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (2,85);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,32);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (2,86);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,33);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,34);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,35);
@@ -232,9 +326,18 @@ INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,64);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,28);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,67);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,68);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,69);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,70);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,71);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,72);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,74);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,75);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,76);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,77);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (4,65);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,58);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,64);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,73);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (5,66);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,2);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,3);
