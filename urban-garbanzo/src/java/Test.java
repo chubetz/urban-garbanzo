@@ -21,7 +21,7 @@ class Test {
     //static void ccc(double d) { System.out.println("ccc double");}
     static void ccc(float f) { System.out.println("ccc float");}
     
-    public static void main(String args[]) {
+    public static final void main(String args[]) {
         //aaa(1);
         //bbb(5.5);
         //byte b = 13;
