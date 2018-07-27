@@ -370,6 +370,8 @@ Spring
 				4) getMap
 				5) в скрипт export
 			2) Сущность ThemeExam < Theme: date java.sql.Date, percentage int
+				0) обеспечить поддержку datetime в JDBCUtils				
+
 				1) в скрипт заметок
 				2) defaultState
 				3) в storage
@@ -377,6 +379,9 @@ Spring
 				5) в скрипт export
 			3) Запись статистики по вопросам - готово
 			4) запись статистики по экзаменам
+				0) обеспечить поддержку datetime в JDBCUtils
+				1) 
+				2) 
 			5) после прохождения экзамена - отображать результаты
 			6) после прерывания экзамена - показывать красивую страничку.
 			7) на карточке темы - пока что показывать дату и процентаж последнего экзамена
@@ -662,6 +667,8 @@ CREATE TABLE Image (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, filenam
 DROP TABLE UserAnswer IF EXISTS;
 CREATE TABLE UserAnswer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean);
 
+DROP TABLE ThemeExam IF EXISTS;
+CREATE TABLE ThemeExam (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, themeId int, percentage DOUBLE, date TIMESTAMP);
 
 ============= поразмыслить 
 <?> and <? extends Object> are synonymous, as you'd expect, but there are a few cases with generics where extends Object is not actually redundant. For example, <T extends Object & Foo> will cause T to become Object under erasure, whereas with <T extends Foo> it will become Foo under erasure. (This can matter if you're trying to retain compatibility with a pre-generics API that used Object.)
