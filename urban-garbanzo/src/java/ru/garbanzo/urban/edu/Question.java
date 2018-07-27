@@ -418,4 +418,7 @@ public class Question extends Entity {
         return list;
     }
     
+    public boolean isReal() {
+        return getType() != Question.NB_TYPE;
+    }
 }

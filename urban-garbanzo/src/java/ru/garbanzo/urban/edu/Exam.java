@@ -203,7 +203,7 @@ public class Exam implements Iterator<Question> {
                         sb.append("</form>\n");
                         
                         break;
-                    case TestAnswered:
+                    case Answered:
                         sb.append("<table bgcolor=#CD7A18 width=\"100%\" cellpadding=10 cellspacing=3>\n");
                         counter = 0;
                         row = new StringBuilder();
@@ -267,10 +267,12 @@ public class Exam implements Iterator<Question> {
                 break;
             case "rightAnswer": //подтверждение верного ответа на общий вопрос
                 userAnswers.put(current.getId(), Boolean.TRUE);
+                qState = QuestionState.Answered;
                 next();
                 break;
             case "wrongAnswer": //подтверждение неверного ответа на общий вопрос
                 userAnswers.put(current.getId(), Boolean.FALSE);
+                qState = QuestionState.Answered;
                 next();
                 break;
             case "testAnswer": //произведен ответ на тестовый вопрос
@@ -293,7 +295,7 @@ public class Exam implements Iterator<Question> {
                     }
                 }
                 userAnswers.put(current.getId(), userAnsweredRight);
-                qState = QuestionState.TestAnswered;
+                qState = QuestionState.Answered;
                 break;
         }
     }
@@ -308,16 +310,32 @@ public class Exam implements Iterator<Question> {
     }
     
     public void saveStatistics() throws JDBCException {
+        int correctAnswersQty = 0;
         for (Map.Entry<Integer, Boolean> entry : userAnswers.entrySet()) {
             Map<String, Object> data = new HashMap<String, Object>();
             data.put("questionId", entry.getKey());
             data.put("correct", entry.getValue());
+            if (entry.getValue())
+                correctAnswersQty++;
             UserAnswer.saveUserAnswer(-1, data);
+        }
+        if (qState == QuestionState.Answered && !hasNext()) { // экзамен пройден до конца, следует записать по нему статистику
+            int realQuestionsQty = 0;
+            for (Question q : questionSequence) {
+                if (q.isReal())
+                    realQuestionsQty++;
+            }
+            Map<String, Object> data = new HashMap<String, Object>();
+            data.put("themeId", theme.getId());
+            data.put("date", new java.sql.Date(System.currentTimeMillis()));
+            if (realQuestionsQty > 0)
+                data.put("percentage", (correctAnswersQty / realQuestionsQty)*100);
+            ThemeExam.saveThemeExam(-1, data);
         }
     }
     
     private enum QuestionState {
-        New, AnswerShowed, TestAnswered
+        New, AnswerShowed, Answered
     }
     
     
