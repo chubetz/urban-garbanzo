@@ -5,8 +5,12 @@
  */
 package ru.garbanzo.urban.edu;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import ru.garbanzo.urban.db.JDBCUtils;
 import static ru.garbanzo.urban.edu.Realm.getMap;
@@ -129,11 +133,35 @@ public class Theme extends Entity {
         return Collections.unmodifiableMap(getStorage().getQuestionMap(this));
     }
     
+    public Map<Integer, ThemeExam> getThemeExamMap() {
+        return Collections.unmodifiableMap(getStorage().getThemeExamMap(this));
+    }
+
     public String getQuestionsHTMLLink(String linkText) {
         return "<a href=view?info=questions&themeId=" + this.getId() + ">" + linkText + "</a>";
     }
     public String getQuestionsHTMLLink() {
         return getQuestionsHTMLLink("Вопросы");
+    }
+    public String getThemeExamsHTML() {
+        List<ThemeExam> exams = new ArrayList<ThemeExam>(getThemeExamMap().values());
+        Collections.sort(exams,  ThemeExam.DATE_COMPARATOR);
+        StringBuilder sb = new StringBuilder();
+        sb.append("<table>\n");
+        for (ThemeExam exam : exams) {
+            sb.append("<tr>\n");
+            sb.append("<td>\n");
+//            sb.append("Дата и время проверки: <b>" + DateFormat.getDateInstance(DateFormat.FULL).format(exam.getDate()) + "</b>");
+            sb.append("Дата и время проверки: <b>" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(exam.getDate()) + "</b>");
+            sb.append("</td>\n");
+            sb.append("<td>\n");
+            sb.append("Процент корректных ответов: <b>" + exam.getPercentage() + "</b>");
+            sb.append("</td>\n");
+            sb.append("</tr>\n");
+            
+        }
+        sb.append("</table>\n");
+        return sb.toString();
     }
 
     @Override

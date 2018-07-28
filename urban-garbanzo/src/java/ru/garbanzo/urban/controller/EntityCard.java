@@ -19,7 +19,7 @@ import ru.garbanzo.urban.edu.Theme;
  *
  * @author d.gorshenin
  */
-public class EntityCard extends HttpServlet {
+public class EntityCard extends ErrorHandlingServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

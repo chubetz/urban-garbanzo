@@ -329,7 +329,7 @@ public class Exam implements Iterator<Question> {
             data.put("themeId", theme.getId());
             data.put("date", new java.sql.Date(System.currentTimeMillis()));
             if (realQuestionsQty > 0)
-                data.put("percentage", (correctAnswersQty / realQuestionsQty)*100);
+                data.put("percentage", ((double)correctAnswersQty / realQuestionsQty)*100);
             ThemeExam.saveThemeExam(-1, data);
         }
     }

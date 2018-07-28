@@ -64,19 +64,16 @@ public class Activator extends HttpServlet {
                     exam.processWorkflow(subAction, request.getParameterMap());
                     request.setAttribute("title", "Проверка знаний");
                     url = "/exam.jsp";
-                } catch (NoMoreQuestionException ex) { // все карточки отработаны
+                } catch (NoMoreQuestionException nmqe) { // все карточки отработаны
                     try {
                         stopTheme(theme, request);
                         url = "/examFinished.jsp";
-                    } catch (Exception ee) {
-                        Logger.getLogger(Activator.class.getName()).log(Level.SEVERE, null, ee);
-                        request.setAttribute("exception", ee);
-                        url = "/examError.jsp";
+                    } catch (JDBCException ex) {
+                        Logger.getLogger(Activator.class.getName()).log(Level.SEVERE, null, ex);
+                        url = "/db_error.jsp";
+                        request.setAttribute("exception", ex);
+                        break;
                     }
-                } catch (Exception ee) {
-                    Logger.getLogger(Activator.class.getName()).log(Level.SEVERE, null, ee);
-                    request.setAttribute("exception", ee);
-                    url = "/examError.jsp";
                 }
                 break;
             case "stopTheme":
@@ -89,26 +86,16 @@ public class Activator extends HttpServlet {
                     url = "/db_error.jsp";
                     request.setAttribute("exception", ex);
                     break;
-                } catch (Exception ee) {
-                    Logger.getLogger(Activator.class.getName()).log(Level.SEVERE, null, ee);
-                    request.setAttribute("exception", ee);
-                    url = "/examError.jsp";
                 }
                 break;
             case "cancelTheme":
                 theme = Theme.getById(request.getParameter("id"));
-                try {
-                    Exam exam = state.cancelExam(theme);
-                    request.setAttribute("exam", exam);
-                    request.setAttribute("theme", theme);
-                    request.setAttribute("title", "Итоги проверки");
-                    request.setAttribute("examResult", "Проверка отменена");
-                    url = "/examFinished.jsp";
-                } catch (Exception ee) {
-                    Logger.getLogger(Activator.class.getName()).log(Level.SEVERE, null, ee);
-                    request.setAttribute("exception", ee);
-                    url = "/examError.jsp";
-                }
+                Exam exam = state.cancelExam(theme);
+                request.setAttribute("exam", exam);
+                request.setAttribute("theme", theme);
+                request.setAttribute("title", "Итоги проверки");
+                request.setAttribute("examResult", "Проверка отменена");
+                url = "/examFinished.jsp";
                 break;
         }
         

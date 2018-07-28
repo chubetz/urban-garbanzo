@@ -5,7 +5,9 @@
  */
 package ru.garbanzo.urban.edu;
 
+import java.sql.Date;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import ru.garbanzo.urban.db.JDBCUtils;
@@ -25,6 +27,17 @@ public class ThemeExam extends Entity {
 
     private static Map<String, Object> defaultState, defaultPrimaryKey;
     
+    private static class DateComparator implements Comparator<ThemeExam> {
+
+        @Override
+        public int compare(ThemeExam o1, ThemeExam o2) {
+            return o1.getDate().after(o2.getDate())  ? -1 : (o2.getDate().after(o1.getDate()) ? 1 : 0);
+        }
+        
+    }
+    
+    public static final Comparator<ThemeExam> DATE_COMPARATOR = new DateComparator();
+    
     @Override
     protected Map<String, Object> getDefaultState() {
         return defaultState;        
@@ -42,7 +55,7 @@ public class ThemeExam extends Entity {
         defaultState = new LinkedHashMap<String, Object>();
         defaultState.put("themeId", -1);
         defaultState.put("percentage", 0.0);
-        defaultState.put("date", 0.0);
+        defaultState.put("date", new Date(0));
     }
 
     @Override
@@ -59,7 +72,7 @@ public class ThemeExam extends Entity {
     }
     public static ThemeExam saveThemeExam(int id, Map<String, ?> data) throws JDBCException {
         ThemeExam themeExam = getMap().get(id);
-        Utils.print("saveUserAnswer", data);
+        Utils.print("saveThemeExam", data);
         if (themeExam == null) 
             themeExam = new ThemeExam(-1);
         if (data != null && !data.isEmpty()) {
@@ -74,12 +87,19 @@ public class ThemeExam extends Entity {
         if (pk != null) { // удалось записать объект в БД
             themeExam.setPrimaryKey(pk);
             getStorage().register(themeExam);
-            Utils.print("UserAnswer pk: ", pk);
+            Utils.print("ThemeExam pk: ", pk);
         } else {
             return null;
         }
             
         return themeExam;
+    }
+    
+    public Date getDate() {
+        return getDte("date");
+    }
+    public Double getPercentage() {
+        return getDbl("percentage");
     }
 
 }

@@ -47,6 +47,7 @@ public class Storage {
     private Map<Integer, Map<Integer, Question>> questionMapForRealm;    
     private Map<Integer, Map<Integer, Theme>> themeMapForQuestion;    
     private Map<Integer, Map<Integer, Theme>> themeMapForRealm; 
+    private Map<Integer, Map<Integer, ThemeExam>> themeExamMapForTheme; 
     
     private <T> void provideDefaultMap(Map<Integer, Map<Integer, T>> map, int key) {
         if (key >= 0) {
@@ -110,6 +111,15 @@ public class Storage {
         }
     }
     
+    Map<Integer, ThemeExam> getThemeExamMap(Theme theme) { //для вопросов
+        int themeId = theme.getId();
+        provideDefaultMap(themeExamMapForTheme, themeId);
+        if (themeId >= 0) {
+            return themeExamMapForTheme.get(themeId);
+        } else {
+            return new HashMap<Integer, ThemeExam>();
+        }
+    }
 
 
 //    void addTheme(Theme theme, Question question) {
@@ -212,6 +222,12 @@ public class Storage {
     }
     void register(ThemeExam themeExam) {
         themeExamMap.put(themeExam.getId(), themeExam);
+
+        int themeId = themeExam.getInt("themeId");
+        if (themeMap.get(themeId) == null)
+            throw new RuntimeException("Область с идентификатором " + themeId + ", для которой производится попытка зарегистрировать экзамен, не найдена в памяти");
+        provideDefaultMap(themeExamMapForTheme, themeId);
+        themeExamMapForTheme.get(themeId).put(themeExam.getId(), themeExam);
     }
     void unbind(Theme theme, Realm realm) {
         provideDefaultMap(themeMapForRealm, realm.getId());
@@ -331,7 +347,8 @@ public class Storage {
             }
 
             storage.themeExamMap = new HashMap<Integer, ThemeExam>();
-            data = JDBCUtils.loadEntitiesData(new ThemeExam(-1)); //изображения
+            storage.themeExamMapForTheme = new HashMap<Integer, Map<Integer, ThemeExam>>();    
+            data = JDBCUtils.loadEntitiesData(new ThemeExam(-1));
             for (DBEntity entity : data) {
                 ThemeExam themeExam = new ThemeExam(-1);
                 themeExam.setPrimaryKey(entity.getPrimaryKey());

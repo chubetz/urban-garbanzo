@@ -6,11 +6,14 @@
 package ru.garbanzo.urban.db;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -40,6 +43,8 @@ public class JDBCUtils {
         }
         
     }
+    
+    static SimpleDateFormat hsqlDateLiteralFormat = new SimpleDateFormat("'TIMESTAMP' ''yyyy-MM-dd HH:mm:ss''");
     
     public static Connection getHSQLConnection(String user, String password) {
         System.out.println("Connecting to database...");
@@ -74,6 +79,11 @@ public class JDBCUtils {
                 }
                 if (stateMap.get(field) instanceof Double) {
                     stateMap.put(field, rs.getDouble(field));
+                }
+                if (stateMap.get(field) instanceof Date) {
+                    Timestamp ts = rs.getTimestamp(field);
+                    if (ts != null)
+                        stateMap.put(field, new Date(ts.getTime()));
                 }
             }
             
@@ -114,6 +124,21 @@ public class JDBCUtils {
         return list;
     }
     
+    public static String getSQLLiteral(Object obj) {
+        String result = null;
+        if (obj instanceof String) {
+            result = "'" + ((String)obj).replace("'","''") + "'";
+        } else if (obj instanceof Date) {
+            result = hsqlDateLiteralFormat.format((Date)obj);
+        } else if (obj == null) {
+            result = "NULL";
+        } else {
+            result = obj.toString();
+        }
+        
+        return result;
+    }
+    
     public static Map<String, Object> saveEntity(DBEntity entity) throws JDBCException {
         Map<String, Object> result = null;
         Connection conn = null;
@@ -132,11 +157,7 @@ public class JDBCUtils {
                 }
                 where_info.append(entry.getKey());
                 where_info.append("=");
-                if (entry.getValue() instanceof String) {
-                    where_info.append("'" + entry.getValue() + "'");
-                } else {
-                    where_info.append(entry.getValue().toString());
-                }
+                where_info.append(getSQLLiteral(entry.getValue()));
             }
             sql = "SELECT * FROM " + entity.getTableName() + " WHERE " + where_info;
             Utils.print("select======>", sql);
@@ -158,11 +179,7 @@ public class JDBCUtils {
                     }
                     set_info.append(entry.getKey());
                     set_info.append("=");
-                    if (entry.getValue() instanceof String) {
-                        set_info.append("'" + ((String)entry.getValue()).replace("'","''") + "'");
-                    } else {
-                        set_info.append(entry.getValue().toString());
-                    }
+                    set_info.append(getSQLLiteral(entry.getValue()));
                 }
                 sql = "UPDATE " + entity.getTableName() + " SET " + set_info.toString() + " WHERE " + where_info;
                 Utils.print("update===>", sql);
@@ -186,11 +203,7 @@ public class JDBCUtils {
                         values.append(",");
                     }
                     fields.append(entry.getKey());
-                    if (entry.getValue() instanceof String) {
-                        values.append("'" + ((String)entry.getValue()).replace("'","''") + "'");
-                    } else {
-                        values.append(entry.getValue().toString());
-                    }
+                    values.append(getSQLLiteral(entry.getValue()));
                 }
                 fields.append(")"); values.append(")");
                 sql = "INSERT INTO " + entity.getTableName() + " " + fields.toString() + values.toString();
@@ -238,11 +251,7 @@ public class JDBCUtils {
                 }
                 where_info.append(entry.getKey());
                 where_info.append("=");
-                if (entry.getValue() instanceof String) {
-                    where_info.append("'" + entry.getValue() + "'");
-                } else {
-                    where_info.append(entry.getValue().toString());
-                }
+                where_info.append(getSQLLiteral(entry.getValue()));
             }
             sql = "DELETE FROM " + entity.getTableName() + " WHERE " + where_info;
             Utils.print("delete=========>", sql);

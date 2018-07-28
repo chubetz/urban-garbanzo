@@ -8,6 +8,7 @@
  *
  * @author d.gorshenin
  */
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -54,7 +55,9 @@ class Test {
         //System.out.println(mmm.get(2));
         int папуся = 4;
         
-        
+        SimpleDateFormat form = new SimpleDateFormat("'TIMESTAMP' ''yyyy-MM-dd HH:mm:ss''");
+        System.out.println(form.format(new Date()));
+
         
     }
     

@@ -5,6 +5,7 @@
  */
 package ru.garbanzo.urban.edu;
 
+import java.sql.Date;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -71,6 +72,12 @@ public abstract class Entity implements DBEntity {
     public boolean getPKBool(String field) {
         return (Boolean)this.primaryKey.get(field);
     }
+    public Date getDte(String field) {
+        return (Date)this.state.get(field);
+    }
+    public Date getPKDte(String field) {
+        return (Date)this.primaryKey.get(field);
+    }
 
     public String getDblStr(String field) {
         return roundToIntStr(getDbl(field));
@@ -114,6 +121,8 @@ public abstract class Entity implements DBEntity {
                 pkOrState.put(key, (String)value);
             } else if (current instanceof Boolean) {
                 pkOrState.put(key, (Boolean)value);
+            } else if (current instanceof Date) {
+                pkOrState.put(key, (Date)value);
             }
             
         }

@@ -36,7 +36,7 @@ public class State {
         }
     }
     
-    public Exam getExam(Theme theme) throws ExamException {
+    public Exam getExam(Theme theme) {
         Exam exam = themeExams.get(theme);
         if (exam == null) {
             exam = new Exam(theme);

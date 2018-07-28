@@ -39,6 +39,7 @@ import ru.garbanzo.urban.edu.Question;
 import ru.garbanzo.urban.edu.Realm;
 import ru.garbanzo.urban.edu.Storage;
 import ru.garbanzo.urban.edu.Theme;
+import ru.garbanzo.urban.edu.ThemeExam;
 import ru.garbanzo.urban.edu.UserAnswer;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
@@ -47,7 +48,7 @@ import ru.garbanzo.urban.util.Utils;
  *
  * @author d.gorshenin
  */
-public class MainServlet extends HttpServlet {
+public class MainServlet extends ErrorHandlingServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -435,6 +436,20 @@ public class MainServlet extends HttpServlet {
                             else
                                 ooo=o.toString();
                             sb.append("," + ooo);
+                        }
+                        sb.append(");\r\n");
+
+                    }
+
+                    for (ThemeExam i: ThemeExam.getMap().values()) {
+                        Map<String, Object> state = i.getState();
+                        sb.append("INSERT INTO ThemeExam (id");
+                        for (String s: state.keySet()) {
+                            sb.append("," + s);
+                        }
+                        sb.append(") OVERRIDING SYSTEM VALUE VALUES (" + i.getId());
+                        for (Object o: state.values()) {
+                            sb.append("," + JDBCUtils.getSQLLiteral(o));
                         }
                         sb.append(");\r\n");
 

@@ -18,7 +18,7 @@ import ru.garbanzo.urban.edu.Answer;
  *
  * @author mithia
  */
-public class DirectEntityInfo extends HttpServlet {
+public class DirectEntityInfo extends ErrorHandlingServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

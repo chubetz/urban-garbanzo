@@ -36,6 +36,12 @@
                     </form>
                 </td>
             </tr>
+            <tr>
+                <td colspan="2" bgcolor="#FGFFFF">
+                    <div style="font-size:14px;color:black;font-family:Tahoma;font-weight:bold">История изучения</div>
+                    ${theme.themeExamsHTML}
+                </td>
+            </tr>
             
         </table>
             
