@@ -155,7 +155,7 @@ public class Theme extends Entity {
             sb.append("Дата и время проверки: <b>" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(exam.getDate()) + "</b>");
             sb.append("</td>\n");
             sb.append("<td>\n");
-            sb.append("Процент корректных ответов: <b>" + exam.getPercentage() + "</b>");
+            sb.append("Процент корректных ответов: <b>" + Utils.round(exam.getPercentage(), 2) + "</b>");
             sb.append("</td>\n");
             sb.append("</tr>\n");
             
