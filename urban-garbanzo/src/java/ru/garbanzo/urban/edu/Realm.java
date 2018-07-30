@@ -18,7 +18,7 @@ import ru.garbanzo.urban.util.Utils;
  *
  * @author d.gorshenin
  */
-public class Realm extends Entity {
+public class Realm extends Entity implements ITreeElement {
     
     
     Realm(int id) {
@@ -137,4 +137,15 @@ public class Realm extends Entity {
         sb.append("</select>");
         return sb.toString();
     }
+
+    @Override
+    public List<ITreeElement> getTreeElements() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public TreeSign getTreeSign() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

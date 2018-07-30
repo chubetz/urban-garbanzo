@@ -13,5 +13,7 @@
     </head>
     <body>
         <h1>Внутренняя ошибка сервера (ошибка 500)</h1>
+        <h3>${viewer.message}</h3>
+        ${viewer.stackTrace}
     </body>
 </html>

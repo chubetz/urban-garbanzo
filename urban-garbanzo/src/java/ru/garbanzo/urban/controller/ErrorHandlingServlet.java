@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import ru.garbanzo.urban.exception.ExceptionViewer;
 
 
 /**
@@ -18,7 +19,9 @@ public class ErrorHandlingServlet extends HttpServlet {
         try {
             super.service(req, resp); //To change body of generated methods, choose Tools | Templates.
         } catch (Exception e) {
-            getServletContext().getRequestDispatcher("error.jsp").forward(req, resp);
+            //e.printStackTrace(resp.getWriter());
+            req.setAttribute("viewer", new ExceptionViewer(e));
+            getServletContext().getRequestDispatcher("/error.jsp").forward(req, resp);
         }
     }
 
