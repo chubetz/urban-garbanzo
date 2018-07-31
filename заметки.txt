@@ -112,6 +112,11 @@ Spring
 
 org.apache.commons
 
+Elements of Programming Interviews in Java: The Insiders' Guide
+
+стандартные алгоритмы, структуры данных, шаблоны проектирования
+
+
 
 =====
 дома:
