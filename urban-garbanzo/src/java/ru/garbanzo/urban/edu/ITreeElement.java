@@ -7,6 +7,7 @@ package ru.garbanzo.urban.edu;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -19,16 +20,20 @@ public interface ITreeElement {
         public List<ITreeElement> getTreeElements() {
             return new ArrayList<ITreeElement>(Realm.getMap().values());
         }
+        
+        private TreeSign treeSign = new TreeSign() {
+            {
+                setName("Дерево сущностей");
+                setId("MAIN_TREE");
+                setTableBgcolor("#E06017");
+                setTdBgcolor("#FBDECE");
+            }
+                
+            };
 
         @Override
         public TreeSign getTreeSign() {
-            return new TreeSign() {
-                @Override
-                public String getName() {
-                    return "Дерево сущностей"; //To change body of generated methods, choose Tools | Templates.
-                }
-                
-            };
+            return  treeSign;
         }
 
     };
@@ -37,11 +42,63 @@ public interface ITreeElement {
     
     TreeSign getTreeSign();
     
-    default String getTreeHTML() {
+    default String getTreeHTML(Map<String, Object> addInfo) {
         StringBuilder sb = new StringBuilder();
+        TreeSign ts = getTreeSign();
+        if (addInfo.get("expand") != null &&  addInfo.get("expand").equals(ts.getId()) )
+            ts.setExpanded(true);
+        if (addInfo.get("collapse") != null &&  addInfo.get("collapse").equals(ts.getId()) )
+            ts.setExpanded(false);
+        boolean isRoot;
+        if (addInfo.get("isRoot") != null) {
+            isRoot = (Boolean)addInfo.get("isRoot");
+        } else {
+            isRoot = false;
+        }
+        addInfo.put("isRoot", false);
         
+
+        sb.append("<tr>\n");
+        if (!isRoot)
+            sb.append("<td width=\"1\" bgcolor=\"" + ts.getTableBgcolor() + "\">&nbsp;&nbsp;&nbsp;</td>\n");
+        sb.append("<td bgcolor=\"" + ts.getTdBgcolor() + "\">\n");
+        sb.append(ts.getName());
+        sb.append("</td>\n");
+        sb.append("<td width=\"1\" bgcolor=\"" + ts.getTdBgcolor() + "\">\n");
+        sb.append("<a href=\"" + ts.getEditLink() + "\"><img width=\"20\" height=\"20\" src=\"images/" + (ts.getEditLink().equals("#") ? "edit_disabled.png" : "edit.png") + "\"></a>");
+        sb.append("</td>\n");
+        sb.append("<td width=\"1\" bgcolor=\"" + ts.getTdBgcolor() + "\">\n");
+        sb.append("<a href=\"" + ts.getProfileLink() + "\"><img width=\"20\" height=\"20\" src=\"images/" + (ts.getProfileLink().equals("#") ? "profile_disabled.png" : "profile.png") + "\"></a>");
+        sb.append("</td>\n");
+        sb.append("<td width=\"1\" bgcolor=\"" + ts.getTdBgcolor() + "\">\n");
+        if (ts.isExpanded()) {
+            sb.append("<a href=\"view?info=tree&collapse=" + ts.getId() + "\"><img width=\"20\" height=\"20\" src=\"images/collapse.png\"></a>");
+        } else {
+            sb.append("<a href=\"view?info=tree&expand=" + ts.getId() + "\"><img width=\"20\" height=\"20\" src=\"images/expand.png\"></a>");
+        }
+        sb.append("</td>\n");
+        sb.append("</tr>\n");
+
+
+
+        if (ts.isExpanded()) {
+            sb.append("<tr>\n");
+            sb.append("<td bgcolor=\"" + ts.getTdBgcolor() + "\" colspan=\"" + (isRoot ? 4 : 5) + "\">\n");
+            sb.append("<table width=\"100%\" cellpadding=\"10\" cellspacing=\"2\">\n");
+            for (ITreeElement element: getTreeElements()) {
+                sb.append(element.getTreeHTML(addInfo));
+            }
+            sb.append("</table>\n");
+            sb.append("</td>\n");
+            sb.append("</tr>\n");
+        }
         
-        return null;
+        if (isRoot) {
+            return "<table cellpadding=\"10\" cellspacing=\"1\" bgcolor=\"" + ts.getTableBgcolor() + "\">" + 
+                    sb.toString() + "</table>";
+        }
+
+        return sb.toString();
     }
     
 }

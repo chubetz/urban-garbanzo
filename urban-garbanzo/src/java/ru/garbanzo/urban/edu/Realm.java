@@ -140,12 +140,20 @@ public class Realm extends Entity implements ITreeElement {
 
     @Override
     public List<ITreeElement> getTreeElements() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new ArrayList<ITreeElement>(getThemeMap().values());
     }
+    
 
     @Override
     public TreeSign getTreeSign() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        treeSign.setName("Предметная область " + this.getDescription());
+        treeSign.setId(getTableName() + "_" + getId());
+        treeSign.setTableBgcolor("#2DC7E9");
+        treeSign.setTdBgcolor("#C0EFF9");
+        treeSign.setEditLink("controller?action=edit_realm&id=" + getId());
+        
+        return treeSign;
+        
     }
 
 }

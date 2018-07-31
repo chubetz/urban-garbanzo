@@ -13,7 +13,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import ru.garbanzo.urban.edu.ITreeElement;
 import ru.garbanzo.urban.exception.JDBCException;
+import ru.garbanzo.urban.util.Utils;
 
 /**
  *
@@ -69,6 +71,20 @@ public class Viewer extends ErrorHandlingServlet {
             case "images":
                 url = "/view_list.jsp";
                 request.setAttribute("title", "Библиотека изображений");
+                try {
+                    ViewUtils.fillAttributesImages(request, getServletContext());
+                } catch (JDBCException e) {
+                    request.setAttribute("exception", e);
+                    getServletContext().getRequestDispatcher("/db_error.jsp").forward(request, response);                    
+                }
+                break;
+            case "tree":
+                url = "/tree.jsp";
+                request.setAttribute("title", "Дерево сущностей");
+                request.setAttribute("treeSign", ITreeElement.MAIN_TREE.getTreeSign());
+                Map<String, Object> addInfo = Utils.translateWebData(request.getParameterMap());
+                addInfo.put("isRoot", true);
+                request.setAttribute("treeHTML", ITreeElement.MAIN_TREE.getTreeHTML(addInfo));
                 try {
                     ViewUtils.fillAttributesImages(request, getServletContext());
                 } catch (JDBCException e) {

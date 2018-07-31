@@ -70,6 +70,8 @@ https://stackoverflow.com/questions/2422468/how-to-upload-files-to-server-using-
 69, 161
 
 
+графический редактор онлайн
+https://editor.0lik.ru/
 
 
 Планы по Java
@@ -388,6 +390,7 @@ org.apache.commons
 	1) Интерфейс TreeElement
 	2) Реализовать дефолтный метод getTreeHTML в интерфейсе, создать под него JSP
 	3) Нанизывать сущности
+	4) добавить вопросы напрямую в область
 
 	) возможность задания картинки - вероятно, хранить сущность Setting в БД
 

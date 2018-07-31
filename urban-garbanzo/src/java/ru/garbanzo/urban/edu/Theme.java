@@ -21,7 +21,7 @@ import ru.garbanzo.urban.util.Utils;
  *
  * @author mithia
  */
-public class Theme extends Entity {
+public class Theme extends Entity implements ITreeElement {
 
     Theme(int id) {
         super("Theme", id);
@@ -173,6 +173,23 @@ public class Theme extends Entity {
     
     public boolean isExaminable() {
         return !getQuestionMap().isEmpty();
+    }
+
+    @Override
+    public List<ITreeElement> getTreeElements() {
+        return new ArrayList<ITreeElement>();
+    }
+
+    @Override
+    public TreeSign getTreeSign() {
+        treeSign.setName("Тема " + this.getText());
+        treeSign.setId(getTableName() + "_" + getId());
+        treeSign.setTableBgcolor("#2DA935");
+        treeSign.setTdBgcolor("#B4ECB7");
+        treeSign.setEditLink("controller?action=edit_theme&id=" + getId());
+        treeSign.setProfileLink(getCardURL());
+        
+        return treeSign;
     }
     
     

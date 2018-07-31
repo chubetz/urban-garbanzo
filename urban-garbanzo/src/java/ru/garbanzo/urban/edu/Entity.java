@@ -28,6 +28,8 @@ public abstract class Entity implements DBEntity {
 
     protected final String tableName;
     
+    protected TreeSign treeSign = new TreeSign();
+    
     protected Entity(String tableName, Object... primaryKey) {
         this.primaryKey = new LinkedHashMap<String, Object>(getDefaultPrimaryKey());
         String[] pk_fields = this.primaryKey.keySet().toArray(new String[0]);
@@ -162,6 +164,11 @@ public abstract class Entity implements DBEntity {
 
     public String getCardLink(String label, String style) {
         String className = this.getClass().getSimpleName().toLowerCase();
-        return "<a style=" + style + " href=\"viewCard?" + className + "=" + this.getId() + "\">" + label + "</a>";
+        return "<a style=" + style + " href=\"" + getCardURL() + "\">" + label + "</a>";
+    }
+
+    public String getCardURL() {
+        String className = this.getClass().getSimpleName().toLowerCase();
+        return "viewCard?" + className + "=" + this.getId();
     }
 }

@@ -10,13 +10,42 @@ package ru.garbanzo.urban.edu;
  * @author d.gorshenin
  */
 public class TreeSign {
-    private String link;
+    private String editLink = "#";
+    private String profileLink = "#";
     private String name;
     private boolean expanded;
+    private String id;
+    private String tableBgcolor = "#FFFFFF";
+    private String tdBgcolor = "#FFFFFF";
 
-    public String getLink() {
-        return link;
+    public String getTableBgcolor() {
+        return tableBgcolor;
     }
+
+    public void setTableBgcolor(String tableBgcolor) {
+        this.tableBgcolor = tableBgcolor;
+    }
+
+    public String getTdBgcolor() {
+        return tdBgcolor;
+    }
+
+    public void setTdBgcolor(String tdBgcolor) {
+        this.tdBgcolor = tdBgcolor;
+    }
+
+
+
+
+    public String getId() {
+        return id;
+    }
+    
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
 
     public String getName() {
         return name;
@@ -26,9 +55,22 @@ public class TreeSign {
         return expanded;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public String getEditLink() {
+        return editLink;
     }
+
+    public void setEditLink(String editLink) {
+        this.editLink = editLink;
+    }
+
+    public String getProfileLink() {
+        return profileLink;
+    }
+
+    public void setProfileLink(String profileLink) {
+        this.profileLink = profileLink;
+    }
+
 
     public void setName(String name) {
         this.name = name;

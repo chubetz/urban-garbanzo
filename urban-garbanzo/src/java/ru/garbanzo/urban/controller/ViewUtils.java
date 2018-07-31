@@ -103,7 +103,7 @@ class ViewUtils {
             sb.append("<tr>");
             sb.append("<td><form name=\"edit\" action=\"controller\" method=\"POST\">");
             sb.append("<input type=\"hidden\" name=\"action\" value=\"edit_realm\">");
-            sb.append("<input type=\"hidden\" name=\"rid\" value=\"" + realm.getId() + "\">");
+            sb.append("<input type=\"hidden\" name=\"id\" value=\"" + realm.getId() + "\">");
             sb.append("<input type=\"submit\" value=\"Edit\" /></form></td>");
             sb.append("<td>");
             sb.append(realm.toString());
@@ -149,7 +149,7 @@ class ViewUtils {
             sb.append("<tr>");
             sb.append("<td><form name=\"edit\" action=\"controller\" method=\"POST\">");
             sb.append("<input type=\"hidden\" name=\"action\" value=\"edit_theme\">");
-            sb.append("<input type=\"hidden\" name=\"tid\" value=\"" + theme.getId() + "\">");
+            sb.append("<input type=\"hidden\" name=\"id\" value=\"" + theme.getId() + "\">");
             sb.append("<input type=\"submit\" value=\"Edit\" /></form></td>");
             sb.append("<td>");
             sb.append(theme.toString());

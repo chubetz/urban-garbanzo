@@ -126,8 +126,8 @@ public class MainServlet extends ErrorHandlingServlet {
             case "edit_realm":
                 url = "/edit_realm.jsp";
                 Utils.print("Servlet.edit_realm", request.getParameterMap());
-                Utils.print(request.getParameter("rid"));
-                request.setAttribute("realm", Realm.getById(request.getParameter("rid")));
+                Utils.print(request.getParameter("id"));
+                request.setAttribute("realm", Realm.getById(request.getParameter("id")));
                 request.setAttribute("action", "update_realm");
                 break;
             case "update_realm":
@@ -154,8 +154,8 @@ public class MainServlet extends ErrorHandlingServlet {
             case "edit_theme":
                 url = "/edit_theme.jsp";
                 Utils.print("Servlet.edit_theme", request.getParameterMap());
-                Utils.print(request.getParameter("tid"));
-                request.setAttribute("theme", Theme.getById(request.getParameter("tid")));
+                Utils.print(request.getParameter("id"));
+                request.setAttribute("theme", Theme.getById(request.getParameter("id")));
                 request.setAttribute("action", "update_theme");
                 break;
             case "update_theme":
@@ -496,6 +496,8 @@ public class MainServlet extends ErrorHandlingServlet {
         allowedActions.add("new_question2");
         allowedActions.add("new_image");
         allowedActions.add("upload_image");
+        allowedActions.add("edit_realm");
+        allowedActions.add("edit_theme");
         if (allowedActions.contains(action))
             processRequest(request, response);
         else {

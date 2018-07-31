@@ -1,6 +1,8 @@
 package ru.garbanzo.urban.controller;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +22,7 @@ public class ErrorHandlingServlet extends HttpServlet {
             super.service(req, resp); //To change body of generated methods, choose Tools | Templates.
         } catch (Exception e) {
             //e.printStackTrace(resp.getWriter());
+            Logger.getLogger(Activator.class.getName()).log(Level.SEVERE, null, e);
             req.setAttribute("viewer", new ExceptionViewer(e));
             getServletContext().getRequestDispatcher("/error.jsp").forward(req, resp);
         }
