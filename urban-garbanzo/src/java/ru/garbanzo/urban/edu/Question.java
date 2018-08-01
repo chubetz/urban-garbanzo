@@ -23,7 +23,7 @@ import ru.garbanzo.urban.util.Utils;
  *
  * @author d.gorshenin
  */
-public class Question extends Entity {
+public class Question extends Entity implements ITreeElement {
     
     private boolean neededNewAnswer;
     
@@ -420,5 +420,38 @@ public class Question extends Entity {
     
     public boolean isReal() {
         return getType() != Question.NB_TYPE;
+    }
+
+    @Override
+    public List<ITreeElement> getTreeElements() {
+        return new ArrayList<ITreeElement>();
+    }
+
+    @Override
+    public TreeSign getTreeSign() {
+        treeSign.setId(getTableName() + "_" + getId());
+        treeSign.setTableBgcolor("#BECF17");
+        treeSign.setTdBgcolor("#EDF59E");
+        StringBuilder sb = new StringBuilder();
+        sb.append("<table width=\"500\" bgcolor=\"" + treeSign.getTableBgcolor() + "\" cellspacing=1><tr><td bgcolor=\"" + treeSign.getTdBgcolor() + "\" style=\"font-family:Tahoma; font-size:10px;\">");
+        sb.append(this.getText());
+        sb.append("</tr></td></table>");
+        treeSign.setName(sb.toString());
+        
+        switch (getType()) {
+            case NB_TYPE:
+                treeSign.setTabCellBackground("images/fon_nota_bene.jpg");
+                break;
+            case TEST_TYPE:
+                treeSign.setTabCellBackground("images/fon_test.jpg");
+                break;
+            case COMMON_TYPE:
+                treeSign.setTabCellBackground("images/fon_common.jpg");
+                break;
+        }
+        treeSign.setEditLink("controller?action=load_edit_form&id=" + getId());
+        //treeSign.setProfileLink(getCardURL());
+
+        return treeSign;
     }
 }

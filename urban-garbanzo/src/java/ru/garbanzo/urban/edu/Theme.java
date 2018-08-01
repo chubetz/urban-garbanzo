@@ -177,12 +177,12 @@ public class Theme extends Entity implements ITreeElement {
 
     @Override
     public List<ITreeElement> getTreeElements() {
-        return new ArrayList<ITreeElement>();
+        return new ArrayList<ITreeElement>(getQuestionMap().values());
     }
 
     @Override
     public TreeSign getTreeSign() {
-        treeSign.setName("Тема " + this.getText());
+        treeSign.setName("Тема <b>" + this.getTitle() + "</b>");
         treeSign.setId(getTableName() + "_" + getId());
         treeSign.setTableBgcolor("#2DA935");
         treeSign.setTdBgcolor("#B4ECB7");

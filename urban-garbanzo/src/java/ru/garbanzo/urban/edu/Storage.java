@@ -111,6 +111,16 @@ public class Storage {
         }
     }
     
+    Map<Integer, Question> getQuestionMap(Realm realm) { //для вопросов
+        int realmId = realm.getId();
+        provideDefaultMap(questionMapForRealm, realmId);
+        if (realmId >= 0) {
+            return questionMapForRealm.get(realmId);
+        } else {
+            return new HashMap<Integer, Question>();
+        }
+    }
+
     Map<Integer, ThemeExam> getThemeExamMap(Theme theme) { //для вопросов
         int themeId = theme.getId();
         provideDefaultMap(themeExamMapForTheme, themeId);

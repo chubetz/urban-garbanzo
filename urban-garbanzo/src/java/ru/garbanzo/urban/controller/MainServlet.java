@@ -498,6 +498,7 @@ public class MainServlet extends ErrorHandlingServlet {
         allowedActions.add("upload_image");
         allowedActions.add("edit_realm");
         allowedActions.add("edit_theme");
+        allowedActions.add("load_edit_form");
         if (allowedActions.contains(action))
             processRequest(request, response);
         else {

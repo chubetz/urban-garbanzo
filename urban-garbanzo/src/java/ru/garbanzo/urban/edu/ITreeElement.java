@@ -60,7 +60,7 @@ public interface ITreeElement {
 
         sb.append("<tr>\n");
         if (!isRoot)
-            sb.append("<td width=\"1\" bgcolor=\"" + ts.getTableBgcolor() + "\">&nbsp;&nbsp;&nbsp;</td>\n");
+            sb.append("<td id=\"" + ts.getId() + "\" width=\"1\" bgcolor=\"" + ts.getTableBgcolor() + "\" background=\"" + ts.getTabCellBackground() + "\">&nbsp;&nbsp;&nbsp;</td>\n");
         sb.append("<td bgcolor=\"" + ts.getTdBgcolor() + "\">\n");
         sb.append(ts.getName());
         sb.append("</td>\n");
@@ -72,9 +72,9 @@ public interface ITreeElement {
         sb.append("</td>\n");
         sb.append("<td width=\"1\" bgcolor=\"" + ts.getTdBgcolor() + "\">\n");
         if (ts.isExpanded()) {
-            sb.append("<a href=\"view?info=tree&collapse=" + ts.getId() + "\"><img width=\"20\" height=\"20\" src=\"images/collapse.png\"></a>");
+            sb.append("<a href=\"view?info=tree&collapse=" + ts.getId() + "#" + ts.getId() + "\"><img width=\"20\" height=\"20\" src=\"images/collapse.png\"></a>");
         } else {
-            sb.append("<a href=\"view?info=tree&expand=" + ts.getId() + "\"><img width=\"20\" height=\"20\" src=\"images/expand.png\"></a>");
+            sb.append("<a href=\"view?info=tree&expand=" + ts.getId() + "#" + ts.getId() + "\"><img width=\"20\" height=\"20\" src=\"images/expand.png\"></a>");
         }
         sb.append("</td>\n");
         sb.append("</tr>\n");

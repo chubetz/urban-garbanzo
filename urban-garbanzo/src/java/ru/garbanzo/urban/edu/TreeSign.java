@@ -17,6 +17,15 @@ public class TreeSign {
     private String id;
     private String tableBgcolor = "#FFFFFF";
     private String tdBgcolor = "#FFFFFF";
+    private String tabCellBackground = "#";
+
+    public String getTabCellBackground() {
+        return tabCellBackground;
+    }
+
+    public void setTabCellBackground(String tabCellBackground) {
+        this.tabCellBackground = tabCellBackground;
+    }
 
     public String getTableBgcolor() {
         return tableBgcolor;

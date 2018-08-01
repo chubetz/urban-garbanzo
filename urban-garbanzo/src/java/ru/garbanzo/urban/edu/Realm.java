@@ -117,6 +117,10 @@ public class Realm extends Entity implements ITreeElement {
         return Collections.unmodifiableMap(getStorage().getThemeMap(this));
     }
 
+    public Map<Integer, Question> getQuestionMap() {
+        return Collections.unmodifiableMap(getStorage().getQuestionMap(this));
+    }
+
     public String getThemesHTML() {
         StringBuilder sb = new StringBuilder();
         sb.append("<ul>\r\n");
@@ -140,13 +144,19 @@ public class Realm extends Entity implements ITreeElement {
 
     @Override
     public List<ITreeElement> getTreeElements() {
-        return new ArrayList<ITreeElement>(getThemeMap().values());
+        List<ITreeElement> list = new ArrayList<ITreeElement>(getQuestionMap().values());
+        for (Theme th: getThemeMap().values()) {
+            list.removeAll(th.getQuestionMap().values());
+            list.add(0, th);
+        }
+        
+        return list;
     }
     
 
     @Override
     public TreeSign getTreeSign() {
-        treeSign.setName("Предметная область " + this.getDescription());
+        treeSign.setName("Предметная область <b>" + this.getDescription() + "</b>");
         treeSign.setId(getTableName() + "_" + getId());
         treeSign.setTableBgcolor("#2DC7E9");
         treeSign.setTdBgcolor("#C0EFF9");

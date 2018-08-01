@@ -17,7 +17,7 @@
                 <td>
                     <form name="back_to_edit" action="controller" method="POST">
                         <input type="hidden" name="action" value="edit_realm">        
-                        <input type="hidden" name="rid" value="${realm.getId()}">        
+                        <input type="hidden" name="id" value="${realm.getId()}">        
                         <input type="submit" value="Вернуться к редактированию" /> 
                     </form>                    
                 </td>

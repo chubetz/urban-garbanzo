@@ -17,7 +17,7 @@
                 <td>
                     <form name="back_to_edit" action="controller" method="POST">
                         <input type="hidden" name="action" value="edit_theme">        
-                        <input type="hidden" name="tid" value="${theme.getId()}">        
+                        <input type="hidden" name="id" value="${theme.getId()}">        
                         <input type="submit" value="Вернуться к редактированию" /> 
                     </form>                    
                 </td>
