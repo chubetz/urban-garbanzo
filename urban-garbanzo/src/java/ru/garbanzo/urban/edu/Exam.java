@@ -319,7 +319,7 @@ public class Exam implements Iterator<Question> {
                 correctAnswersQty++;
             UserAnswer.saveUserAnswer(-1, data);
         }
-        if (qState == QuestionState.Answered && !hasNext()) { // экзамен пройден до конца, следует записать по нему статистику
+        if ((qState == QuestionState.Answered || current.getType() == Question.NB_TYPE) && !hasNext()) { // экзамен пройден до конца, следует записать по нему статистику
             int realQuestionsQty = 0;
             for (Question q : questionSequence) {
                 if (q.isReal())
