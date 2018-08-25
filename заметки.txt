@@ -823,8 +823,10 @@ Exam Title: Java SE 8 Programmer I
 
 Список ошибок: https://www.selikoff.net/java-oca-8-programmer-i-study-guide/
 
-p.45
-задание 10
+p.57
+Logical Complement and Negation Operators
 ======
 собирать задачки в интернете. 
 ======
+
+

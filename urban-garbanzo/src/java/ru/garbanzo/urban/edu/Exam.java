@@ -328,9 +328,10 @@ public class Exam implements Iterator<Question> {
             Map<String, Object> data = new HashMap<String, Object>();
             data.put("themeId", theme.getId());
             data.put("date", new java.sql.Date(System.currentTimeMillis()));
-            if (realQuestionsQty > 0)
+            if (realQuestionsQty > 0) {
                 data.put("percentage", ((double)correctAnswersQty / realQuestionsQty)*100);
-            ThemeExam.saveThemeExam(-1, data);
+                ThemeExam.saveThemeExam(-1, data);
+            }
         }
     }
     
