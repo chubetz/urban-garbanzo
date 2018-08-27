@@ -16,6 +16,7 @@ import java.util.Map;
 class Test {
     
     static void aaa(byte b) {}
+    static int aaa2(byte b) {return 6;}
     static void bbb(float f) {}
     //static void ccc(int d) { System.out.println("ccc int");}
     //static void ccc(short d) { System.out.println("ccc short");}
@@ -57,7 +58,43 @@ class Test {
         
         SimpleDateFormat form = new SimpleDateFormat("'TIMESTAMP' ''yyyy-MM-dd HH:mm:ss''");
         System.out.println(form.format(new Date()));
+        
+        char c = 'b';
+        //c+=22222222;
+        System.out.println(--c);
 
+        byte bb = (byte)129;
+        System.out.println(bb);
+        
+        bb = 127;
+        bb += 10;
+        System.out.println(bb);
+        
+        int hourOfDay = 9;
+        
+        if(hourOfDay < 15) {
+        System.out.println("Good Afternoon");
+        } else if(hourOfDay < 11) {
+        System.out.println("Good Morning"); // UNREACHABLE CODE
+        } else {
+        System.out.println("Good Evening");
+        }        
+        
+        int tt = 9;
+        
+        final int ccc = 6;
+        
+        switch (new Integer(4)) {
+            case ccc:
+                break;
+        }
+        
+        int h=5,l=0;
+        byte ww = 0;
+        for(h=0,ww=0;;h = l+1) {
+            System.out.println(h);
+            break;
+        }
         
     }
     

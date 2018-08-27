@@ -823,8 +823,8 @@ Exam Title: Java SE 8 Programmer I
 
 Список ошибок: https://www.selikoff.net/java-oca-8-programmer-i-study-guide/
 
-p.57
-Logical Complement and Negation Operators
+p.83
+The for-each Statement
 ======
 собирать задачки в интернете. 
 ======
