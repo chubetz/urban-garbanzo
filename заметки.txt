@@ -823,8 +823,8 @@ Exam Title: Java SE 8 Programmer I
 
 Список ошибок: https://www.selikoff.net/java-oca-8-programmer-i-study-guide/
 
-p.83
-The for-each Statement
+p.94
+Review Questions
 ======
 собирать задачки в интернете. 
 ======

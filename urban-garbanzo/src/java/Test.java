@@ -61,8 +61,28 @@ class Test {
         
         char c = 'b';
         //c+=22222222;
-        System.out.println(--c);
+        hhh : System.out.println(--c);
+            
+        
+        label: {
+            System.out.println(44444);
+            System.out.println(55555);
+            
+            inner_label : {
+                //break label;
+            }
+            label1 : switch (c) {
+                case 'g':
+                    break label1;
+            }
+         }
+        
 
+        
+        label2 : if (true) {
+            break label2;
+        }
+        
         byte bb = (byte)129;
         System.out.println(bb);
         
@@ -72,8 +92,8 @@ class Test {
         
         int hourOfDay = 9;
         
-        if(hourOfDay < 15) {
-        System.out.println("Good Afternoon");
+        eee : if(hourOfDay < 15) {
+            ggg: System.out.println("Good Afternoon");
         } else if(hourOfDay < 11) {
         System.out.println("Good Morning"); // UNREACHABLE CODE
         } else {
@@ -95,6 +115,11 @@ class Test {
             System.out.println(h);
             break;
         }
+        
+        String[] names = new String[1];
+        ddd : for(String name : names) {
+            System.out.print(name + ", ");
+        }        
         
     }
     
