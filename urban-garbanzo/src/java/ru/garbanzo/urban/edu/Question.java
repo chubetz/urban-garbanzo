@@ -174,11 +174,11 @@ public class Question extends Entity implements ITreeElement {
             sb.append("<tr>\n");
             sb.append("<td width=\"60%\">");
             sb.append("<textarea style=\"width: 100%;\" name=\"answer_" + answers.get(i).getId() + "\"");
-            sb.append(" rows=\"3\" cols=\"40\">" + answers.get(i).getStr("text") + "</textarea>\n");
+            sb.append(" rows=\"3\" cols=\"40\">" + answers.get(i).getStrLtGt("text") + "</textarea>\n");
             sb.append("</td>\n");
             sb.append("<td width=\"40%\">");
             sb.append("<textarea style=\"width: 100%;\" name=\"comment_" + answers.get(i).getId() + "\"");
-            sb.append(" rows=\"3\" cols=\"30\">" + answers.get(i).getStr("comment") + "</textarea>\n");
+            sb.append(" rows=\"3\" cols=\"30\">" + answers.get(i).getStrLtGt("comment") + "</textarea>\n");
             sb.append("</td>\n");
             sb.append("</tr>\n");
             sb.append("</table><p>\n");

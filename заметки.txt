@@ -639,6 +639,8 @@ Elements of Programming Interviews in Java: The Insiders' Guide
 
 *) научиться работать со списками данных
 
+*) умение впечатывать в textarea &lt; &gt; (например, в курсе по HTML)
+
 - возможность сразу пройти проверку по проблемнывм вопросам
 
 - возможность отметить вопрос в процессе преверки, чтобы вернуться к нему для редактирования
@@ -824,7 +826,7 @@ Exam Title: Java SE 8 Programmer I
 Список ошибок: https://www.selikoff.net/java-oca-8-programmer-i-study-guide/
 
 p.95
-Review Question 5
+Review Question 12
 ======
 собирать задачки в интернете. 
 ======

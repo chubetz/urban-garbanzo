@@ -65,6 +65,14 @@ public abstract class Entity implements DBEntity {
     public String getStr(String field) {
         return (String)this.state.get(field);
     }
+    public String getStrLtGt(String field) {
+        String str = (String)this.state.get(field);
+        if (str != null) {
+            str = str.replaceAll("&lt;", "&lt;<as>");
+            //str = str.replaceAll("&gt;", " >");
+        }
+        return str;
+    }
     public String getPKStr(String field) {
         return (String)this.primaryKey.get(field);
     }

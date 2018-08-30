@@ -121,6 +121,30 @@ class Test {
             System.out.print(name + ", ");
         }        
         
+
+        java.util.List<Integer> list = new java.util.ArrayList<Integer>();
+        list.add(10);
+        list.add(14);
+        for(int x : list) {
+            System.out.print(x + ", ");
+            String ddd = x + ", ";
+            System.out.println(ddd);
+            break;
+        }        
+        
+        
+        for(int rr=0; rr<10 ; ) {
+            rr = rr++;
+            System.out.println("Hello World");
+            break;
+        }
+        
+        int o = 1;
+        int oo = ++o + o++;
+        System.out.println(oo);
+        
+
+        
     }
     
 }

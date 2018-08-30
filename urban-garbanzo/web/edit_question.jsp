@@ -43,7 +43,7 @@
                 <tr>
                     <td>
                         <p>Текст вопроса</p>
-                        <textarea name="text" rows="10" cols="80">${question.getStr("text")}</textarea>
+                        <textarea name="text" rows="10" cols="80">${question.getStrLtGt("text")}</textarea>
                     </td>
                     <td style="vertical-align: top">
                         <p>Правильные ответы</p>
