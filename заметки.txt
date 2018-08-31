@@ -825,8 +825,8 @@ Exam Title: Java SE 8 Programmer I
 
 Список ошибок: https://www.selikoff.net/java-oca-8-programmer-i-study-guide/
 
-p.95-338
-Review Question 14
+p.101
+Chapter 3
 ======
 собирать задачки в интернете. 
 ======
