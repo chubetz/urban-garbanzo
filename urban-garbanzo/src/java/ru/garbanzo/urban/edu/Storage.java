@@ -19,6 +19,7 @@ import static ru.garbanzo.urban.edu.Question.COMMON_TYPE;
 import static ru.garbanzo.urban.edu.Question.NB_TYPE;
 import static ru.garbanzo.urban.edu.Question.TEST_TYPE;
 import ru.garbanzo.urban.exception.JDBCException;
+import ru.garbanzo.urban.users.IStatistics;
 import ru.garbanzo.urban.users.State;
 import ru.garbanzo.urban.util.Utils;
 
@@ -48,6 +49,8 @@ public class Storage {
     private Map<Integer, Map<Integer, Theme>> themeMapForQuestion;    
     private Map<Integer, Map<Integer, Theme>> themeMapForRealm; 
     private Map<Integer, Map<Integer, ThemeExam>> themeExamMapForTheme; 
+    
+    private Statistics statistics;
     
     private <T> void provideDefaultMap(Map<Integer, Map<Integer, T>> map, int key) {
         if (key >= 0) {
@@ -375,6 +378,26 @@ public class Storage {
     
     static {
         init();
+    }
+    
+    public IStatistics getStatistics() {
+        if (this.statistics == null) {
+            this.statistics = new Statistics(this);
+        }
+        
+        return this.statistics;
+    }
+    
+    private static class Statistics implements IStatistics {
+        Storage storage;
+        
+        Statistics(Storage s) {
+            this.storage = s;
+        }
+        
+        public int getRealmsQty() {
+            return storage.getRealmMap().size();
+        }
     }
     
 }
