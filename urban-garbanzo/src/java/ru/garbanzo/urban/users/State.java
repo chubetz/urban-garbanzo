@@ -62,4 +62,8 @@ public class State {
         }   
         return themeExams.remove(theme);
     }
+    
+    public IStatistics getStatistics() {
+        return storage.getStatistics();
+    }
 }

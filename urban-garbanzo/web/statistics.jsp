@@ -5,13 +5,17 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="ru.garbanzo.urban.users.*" %>
+<%
+    IStatistics statistics = State.getUserState().getStatistics();
+%>
 <table>
     <tr>
         <td>Статистика</td>
     </tr>
     <tr>
         <td>
-            Предметных областей: 
+            Предметных областей: ${statistics.realmsQty}
         </td>
     </tr>
 </table>
