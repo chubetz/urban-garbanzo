@@ -18,23 +18,9 @@ import ru.garbanzo.urban.exception.JDBCException;
  * @author d.gorshenin
  */
 public class State {
-    private static State state;
-    private static Storage storage;
     
     private Map<Theme, Exam> themeExams = new ConcurrentHashMap<Theme, Exam>();
-    
-    public static State getUserState() {
-        if (state == null)
-            state = new State();
-        return state;
-    }
-    
-    public static void resetState(Storage storage) {
-        if (storage != null && State.storage != storage) {
-            State.storage = storage;
-            state = null;
-        }
-    }
+    private User user;
     
     public Exam getExam(Theme theme) {
         Exam exam = themeExams.get(theme);
@@ -63,7 +49,4 @@ public class State {
         return themeExams.remove(theme);
     }
     
-    public IStatistics getStatistics() {
-        return storage.getStatistics();
-    }
 }

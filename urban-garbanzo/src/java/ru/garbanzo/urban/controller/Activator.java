@@ -22,6 +22,7 @@ import ru.garbanzo.urban.exception.ExamException;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.exception.NoMoreQuestionException;
 import ru.garbanzo.urban.users.State;
+import ru.garbanzo.urban.users.User;
 
 /**
  *
@@ -30,7 +31,7 @@ import ru.garbanzo.urban.users.State;
 public class Activator extends HttpServlet {
     
     private void stopTheme(Theme theme, HttpServletRequest request) throws JDBCException {
-        State state = State.getUserState();
+        State state = User.getDefaultUser().getState();
         Exam exam = state.stopExam(theme);
         request.setAttribute("exam", exam);
         request.setAttribute("theme", theme);
@@ -51,7 +52,7 @@ public class Activator extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = null;
-        State state = State.getUserState();
+        State state = User.getDefaultUser().getState();
         String action = request.getParameter("action");
         String subAction = request.getParameter("subAction");
         switch (action) {

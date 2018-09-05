@@ -284,7 +284,6 @@ public class Storage {
 
     public static void init() {
         storage = new Storage();
-        State.resetState(storage);
         List<DBEntity> data;
 
         try {
