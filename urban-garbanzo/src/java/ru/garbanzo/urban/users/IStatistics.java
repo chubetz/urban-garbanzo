@@ -12,5 +12,12 @@ package ru.garbanzo.urban.users;
 public interface IStatistics {
     
     int getRealmsQty();
+    int getThemesQty();
+    int getQuestionsQty();
+    int getQuestionsNotaBeneQty();
+    int getQuestionsCommonQty();
+    int getQuestionsTestQty();
+    int getExamsQty();
+    double getAverageScore();
     
 }

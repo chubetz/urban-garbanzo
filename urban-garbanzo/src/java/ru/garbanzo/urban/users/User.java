@@ -23,6 +23,7 @@ public class User {
             defaultUser = new User();
             defaultUser.login = "chubetz";
             defaultUser.state = new State();
+            defaultUser.storage = Storage.getStorage();
         }
         
         return defaultUser; 
@@ -30,6 +31,10 @@ public class User {
     
     public State getState() {
         return this.state;
+    }
+    
+    public IStatistics getStatistics() {
+        return storage.getStatistics();
     }
     
     

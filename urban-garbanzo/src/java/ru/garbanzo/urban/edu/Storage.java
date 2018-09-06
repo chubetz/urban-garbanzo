@@ -173,7 +173,7 @@ public class Storage {
 
     private Storage() {}
     
-    static Storage getStorage() {
+    public static Storage getStorage() {
         return storage;
     }
     
@@ -394,8 +394,67 @@ public class Storage {
             this.storage = s;
         }
         
+        @Override
         public int getRealmsQty() {
             return storage.getRealmMap().size();
+        }
+
+        @Override
+        public int getThemesQty() {
+            return storage.getThemeMap().size();
+        }
+
+        @Override
+        public int getQuestionsQty() {
+            return storage.getQuestionMap().size();
+        }
+
+        @Override
+        public int getQuestionsNotaBeneQty() {
+            int size = 0;
+            for (Question q: storage.getQuestionMap().values()) {
+                if (q.getType() == Question.NB_TYPE)
+                    size++;
+            }
+            
+            return size;
+        }
+
+        @Override
+        public int getQuestionsCommonQty() {
+            int size = 0;
+            for (Question q: storage.getQuestionMap().values()) {
+                if (q.getType() == Question.COMMON_TYPE)
+                    size++;
+            }
+            
+            return size;
+        }
+
+        @Override
+        public int getQuestionsTestQty() {
+            int size = 0;
+            for (Question q: storage.getQuestionMap().values()) {
+                if (q.getType() == Question.TEST_TYPE)
+                    size++;
+            }
+            
+            return size;
+        }
+
+        @Override
+        public int getExamsQty() {
+            return storage.getThemeExamMap().size();
+        }
+
+        @Override
+        public double getAverageScore() {
+            double score = 0;
+            for (ThemeExam e: storage.getThemeExamMap().values()) {
+                score += e.getPercentage();
+            }
+            score /= storage.getThemeExamMap().size();
+            return Utils.round(score, 2);
         }
     }
     
