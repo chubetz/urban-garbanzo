@@ -831,6 +831,8 @@ Exam Title: Java SE 8 Programmer I
 
 Список ошибок: https://www.selikoff.net/java-oca-8-programmer-i-study-guide/
 
+Доп материалы: https://javarush.ru/groups/posts/234-luchshie-knigi-dlja-podgotovki-k-ehkzamenu-ocajp8-1z0-808-po-java-8
+
 p.101
 Chapter 3
 ======
