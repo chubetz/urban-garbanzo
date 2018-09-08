@@ -9,5 +9,37 @@ and open the template in the editor.
 */
 
 .bg1 {
-    background-image: "images/poglogka.png"
+    background-image: url("../images/podlogka.png");
+    background-size: 100% 100%;
+    resize: both;
+}
+
+.bg2 {
+    background-image: url("../images/podlogka_green.png");
+    background-size: 100% 100%;
+    resize: both;
+}
+
+.min_header {
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: 700;
+}
+.stat1 {
+    font-family: Verdana;
+    font-size: 14px;
+}
+
+.small_border {
+  background-color: white;
+  border: 2px solid;
+}
+
+.tah {
+    font-family: Tahoma;
+    font-size: 14px;
+}
+
+.green {
+    color: green;
 }
