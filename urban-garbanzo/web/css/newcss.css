@@ -43,3 +43,9 @@ and open the template in the editor.
 .green {
     color: green;
 }
+
+.header_palatino {
+    font-family: Palatino Linotype;
+    font-size: 12px;
+    font-weight: 700;
+}

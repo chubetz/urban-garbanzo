@@ -74,6 +74,9 @@ https://stackoverflow.com/questions/2422468/how-to-upload-files-to-server-using-
 https://editor.0lik.ru/
 
 
+JSP Faqs
+https://coderanch.com/wiki/660053/Jsp-Faq
+
 Планы по Java
 =============
 
@@ -86,6 +89,8 @@ Calendar!
 JUnit?
 
 Javadoc
+
+Изучить JSP Faqs
 
 Servlet cookbook
 
