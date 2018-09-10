@@ -5,15 +5,14 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="ru.garbanzo.urban.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Система </title> <!--фиксации знаний-->
-        <link rel="stylesheet" href="css/newcss.css" type="text/css"/>
-    </head>
-    <body>
+<%
+    request.setAttribute("title", Constants.MAIN_TITLE);
+%>
+<c:import url= "/includes/newheader.jsp" />
+<c:import url= "/includes/icons.jsp" />
+
         <table border="0">
             <tr>
                 <td>
@@ -24,6 +23,6 @@
                 </td>
             </tr>
         </table>
+       <a href="old_index.html" style="font-size: 10px;">Прежняя версия главной страницы</a>
             
-    </body>
-</html>
+<c:import url= "/includes/newfooter.jsp" />

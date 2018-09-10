@@ -89,12 +89,16 @@ public class MainServlet extends ErrorHandlingServlet {
                 Utils.print("Servlet.new_question", request.getParameterMap());
                 request.setAttribute("question", Question.getMockQuestion());
                 request.setAttribute("action", "update_question");
+                request.setAttribute("title", "Редактировать вопрос");
+                request.setAttribute("edit_mode", "on");
                 break;
             case "add_answer":
                 url = "/edit_question.jsp";
                 Utils.print("Servlet.add_answer", request.getParameterMap());
                 request.setAttribute("question", Question.getQuestionFromParameterMap(request.getParameterMap()));
                 request.setAttribute("action", "update_question");
+                request.setAttribute("title", "Редактировать вопрос");
+                request.setAttribute("edit_mode", "on");
                 break;
             case "load_edit_form":
                 url = "/edit_question.jsp";
@@ -102,10 +106,13 @@ public class MainServlet extends ErrorHandlingServlet {
                 Utils.print(request.getParameter("id"));
                 request.setAttribute("question", Question.getById(request.getParameter("id")));
                 request.setAttribute("action", "update_question");
+                request.setAttribute("title", "Редактировать вопрос");
+                request.setAttribute("edit_mode", "on");
                 break;
             case "update_question":
                 Utils.print("Servlet.update_question", request.getParameterMap());
                 try {
+                    request.setAttribute("title", Integer.parseInt(request.getParameter("id")) < 0 ? "Вопрос добавлен" : "Вопрос отредактирован");
                     question = Question.saveQuestion(request.getParameter("id"), request.getParameterMap());
                 } catch (JDBCException ex) {
                     Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -122,6 +129,7 @@ public class MainServlet extends ErrorHandlingServlet {
                 Utils.print("Servlet.new_realm", request.getParameterMap());
                 request.setAttribute("realm", Realm.getMock());
                 request.setAttribute("action", "update_realm");
+                request.setAttribute("title", "Редактировать область");
                 break;
             case "edit_realm":
                 url = "/edit_realm.jsp";
@@ -129,6 +137,7 @@ public class MainServlet extends ErrorHandlingServlet {
                 Utils.print(request.getParameter("id"));
                 request.setAttribute("realm", Realm.getById(request.getParameter("id")));
                 request.setAttribute("action", "update_realm");
+                request.setAttribute("title", "Редактировать область");
                 break;
             case "update_realm":
                 Realm realm;
@@ -143,6 +152,7 @@ public class MainServlet extends ErrorHandlingServlet {
                 }
                 url = "/saved_realm.jsp";
                 request.setAttribute("realm", realm);
+                request.setAttribute("title", "Область сохранена");
                 break;
 
             case "new_theme":
@@ -186,6 +196,7 @@ public class MainServlet extends ErrorHandlingServlet {
                     break;
                 }
                 request.setAttribute("question", qq);
+                request.setAttribute("title", "Добавлена связь с темами");
                 url = "/new_question.jsp";
                 break;
 

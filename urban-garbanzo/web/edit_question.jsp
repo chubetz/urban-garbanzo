@@ -5,26 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Редактировать вопрос</title>
-        <script type="text/javascript" src="tinymce/tinymce.js"></script>
-        <!-- TinyMCE -->
-        <script type="text/javascript">
-        tinyMCE.init({
-            //mode : "exact",
-            //elements : "rrr"
-            selector: 'textarea',
-            forced_root_block : false,
-            menubar: false
-         });
-        </script>
-        <!-- /TinyMCE -->
-    </head>
-    <body bgcolor = #DAD644>
-<%@ include file="header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url= "/includes/newheader.jsp" />
+<%--c:import url= "/includes/icons.jsp" /--%>
         <p>${question.getId() < 0  ? "<Новый вопрос>" : question}</p>
         <form name="${action}" action="controller" method="POST">
             <input id="actiontag" type="hidden" name="action" value="${action}">        
@@ -59,5 +42,4 @@
             <input type="submit" onclick="document.getElementById('actiontag').value = 'add_answer';" value="Добавить ответ"/> 
             <input type="submit" value="Отправить" /> 
         </form>
-    </body>
-</html>
+<c:import url= "/includes/newfooter.jsp" />

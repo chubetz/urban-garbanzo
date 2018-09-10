@@ -5,17 +5,10 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>${title}</title>
-    </head>
-    <body bgcolor = #d8cFaA>
-<%@ include file="header.jsp" %>
-        <h2>${title}</h2>
-        <h3>(всего ${total})</h3>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url= "/includes/newheader.jsp" />
+<c:import url= "/includes/icons.jsp" />
+        <h3>(всего ${total} элементов)</h3>
         
         ${list_table}
-    </body>
-</html>
+<c:import url= "/includes/newfooter.jsp" />

@@ -5,14 +5,10 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>${tree}</title>
-    </head>
-    <body>
-<%@ include file="header.jsp" %>
+<c:import url= "/includes/newheader.jsp" />
+<c:import url= "/includes/icons.jsp" />
         ${treeHTML}
-    </body>
-</html>
+<c:import url= "/includes/newfooter.jsp" />
+

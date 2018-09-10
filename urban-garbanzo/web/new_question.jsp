@@ -5,13 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Новый вопрос</title>
-    </head>
-    <body>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url= "/includes/newheader.jsp" />
+<%--c:import url= "/includes/icons.jsp" /--%>
         <table>
             <tr>
                 <td>
@@ -30,7 +26,6 @@
                 </td>
             </tr>
         </table>
-        <h2>Вопрос добавлен</h2>
         ${question}<br>
         <table>
             <tr>
@@ -55,5 +50,4 @@
             <input type="submit" value="Отправить" /> 
             
         </form>
-    </body>
-</html>
+<c:import url= "/includes/newfooter.jsp" />

@@ -5,13 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Область сохранена</title>
-    </head>
-    <body>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url= "/includes/newheader.jsp" />
+<c:import url= "/includes/icons.jsp" />
         <table>
             <tr>
                 <td>
@@ -22,16 +18,14 @@
                     </form>                    
                 </td>
                 <td>
-                    <form name="back_to_list" action="view" method="GET">
+                    <!--form name="back_to_list" action="view" method="GET">
                         <input type="hidden" name="info" value="realms">        
                         <input type="submit" value="Переход к списку областей" /> 
-                    </form>                    
+                    </form-->                    
                 </td>
             </tr>
         </table>
-        <h2>Область сохранена</h2>
         ${realm}<br>
         <br>
         Код: <b>${realm.getStr("text")}</b>  Описание: <b>${realm.getStr("description")}</b>
-    </body>
-</html>
+<c:import url= "/includes/newfooter.jsp" />

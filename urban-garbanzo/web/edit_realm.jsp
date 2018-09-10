@@ -5,14 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Редактировать область</title>
-    </head>
-    <body>
-<%@ include file="header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url= "/includes/newheader.jsp" />
+<%--c:import url= "/includes/icons.jsp" /--%>
         <p>${realm.getId() < 0  ? "<Новая область>" : realm}</p>
         <form name="${action}" action="controller" method="POST">
             <input type="hidden" name="action" value="${action}">        
@@ -25,5 +20,4 @@
             <br>
             <input type="submit" value="Отправить" /> 
         </form>
-    </body>
-</html>
+<c:import url= "/includes/newfooter.jsp" />
