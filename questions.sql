@@ -440,12 +440,12 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (117,
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (304,117,'<em>Overflow</em> происходит, когда большему значению присваивается меньшее (с кастингом либо через короткое сложение/инкремент):<br /><br />byte bb = (byte)129;<br />System.out.println(bb);<br />// -127<br />bb = 127;<br />bb += 10;<br />System.out.println(bb);<br />// -119<br /><br />Также если работаем с int, этот эффект проявляется при сложении литералов:<br />
 <p>System.out.print(2147483647+1); // -2147483648</p>
 <br />Суть в том, что компилятор "упирается" в верхнюю границу диапазона данного типа и перескакивает к нижней границе, продолжая расчет от нее.<br /><br />Аналогично для <em>underflow</em> и вычитания.',true,'');
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (118,4,0,'Операторы сокращенного присваивания (+=, i=, *= и т.д.) называются <em>compound assignment operators</em>. На экзамене OCA потребуется знание только первых двух.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (118,4,0,'Операторы сокращенного присваивания (+=, -=, *= и т.д.) называются <em>compound assignment operators</em>. На экзамене OCA потребуется знание только первых двух.');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (119,4,2,'Назовите преимущества операторов сокращенного присваивания.');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (305,119,'1) Более удобный синтаксис.<br />2) Не нужно явно указывать кастинг.',true,'');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (120,4,0,'Присваивание является выражением, имеющим значение:<br /><br />
 <p align="LEFT">long x = 5;<br />long y = (x=3);<br />System.out.println(x); // Outputs 3<br />System.out.println(y); // Also, outputs 3</p>');
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (121,4,0,'В операторах сравнения (relational operators, &lt;,&lt;=,&gt;,&gt;=) идет преобразование типов аналогично бинарным орифметическим операциях');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (121,4,0,'В операторах сравнения (relational operators, &lt;,&lt;=,&gt;,&gt;=) идет преобразование типов аналогично бинарным арифметическим операциях');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (122,4,0,'Оператор <strong>instanceof</strong> тоже считается оператором сравнения (relational).');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (123,4,2,'Перечислите логические <span style="text-decoration: underline;">бинарные</span> операторы Java и типы операндов, к которым они применяются.');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (306,123,'Логическое "и": &amp;<br />Логическое "или" (включающее, inclusive): <strong>|</strong><br />Логическое "или" (исключающее, exclusive): <strong>^</strong><br /><br />Применяются к булевым операндам, а также к числовым (в этом случае называются <em>bitwise operators</em>, в OCA не рассматриваются)',true,'');
@@ -962,8 +962,37 @@ INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (1
 INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (144,93,true);
 INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (145,94,true);
 INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (146,95,false);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (147,128,true);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (148,129,false);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (149,132,false);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (150,135,false);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (151,136,false);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (152,140,false);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (153,141,true);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (154,142,true);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (155,145,true);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (156,146,false);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (157,151,false);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (158,152,true);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (159,153,false);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (160,154,false);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (161,103,false);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (162,104,false);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (163,106,false);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (164,107,true);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (165,108,true);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (166,109,true);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (167,110,true);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (168,111,false);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (169,114,true);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (170,115,true);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (171,117,false);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (172,119,false);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (173,123,false);
+INSERT INTO UserAnswer (id,questionId,correct) OVERRIDING SYSTEM VALUE VALUES (174,125,true);
 INSERT INTO ThemeExam (id,themeId,percentage,date) OVERRIDING SYSTEM VALUE VALUES (0,0,58.06451612903226,TIMESTAMP '2018-07-29 00:05:46');
 INSERT INTO ThemeExam (id,themeId,percentage,date) OVERRIDING SYSTEM VALUE VALUES (1,0,74.19354838709677,TIMESTAMP '2018-08-24 10:43:21');
 INSERT INTO ThemeExam (id,themeId,percentage,date) OVERRIDING SYSTEM VALUE VALUES (2,6,0.0,TIMESTAMP '2018-08-25 16:30:41');
 INSERT INTO ThemeExam (id,themeId,percentage,date) OVERRIDING SYSTEM VALUE VALUES (3,0,80.64516129032258,TIMESTAMP '2018-09-05 18:52:04');
 INSERT INTO ThemeExam (id,themeId,percentage,date) OVERRIDING SYSTEM VALUE VALUES (4,2,91.30434782608695,TIMESTAMP '2018-09-08 17:34:40');
+INSERT INTO ThemeExam (id,themeId,percentage,date) OVERRIDING SYSTEM VALUE VALUES (5,6,42.857142857142854,TIMESTAMP '2018-09-11 11:32:45');
