@@ -853,8 +853,8 @@ Exam Title: Java SE 8 Programmer I
 
 Доп материалы: https://javarush.ru/groups/posts/234-luchshie-knigi-dlja-podgotovki-k-ehkzamenu-ocajp8-1z0-808-po-java-8
 
-p.101
-Chapter 3
+p.103
+In the fourth example, we start with the third rule, which tells us to consider 1 + 2.
 ======
 собирать задачки в интернете. 
 ======
