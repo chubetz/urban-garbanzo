@@ -64,6 +64,7 @@ public class Activator extends HttpServlet {
                     request.setAttribute("theme", theme);
                     exam.processWorkflow(subAction, request.getParameterMap());
                     request.setAttribute("title", "Проверка знаний");
+                    request.setAttribute("exam_mode", "on");
                     url = "/exam.jsp";
                 } catch (NoMoreQuestionException nmqe) { // все карточки отработаны
                     try {

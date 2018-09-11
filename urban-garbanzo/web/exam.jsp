@@ -6,21 +6,9 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>${title}</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="colorbox/jquery.colorbox-min.js"></script>
-        <script type="text/javascript">
-            function getCommentHTML(id, userAnswer) {
-                 url = "directInfo?entity=answer&field=commentHTML&id=" + id + "&userAnswer=" + userAnswer;
-                 jQuery.colorbox({href:url});
-            }
-        </script>
-    </head>
-    <body>
-<%@ include file="header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url= "/includes/newheader.jsp" />
+<%--c:import url= "/includes/icons.jsp" /--%>
         <table width="75%">
             <tr>
                 <td width="90%" align="right">
@@ -61,5 +49,4 @@
                 </td>
             </tr-->
         </table>
-    </body>
-</html>
+<c:import url= "/includes/newfooter.jsp" />

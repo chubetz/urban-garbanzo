@@ -5,14 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Редактировать тему</title>
-    </head>
-    <body>
-<%@ include file="header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url= "/includes/newheader.jsp" />
+<%--c:import url= "/includes/icons.jsp" /--%>
         <p>${theme.getId() < 0  ? "<Новая тема>" : theme}</p>
         <form name="${action}" action="controller" method="POST">
             <input type="hidden" name="action" value="${action}">        
@@ -30,5 +25,4 @@
             <br>
             <input type="submit" value="Отправить" /> 
         </form>
-    </body>
-</html>
+<c:import url= "/includes/newfooter.jsp" />

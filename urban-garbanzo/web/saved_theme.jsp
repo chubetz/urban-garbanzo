@@ -5,13 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Тема сохранена</title>
-    </head>
-    <body>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url= "/includes/newheader.jsp" />
+<c:import url= "/includes/icons.jsp" />
         <table>
             <tr>
                 <td>
@@ -33,5 +29,4 @@
         ${theme}<br>
         <br>
         Номер: <b>${theme.getDbl("number")}</b>  Название: <b>${theme.getStr("text")}</b>
-    </body>
-</html>
+<c:import url= "/includes/newfooter.jsp" />

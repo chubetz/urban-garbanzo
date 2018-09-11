@@ -26,6 +26,16 @@
             </script>
             <!-- /TinyMCE -->
         </c:if>
+        <c:if test="${exam_mode.equals('on')}">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+            <script src="colorbox/jquery.colorbox-min.js"></script>
+            <script type="text/javascript">
+                function getCommentHTML(id, userAnswer) {
+                     url = "directInfo?entity=answer&field=commentHTML&id=" + id + "&userAnswer=" + userAnswer;
+                     jQuery.colorbox({href:url});
+                }
+            </script>
+        </c:if>
         
     </head>
     <body bgcolor="#d8cFaA">

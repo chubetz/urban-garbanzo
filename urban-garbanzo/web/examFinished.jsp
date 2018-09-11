@@ -5,14 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>${title}</title>
-    </head>
-    <body>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url= "/includes/newheader.jsp" />
+<c:import url= "/includes/icons.jsp" />
         <h3>${examResult}</h3>
         Открыть профиль темы: ${theme.getCardLink(theme.title)} 
-    </body>
-</html>
+<c:import url= "/includes/newfooter.jsp" />

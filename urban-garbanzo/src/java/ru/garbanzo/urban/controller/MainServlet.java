@@ -160,6 +160,7 @@ public class MainServlet extends ErrorHandlingServlet {
                 Utils.print("Servlet.new_theme", request.getParameterMap());
                 request.setAttribute("theme", Theme.getMock());
                 request.setAttribute("action", "update_theme");
+                request.setAttribute("title", "Редактировать тему");
                 break;
             case "edit_theme":
                 url = "/edit_theme.jsp";
@@ -167,6 +168,7 @@ public class MainServlet extends ErrorHandlingServlet {
                 Utils.print(request.getParameter("id"));
                 request.setAttribute("theme", Theme.getById(request.getParameter("id")));
                 request.setAttribute("action", "update_theme");
+                request.setAttribute("title", "Редактировать тему");
                 break;
             case "update_theme":
                 Theme theme;
@@ -180,6 +182,7 @@ public class MainServlet extends ErrorHandlingServlet {
                     break;
                 }
                 url = "/saved_theme.jsp";
+                request.setAttribute("title", "Тема сохранена");
                 request.setAttribute("theme", theme);
                 break;
 

@@ -5,14 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>${title}</title>
-    </head>
-    <body>
-<%@ include file="header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url= "/includes/newheader.jsp" />
+<c:import url= "/includes/icons.jsp" />
         <table border="1" width="700" cellpadding="5">
             <tr>
                 <td colspan="2" style="color:blue;font-family:Courier New Cyr;">
@@ -45,5 +40,4 @@
             
         </table>
             
-    </body>
-</html>
+<c:import url= "/includes/newfooter.jsp" />
