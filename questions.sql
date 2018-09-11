@@ -30,6 +30,7 @@ INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (4,0,'
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (5,4,'Пополняемые тесты',0.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (6,4,'Операторы и управляющие конструкции',2.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (7,4,'Задания к теме',2.1);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (8,4,'Основной API Java',3.0);
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (0,4,0,'Тесты экзамена предполагают обычно 5 или 6 ответов, со множественным выбором.');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (1,4,0,'Нельзя реализовать в классе два интерфейса с общим дефолтным методом, если не переопределить этот метод в классе.');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (2,4,2,'<p>Перечислите 3 вида комментариев в Java</p>');
@@ -642,6 +643,8 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (174,
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (437,174,'The code will not compile because of line 3.',false,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (438,174,'The code will not compile because of line 6.',false,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (439,174,'The code will not compile because of lines 6 and 9.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (175,4,2,'Назовите основные принципы использования оператора "+" с точки зрения конкатенации.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (440,175,'1. Если оба операнда числовые, то + обозначает сложение.<br />2. Если хотя бы один операнд - строка, + обозначает конкатенацию.<br />3. Выражение вычисляется слева направо. Например:<br /><br />System.out.println(1 + 2 + "c"); // 3c',true,'');
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,23);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,24);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,27);
@@ -790,6 +793,7 @@ INSERT INTO ThemeQuestion (themeId,questionId) VALUES (7,174);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,143);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,147);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (4,65);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,175);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (5,66);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,2);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,3);
