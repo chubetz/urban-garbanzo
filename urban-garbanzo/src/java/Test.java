@@ -143,6 +143,9 @@ class Test {
         int oo = ++o + o++;
         System.out.println(oo);
         
+        String str1 = "mystring";
+        System.out.println(str1.substring(0,0));
+        
 
         
     }
