@@ -146,6 +146,21 @@ class Test {
         String str1 = "mystring";
         System.out.println(str1.substring(0,0));
         
+        StringBuilder sb = new StringBuilder("animals");
+        String sub = sb.substring(sb.indexOf("a"), sb.indexOf("al"));
+        int len = sb.length();
+        char ch = sb.charAt(6);
+        System.out.println(sub + " " + len + " " + ch);
+        
+        StringBuilder sbb = new StringBuilder("animals");
+        sbb.insert(0, "-"); // sb = animals-
+        System.out.println(sbb);
+        
+        StringBuilder sbbb = new StringBuilder("abcdef");
+        sbbb.delete(3, 3); // sb = adef
+        //sbbb.deleteCharAt(1); // throws an exception
+        System.out.println(sbbb);
+        
 
         
     }
