@@ -870,8 +870,8 @@ Exam Title: Java SE 8 Programmer I
 
 Доп материалы: https://javarush.ru/groups/posts/234-luchshie-knigi-dlja-podgotovki-k-ehkzamenu-ocajp8-1z0-808-po-java-8
 
-p.119
-Understanding Java Arrays
+p.126
+What do you think happens in this example?
 ======
 собирать задачки в интернете. 
 ======

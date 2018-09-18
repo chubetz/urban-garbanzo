@@ -9,6 +9,9 @@
  * @author d.gorshenin
  */
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -161,8 +164,37 @@ class Test {
         //sbbb.deleteCharAt(1); // throws an exception
         System.out.println(sbbb);
         
+        int[] numbers = {33,44,55};
+        System.out.println(new int [57] . length);
+        
+        int[] ids1, types1;
+        int ids2[], types2;
+        
+        ids1 = new int[1];
+        ids2 = new int[1];
+        types1 = new int[1];
+        //types2 = new int[3];
+        
+        String[] strings = {"aaa","bbb"};
+        Object[] objects = strings;
+        //objects[0] = new Object();
+        
+
+        Integer[] newA = {4,3,5,6,12,7};
+        Arrays.sort(newA, new Comparator<Integer>(){
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1.compareTo(o2);
+            }
+        }.reversed());
+        System.out.println(Arrays.toString(newA));
+        
+    }
+        
+        
+        
+        
 
         
     }
     
-}
