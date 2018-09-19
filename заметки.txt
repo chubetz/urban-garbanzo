@@ -577,6 +577,7 @@ Elements of Programming Interviews in Java: The Insiders' Guide
 *) простые кнопки обрабатывать Javascriptoм, а не формами
 
 
+
 *) реализовать для всех сущностей методы save и delete на уровне package. Элиминировать статичные методы сохранения
 в методах save и delete работать и с памятью, и с БД. запретить save и delete для сущностей с отрицательными id (?)
 Не факт, что надо делать save и delete у вопросов - во всяком случае, до того момента, как они будут составлять единое целое с ответами. Хотя... можно изготавливать вопросы по data, внутри них - ответы по data, и все сохранять
@@ -870,8 +871,8 @@ Exam Title: Java SE 8 Programmer I
 
 Доп материалы: https://javarush.ru/groups/posts/234-luchshie-knigi-dlja-podgotovki-k-ehkzamenu-ocajp8-1z0-808-po-java-8
 
-p.126
-What do you think happens in this example?
+p.130
+Using an ArrayList
 ======
 собирать задачки в интернете. 
 ======

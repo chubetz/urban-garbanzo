@@ -14,6 +14,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 class Test {
@@ -188,6 +190,18 @@ class Test {
             }
         }.reversed());
         System.out.println(Arrays.toString(newA));
+        
+        List<? extends Object> fff = new ArrayList<Object>();
+        
+        int[][] vars1; // 2D array
+int vars2 [][]; // 2D array
+int[] vars3[]; // 2D array
+int[] vars4 [], space [][]; // a 2D AND a 3D array
+    Object ddd = new int[][]{{1, 4}, {3}, {9,8,7}};
+int[][] differentSize;
+differentSize = new int[][]{{1, 4}, {3}, {9,8,7}};
+        
+ //   int[][] differentSize = new int[4];
         
     }
         
