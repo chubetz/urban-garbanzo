@@ -871,8 +871,8 @@ Exam Title: Java SE 8 Programmer I
 
 Доп материалы: https://javarush.ru/groups/posts/234-luchshie-knigi-dlja-podgotovki-k-ehkzamenu-ocajp8-1z0-808-po-java-8
 
-p.130
-Using an ArrayList
+p.132
+set()
 ======
 собирать задачки в интернете. 
 ======

@@ -200,6 +200,30 @@ int[] vars4 [], space [][]; // a 2D AND a 3D array
     Object ddd = new int[][]{{1, 4}, {3}, {9,8,7}};
 int[][] differentSize;
 differentSize = new int[][]{{1, 4}, {3}, {9,8,7}};
+
+    ArrayList al = new ArrayList();
+    
+    al.add("Teddy");
+    al.add("Looby");
+    al.add("Andy");
+    System.out.println(al);
+    al.add(2, "Barsuk");
+    System.out.println(al);
+    //al.add(-1, "Enot");
+    al.add(true);
+    System.out.println(al);
+    
+    ArrayList<String> list2 = new ArrayList<>();
+list2.add("sparrow");
+list2.add(Boolean.TRUE.toString());
+System.out.println(list);
+
+List<String> birds = new ArrayList<>();
+birds.add("hawk");
+birds.add("hawk");
+birds.remove("cardinal");
+birds.remove("hawk");
+System.out.println(birds);
         
  //   int[][] differentSize = new int[4];
         
