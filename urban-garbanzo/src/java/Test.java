@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Stack;
+import org.apache.tomcat.util.digester.ArrayStack;
 
 class Test {
     
@@ -224,15 +226,14 @@ birds.add("hawk");
 birds.remove("cardinal");
 birds.remove("hawk");
 System.out.println(birds);
-        
- //   int[][] differentSize = new int[4];
-        
+
+double dddd = 5;
+new Float(dddd);
+new Double('c');
+
     }
         
         
-        
-        
-
         
     }
     

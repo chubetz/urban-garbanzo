@@ -871,8 +871,8 @@ Exam Title: Java SE 8 Programmer I
 
 Доп материалы: https://javarush.ru/groups/posts/234-luchshie-knigi-dlja-podgotovki-k-ehkzamenu-ocajp8-1z0-808-po-java-8
 
-p.132
-set()
+p.135
+The wrapper classes also have a method that converts back to a primitive.
 ======
 собирать задачки в интернете. 
 ======
