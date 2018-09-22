@@ -66,7 +66,7 @@ public class Exam implements Iterator<Question> {
 
     public Exam(Theme theme) {
         this.theme = theme;
-        questionSequence = new ArrayList(theme.getQuestionMap().values());
+        questionSequence = new ArrayList(theme.getValidQuestions());
         Collections.shuffle(questionSequence);
         iterator = questionSequence.iterator();
     }

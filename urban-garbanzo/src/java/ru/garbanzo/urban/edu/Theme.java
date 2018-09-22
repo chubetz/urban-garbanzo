@@ -133,6 +133,19 @@ public class Theme extends Entity implements ITreeElement {
         return Collections.unmodifiableMap(getStorage().getQuestionMap(this));
     }
     
+    public List<Question> getValidQuestions() {
+        ArrayList<Question> validQuestions = new ArrayList<Question>();
+        for (Question q: getQuestionMap().values()) {
+            if (q.isValid())
+                validQuestions.add(q);
+        }
+        return validQuestions;
+    }
+    
+    public int getInvalidQuestionQty() {
+        return getQuestionMap().size() - getValidQuestions().size();
+    }
+    
     public Map<Integer, ThemeExam> getThemeExamMap() {
         return Collections.unmodifiableMap(getStorage().getThemeExamMap(this));
     }
@@ -172,7 +185,7 @@ public class Theme extends Entity implements ITreeElement {
     }
     
     public boolean isExaminable() {
-        return !getQuestionMap().isEmpty();
+        return !getValidQuestions().isEmpty();
     }
 
     @Override

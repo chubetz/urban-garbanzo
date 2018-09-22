@@ -22,6 +22,9 @@
             <tr>
                 <td bgcolor="E0B2B2" style="color:#224937;font-family:Palatino Linotype;font-weight:bold">
                     Карточек в теме: ${theme.getQuestionsHTMLLink("" + theme.getQuestionMap().size())}
+                    <c:if test="${theme.invalidQuestionQty != 0}">
+                        (${theme.invalidQuestionQty} нуждаются в исправлении)
+                    </c:if>
                 </td>
                 <td bgcolor="green" align="center">
                     <form method="POST" action="doActive">

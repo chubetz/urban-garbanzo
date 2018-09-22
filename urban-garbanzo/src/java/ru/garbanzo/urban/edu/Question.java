@@ -111,8 +111,9 @@ public class Question extends Entity implements ITreeElement {
                 break;
             }
         }
-        return (!getStr("text").equals("")) && (getStr("text") != null) && 
-                (this.getInt("type") == Question.NB_TYPE || (correctExists && !getAnswerMap().isEmpty()));
+        return  (!getStr("text").equals("")) && (getStr("text") != null) && 
+                //((this.getInt("type") == Question.NB_TYPE && getAnswerMap().isEmpty()) || (correctExists && !getAnswerMap().isEmpty()));
+                this.getInt("type") == Question.NB_TYPE ? getAnswerMap().isEmpty() : correctExists && !getAnswerMap().isEmpty();
     }
 
 
