@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Stack;
 import org.apache.tomcat.util.digester.ArrayStack;
+import java.time.*;
 
 class Test {
     
@@ -230,6 +231,49 @@ System.out.println(birds);
 double dddd = 5;
 new Float(dddd);
 new Double('c');
+
+
+boolean primitive = Boolean.parseBoolean("trUE");
+Boolean wrapper = Boolean.valueOf("trUE1");
+
+System.out.println("primitive: " + primitive + ", wrapper: " + wrapper);
+
+Long primitive1 = Long.parseLong("4");
+Long wrapper1 = Long.valueOf("4");
+
+List<Integer> numberz = new ArrayList<>();
+numberz.add(1);
+numberz.add(2);
+numberz.remove(1);
+System.out.println(numberz);
+
+List<String> list12 = new ArrayList<>();
+list12.add("hawk");
+list12.add("robin");
+Object[] objectArray = list12.toArray();
+String[] stringArray = list12.toArray(new String[]{"a","b","c","d", "e"});
+
+System.out.println(Arrays.toString(stringArray));
+
+String dfd [] = {"aaa", "bbb", "ccc"};
+
+List<String> lstr = new ArrayList<String>(Arrays.asList(dfd));
+
+System.out.println(Arrays.toString(dfd));
+System.out.println(lstr);
+
+dfd[2] = "ffff";
+lstr.add("fgg");
+System.out.println(Arrays.toString(dfd));
+System.out.println(lstr);
+
+System.out.println(LocalDate.now());
+System.out.println(LocalTime.now());
+System.out.println(LocalDateTime.now());
+System.out.println(ZonedDateTime.now());
+
+LocalDateTime dateTime = LocalDateTime.of(LocalDate.now(), LocalTime.now());
+System.out.println(LocalDateTime.of(LocalDate.now(), LocalTime.now()));
 
     }
         
