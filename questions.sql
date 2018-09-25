@@ -807,6 +807,14 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (266,
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (267,4,2,'Укажите, как создать и использовать экземпляры класса Period.');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (502,267,'<p>Period period = Period.ofMonths(1);<br />Period period = Period.ofYears(1);<br />Period period = Period.ofWeeks(1);<br />Period period = Period.ofDays(1);</p>
 <p>LocalDate start = LocalDate.of(2015, Month.JANUARY, 1);<br />start = start.plus(period); // adds the period<br /><br />(с LocalDateTime тоже можно, добавляется объект интерфейса TemporalAmount)</p>',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (268,4,1,'Каким будет результат работы следующего кода?<br /><br />LocalDate date = LocalDate.of(2018, Month.MARCH, 22);<br />Period period = Period.ofYears(1).ofWeeks(1);<br />System.out.println(date.plus(period));');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (503,268,'Код не скомпилируется.',false,'Скомпилируется, т.к. мы можем вызывать статичные методы (ofWeeks(1)) с экземпляра.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (504,268,'Код скомпилируется, но выдаст ошибку времени выполнения.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (505,268,'2019-03-29',false,'Period.ofYears(1).ofWeeks(1) - это то же самое, что<br />Period.ofWeeks(1). Чтобы получился такой ответ, код должен был бы выглядеть так:<br />System.out.println(date.plus(Period.ofYears(1))<br />&nbsp; .plus(Period.ofWeeks(1)));');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (506,268,'2018-03-29',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (270,4,0,'<p>class java.time.<em><span style="text-decoration: underline;">Duration</span></em></p>
+<p>All Implemented Interfaces:Serializable, Comparable&lt;Duration&gt;, TemporalAmount<br /><br />static Duration <strong>ofDays</strong>(long <em>days</em>)<br />static Duration <strong>ofHours</strong>(long <em>hours</em>)<br />static Duration <strong>ofMillis</strong>(long <em>millis</em>)<br />static Duration <strong>ofMinutes</strong>(long <em>minutes</em>)<br />static Duration <strong>ofNanos</strong>(long <em>nanos</em>)<br />static Duration <strong>ofSeconds</strong>(long <em>seconds</em>)<br />Duration <strong>plus</strong>(Duration <em>duration</em>)</p>');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (271,4,0,'К объектам LocalTime нельзя методом plus добавлять&nbsp;временные отрезки класса Period - будет выдано UnsupportedTemporalTypeException. Duration.ofDays(1) можно, а Period.ofDays(1) - нельзя...');
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (6,101);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (6,102);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (6,103);
@@ -1010,9 +1018,12 @@ INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,266);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,51);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,267);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,52);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,268);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,53);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,54);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,270);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,55);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,271);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,56);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,19);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,57);

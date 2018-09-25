@@ -451,6 +451,8 @@ Elements of Programming Interviews in Java: The Insiders' Guide
 		1) Текст вопроса, вложенная таблица с ответами, переход к темам, переход к области, редактирование вопроса
 
 
+!!!!!!!) не работает ввод скопированногог отформатированного текста с Oracle Java API
+
 !!!) - Проверить, что будет, если ввести слишком большой текст
 
 
@@ -895,8 +897,8 @@ Exam Title: Java SE 8 Programmer I
 
 Доп материалы: https://javarush.ru/groups/posts/234-luchshie-knigi-dlja-podgotovki-k-ehkzamenu-ocajp8-1z0-808-po-java-8
 
-p.147
-There’s one catch. You cannot chain methods when creating a Period.
+p.148
+Formatting Dates and Times
 ======
 собирать задачки в интернете. 
 ======

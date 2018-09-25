@@ -277,10 +277,23 @@ System.out.println(LocalDateTime.of(LocalDate.now(), LocalTime.now()));
 
 
 
-LocalDate date = LocalDate.of(2020, Month.JANUARY, 20);
-date.plusDays(10);
-System.out.println(date);
+//LocalDate date = LocalDate.of(2020, Month.JANUARY, 20);
+//date.plusDays(10);
+//System.out.println(date);
 
+LocalDate date = LocalDate.of(2018, Month.MARCH, 22);
+Period period = Period.ofYears(1).ofWeeks(1);
+System.out.println(date.plus(period));
+System.out.println(date.plus(Period.ofYears(1))
+        .plus(Period.ofWeeks(1)));
+
+LocalDate date1 = LocalDate.of(2015, 1, 20);
+LocalTime time = LocalTime.of(6, 15);
+LocalDateTime dateTime1 = LocalDateTime.of(date, time);
+Period period1 = Period.ofMonths(1);
+System.out.println(date1.plus(period1)); // 2015-02-20
+System.out.println(dateTime1.plus(period1)); // 2015-02-20T06:15
+System.out.println(dateTime1.plus(Period.ofYears(1)));
 
     }
         
