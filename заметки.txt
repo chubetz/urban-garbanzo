@@ -531,6 +531,8 @@ Elements of Programming Interviews in Java: The Insiders' Guide
 
 4.9) Сделать утилиту поиска элемента в коллекции/массиве
 
+*) возможность проваливаться в редактирование сущности из профиля
+
 *) возможность задания картинки в дерево - вероятно, хранить сущность Setting в БД
 
 *) во время прохождения экзамена помечать вопросы для редктирования
@@ -893,8 +895,8 @@ Exam Title: Java SE 8 Programmer I
 
 Доп материалы: https://javarush.ru/groups/posts/234-luchshie-knigi-dlja-podgotovki-k-ehkzamenu-ocajp8-1z0-808-po-java-8
 
-p.141
-Creating Dates in Java 7 and Earlier
+p.147
+There’s one catch. You cannot chain methods when creating a Period.
 ======
 собирать задачки в интернете. 
 ======
