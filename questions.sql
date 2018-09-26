@@ -32,6 +32,7 @@ INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (6,4,'
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (7,4,'Задания к теме',2.1);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (8,4,'Основной API Java',3.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (9,0,'Это должен знать каждый',1.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (10,4,'Задания к теме',3.1);
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (0,4,0,'Тесты экзамена предполагают обычно 5 или 6 ответов, со множественным выбором.');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (1,4,0,'Нельзя реализовать в классе два интерфейса с общим дефолтным методом, если не переопределить этот метод в классе.');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (2,4,2,'<p>Перечислите 3 вида комментариев в Java</p>');
@@ -71,7 +72,6 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (16,4
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (17,4,2,'<p>Как быть, если в коде одновременно нужно использовать классы с одинаковым именем из разных пакетов?</p>');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (14,17,'<p>Использовать полное (fully qualified) имя класса.</p>',true,'');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (18,4,0,'Classpath можно задать в командной строке:<br /><br />1. Windows<br /><br />java -cp ".;C:\temp\someOtherLocation;c:\temp\myJar.jar" myPackage.MyClass<br /><br />2. Linux<br /><br />java -cp ".:/tmp/someOtherLocation:/tmp/myJar.jar" myPackage.MyClass<br /><br />. (точка) означает, что текущая папка включается в Classpath. <br /><br />Можно использовать wildcard, чтобы включить все jar-файлы в конкретной папке:<br /><br />java -cp "C:\temp\directoryWithJars\*" myPackage.MyClass');
-	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (16,18,'sdf',false,'');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (19,4,1,'Отметьте фрагменты кода, которые скомпилируются.');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (19,19,'6: public void method(ArrayList list) {<br />7:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (list.isEmpty()) { System.out.println("e");<br />8:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else { System.out.println("n");<br />9:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } }',true,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (22,19,'1: public class LineNumbers {<br />2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public void method(ArrayList list) {<br />3:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (list.isEmpty()) { System.out.println("e");<br />4:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else { System.out.println("n");<br />5:&nbsp;&nbsp;&nbsp;&nbsp; } } }',false,'');
@@ -455,7 +455,7 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (124,
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (125,4,2,'Каков вывод следующего фрагмента кода:<br /><br />int x = 6;<br />boolean y = (x &gt;= 6) || (++x &lt;= 7);<br />System.out.println(x);');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (307,125,'6.&nbsp;&nbsp;Вторая часть выражения не вычисляется, т.к. первая равна true',true,'');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (126,4,0,'Операторы проверки равенства (equality operators, !=, ==) ведут к преобразованию числовых операндов аналогично арифметическим бинарным операторам.');
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (127,4,0,'В операторах проверки равенства нельзя смешивать разные типы операндов:<br /><br />boolean x = true == 3; // DOES NOT COMPILE<br />boolean y = false != "Giraffe"; // DOES NOT COMPILE<br />boolean z = 3 == "Kangaroo"; // DOES NOT COMPILE<br /><br />Следует обращать пристальное внимание на типы данных, когда в экзаменационной задаче присутствует оператор проверки равенства.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (127,4,0,'В операторах проверки равенства нельзя смешивать разные типы операндов. Если сравниваются объекты, то они должны быть из одной иерархии наследования.<br /><br />boolean x = true == 3; // DOES NOT COMPILE<br />boolean y = false != "Giraffe"; // DOES NOT COMPILE<br />boolean z = 3 == "Kangaroo"; // DOES NOT COMPILE<br /><br />String s1 = "java";<br />StringBuilder s2 = new StringBuilder("java");<br />boolean s = s1 == s2; //DOES NOT COMPILE<br /><br /><br />Следует обращать пристальное внимание на типы данных, когда в экзаменационной задаче присутствует оператор проверки равенства.');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (128,4,1,'Какой результат получится в результате выполнения кода:<br /><br />boolean y = false;<br />boolean x = (y = true);<br />System.out.println(x);');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (308,128,'true',true,'во второй строке имеет место присваивание y (=), а не проверка равенства (==)');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (309,128,'false',false,'');
@@ -815,6 +815,111 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (268,
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (270,4,0,'<p>class java.time.<em><span style="text-decoration: underline;">Duration</span></em></p>
 <p>All Implemented Interfaces:Serializable, Comparable&lt;Duration&gt;, TemporalAmount<br /><br />static Duration <strong>ofDays</strong>(long <em>days</em>)<br />static Duration <strong>ofHours</strong>(long <em>hours</em>)<br />static Duration <strong>ofMillis</strong>(long <em>millis</em>)<br />static Duration <strong>ofMinutes</strong>(long <em>minutes</em>)<br />static Duration <strong>ofNanos</strong>(long <em>nanos</em>)<br />static Duration <strong>ofSeconds</strong>(long <em>seconds</em>)<br />Duration <strong>plus</strong>(Duration <em>duration</em>)</p>');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (271,4,0,'К объектам LocalTime нельзя методом plus добавлять&nbsp;временные отрезки класса Period - будет выдано UnsupportedTemporalTypeException. Duration.ofDays(1) можно, а Period.ofDays(1) - нельзя...');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (272,4,0,'java.time.<em><span style="text-decoration: underline;">LocalDate</span></em><br /><br />int <strong>getDayOfMonth</strong>()<br />DayOfWeek&nbsp;<strong>getDayOfWeek</strong>()<br />int <strong>getDayOfYear</strong>()<br />Month&nbsp;<strong>getMonth</strong>()<br />int <strong>getMonthValue</strong>() //номер месяца в году<br />int <strong>getYear</strong>()');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (273,4,0,'java.time.<em><span style="text-decoration: underline;">LocalTime</span></em><br /><br />int <strong>getHour</strong>()<br />int <strong>getMinute</strong>()<br />int <strong>getNano</strong>()<br />int <strong>getSecond</strong>()');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (274,4,0,'java.time.<em><span style="text-decoration: underline;">LocalDateTime</span></em><br /><br />int&nbsp;<strong>getDayOfMonth</strong>()<br />DayOfWeek <strong>getDayOfWeek</strong>()<br />int&nbsp;<strong>getDayOfYear</strong>()<br />int&nbsp;<strong>getHour</strong>()<br />int&nbsp;<strong>getMinute</strong>()<br />Month <strong>getMonth</strong>()<br />int&nbsp;<strong>getMonthValue</strong>()<br />int&nbsp;<strong>getNano</strong>()<br />int&nbsp;<strong>getSecond</strong>()<br />int&nbsp;<strong>getYear</strong>()');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (275,4,0,'java.time.format.<em><span style="text-decoration: underline;">DateTimeFormatter</span></em><br /><br />Класс, осуществляющий форматирование даты/времени.<br /><br />Имеет несколько констант с экземплярами, например<br /><br /><strong>ISO_LOCAL_DATE</strong> (''2011-12-13'')<br /><strong>ISO_LOCAL_TIME </strong>(''10:15'' или ''10:15:30'')<strong><br />ISO_LOCAL_DATE_TIME</strong> (''2011-12-13T10:15:30'')<br /><br />используется в форматировании следующим образом:<br /><br />LocalDate date = LocalDate.of(2020, Month.JANUARY, 20);<br />LocalTime time = LocalTime.of(11, 12, 34);<br />LocalDateTime dateTime = LocalDateTime.of(date, time);<br />System.out.println(date.format(DateTimeFormatter.ISO_LOCAL_DATE));<br />System.out.println(time.format(DateTimeFormatter.ISO_LOCAL_TIME));<br />System.out.println(dateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (276,4,0,'java.time.format.<em><span style="text-decoration: underline;">DateTimeFormatter</span></em><br /><br />static <strong>ofLocalizedDate</strong>(FormatStyle s<em>tyle</em>)<br />static <strong>ofLocalizedTime</strong>(FormatStyle s<em>tyle</em>)<br />static <strong>ofLocalizedDateTime</strong>(FormatStyle s<em>tyle</em>)<br /><br />FormatStyle - это enum.<br /><br />Методы возвращают форматтеры, специфичные для локали.<br /><br />если локаль надо задать жестко, то можно вызвать метод <strong>withLocale</strong>(Locale) на результате этих методов.<br /><br />Примеры:<br /><br />DateTimeFormatter shortDate =<br />&nbsp;&nbsp;&nbsp; DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);<br />System.out.println(shortDate.format(dateTime)); // 1/20/20<br />System.out.println(shortDate.format(date)); // 1/20/20<br />System.out.println(shortDate.format(time)); // UnsupportedTemporalTypeException');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (277,4,0,'<p>На форматтере есть метод <strong>format</strong>, принимающий дату/время.<br />На дате/времени есть метод <strong>format</strong>, принимающий форматтер!<br />Результаты одинаковые.<br /><br />DateTimeFormatter shortDateTime =<br />&nbsp;&nbsp;&nbsp; DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);</p>
+<p>System.out.println(shortDateTime.format(dateTime));<br />System.out.println(dateTime.format(shortDateTime));</p>');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (278,4,1,'Укажите примеры кода, которые выполнятся без ошибок.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (512,278,'<p>LocalDateTime localDateTime = LocalDateTime.now();</p>
+<p>DateTimeFormatter f = DateTimeFormatter<br />&nbsp;&nbsp;&nbsp; .ofLocalizedDateTime(FormatStyle.SHORT);</p>
+<p>System.out.println(f.format(localDateTime));</p>',true,'Покажет весь объект.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (513,278,'<p>LocalTime localTime = LocalTime.now();</p>
+<p>DateTimeFormatter f = DateTimeFormatter<br />&nbsp;&nbsp;&nbsp; .ofLocalizedDateTime(FormatStyle.SHORT);</p>
+<p>System.out.println(f.format(localTime));</p>',false,'Runtime Exception');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (514,278,'<p>LocalDate localDate = LocalDate.now();</p>
+<p>DateTimeFormatter f = DateTimeFormatter<br />&nbsp;&nbsp;&nbsp; .ofLocalizedTime(FormatStyle.SHORT);</p>
+<p>System.out.println(f.format(localDate));</p>',false,'Runtime Exception');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (515,278,'<p>LocalDateTime localDateTime = LocalDateTime.now();</p>
+<p>DateTimeFormatter f = DateTimeFormatter<br />&nbsp;&nbsp;&nbsp; .ofLocalizedTime(FormatStyle.SHORT);</p>
+<p>System.out.println(f.format(localDateTime));</p>',true,'Покажет только время.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (516,278,'<p>LocalTime localTime = LocalTime.now();</p>
+<p>DateTimeFormatter f = DateTimeFormatter<br />&nbsp;&nbsp;&nbsp; .ofLocalizedTime(FormatStyle.SHORT);</p>
+<p>System.out.println(f.format(localTime));</p>',true,'Покажет весь объект.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (508,278,'<p>LocalDate localDate = LocalDate.now();</p>
+<p>DateTimeFormatter f = DateTimeFormatter<br />&nbsp;&nbsp;&nbsp; .ofLocalizedDate(FormatStyle.SHORT);</p>
+<p>System.out.println(f.format(localDate));</p>',true,'Покажет весь объект.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (509,278,'<p>LocalDateTime localDateTime = LocalDateTime.now();</p>
+<p>DateTimeFormatter f = DateTimeFormatter<br />&nbsp;&nbsp;&nbsp; .ofLocalizedDate(FormatStyle.SHORT);</p>
+<p>System.out.println(f.format(localDateTime));</p>',true,'Покажет только дату.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (510,278,'<p>LocalTime localTime = LocalTime.now();</p>
+<p>DateTimeFormatter f = DateTimeFormatter<br />&nbsp;&nbsp;&nbsp; .ofLocalizedDate(FormatStyle.SHORT);</p>
+<p>System.out.println(f.format(localTime));</p>',false,'Runtime Exception');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (511,278,'<p>LocalDate localDate = LocalDate.now();</p>
+<p>DateTimeFormatter f = DateTimeFormatter<br />&nbsp;&nbsp;&nbsp; .ofLocalizedDateTime(FormatStyle.SHORT);</p>
+<p>System.out.println(f.format(localDate));</p>',false,'Runtime Exception');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (279,4,0,'java.time.format.<em><span style="text-decoration: underline;">FormatStyle</span></em><br /><br />Две константы, которые могут быть на экзамене:<br /><br /><strong>SHORT </strong>(1/20/20 11:12 AM)<br /><strong>MEDIUM </strong>(Jan 20, 2020 11:12:34 AM)');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (280,4,2,'Приведите пример кода, форматирующего дату и время с помощью FormatStyle.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (517,280,'LocalDateTime ldt = LocalDateTime.now();<br />DateTimeFormatter dtf = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM);<br />System.out.println(ldt.format(dtf));',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (281,4,0,'java.time.format.<em><span style="text-decoration: underline;">DateTimeFormatter</span></em><br /><br />static DateTimeFormatter <strong>ofPattern</strong>(String <em>pattern</em>);<br /><br />пользовательский формат вывода даты/времени.<br /><br />Некоторые управляющие символы:<br /><br /><span style="text-decoration: underline;">Месяц</span>:<br /><strong>M</strong>: 1<br /><strong>MM</strong>: 01<br /><strong>MMM</strong>: Jan<br /><strong>MMMM</strong>: January<br /><br /><span style="text-decoration: underline;">День</span>:<br /><strong>d</strong>: 2, 23<br /><strong>dd</strong>: 02, 23<br /><br /><span style="text-decoration: underline;">Год</span>:<br /><strong>y</strong>: 2018<br /><strong>yy</strong>: 18<br /><strong>yyy</strong>: 2018<br /><strong>yyyy</strong>: 2018<br /><br /><span style="text-decoration: underline;">Час</span>:<br /><strong>h</strong>: 1, 10<br /><strong>hh</strong>: 01, 10<br /><br /><span style="text-decoration: underline;">Минута</span>:<br /><strong>m</strong>: 0, 25<br /><strong>mm</strong>: 00, 25<br /><br /><span style="text-decoration: underline;">Секунда</span>:<br /><strong>s</strong>: 3,12<br /><strong>ss</strong>: 03,12<br /><br /><br />DateTimeFormatter f = DateTimeFormatter.ofPattern("MMMM dd, yyyy, hh:mm");<br />System.out.println(dateTime.format(f)); // January 20, 2020, 11:12');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (282,4,0,'Пример форматирования прежних дат.<br /><br />Date d = new Date();<br />SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");<br />System.out.println(sdf.format(d));');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (283,4,1,'Какая строка нижеследующего кода вызовет runtime exception?<br /><br />4: DateTimeFormatter f = DateTimeFormatter.ofPattern("hh:mm");<br />5: f.format(dateTime);<br />6: f.format(date);<br />7: f.format(time);');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (518,283,'4',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (519,283,'5',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (520,283,'6',true,'потому что нельзя вычислить информацию о времени из объекта чистой даты');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (521,283,'7',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (284,4,0,'java.time.<em><span style="text-decoration: underline;">LocalDate</span></em><br />java.time.<em><span style="text-decoration: underline;">LocalTime</span></em><br />java.time.<em><span style="text-decoration: underline;">LocalDateTime</span></em><br /><br />static Local... <strong>parse</strong>(String <em>str</em>)<br />static Local... <strong>parse</strong>(String <em>str</em>, DateTimeFormatter <em>dtf</em>)<br /><br />парсинг строк.<br /><br />DateTimeFormatter f = DateTimeFormatter.ofPattern("MM dd yyyy");<br />LocalDate date = LocalDate.parse("01 02 2015", f);<br />LocalTime time = LocalTime.parse("11:22");<br />System.out.println(date); // 2015-01-02<br />System.out.println(time); // 11:22<br /><br />Общий подход такой: если что-то не получается распарсить (не тот формат строки, неверная дата и т.п.), то будет runtime exception.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (285,4,1,'<p>What is output by the following code? (Choose all that apply)</p>
+<p>1: public class Fish {<br />2:&nbsp;&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />3:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int numFish = 4;<br />4:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String fishType = "tuna";<br />5:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String anotherFish = numFish + 1;<br />6:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(anotherFish + " " + fishType);<br />7:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(numFish + " " + 1);<br />8: } }</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (528,285,'The code does not compile.',true,'в строке 5 int присваивается строке');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (522,285,'4 1',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (523,285,'41',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (524,285,'5',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (525,285,'5 tuna',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (526,285,'5tuna',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (527,285,'51tuna',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (286,4,0,'Если при присваивании&nbsp; целочисленным типам значение может быть вычислено на этапе компиляции (арифметическое выражение с литералами, не результат вызова метода!)&nbsp;и входит в диапазон соответствующего типа, кастинг не требуется:<br /><br />byte b;<br />b = 10*5; //нормально<br />b = 100*5; //ошибка компиляции');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (287,4,1,'<p>Which of the following are output by this code? (Choose all that apply)</p>
+<p>3: String s = "Hello";<br />4: String t = new String(s);<br />5: if ("Hello".equals(s)) System.out.println("one");<br />6: if (t == s) System.out.println("two");<br />7: if (t.equals(s)) System.out.println("three");<br />8: if ("Hello" == s) System.out.println("four");<br />9: if ("Hello" == t) System.out.println("five");</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (529,287,'one',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (530,287,'two',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (531,287,'three',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (532,287,'four',true,'строковый объект из пула сравнивается сам с собой');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (533,287,'five',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (534,287,'The code does not compile.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (288,4,1,'Which are true statements? (Choose all that apply)');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (535,288,'An immutable object can be modified.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (536,288,'An immutable object cannot be modified.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (537,288,'An immutable object can be garbage collected.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (538,288,'An immutable object cannot be garbage collected.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (539,288,'String is immutable.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (540,288,'StringBuffer is immutable.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (541,288,'StringBuilder is immutable.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (289,4,1,'<p>What is the result of the following code?</p>
+<p>7: StringBuilder sb = new StringBuilder();<br />8: sb.append("aaa").insert(1, "bb").insert(4, "ccc");<br />9: System.out.println(sb);</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (544,289,'bbaaaccc',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (545,289,'bbaaccca',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (546,289,'An exception is thrown.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (547,289,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (542,289,'abbaaccc',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (543,289,'abbaccca',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (290,4,1,'<p>What is the result of the following code?</p>
+<p>2: String s1 = "java";<br />3: StringBuilder s2 = new StringBuilder("java");<br />4: if (s1 == s2)<br />5:&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("1");<br />6: if (s1.equals(s2))<br />7:&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("2");</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (548,290,'1',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (549,290,'2',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (550,290,'12',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (551,290,'No output is printed.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (552,290,'An exception is thrown.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (553,290,'The code does not compile.',true,'нельзя сравнивать по ссылке объекты разных иерархий');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (291,4,1,'<p>What is the result of the following code?</p>
+<p>public class Lion {<br />&nbsp;&nbsp;&nbsp; public void roar(String roar1, StringBuilder roar2) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; roar1.concat("!!!");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; roar2.append("!!!");<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String roar1 = "roar";<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StringBuilder roar2 = new StringBuilder("roar");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new Lion().roar(roar1, roar2);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(roar1 + " " + roar2);<br />} }</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (554,291,'roar roar',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (555,291,'roar roar!!!',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (556,291,'roar!!! roar',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (557,291,'roar!!! roar!!!',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (558,291,'An exception is thrown.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (559,291,'The code does not compile.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (292,4,1,'<p>Which are the results of the following code? (Choose all that apply)</p>
+<p>String letters = "abcdef";<br />System.out.println(letters.length());<br />System.out.println(letters.charAt(3));<br />System.out.println(letters.charAt(6));</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (560,292,'5',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (561,292,'6',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (562,292,'с',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (563,292,'d',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (564,292,'An exception is thrown.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (565,292,'The code does not compile.',false,'');
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,286);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (6,101);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (6,102);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (6,103);
@@ -1026,17 +1131,30 @@ INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,55);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,271);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,56);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,19);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,272);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,57);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,273);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,58);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,274);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,59);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,275);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,60);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,276);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,61);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,277);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,62);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,278);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,63);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,279);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,64);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,280);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,28);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,281);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,282);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,67);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,283);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,68);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,284);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,69);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,70);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,71);
@@ -1049,6 +1167,13 @@ INSERT INTO ThemeQuestion (themeId,questionId) VALUES (9,260);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,58);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,64);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,73);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (10,285);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (10,287);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (10,288);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (10,289);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (10,290);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (10,291);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (10,292);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (2,78);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (2,79);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (2,80);

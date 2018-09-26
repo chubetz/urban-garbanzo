@@ -20,10 +20,15 @@ import java.util.Map;
 import java.util.Stack;
 import org.apache.tomcat.util.digester.ArrayStack;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 class Test {
     
     static void aaa(byte b) {}
+    static int get5() {
+        return 5;
+    }
     static int aaa2(byte b) {return 6;}
     static void bbb(float f) {}
     //static void ccc(int d) { System.out.println("ccc int");}
@@ -32,268 +37,45 @@ class Test {
     static void ccc(float f) { System.out.println("ccc float");}
     
     public static final void main(String args[]) {
-        //aaa(1);
-        //bbb(5.5);
-        //byte b = 13;
-        
-        //ccc(3.5);
-        //long max = 3123456789.5;
-        
-        int i = 1_000_00;
-        int j = 01627_3;
-        int k = 0XC____AFE;
-//        float m = 13.34234;
-//        
-//        float n = -9.342__3_4f;
-//        double o = __190.0;
-//        byte p = 198_;
-//        double q = 1_00_0_._0_0; // this one compiles
-        float r = 1_00_0.5_5_6F; // this one compiles
-        String d,f;
-        String d1 = "asd", f1 = "dfg";
-        //d = "asd", f = "dfg";
-        double ff = 5.6d;
-        //long dd = 454.90L;
-        Map<Integer, Boolean> mmm= new HashMap<Integer, Boolean>();
-        mmm.put(0, false);
-        mmm.put(1, true);
-        mmm.put(2, true);
-        boolean b0 = mmm.get(0), b1 = mmm.get(1), b2 = mmm.get(2);
-        System.out.println(b0);
-        System.out.println(Boolean.FALSE);
-        //System.out.println(mmm.get(2));
-        int папуся = 4;
-        
-        SimpleDateFormat form = new SimpleDateFormat("'TIMESTAMP' ''yyyy-MM-dd HH:mm:ss''");
-        System.out.println(form.format(new Date()));
-        
-        char c = 'b';
-        //c+=22222222;
-        hhh : System.out.println(--c);
-            
-        
-        label: {
-            System.out.println(44444);
-            System.out.println(55555);
-            
-            inner_label : {
-                //break label;
-            }
-            label1 : switch (c) {
-                case 'g':
-                    break label1;
-            }
-         }
-        
+LocalDate localDate = LocalDate.now();
 
-        
-        label2 : if (true) {
-            break label2;
-        }
-        
-        byte bb = (byte)129;
-        System.out.println(bb);
-        
-        bb = 127;
-        bb += 10;
-        System.out.println(bb);
-        
-        int hourOfDay = 9;
-        
-        eee : if(hourOfDay < 15) {
-            ggg: System.out.println("Good Afternoon");
-        } else if(hourOfDay < 11) {
-        System.out.println("Good Morning"); // UNREACHABLE CODE
-        } else {
-        System.out.println("Good Evening");
-        }        
-        
-        int tt = 9;
-        
-        final int ccc = 6;
-        
-        switch (new Integer(4)) {
-            case ccc:
-                break;
-        }
-        
-        int h=5,l=0;
-        byte ww = 0;
-        for(h=0,ww=0;;h = l+1) {
-            System.out.println(h);
-            break;
-        }
-        
-        String[] names = new String[1];
-        ddd : for(String name : names) {
-            System.out.print(name + ", ");
-        }        
-        
+DateTimeFormatter f = DateTimeFormatter
+    .ofLocalizedDateTime(FormatStyle.SHORT);
 
-        java.util.List<Integer> list = new java.util.ArrayList<Integer>();
-        list.add(10);
-        list.add(14);
-        for(int x : list) {
-            System.out.print(x + ", ");
-            String ddd = x + ", ";
-            System.out.println(ddd);
-            break;
-        }        
-        
-        
-        for(int rr=0; rr<10 ; ) {
-            rr = rr++;
-            System.out.println("Hello World");
-            break;
-        }
-        
-        int o = 1;
-        int oo = ++o + o++;
-        System.out.println(oo);
-        
-        String str1 = "mystring";
-        System.out.println(str1.substring(0,0));
-        
-        StringBuilder sb = new StringBuilder("animals");
-        String sub = sb.substring(sb.indexOf("a"), sb.indexOf("al"));
-        int len = sb.length();
-        char ch = sb.charAt(6);
-        System.out.println(sub + " " + len + " " + ch);
-        
-        StringBuilder sbb = new StringBuilder("animals");
-        sbb.insert(0, "-"); // sb = animals-
-        System.out.println(sbb);
-        
-        StringBuilder sbbb = new StringBuilder("abcdef");
-        sbbb.delete(3, 3); // sb = adef
-        //sbbb.deleteCharAt(1); // throws an exception
-        System.out.println(sbbb);
-        
-        int[] numbers = {33,44,55};
-        System.out.println(new int [57] . length);
-        
-        int[] ids1, types1;
-        int ids2[], types2;
-        
-        ids1 = new int[1];
-        ids2 = new int[1];
-        types1 = new int[1];
-        //types2 = new int[3];
-        
-        String[] strings = {"aaa","bbb"};
-        Object[] objects = strings;
-        //objects[0] = new Object();
-        
+//System.out.println(f.format(localDate));
 
-        Integer[] newA = {4,3,5,6,12,7};
-        Arrays.sort(newA, new Comparator<Integer>(){
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o1.compareTo(o2);
-            }
-        }.reversed());
-        System.out.println(Arrays.toString(newA));
-        
-        List<? extends Object> fff = new ArrayList<Object>();
-        
-        int[][] vars1; // 2D array
-int vars2 [][]; // 2D array
-int[] vars3[]; // 2D array
-int[] vars4 [], space [][]; // a 2D AND a 3D array
-    Object ddd = new int[][]{{1, 4}, {3}, {9,8,7}};
-int[][] differentSize;
-differentSize = new int[][]{{1, 4}, {3}, {9,8,7}};
+LocalDateTime ldt = LocalDateTime.now();
+DateTimeFormatter dtf = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM);
+System.out.println(ldt.format(dtf));
 
-    ArrayList al = new ArrayList();
-    
-    al.add("Teddy");
-    al.add("Looby");
-    al.add("Andy");
-    System.out.println(al);
-    al.add(2, "Barsuk");
-    System.out.println(al);
-    //al.add(-1, "Enot");
-    al.add(true);
-    System.out.println(al);
-    
-    ArrayList<String> list2 = new ArrayList<>();
-list2.add("sparrow");
-list2.add(Boolean.TRUE.toString());
-System.out.println(list);
+DateTimeFormatter myFormat = DateTimeFormatter.ofPattern("MMMM");
+System.out.println();
 
-List<String> birds = new ArrayList<>();
-birds.add("hawk");
-birds.add("hawk");
-birds.remove("cardinal");
-birds.remove("hawk");
-System.out.println(birds);
+Date d = new Date();
+SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
+System.out.println(sdf.format(d));
 
-double dddd = 5;
-new Float(dddd);
-new Double('c');
+byte b = 5;
+b = 10*5;
+//b = get5();
+//b = 100*5;
 
-
-boolean primitive = Boolean.parseBoolean("trUE");
-Boolean wrapper = Boolean.valueOf("trUE1");
-
-System.out.println("primitive: " + primitive + ", wrapper: " + wrapper);
-
-Long primitive1 = Long.parseLong("4");
-Long wrapper1 = Long.valueOf("4");
-
-List<Integer> numberz = new ArrayList<>();
-numberz.add(1);
-numberz.add(2);
-numberz.remove(1);
-System.out.println(numberz);
-
-List<String> list12 = new ArrayList<>();
-list12.add("hawk");
-list12.add("robin");
-Object[] objectArray = list12.toArray();
-String[] stringArray = list12.toArray(new String[]{"a","b","c","d", "e"});
-
-System.out.println(Arrays.toString(stringArray));
-
-String dfd [] = {"aaa", "bbb", "ccc"};
-
-List<String> lstr = new ArrayList<String>(Arrays.asList(dfd));
-
-System.out.println(Arrays.toString(dfd));
-System.out.println(lstr);
-
-dfd[2] = "ffff";
-lstr.add("fgg");
-System.out.println(Arrays.toString(dfd));
-System.out.println(lstr);
-
-System.out.println(LocalDate.now());
-System.out.println(LocalTime.now());
-System.out.println(LocalDateTime.now());
-System.out.println(ZonedDateTime.now());
-
-LocalDateTime dateTime = LocalDateTime.of(LocalDate.now(), LocalTime.now());
-System.out.println(LocalDateTime.of(LocalDate.now(), LocalTime.now()));
+String s1 = "java";
+StringBuilder s2 = new StringBuilder("java");
+//if (s1 == s2)
+//    System.out.print("1");
+if (s1.equals(s2))
+    System.out.print("2");
 
 
 
-//LocalDate date = LocalDate.of(2020, Month.JANUARY, 20);
-//date.plusDays(10);
-//System.out.println(date);
 
-LocalDate date = LocalDate.of(2018, Month.MARCH, 22);
-Period period = Period.ofYears(1).ofWeeks(1);
-System.out.println(date.plus(period));
-System.out.println(date.plus(Period.ofYears(1))
-        .plus(Period.ofWeeks(1)));
 
-LocalDate date1 = LocalDate.of(2015, 1, 20);
-LocalTime time = LocalTime.of(6, 15);
-LocalDateTime dateTime1 = LocalDateTime.of(date, time);
-Period period1 = Period.ofMonths(1);
-System.out.println(date1.plus(period1)); // 2015-02-20
-System.out.println(dateTime1.plus(period1)); // 2015-02-20T06:15
-System.out.println(dateTime1.plus(Period.ofYears(1)));
+
+
+
+
+
 
     }
         
