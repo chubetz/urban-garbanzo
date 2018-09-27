@@ -50,6 +50,7 @@ public class Viewer extends ErrorHandlingServlet {
                 break;
             case "realms":
                 url = "/view_list.jsp";
+                //url = "/realms/view_list.jsp";
                 request.setAttribute("title", "Список загруженных областей");
                 try {
                     ViewUtils.fillAttributesRealms(request);
