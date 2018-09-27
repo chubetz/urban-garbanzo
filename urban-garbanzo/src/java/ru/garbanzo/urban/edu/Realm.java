@@ -7,6 +7,7 @@ package ru.garbanzo.urban.edu;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -121,11 +122,23 @@ public class Realm extends Entity implements ITreeElement {
         return Collections.unmodifiableMap(getStorage().getQuestionMap(this));
     }
 
+    public String getQuestionsHTMLLink(String linkText) {
+        return "<a href=view?info=questions&realmId=" + this.getId() + ">" + linkText + "</a>";
+    }
+    public String getQuestionsHTMLLink() {
+        return getQuestionsHTMLLink("Карточки");
+    }
+    public int getQuestionsQty() {
+        return getQuestionMap().size();
+    }
+
     public String getThemesHTML() {
         StringBuilder sb = new StringBuilder();
         sb.append("<ul>\r\n");
-        for (Theme theme: getThemeMap().values()) {
-            sb.append("\t<li>" + theme.getDbl("number") + " " + theme.getStr("text") + "\r\n");
+        List<Theme> themeList = new ArrayList<Theme>(getThemeMap().values());
+        Collections.sort(themeList, Theme.NUMBER_COMPARATOR);
+        for (Theme theme: themeList) {
+            sb.append("\t<li>" + theme.getCardLink(theme.getNumberStr() + " " + theme.getText()) + "\r\n");
         }
         sb.append("</ul>");
         return sb.toString();
@@ -165,5 +178,6 @@ public class Realm extends Entity implements ITreeElement {
         return treeSign;
         
     }
+    
 
 }

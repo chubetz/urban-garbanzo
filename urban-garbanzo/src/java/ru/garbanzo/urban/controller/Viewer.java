@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import ru.garbanzo.urban.edu.ITreeElement;
+import ru.garbanzo.urban.edu.Realm;
+import ru.garbanzo.urban.edu.Storage;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
 
@@ -49,14 +51,12 @@ public class Viewer extends ErrorHandlingServlet {
                 }
                 break;
             case "realms":
-                url = "/view_list.jsp";
-                //url = "/realms/view_list.jsp";
+                url = "/realms/view_list.jsp";
                 request.setAttribute("title", "Список загруженных областей");
-                try {
-                    ViewUtils.fillAttributesRealms(request);
-                } catch (JDBCException e) {
-                    request.setAttribute("exception", e);
-                    getServletContext().getRequestDispatcher("/db_error.jsp").forward(request, response);                    
+                request.setAttribute("realms", Realm.getMap().values());
+                if (Storage.getJdbcException() != null) {
+                    request.setAttribute("exception", Storage.getJdbcException());
+                    url = "/db_error.jsp";                   
                 }
                 break;
             case "themes":

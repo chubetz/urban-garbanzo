@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,8 @@ import ru.garbanzo.urban.util.Utils;
  * @author mithia
  */
 public class Theme extends Entity implements ITreeElement {
+    
+    public static final Comparator<Theme> NUMBER_COMPARATOR = new NumberComparator();
 
     Theme(int id) {
         super("Theme", id);
@@ -54,6 +57,10 @@ public class Theme extends Entity implements ITreeElement {
     
     public String getText() { //вспомогательный геттер
         return this.getStr("text");
+    }
+
+    public double getNumber() { //вспомогательный геттер
+        return this.getDbl("number");
     }
 
     public String getNumberStr() { //вспомогательный геттер
@@ -154,7 +161,7 @@ public class Theme extends Entity implements ITreeElement {
         return "<a href=view?info=questions&themeId=" + this.getId() + ">" + linkText + "</a>";
     }
     public String getQuestionsHTMLLink() {
-        return getQuestionsHTMLLink("Вопросы");
+        return getQuestionsHTMLLink("Карточки");
     }
     public String getThemeExamsHTML() {
         List<ThemeExam> exams = new ArrayList<ThemeExam>(getThemeExamMap().values());
@@ -206,4 +213,10 @@ public class Theme extends Entity implements ITreeElement {
     }
     
     
+    private static class NumberComparator implements Comparator<Theme> {
+        @Override
+        public int compare(Theme o1, Theme o2) {
+            return new Double(o1.getNumber()).compareTo(new Double(o2.getNumber()));
+        }
+    }
 }
