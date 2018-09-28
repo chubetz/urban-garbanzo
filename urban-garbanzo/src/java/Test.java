@@ -67,7 +67,10 @@ StringBuilder s2 = new StringBuilder("java");
 if (s1.equals(s2))
     System.out.print("2");
 
-
+LocalDate date5 = LocalDate.parse("2018-04-30", DateTimeFormatter.ISO_LOCAL_DATE);
+date5.plusDays(2);
+System.out.println(date5.getYear() + " " + date5.getMonth() + " "
++ date5.getDayOfMonth());
 
 
 
