@@ -12,16 +12,14 @@
 <h3>(всего ${realms.size()} элементов)</h3>
 <%--div style='font-family:Tahoma; color:black; font-weight:bold'><a style='color:black;' href='controller?action=new_realm'>Создать</a></div--%>
 
+<form name="new" action="controller" method="GET">
+    <input type="hidden" name="action" value="new_realm">
+    <input class="calibri_new" type="submit" value="Создать" />
+</form>
 <table border="0" cellpadding="1" cellspacing="0" bgcolor="black"><tr><td>
 
 <table class="tdbg1" border="0" cellpadding="5" cellspacing="1">
     <tr class="tdbg2 calibri_hdr" align="center">
-        <td>
-            <form name="new" action="controller" method="GET">
-                <input type="hidden" name="action" value="new_realm">
-                <input class="calibri_new" type="submit" value="Создать" />
-            </form>
-        </td>
         <td>
             Предметная область
         </td>
@@ -40,14 +38,14 @@
     </tr>
 <c:forEach var="r" items="${realms}">
     <tr class="calibri_cell">
-        <td align="center">
+        <%--td align="center">
             <form name="edit" action="controller" method="POST">
                 <input type="hidden" name="action" value="edit_realm">
                 <input type="hidden" name="id" value="${r.id}">
                 <button type="submit" style="font-family: Calibri; font-weight: 700;">Редактировать</button>
             </form>
-        </td>
-        <td><b>${r.description}</b></td>
+        </td--%>
+        <td><a class="realm_link" href="${r.profileURL}"><b>${r.description}</b></a></td>
         <td>${r.id}</td>
         <td>${r.text}</td>
         <td class="calibri_link"><b>${r.themesHTML}</b></td>

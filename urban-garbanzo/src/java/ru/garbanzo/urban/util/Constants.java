@@ -11,6 +11,6 @@ package ru.garbanzo.urban.util;
  */
 public class Constants {
     
-    public static final String MAIN_TITLE = "Систeма нипель"; //фиксации знаний
+    public static final String MAIN_TITLE = "Систeма фиксации знаний"; //фиксации знаний
     
 }

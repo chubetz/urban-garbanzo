@@ -1,5 +1,5 @@
 <%-- 
-    Document   : themeCard
+    Document   : themeProfile
     Created on : Jul 16, 2018, 4:20:13 PM
     Author     : d.gorshenin
 --%>

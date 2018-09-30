@@ -13,13 +13,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import ru.garbanzo.urban.edu.Realm;
 import ru.garbanzo.urban.edu.Theme;
 
 /**
  *
  * @author d.gorshenin
  */
-public class EntityCard extends ErrorHandlingServlet {
+public class EntityProfile extends ErrorHandlingServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,9 +40,14 @@ public class EntityCard extends ErrorHandlingServlet {
             String parName = parNames.nextElement();
             switch (parName) {
                 case "theme":
-                    url = "/themeCard.jsp";
+                    url = "/themeProfile.jsp";
                     request.setAttribute("theme", Theme.getById(request.getParameter(parName)));
                     request.setAttribute("title", "Профиль темы");
+                    break;
+                case "realm":
+                    url = "/realms/profile.jsp";
+                    request.setAttribute("realm", Realm.getById(request.getParameter(parName)));
+                    request.setAttribute("title", "Профиль предметной области");
                     break;
                 
             }

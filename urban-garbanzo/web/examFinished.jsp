@@ -9,5 +9,5 @@
 <c:import url= "/includes/newheader.jsp" />
 <c:import url= "/includes/icons.jsp" />
         <h3>${examResult}</h3>
-        Открыть профиль темы: ${theme.getCardLink(theme.title)} 
+        Открыть профиль темы: ${theme.getProfileLink(theme.title)} 
 <c:import url= "/includes/newfooter.jsp" />

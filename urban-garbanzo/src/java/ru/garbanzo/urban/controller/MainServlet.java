@@ -87,10 +87,17 @@ public class MainServlet extends ErrorHandlingServlet {
             case "new_question":
                 url = "/edit_question.jsp";
                 Utils.print("Servlet.new_question", request.getParameterMap());
-                request.setAttribute("question", Question.getMockQuestion());
+                String realmId = request.getParameter("realm");
+                Question mockQuestion = null;
+                if (realmId != null) {
+                    request.setAttribute("disabled", "disabled");
+                    mockQuestion = Question.getMockQuestion(realmId);
+                } else
+                    mockQuestion = Question.getMockQuestion();
                 request.setAttribute("action", "update_question");
                 request.setAttribute("title", "Редактировать вопрос");
                 request.setAttribute("edit_mode", "on");
+                request.setAttribute("question", mockQuestion);
                 break;
             case "add_answer":
                 url = "/edit_question.jsp";
@@ -108,6 +115,7 @@ public class MainServlet extends ErrorHandlingServlet {
                 request.setAttribute("action", "update_question");
                 request.setAttribute("title", "Редактировать вопрос");
                 request.setAttribute("edit_mode", "on");
+                request.setAttribute("disabled", "disabled");
                 break;
             case "update_question":
                 Utils.print("Servlet.update_question", request.getParameterMap());

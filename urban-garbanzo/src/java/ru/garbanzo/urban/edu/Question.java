@@ -36,9 +36,18 @@ public class Question extends Entity implements ITreeElement {
     public static final int COMMON_TYPE = 2;
     
     public static Question getMockQuestion() { //обертка для Question - для jsp
-        return mockQuestion;
+        return new Question(-100);
     }
     
+    public static Question getMockQuestion(String realmId) { //обертка для Question - для jsp
+        Question question = getMockQuestion();
+        Map<String, Object> state = new HashMap<String, Object>();
+        if (realmId != null)
+            state.put("realmId", Integer.parseInt(realmId));
+        question.setState(state);
+        return question;
+    }
+
     public static Question getQuestionFromParameterMap(Map<String, ?> data) { //изготовить объект вопроса по параметрам с фронта (и не только)
         if (data.get("realmId").getClass().isArray()) { //список параметров с фронта
             data = Utils.translateWebData( (Map<String, String[]>)data );
@@ -252,7 +261,7 @@ public class Question extends Entity implements ITreeElement {
      * @return the value of id
      */
     
-    private static Question mockQuestion = new Question(-100);
+    //private static Question mockQuestion = new Question(-100);
 
     Question(int id) {
         super("Question", id);
@@ -362,7 +371,7 @@ public class Question extends Entity implements ITreeElement {
         StringBuilder sb = new StringBuilder();
         sb.append("<ul>\r\n");
         for (Theme theme: getThemeMap().values()) {
-            sb.append("\t<li>" + theme.getCardLink(theme.getDblStr("number") + " " + theme.getStr("text"), "0") + "\r\n");
+            sb.append("\t<li>" + theme.getProfileLink(theme.getDblStr("number") + " " + theme.getStr("text"), "0") + "\r\n");
         }
         sb.append("</ul>");
         return sb.toString();
@@ -451,7 +460,7 @@ public class Question extends Entity implements ITreeElement {
                 break;
         }
         treeSign.setEditLink("controller?action=load_edit_form&id=" + getId());
-        //treeSign.setProfileLink(getCardURL());
+        //treeSign.setProfileLink(getProfileURL());
 
         return treeSign;
     }

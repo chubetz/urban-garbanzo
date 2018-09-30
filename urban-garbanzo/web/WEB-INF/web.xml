@@ -25,8 +25,8 @@
         <servlet-class>ru.garbanzo.urban.controller.Viewer</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EntityCard</servlet-name>
-        <servlet-class>ru.garbanzo.urban.controller.EntityCard</servlet-class>
+        <servlet-name>EntityProfile</servlet-name>
+        <servlet-class>ru.garbanzo.urban.controller.EntityProfile</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Activator</servlet-name>
@@ -45,8 +45,8 @@
         <url-pattern>/view</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EntityCard</servlet-name>
-        <url-pattern>/viewCard</url-pattern>
+        <servlet-name>EntityProfile</servlet-name>
+        <url-pattern>/viewProfile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Activator</servlet-name>

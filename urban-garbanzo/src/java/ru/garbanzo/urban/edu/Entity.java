@@ -162,21 +162,21 @@ public abstract class Entity implements DBEntity {
         return sb.toString();
     }
     
-    public String getCardLink() {
-        return getCardLink("Подробности", "0");
+    public String getProfileLink() {
+        return getProfileLink("Профиль", "0");
     }
 
-    public String getCardLink(String label) {
-        return getCardLink(label, "0");
+    public String getProfileLink(String label) {
+        return getProfileLink(label, "0");
     }
 
-    public String getCardLink(String label, String style) {
+    public String getProfileLink(String label, String style) {
         String className = this.getClass().getSimpleName().toLowerCase();
-        return "<a style=" + style + " href=\"" + getCardURL() + "\">" + label + "</a>";
+        return "<a style=" + style + " href=\"" + getProfileURL() + "\">" + label + "</a>";
     }
 
-    public String getCardURL() {
+    public String getProfileURL() {
         String className = this.getClass().getSimpleName().toLowerCase();
-        return "viewCard?" + className + "=" + this.getId();
+        return "viewProfile?" + className + "=" + this.getId();
     }
 }

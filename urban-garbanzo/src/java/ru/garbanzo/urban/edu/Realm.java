@@ -138,7 +138,7 @@ public class Realm extends Entity implements ITreeElement {
         List<Theme> themeList = new ArrayList<Theme>(getThemeMap().values());
         Collections.sort(themeList, Theme.NUMBER_COMPARATOR);
         for (Theme theme: themeList) {
-            sb.append("\t<li>" + theme.getCardLink(theme.getNumberStr() + " " + theme.getText()) + "\r\n");
+            sb.append("\t<li>" + theme.getProfileLink(theme.getNumberStr() + " " + theme.getText()) + "\r\n");
         }
         sb.append("</ul>");
         return sb.toString();

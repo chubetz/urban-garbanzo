@@ -207,7 +207,7 @@ public class Theme extends Entity implements ITreeElement {
         treeSign.setTableBgcolor("#2DA935");
         treeSign.setTdBgcolor("#B4ECB7");
         treeSign.setEditLink("controller?action=edit_theme&id=" + getId());
-        treeSign.setProfileLink(getCardURL());
+        treeSign.setProfileLink(getProfileURL());
         
         return treeSign;
     }

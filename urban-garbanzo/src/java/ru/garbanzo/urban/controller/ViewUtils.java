@@ -166,7 +166,7 @@ class ViewUtils {
             }
             sb.append("</td>");
             sb.append("<td>");
-            sb.append(theme.getCardLink());
+            sb.append(theme.getProfileLink());
             sb.append("</td>");
             sb.append("</tr>");
 //            sb.append("<tr>");
