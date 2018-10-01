@@ -15,35 +15,68 @@
 </form>
 <table border="0" cellpadding="1" cellspacing="0" bgcolor="black" width="400"><tr><td>
 
-<table border="0" cellpadding="3" cellspacing="1">
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+
+    <form name="new" action="viewProfile" method="${mode == 'edit' ? 'POST' : 'GET'}">
+        <input type="hidden" name="realm" value="${realm.id}">
+    
     <tr>
-        <td bgcolor="${realm.treeSign.tableBgcolor}" width="100" rowspan="2">
+        <td bgcolor="${realm.treeSign.tableBgcolor}" rowspan="2" width="15%">
            
         </td>
-        <td  colspan="2" align="center" class="profile_realm_1" bgcolor="${realm.treeSign.tdBgcolor}" width="300">
-            <span class="profile_realm_label">Предметная область</span>
-            <br>
-            <b>${realm.description}</b>
+        <td  colspan="3" align="center" class="profile_realm_1" bgcolor="${realm.treeSign.tdBgcolor}">
+            <span class="profile_realm_label border" style="background: ${realm.treeSign.tableBgcolor};"><b>Предметная область</b></span>
+            <p style="font-size: 5px;"> </p>
+            <c:choose>
+                <c:when test="${mode == 'edit'}">
+                    <input size="30" class="profile_realm_1 center bold" type="text" name="description" value="${realm.description}" required="true">
+                </c:when>
+                <c:otherwise>
+                    <b>${realm.description}</b>
+                </c:otherwise>
+            </c:choose>
+            
         </td>
     </tr>
     <tr >
-        <td  class="profile_realm_2" width="200" bgcolor="${realm.treeSign.tdBgcolor}">
-            <span class="profile_realm_label border">ID</span>
+        <td  class="profile_realm_2" bgcolor="${realm.treeSign.tdBgcolor}">
+            <span class="profile_realm_label border" style="background: ${realm.treeSign.tableBgcolor};"><b>ID</b></span>
             
-            <b>${realm.id}</b>
+            <span >${realm.id}</span>
         </td>
-        <td class="profile_realm_2" width="200" bgcolor="${realm.treeSign.tdBgcolor}">
-            <span class="profile_realm_label border">Код</span>
-            
-            <b>${realm.text}</b>
+        <td class="profile_realm_2" bgcolor="${realm.treeSign.tdBgcolor}">
+            <span class="profile_realm_label border" style="background: ${realm.treeSign.tableBgcolor};"><b>Код</b></span>
+            <c:choose>
+                <c:when test="${mode == 'edit'}">
+                    <input size="10" class="profile_realm_2 center " type="text" name="text" value="${realm.text}" required="true">
+                </c:when>
+                <c:otherwise>
+                    <span >${realm.text}</span>
+                </c:otherwise>
+            </c:choose>
         </td>
+        <td align="center" bgcolor="${realm.treeSign.tdBgcolor}">
+            <c:choose>
+                <c:when test="${mode == 'edit'}">
+                    <input type="hidden" name="action" value="save">
+                    <input class="calibri_new" style="background:black; color:white;" type="submit" value="Сохранить" />
+                </c:when>
+                <c:otherwise>
+                    <input type="hidden" name="action" value="edit">
+                    <input class="calibri_new" style="background:${realm.treeSign.tableBgcolor}; color:black;" type="submit" value="Редактировать" />
+                </c:otherwise>
+            </c:choose>
+       </td>
     </tr>
+
+    </form>
+
     <tr>
-        <td bgcolor="${realm.treeSign.tdBgcolor}" colspan="3">
+        <td bgcolor="${realm.treeSign.tdBgcolor}" colspan="4">
 
             <table border="0" width="100%">
                 <tr>
-                    <td valign="top" class="calibri_link" style="font-size: 17px;" align="center" width="50%">
+                    <td valign="top" class="calibri_link" style="font-size: 17px;" align="center">
                         <br>
                         <img src="images/questions_logo.png" width="50" border="1">
                         <br>
@@ -60,7 +93,7 @@
                 </c:choose>
 
                     </td>
-                    <td valign="top"  class="calibri_link" align="center" width="50%">
+                    <td valign="top"  class="calibri_link" align="center">
                         <br>
                         <img src="images/themes_logo.png" width="50" border="1">
                         <br>

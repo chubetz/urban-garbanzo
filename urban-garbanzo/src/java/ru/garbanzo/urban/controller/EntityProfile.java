@@ -47,6 +47,14 @@ public class EntityProfile extends ErrorHandlingServlet {
                 case "realm":
                     url = "/realms/profile.jsp";
                     request.setAttribute("realm", Realm.getById(request.getParameter(parName)));
+                    String action = request.getParameter("action");
+                    if (action != null) {
+                        switch (action) {
+                            case "edit":
+                                request.setAttribute("mode", "edit");
+                                break;
+                        }
+                    }
                     request.setAttribute("title", "Профиль предметной области");
                     break;
                 
