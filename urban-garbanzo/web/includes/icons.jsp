@@ -8,16 +8,16 @@
 <table >
     <tr>
         <td>
-            <a href="view?info=tree"><img src="images/tree.png" width="50" border="1"></a>
+            <a href="view?info=tree"><img title="Иерархия" src="images/tree.png" width="50" border="1"></a>
         </td>
         <td>
-            <a href="view?info=realms"><img src="images/realms_logo.png" width="50" border="1"></a>
+            <a href="view?info=realms"><img title="Области" src="images/realms_logo.png" width="50" border="1"></a>
         </td>
         <td>
-            <a href="view?info=themes"><img src="images/themes_logo.png" width="50" border="1"></a>
+            <a href="view?info=themes"><img title="Темы" src="images/themes_logo.png" width="50" border="1"></a>
         </td>
         <td>
-            <a href="view?info=questions"><img src="images/questions_logo.png" width="50" border="1"></a>
+            <a href="view?info=questions"><img title="Карточки" src="images/questions_logo.png" width="50" border="1"></a>
         </td>
     </tr>    
     <tr class="calibri_cell" style="font-size: 12px; text-align: center;">    

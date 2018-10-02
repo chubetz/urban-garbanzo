@@ -12,8 +12,9 @@
 <h3>(всего ${realms.size()} элементов)</h3>
 <%--div style='font-family:Tahoma; color:black; font-weight:bold'><a style='color:black;' href='controller?action=new_realm'>Создать</a></div--%>
 
-<form name="new" action="controller" method="GET">
-    <input type="hidden" name="action" value="new_realm">
+<form name="new" action="viewProfile" method="GET">
+    <input type="hidden" name="realm" value="new">
+    <input type="hidden" name="action" value="edit">
     <input class="calibri_new" type="submit" value="Создать" />
 </form>
 <table border="0" cellpadding="1" cellspacing="0" bgcolor="black"><tr><td>

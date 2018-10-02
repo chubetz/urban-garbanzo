@@ -7,13 +7,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url= "/includes/newheader.jsp" />
-<c:import url= "/includes/newfooter.jsp" />
 
 <form name="new" action="view" method="GET">
     <input type="hidden" name="info" value="realms">
     <input class="calibri_new" type="submit" value="Вернуться к списку областей" />
 </form>
-<table border="0" cellpadding="1" cellspacing="0" bgcolor="black" width="400"><tr><td>
+
+<c:if test="${realm == null}">
+    Области с таким идентификатором не существует
+</c:if>
+
+<table style="visibility: ${realm == null ? 'hidden' : 'visible'}" border="0" cellpadding="1" cellspacing="0" bgcolor="black" width="400"><tr><td>
 
 <table border="0" cellpadding="3" cellspacing="1" width="100%">
 
@@ -42,7 +46,7 @@
         <td  class="profile_realm_2" bgcolor="${realm.treeSign.tdBgcolor}">
             <span class="profile_realm_label border" style="background: ${realm.treeSign.tableBgcolor};"><b>ID</b></span>
             
-            <span >${realm.id}</span>
+            <span>${realm.id < 0 ? '&lt;NEW&gt;' : realm.id}</span>
         </td>
         <td class="profile_realm_2" bgcolor="${realm.treeSign.tdBgcolor}">
             <span class="profile_realm_label border" style="background: ${realm.treeSign.tableBgcolor};"><b>Код</b></span>
@@ -63,7 +67,7 @@
                 </c:when>
                 <c:otherwise>
                     <input type="hidden" name="action" value="edit">
-                    <input class="calibri_new" style="background:${realm.treeSign.tableBgcolor}; color:black;" type="submit" value="Редактировать" />
+                    <input class="calibri_new" style="background:#E1E3E1; color:black;" type="submit" value="Редактировать" />
                 </c:otherwise>
             </c:choose>
        </td>
@@ -72,17 +76,11 @@
     </form>
 
     <tr>
-        <td bgcolor="${realm.treeSign.tdBgcolor}" colspan="4">
-
-            <table border="0" width="100%">
-                <tr>
-                    <td valign="top" class="calibri_link" style="font-size: 17px;" align="center">
-                        <br>
-                        <img src="images/questions_logo.png" width="50" border="1">
-                        <br>
-                        <a class="create_link" style="font-size: 10px" href="controller?action=new_question&realm=${realm.id}"><b>Создать</b></a>
-                        <br>
-                        Карточек:                 
+        <td width="10%" bgcolor="${realm.treeSign.tdBgcolor}" colspan="2" valign="top" class="calibri_link" style="font-size: 17px;" align="center">
+            <span class="profile_realm_label border" style="background: ${realm.treeSign.tableBgcolor};"><b>Карточки</b></span>
+            <p size="5px"/>
+            <img src="images/flashcard.png" width="80" border="1" style="border-color: ${realm.treeSign.tableBgcolor};">
+            <div style="margin-top: -50px;">
                 <c:choose>
                     <c:when test="${realm.questionsQty > 0}">
                         <b>${realm.getQuestionsHTMLLink('' + realm.questionsQty)}</b>
@@ -91,22 +89,44 @@
                         ${realm.questionsQty}
                     </c:otherwise>
                 </c:choose>
+            </div>
+            <p size="5px"/>
+            <form name="add_question" action="controller" method="GET">
+                <b style="color:red;">+</b>
+                <input type="hidden" name="action" value="new_question">
+                <input type="hidden" name="realm" value="${realm.id}">
+                <input class="calibri_new" style="background:#E1E3E1; color:black; font-size:10px" type="submit" value="Добавить" />
+            </form>
+            
+            <%--br>
+            <img src="images/questions_logo.png" width="50" border="1">
+            <br>
+            <a class="create_link" style="font-size: 10px" href="controller?action=new_question&realm=${realm.id}"><b>Создать</b></a>
+            <br>
+            Карточек:                 
+            <c:choose>
+                <c:when test="${realm.questionsQty > 0}">
+                    <b>${realm.getQuestionsHTMLLink('' + realm.questionsQty)}</b>
+                </c:when>
+                <c:otherwise>
+                    ${realm.questionsQty}
+                </c:otherwise>
+            </c:choose--%>
 
-                    </td>
-                    <td valign="top"  class="calibri_link" align="center">
-                        <br>
-                        <img src="images/themes_logo.png" width="50" border="1">
-                        <br>
-                        <div style="font-size: 17px;">Темы:</div>
-                        <div align="left"><b>${realm.themesHTML}</b></div>
-                    </td>
-                    
-                </tr>
-                
-            </table>
         </td>
+        <td bgcolor="${realm.treeSign.tdBgcolor}" colspan="2" valign="top"  class="calibri_link" align="center">
+            <br>
+            <img src="images/themes_logo.png" width="50" border="1">
+            <br>
+            <div style="font-size: 17px;">Темы:</div>
+            <div align="left"><b>${realm.themesHTML}</b></div>
+        </td>
+                    
     </tr>
+                
 </table>
 
             
 </td></tr></table>
+
+<c:import url= "/includes/newfooter.jsp" />

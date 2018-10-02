@@ -8,6 +8,8 @@ package ru.garbanzo.urban.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import ru.garbanzo.urban.edu.Realm;
 import ru.garbanzo.urban.edu.Theme;
+import ru.garbanzo.urban.exception.JDBCException;
+import ru.garbanzo.urban.util.Utils;
 
 /**
  *
@@ -34,6 +38,7 @@ public class EntityProfile extends ErrorHandlingServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding ("UTF-8");
         String url = null;
         Enumeration<String> parNames = request.getParameterNames();
         while (parNames.hasMoreElements()) {
@@ -46,12 +51,28 @@ public class EntityProfile extends ErrorHandlingServlet {
                     break;
                 case "realm":
                     url = "/realms/profile.jsp";
-                    request.setAttribute("realm", Realm.getById(request.getParameter(parName)));
+                    if (request.getParameter(parName).equals("new"))
+                        request.setAttribute("realm", Realm.getMock());
+                    else
+                        request.setAttribute("realm", Realm.getById(request.getParameter(parName)));
                     String action = request.getParameter("action");
                     if (action != null) {
                         switch (action) {
                             case "edit":
                                 request.setAttribute("mode", "edit");
+                                break;
+                            case "save":
+                                Realm realm;
+                                try {
+                                    realm = Realm.saveRealm(request.getParameter("realm"), request.getParameterMap());
+                                } catch (JDBCException ex) {
+                                    Logger.getLogger(EntityProfile.class.getName()).log(Level.SEVERE, null, ex);
+                                    url = "/db_error.jsp";
+                                    request.setAttribute("exception", ex);
+                                    break;
+                                }
+                                url = null;
+                                response.sendRedirect("viewProfile?realm=" + realm.getId());
                                 break;
                         }
                     }
