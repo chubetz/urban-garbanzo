@@ -153,12 +153,21 @@ public abstract class Entity implements DBEntity {
 
     public String getRealmsHTML() {
         StringBuilder sb = new StringBuilder();
+        int realmId = this.getInt("realmId");
+        boolean dropDownDisabled = this.getId() < 0 && realmId >= 0;
+        
+        sb.append("<select " + (dropDownDisabled ? "disabled" : "name=\"realmId\"") + ">\n");
         for (Map.Entry<Integer, String> entry: getAvailableRealms().entrySet()) {
             sb.append("<option value=\"" + entry.getKey() + "\"");
-            if (this.getInt("realmId") == entry.getKey())
+            if (realmId == entry.getKey())
                 sb.append(" selected");
             sb.append(">" + entry.getValue() + "</option>\n");
         }
+        sb.append("</select>\n");
+        if (dropDownDisabled) { //нужно продублировать выбранное значение, т.к. select disabled не отправляется в форму
+            sb.append("<input type=\"hidden\" name=\"realmId\" value=\"" + realmId + "\" />");
+        }
+            
         return sb.toString();
     }
     

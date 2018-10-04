@@ -144,6 +144,26 @@ public class Realm extends Entity implements ITreeElement {
         return sb.toString();
     }
     
+    public String getThemesTableHTML() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<table width=\"100%\" cellspacing=\"2\">\n");
+        List<Theme> themeList = new ArrayList<Theme>(getThemeMap().values());
+        Collections.sort(themeList, Theme.NUMBER_COMPARATOR);
+        for (int i=0; i<themeList.size(); i++) {
+            Theme theme = themeList.get(i);
+            sb.append("<tr bgcolor=" + (i%2 == 0 ? "white" : "#D7DDDD") + ">\n");
+            sb.append("<td>\n");
+            sb.append(theme.getNumberStr());
+            sb.append("</td>\n");
+            sb.append("<td>\n");
+            sb.append(theme.getProfileLink(theme.getText()));
+            sb.append("</td>\n");
+            sb.append("</tr>\n");
+        }
+        sb.append("</table>\n");
+        return sb.toString();
+    }
+
     public String getThemesForSelectHTML() {
         List<Theme> themes = new ArrayList<Theme>(getThemeMap().values());
         StringBuilder sb = new StringBuilder();
@@ -155,6 +175,10 @@ public class Realm extends Entity implements ITreeElement {
         return sb.toString();
     }
 
+    public int getThemesQty() {
+        return getThemeMap().size();
+    }
+    
     @Override
     public List<ITreeElement> getTreeElements() {
         List<ITreeElement> list = new ArrayList<ITreeElement>(getQuestionMap().values());

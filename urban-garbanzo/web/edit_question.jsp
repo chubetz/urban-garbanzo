@@ -13,9 +13,7 @@
             <input id="actiontag" type="hidden" name="action" value="${action}">        
             <input type="hidden" name="id" value="${question.getId()}">        
             <label>Область</label>
-            <select name="realmId" ${disabled}>
-                ${question.getRealmsHTML()}
-            </select>
+            ${question.getRealmsHTML()}
             <br>
             <label>Тип вопроса</label>
             <select name="type">

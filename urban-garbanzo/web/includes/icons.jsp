@@ -11,7 +11,7 @@
             <a href="view?info=tree"><img title="Иерархия" src="images/tree.png" width="50" border="1"></a>
         </td>
         <td>
-            <a href="view?info=realms"><img title="Области" src="images/realms_logo.png" width="50" border="1"></a>
+            <a href="view?info=realms"><img title="Предметные области" src="images/realms_logo.png" width="50" border="1"></a>
         </td>
         <td>
             <a href="view?info=themes"><img title="Темы" src="images/themes_logo.png" width="50" border="1"></a>

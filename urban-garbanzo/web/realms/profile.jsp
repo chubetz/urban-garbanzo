@@ -75,12 +75,15 @@
 
     </form>
 
-    <tr>
+    <tr ${realm.id < 0 ? 'style=\'display: none;\'' : ''}">
         <td width="10%" bgcolor="${realm.treeSign.tdBgcolor}" colspan="2" valign="top" class="calibri_link" style="font-size: 17px;" align="center">
-            <span class="profile_realm_label border" style="background: ${realm.treeSign.tableBgcolor};"><b>Карточки</b></span>
-            <p size="5px"/>
+            <br/>
             <img src="images/flashcard.png" width="80" border="1" style="border-color: ${realm.treeSign.tableBgcolor};">
-            <div style="margin-top: -50px;">
+            <div style="margin-top: -80px;">
+                <span class="profile_realm_label border" style="background: ${realm.treeSign.tableBgcolor};"><b>Карточки</b></span>
+            </div>
+            <span style="font-size:10px;">&nbsp;</span>
+            <div>
                 <c:choose>
                     <c:when test="${realm.questionsQty > 0}">
                         <b>${realm.getQuestionsHTMLLink('' + realm.questionsQty)}</b>
@@ -95,31 +98,25 @@
                 <b style="color:red;">+</b>
                 <input type="hidden" name="action" value="new_question">
                 <input type="hidden" name="realm" value="${realm.id}">
-                <input class="calibri_new" style="background:#E1E3E1; color:black; font-size:10px" type="submit" value="Добавить" />
+                <input class="calibri_new" style="background:#E1E3E1; color:black; font-size:10px" type="submit" value="Создать новую" />
             </form>
-            
-            <%--br>
-            <img src="images/questions_logo.png" width="50" border="1">
-            <br>
-            <a class="create_link" style="font-size: 10px" href="controller?action=new_question&realm=${realm.id}"><b>Создать</b></a>
-            <br>
-            Карточек:                 
-            <c:choose>
-                <c:when test="${realm.questionsQty > 0}">
-                    <b>${realm.getQuestionsHTMLLink('' + realm.questionsQty)}</b>
-                </c:when>
-                <c:otherwise>
-                    ${realm.questionsQty}
-                </c:otherwise>
-            </c:choose--%>
-
         </td>
-        <td bgcolor="${realm.treeSign.tdBgcolor}" colspan="2" valign="top"  class="calibri_link" align="center">
+        <td bgcolor="${realm.treeSign.tdBgcolor}" colspan="2" valign="top"  class="calibri_link" style="font-size: 17px;" align="center">
+            <br/>
+            <img src="images/theme.png" width="80" border="1" style="border-color: ${realm.treeSign.tableBgcolor};">
+            <div style="margin-top: -80px;">
+                <span class="profile_realm_label border" style="background: ${realm.treeSign.tableBgcolor};"><b>Темы</b></span>
+            </div>
+            <span style="font-size:10px;">&nbsp;</span>
+            <div style="font-size: 17px;">${realm.themesQty}</div>
             <br>
-            <img src="images/themes_logo.png" width="50" border="1">
-            <br>
-            <div style="font-size: 17px;">Темы:</div>
-            <div align="left"><b>${realm.themesHTML}</b></div>
+            <div align="left" style="font-size: 14px;"><b>${realm.themesTableHTML}</b></div>
+            <form name="add_question" action="controller" method="GET">
+                <b style="color:red;">+</b>
+                <input type="hidden" name="action" value="new_theme">
+                <input type="hidden" name="realm" value="${realm.id}">
+                <input class="calibri_new" style="background:#E1E3E1; color:black; font-size:10px" type="submit" value="Создать новую" />
+            </form>
         </td>
                     
     </tr>

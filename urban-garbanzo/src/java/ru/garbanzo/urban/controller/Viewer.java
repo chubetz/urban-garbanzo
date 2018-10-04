@@ -54,13 +54,9 @@ public class Viewer extends ErrorHandlingServlet {
                 url = "/realms/view_list.jsp";
                 request.setAttribute("title", "Список загруженных областей");
                 request.setAttribute("realms", Realm.getMap().values());
-                if (Storage.getJdbcException() != null) {
-                    request.setAttribute("exception", Storage.getJdbcException());
-                    url = "/db_error.jsp";                   
-                }
                 break;
             case "themes":
-                url = "/view_list.jsp";
+                url = "/themes/view_list.jsp";
                 request.setAttribute("title", "Список имеющихся тем");
                 try {
                     ViewUtils.fillAttributesThemes(request);
@@ -95,6 +91,10 @@ public class Viewer extends ErrorHandlingServlet {
                 break;
         }
             
+        if (Storage.getJdbcException() != null) {
+            request.setAttribute("exception", Storage.getJdbcException());
+            url = "/db_error.jsp";                   
+        }
         if (url != null) 
             getServletContext().getRequestDispatcher(url).forward(request, response);
     }

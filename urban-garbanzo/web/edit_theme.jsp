@@ -19,9 +19,7 @@
             <input type="text" name="text" value="${theme.getStr("text")}">
             <br>
             <label>Область</label>
-            <select name="realmId">
-                ${theme.getRealmsHTML()}
-            </select>
+            ${theme.getRealmsHTML()}
             <br>
             <input type="submit" value="Отправить" /> 
         </form>

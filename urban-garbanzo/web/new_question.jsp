@@ -18,6 +18,12 @@
                     </form>                    
                 </td>
                 <td>
+                    <form name="back_to_realm" action="viewProfile" method="GET">
+                        <input type="hidden" name="realm" value="${question.realm.id}">        
+                        <input type="submit" value="Переход к предметной области" /> 
+                    </form>                    
+                </td>
+                <td>
                     <form name="back_to_list" action="view" method="GET">
                         <input type="hidden" name="info" value="questions">        
                         <input type="hidden" name="realmId" value="${question.getRealm().getId()}">        
