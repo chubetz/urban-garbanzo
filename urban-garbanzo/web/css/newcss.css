@@ -56,12 +56,14 @@ and open the template in the editor.
     margin-top: -28px;
 }
 
+
 .tdbg1 {
+    background-color:#B7E7F3
+}
+.tdbg11 {
+    background-color:#D3F0F8
 }
 
-.tdbg1 td {
-    background-color:#F3E7B7
-}
 
 .tdbg_realm {
 }
@@ -74,7 +76,22 @@ and open the template in the editor.
 }
 
 .tdbg2 td {
-    background-color:#B8A254
+    background-color:#54A8B8
+}
+
+.tdbg3 {
+    background-color:#C0F3B7
+}
+
+.tdbg31 {
+    background-color:#E4FAE0 !important;
+}
+
+.tdbg4 {
+}
+
+.tdbg4 td {
+    background-color:#5FB854
 }
 
 .calibri_new {
@@ -109,6 +126,21 @@ and open the template in the editor.
     color: black;
     text-decoration: none;
 }
+
+.calibri_link_th {
+    font-family: Calibri;
+    font-size: 14px;
+}
+
+.calibri_link_th a {
+    color: #0E0F60;
+}
+
+.calibri_link_th a:hover {
+    color: black;
+    text-decoration: none;
+}
+
 
 .realm_link {
     color: black;

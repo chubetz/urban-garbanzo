@@ -157,12 +157,41 @@ public class Theme extends Entity implements ITreeElement {
         return Collections.unmodifiableMap(getStorage().getThemeExamMap(this));
     }
 
+    public int getThemeExamsQty() {
+        return getThemeExamMap().size();
+    }
+
+    public String getExamsTableHTML() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<table width=\"100%\" cellspacing=\"2\">\n");
+        sb.append("<tr><td>Дата и время проверки</td><td>%</td></tr>");
+        List<ThemeExam> examList = new ArrayList<ThemeExam>(getThemeExamMap().values());
+        Collections.sort(examList, ThemeExam.DATE_COMPARATOR);
+        for (int i=0; i<examList.size(); i++) {
+            ThemeExam exam = examList.get(i);
+            sb.append("<tr bgcolor=" + (i%2 == 0 ? "white" : "#D7DDDD") + ">\n");
+            sb.append("<td>\n");
+            sb.append(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(exam.getDate()));
+            sb.append("</td>\n");
+            sb.append("<td>\n");
+            sb.append(Utils.round(exam.getPercentage(), 2));
+            sb.append("</td>\n");
+            sb.append("</tr>\n");
+        }
+        sb.append("</table>\n");
+        return sb.toString();
+    }
+
     public String getQuestionsHTMLLink(String linkText) {
         return "<a href=view?info=questions&themeId=" + this.getId() + ">" + linkText + "</a>";
     }
     public String getQuestionsHTMLLink() {
         return getQuestionsHTMLLink("Карточки");
     }
+    public int getQuestionsQty() {
+        return getQuestionMap().size();
+    }
+
     public String getThemeExamsHTML() {
         List<ThemeExam> exams = new ArrayList<ThemeExam>(getThemeExamMap().values());
         Collections.sort(exams,  ThemeExam.DATE_COMPARATOR);

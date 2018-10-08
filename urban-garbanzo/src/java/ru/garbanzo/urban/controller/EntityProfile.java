@@ -40,13 +40,39 @@ public class EntityProfile extends ErrorHandlingServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding ("UTF-8");
         String url = null;
+        String action = null;
         Enumeration<String> parNames = request.getParameterNames();
         while (parNames.hasMoreElements()) {
             String parName = parNames.nextElement();
             switch (parName) {
                 case "theme":
-                    url = "/themeProfile.jsp";
-                    request.setAttribute("theme", Theme.getById(request.getParameter(parName)));
+                    //url = "/themeProfile.jsp";
+                    url = "/themes/profile.jsp";
+                    if (request.getParameter(parName).equals("new"))
+                        request.setAttribute("theme", Theme.getMock());
+                    else
+                        request.setAttribute("theme", Theme.getById(request.getParameter(parName)));
+                    action = request.getParameter("action");
+                    if (action != null) {
+                        switch (action) {
+                            case "edit":
+                                request.setAttribute("mode", "edit");
+                                break;
+                            case "save":
+                                Theme theme;
+                                try {
+                                    theme = Theme.saveTheme(request.getParameter("theme"), request.getParameterMap());
+                                } catch (JDBCException ex) {
+                                    Logger.getLogger(EntityProfile.class.getName()).log(Level.SEVERE, null, ex);
+                                    url = "/db_error.jsp";
+                                    request.setAttribute("exception", ex);
+                                    break;
+                                }
+                                url = null;
+                                response.sendRedirect("viewProfile?theme=" + theme.getId());
+                                break;
+                        }
+                    }
                     request.setAttribute("title", "Профиль темы");
                     break;
                 case "realm":
@@ -55,7 +81,7 @@ public class EntityProfile extends ErrorHandlingServlet {
                         request.setAttribute("realm", Realm.getMock());
                     else
                         request.setAttribute("realm", Realm.getById(request.getParameter(parName)));
-                    String action = request.getParameter("action");
+                    action = request.getParameter("action");
                     if (action != null) {
                         switch (action) {
                             case "edit":

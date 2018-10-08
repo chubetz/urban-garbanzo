@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import ru.garbanzo.urban.edu.ITreeElement;
 import ru.garbanzo.urban.edu.Realm;
 import ru.garbanzo.urban.edu.Storage;
+import ru.garbanzo.urban.edu.Theme;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
 
@@ -58,12 +59,7 @@ public class Viewer extends ErrorHandlingServlet {
             case "themes":
                 url = "/themes/view_list.jsp";
                 request.setAttribute("title", "Список имеющихся тем");
-                try {
-                    ViewUtils.fillAttributesThemes(request);
-                } catch (JDBCException e) {
-                    request.setAttribute("exception", e);
-                    getServletContext().getRequestDispatcher("/db_error.jsp").forward(request, response);                    
-                }
+                request.setAttribute("themes", Theme.getMap().values());
                 break;
             case "images":
                 url = "/view_list.jsp";

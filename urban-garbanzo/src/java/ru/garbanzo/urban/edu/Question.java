@@ -27,6 +27,8 @@ public class Question extends Entity implements ITreeElement {
     
     private boolean neededNewAnswer;
     
+    private int themeIdForNewQuestion = -100;
+    
     public boolean isSaveable() {
         return true;
     }
@@ -39,13 +41,27 @@ public class Question extends Entity implements ITreeElement {
         return new Question(-100);
     }
     
-    public static Question getMockQuestion(String realmId) { //обертка для Question - для jsp
+    public static Question getMockQuestion(String realmId, String themeId) { //обертка для Question - для jsp
+        //должно быть либо realmId, либо themeId
         Question question = getMockQuestion();
         Map<String, Object> state = new HashMap<String, Object>();
-        if (realmId != null)
+        if (realmId != null && Realm.getById(realmId) != null)
             state.put("realmId", Integer.parseInt(realmId));
+        else if (themeId != null) {
+            Theme theme = Theme.getById(themeId);
+            if (theme != null) {
+                state.put("realmId", theme.getRealm().getId());
+                question.themeIdForNewQuestion = theme.getId();
+            }
+                
+        }
         question.setState(state);
         return question;
+    }
+    
+    public int getNewThemeId() { //параметр для формы редактирования нового вопроса - чтобы сразу
+        //связать его с темой
+        return this.themeIdForNewQuestion;
     }
 
     public static Question getQuestionFromParameterMap(Map<String, ?> data) { //изготовить объект вопроса по параметрам с фронта (и не только)
@@ -54,6 +70,9 @@ public class Question extends Entity implements ITreeElement {
         }
         Question question = new MockQuestion(data); //возвращает полностью заполненный объект, с которого можно сгенерить формы для редактирования
         question.neededNewAnswer = true;
+        if (data.get("newThemeId") != null) {
+            question.themeIdForNewQuestion = Integer.parseInt((String)data.get("newThemeId"));
+        }
         return question;
     }
     

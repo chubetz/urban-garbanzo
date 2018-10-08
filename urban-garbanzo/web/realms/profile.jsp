@@ -10,7 +10,7 @@
 
 <form name="new" action="view" method="GET">
     <input type="hidden" name="info" value="realms">
-    <input class="calibri_new" type="submit" value="Вернуться к списку областей" />
+    <input class="calibri_new" type="submit" value="Переход к списку областей" />
 </form>
 
 <c:if test="${realm == null}">

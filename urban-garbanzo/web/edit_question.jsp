@@ -11,7 +11,10 @@
         <p>${question.getId() < 0  ? "<Новый вопрос>" : question}</p>
         <form name="${action}" action="controller" method="POST">
             <input id="actiontag" type="hidden" name="action" value="${action}">        
-            <input type="hidden" name="id" value="${question.getId()}">        
+            <input type="hidden" name="id" value="${question.id}">        
+            <c:if test="${question.newThemeId >= 0}">
+            <input type="hidden" name="newThemeId" value="${question.newThemeId}">
+            </c:if>
             <label>Область</label>
             ${question.getRealmsHTML()}
             <br>

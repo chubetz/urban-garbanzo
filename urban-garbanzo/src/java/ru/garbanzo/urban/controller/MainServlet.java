@@ -88,10 +88,10 @@ public class MainServlet extends ErrorHandlingServlet {
                 url = "/edit_question.jsp";
                 Utils.print("Servlet.new_question", request.getParameterMap());
                 String realmId = request.getParameter("realm");
+                String themeId = request.getParameter("theme");
                 Question mockQuestion = null;
-                if (realmId != null) {
-                    request.setAttribute("disabled", "disabled");
-                    mockQuestion = Question.getMockQuestion(realmId);
+                if (realmId != null || themeId != null) {
+                    mockQuestion = Question.getMockQuestion(realmId, themeId);
                 } else
                     mockQuestion = Question.getMockQuestion();
                 request.setAttribute("action", "update_question");
@@ -122,6 +122,10 @@ public class MainServlet extends ErrorHandlingServlet {
                 try {
                     request.setAttribute("title", Integer.parseInt(request.getParameter("id")) < 0 ? "Вопрос добавлен" : "Вопрос отредактирован");
                     question = Question.saveQuestion(request.getParameter("id"), request.getParameterMap());
+                    String newThemeId = request.getParameter("newThemeId");
+                    if (newThemeId != null) {
+                        question.linkThemes(new String[]{newThemeId});
+                    }
                 } catch (JDBCException ex) {
                     Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
                     url = "/db_error.jsp";
