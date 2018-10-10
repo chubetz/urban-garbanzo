@@ -14,7 +14,7 @@
     Темы с таким идентификатором не существует
 </c:if>
 
-<form style="visibility: ${theme == null ? 'hidden' : 'visible'}" name="new" action="viewProfile" method="GET">
+<form style="visibility: ${theme == null || theme.realm == null ? 'hidden' : 'visible'}" name="new" action="viewProfile" method="GET">
     <input type="hidden" name="realm" value="${theme.realm.id}">
     <input class="calibri_new" type="submit" value="Переход к профилю области" />
 </form>
@@ -47,11 +47,14 @@
         <td  colspan="3" align="center" class="profile_realm_2" bgcolor="${theme.treeSign.tdBgcolor}">
             <span class="profile_realm_label border" style="background: ${theme.treeSign.tableBgcolor};"><b>Область</b></span>
             <c:choose>
-                <c:when test="${theme.id < 0}">
+                <c:when test="${theme.realm == null}">
                     <%--input size="30" class="profile_realm_1 center bold" type="text" name="description" value="${theme.text}" required="true"--%>
                     ${theme.realmsHTML}
                 </c:when>
                 <c:otherwise>
+                    <c:if test="${theme.id < 0}">
+                        <input type="hidden" name="realmId" value="${theme.realm.id}">
+                    </c:if>
                     <b class="calibri_link_th">${theme.realm.getProfileLink(theme.realm.description)}</b>
                 </c:otherwise>
             </c:choose>

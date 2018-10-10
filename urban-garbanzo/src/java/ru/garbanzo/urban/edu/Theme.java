@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,9 +69,17 @@ public class Theme extends Entity implements ITreeElement {
     }
 
 
-    private static Theme mock = new Theme(-100);
     public static Theme getMock() { //обертка для использования в jsp
-        return mock;
+        return new Theme(-100);
+    }
+    public static Theme getMock(String realmId) { //обертка для использования в jsp
+        Theme theme = getMock();
+        if (realmId != null && Realm.getById(realmId) != null) {
+            Map<String, Object> state = new HashMap<String, Object>();
+            state.put("realmId", Integer.parseInt(realmId));
+            theme.setState(state);
+        }
+        return theme;
     }
     
     public static Map<Integer, Theme> getMap() {

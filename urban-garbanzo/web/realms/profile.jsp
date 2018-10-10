@@ -111,10 +111,11 @@
             <div style="font-size: 17px;">${realm.themesQty}</div>
             <br>
             <div align="left" style="font-size: 14px;"><b>${realm.themesTableHTML}</b></div>
-            <form name="add_question" action="controller" method="GET">
+            <form action="viewProfile" method="GET">
                 <b style="color:red;">+</b>
-                <input type="hidden" name="action" value="new_theme">
-                <input type="hidden" name="realm" value="${realm.id}">
+                <input type="hidden" name="theme" value="new">
+                <input type="hidden" name="action" value="edit">
+                <input type="hidden" name="realmId" value="${realm.id}">
                 <input class="calibri_new" style="background:#E1E3E1; color:black; font-size:10px" type="submit" value="Создать новую" />
             </form>
         </td>

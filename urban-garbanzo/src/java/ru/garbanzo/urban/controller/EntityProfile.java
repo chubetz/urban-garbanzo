@@ -49,7 +49,7 @@ public class EntityProfile extends ErrorHandlingServlet {
                     //url = "/themeProfile.jsp";
                     url = "/themes/profile.jsp";
                     if (request.getParameter(parName).equals("new"))
-                        request.setAttribute("theme", Theme.getMock());
+                        request.setAttribute("theme", Theme.getMock(request.getParameter("realmId")));
                     else
                         request.setAttribute("theme", Theme.getById(request.getParameter(parName)));
                     action = request.getParameter("action");
