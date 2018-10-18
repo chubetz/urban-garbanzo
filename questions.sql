@@ -1164,6 +1164,14 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (329,
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (749,329,'public void walk4(int... start, int... nums) { }',false,'варарг должен быть только один&nbsp; и на последнем месте');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (330,4,2,'Что позволяет осуществить тип аргумента vararg?');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (750,330,'<strong>1</strong>) позволяет подать в метод массив:<strong><br /><br /></strong>void walk(int start, int... nums) {}<br />...<br />walk(1, new int[]{6,7}); // start = 1, nums = [6,7]<br /><strong><br />2</strong>) позволяет вместо массива отправить в метод произвольное число элементов массива:<br /><br />void walk(int start, int... nums) {}<br />...<br />walk(1, 2, 3, 4, 5); // start = 1, nums = [2,3,4,5]<br /><br /><strong>3</strong>) позволяет вообще не указывать vararg-аргумент:<br /><br />void walk(int start, int... nums) {}<br />...<br />walk(1); // start = 1, nums = []<br /><br /><strong>4</strong>) позволяет передавать <strong>null</strong>. В этом случае при вызове метода возможен RuntimeException',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (331,4,2,'<p>Назовите принципы доступа к protected-членам класса.</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (751,331,'<p>1) код в классе имеет доступ ко всем <span style="text-decoration: underline;">собственным</span> (this) членам, которые объявлены <strong>protected</strong> в классе-предке.<br /><br />2) общее правило: если в коде класса (в т.ч. в static-методах) используется объект, доступный по ссылке типа данного класса, то имеется доступ ко всем членам объекта, к которым был бы доступ на уровне this.<br /><br />3) если в коде класса есть ссылка на объект-потомок данного класса, то есть доступ к protected-членам, но, естественно, нет доступа к членам, которые объявлены private в данном классе (поскольку сам объект-потомок не имеет к ним доступ).<br /><br /><br />package pond.swan;<br />import pond.shore.Bird;<br />public class Swan extends Bird { //subclass of bird</p>
+<p>&nbsp;private String privTest;<br />&nbsp;<br />&nbsp;public void swim() {<br />&nbsp;&nbsp;floatInWater(); // floatInWater() is protected in superclass<br />&nbsp;&nbsp;System.out.println(text); // text is protected in superclass<br />&nbsp;&nbsp;System.out.println(privTest); // own private field<br />&nbsp;}</p>
+<p>&nbsp;public void helpOtherSwanSwim() {<br />&nbsp;&nbsp;Swan other = new Swan();<br />&nbsp;&nbsp;other.floatInWater(); <br />&nbsp;&nbsp;System.out.println(other.text);<br />&nbsp;&nbsp;System.out.println(other.privTest);<br />&nbsp;}</p>
+<p>&nbsp;public void helpOtherBirdSwim() {<br />&nbsp;&nbsp;Bird other = new Bird();<br />&nbsp;&nbsp;other.floatInWater(); // DOES NOT COMPILE<br />&nbsp;&nbsp;System.out.println(other.text); // DOES NOT COMPILE<br />&nbsp;}</p>
+<p>&nbsp;public void helpChild() {<br />&nbsp;&nbsp;BlackSwan bs = new BlackSwan();<br />&nbsp;&nbsp;bs.floatInWater(); <br />&nbsp;&nbsp;System.out.println(bs.text);<br />&nbsp;&nbsp;System.out.println(bs.privTest); // DOES NOT COMPILE - private in Swan<br />&nbsp;&nbsp;System.out.println(bs.ownPrivateFiled); // DOES NOT COMPILE - private in BlackSwan<br />&nbsp;}<br />}</p>',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (332,4,2,'Каковы основные общие выгоды от использования static-методов и полей?');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (752,332,'1) Возможность выполнять код, который не требует создания объекта (например, разнообразные утилиты)<br />2) Возможность иметь некоторую конфигурацию состояния, доступ к которой есть у всех экземпляров класса (например, счетчики).',true,'');
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,286);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (6,101);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (6,102);
@@ -1484,6 +1492,8 @@ INSERT INTO ThemeQuestion (themeId,questionId) VALUES (11,327);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (11,328);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (11,329);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (11,330);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (11,331);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (11,332);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,213);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (5,66);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (3,148);
