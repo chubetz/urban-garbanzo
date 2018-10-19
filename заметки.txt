@@ -944,8 +944,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.182
-Calling a Static Variable or Method
+p.188
+In this example, we are specifi cally importing the asList method.
 
 ======
 собирать задачки в интернете. 
