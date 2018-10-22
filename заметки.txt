@@ -944,8 +944,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.188
-In this example, we are specifi cally importing the asList method.
+p.196
+Creating Constructors
 
 ======
 собирать задачки в интернете. 
