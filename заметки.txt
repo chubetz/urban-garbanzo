@@ -944,8 +944,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.196
-Creating Constructors
+p.208
+Writing Simple Lambdas
 
 ======
 собирать задачки в интернете. 
