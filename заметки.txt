@@ -1,4 +1,7 @@
-﻿Как работать с HSQL
+﻿papinajava@yandex.ru
+
+
+Как работать с HSQL
 
 Положить JDBC-драйвер в Tomcat - можно через Netbeans (Servers - Apache.. - Sources - добавить hsqldb.jar)
 И в проект надо положить
@@ -944,8 +947,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.208
-Writing Simple Lambdas
+p.211
+The syntax of lambdas is tricky because many parts are optional.
 
 ======
 собирать задачки в интернете. 
