@@ -947,9 +947,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.211
-The syntax of lambdas is tricky because many parts are optional.
-
+p.233
+Chapter 5. Class Design
 ======
 собирать задачки в интернете. 
 ======
