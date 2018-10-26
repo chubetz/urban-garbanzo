@@ -1563,6 +1563,32 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (438,
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (439,4,2,'Что такое абстрактный класс и абстрактный метод?');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1002,439,'Абстрактный класс - это класс, который нельзя инстанциировать и который может (но не обязан) иметь абстрактные методы.<br />Абстрактный метод - это метод экземпляра без реализации, который должен переопределяться в потомках. Не имеет фигурных скобок, двоеточие ставится сразу за закрывающей круглой скобкой.<br />Абстрактные класс и метод помечаются модификатором <strong>abstract</strong>.<br />Статических абстрактных методов <span style="text-decoration: underline;">не бывает</span>. (ошибка компиляции)',true,'');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (440,4,0,'Создатели экзамена&nbsp;очень любят вопросы, где в коде есть абстрактные методы в классах, не помеченных abstract. А еще они любят абстрактные методы с реализацией.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (441,4,0,'<strong>abstract</strong> и <strong>final</strong> - несовместимые модификаторы, так же как <strong>abstract</strong> и <strong>private</strong>');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (442,4,2,'Что такое (concrete class)?');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1003,442,'<em>Concrete class</em> - это первый неабстрактный класс в иерархии. Т.е. в этом классе имплементированы все абстрактные методы.',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (443,4,2,'<p>Скомпилируется ли следующий код?<br /><br />public abstract class Animal {<br />&nbsp;&nbsp;&nbsp; public abstract String getName();<br />}</p>
+<p>public class Bird extends Animal { }</p>
+<p>public class Flamingo extends Bird {<br />&nbsp;&nbsp;&nbsp; public String getName() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "Flamingo";<br />&nbsp;&nbsp; }<br />}</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1004,443,'Нет. Класс Bird - это concrete class, он обязан имплементировать метод getName().',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (444,4,2,'<p>Скомпилируется ли следующий код?<br /><br />public abstract class Animal {<br />&nbsp;&nbsp;&nbsp; public abstract String getName();<br />}<br />public abstract class BigCat extends Animal {<br />&nbsp;&nbsp;&nbsp; public String getName() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "BigCat";<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public abstract void roar();<br />}</p>
+<p>public class Lion extends BigCat {<br />&nbsp;&nbsp;&nbsp; public void roar() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("The Lion lets out a loud ROAR!");<br />&nbsp;&nbsp;&nbsp; }<br />}</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1005,444,'Да. Concrete class не обязан имплементировать абстрактный метод, если это уже сделано в промежуточном абстрактном предке.',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (445,4,2,'Можно ли объявить абстрактным метод, который имеет реализацию в родителе?');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1006,445,'Да, можно.',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (446,4,0,'При переопределении абстрактного метода ссылаться на родительскую версию посредством <strong>super</strong> - нельзя (как и на любой другой абстрактный метод в родителе).');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (447,4,0,'5 законов абстрактных классов:<br /><br /><strong>1</strong>. Нельзя инстанциировать<br /><strong>2</strong>. Может содержать 0+ абстрактных методов<br /><strong>3</strong>. Не может быть protected, private (как любой класс), final.<br /><strong>4</strong>. Абстрактный наследник наследует все абстрактные методы родителя.<br /><strong>5</strong>. Первый неабстрактный класс в иерархии должен реализовать все абстрактные методы.<br /><br />5 законов абстрактных методов:<br /><br /><strong>1</strong>. Могут быть только в абстрактных классах<br /><strong>2</strong>. Не могут быть private или final<br /><strong>3</strong>. Не могут иметь имплементации (точка с запятой вместо фигурных скобок)<br /><strong>4</strong>. Подчиняются всем правилам переопределения: имя/сигнатура, запрет снижения видимости.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (448,4,2,'Что такое интерфейс?');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1007,448,'Интерфейс это абстрактный тип данных, определяющий список абстрактных <span style="text-decoration: underline;">public</span>-методов, которые обязаны быть реализованы любым конкретным классом, имплементирующим интерфейс. (абстрактный класс не обязан делать реализацию)',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (449,4,2,'Что может содержать интерфейс?');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1008,449,'- определения методов экземпляра (все они abstract и public, даже если не указано явно)<br />- константы (все они public static final, даже если не указано явно)<br />- методы по умолчанию (default)<br />- статичные методы (public, даже если не указано явно)',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (450,4,0,'Класс может имплементировать несколько интерфейсов - через запятую.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (451,4,0,'5 правил определения интерфейсов:<br /><br /><strong>1</strong>. Интерфейс не может быть инстанциирован напрямую.<br /><strong>2</strong>. Интерфейс не обязан иметь методы.<br /><strong>3</strong>. Интерфейс не может быть определен как final.<br /><strong>4</strong>. Интерфейсы верхнего уровня, как и классы, могут иметь модификатор доступа public или default. Автоматически имеют модификатор abstract, что не рекомендуется указывать явно.<br /><strong>5</strong>. Все non-default&nbsp; методы интерфейса не могут иметь мофидикаторов private, protected, final.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (452,4,2,'Каковы правила наследования интерфейсов?');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1009,452,'1. Используется ключевое слово <strong>extends</strong>.<br />2. Можно наследовать нескольким интерфейсам (через запятую).',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (453,4,0,'Если класс имплементирует два интерфейса с одинаковым методом, то ему достаточно реализовать этот метод.<br /><br />Если методы с одним именем, но разной сигнатурой - это расценивается как overloading.<br /><br />Если имя метода и сигнатура совпадают, но тип возвращаемого значения отличается - могут сработать ковариантные типы (если возвращаемые значения из одной иерархии). Тогда имплементирующий класс должен реализовать метод с более узким классом.<br /><br />Если типы несовместимы - ошибка компиляции');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (454,4,0,'<p>При наследовании интерфейсов ковариантные типы - работают!<br /><br />interface Int1 {<br />&nbsp;&nbsp;&nbsp; Object get();<br />}</p>
+<p>interface Int2 extends Int1{<br />&nbsp;&nbsp;&nbsp; String get();<br />}<br /><br />Классу, имплементирующему оба интерфейса, достаточно будет реализовать String get().</p>');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (455,4,0,'У класса, имплементирующего интерфейс и не&nbsp;реализующего хотя бы один абстрактный метод, будет ошибка компиляции в строке определения класса.');
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,286);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (6,101);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (6,102);
@@ -1895,6 +1921,21 @@ INSERT INTO ThemeQuestion (themeId,questionId) VALUES (13,436);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (13,437);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (13,438);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (13,439);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (13,441);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (13,442);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (13,443);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (13,444);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (13,445);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (13,446);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (13,447);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (13,448);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (13,449);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (13,450);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (13,451);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (13,452);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (13,453);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (13,454);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (13,455);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,2);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,3);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,4);

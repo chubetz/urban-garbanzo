@@ -947,8 +947,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.261
-The fi rst method, swim(), doesn’t compile because two
+p.273
+Interface Variables
 ======
 собирать задачки в интернете. 
 ======
