@@ -949,8 +949,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.287
-Polymorphism and Method Overriding
+p.294 #11
+p. 348
 ======
 собирать задачки в интернете. 
 ======
