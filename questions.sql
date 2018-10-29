@@ -1682,6 +1682,79 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (481,
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1069,481,'All methods within them are assumed to be abstract.',false,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1070,481,'Both can contain public static final variables.',true,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1071,481,'Both can be extended using the extends keyword.',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (482,4,1,'What modifiers are assumed for all interface variables? (Choose all that apply)');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1076,482,'public',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1077,482,'protected',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1078,482,'private',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1079,482,'static',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1080,482,'final',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1081,482,'abstract',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (483,4,1,'<p>What is the output of the following code?</p>
+<p>1: interface Nocturnal {<br />2:&nbsp;&nbsp;&nbsp;&nbsp; default boolean isBlind() { return true; }<br />3: }<br />4: public class Owl implements Nocturnal {<br />5:&nbsp;&nbsp;&nbsp;&nbsp; public boolean isBlind() { return false; }<br />6:&nbsp;&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />7:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nocturnal nocturnal = (Nocturnal)new Owl();<br />8:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(nocturnal.isBlind());<br />9:&nbsp;&nbsp;&nbsp;&nbsp; }<br />10:}</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1082,483,'true',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1083,483,'false',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1084,483,'The code will not compile because of line 2.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1085,483,'The code will not compile because of line 5.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1086,483,'The code will not compile because of line 7.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1087,483,'The code will not compile because of line 8.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (484,4,1,'<p>What is the output of the following code?</p>
+<p>1: class Arthropod {<br />2:&nbsp;&nbsp;&nbsp;&nbsp; public void printName(double input) { System.out<br />&nbsp;&nbsp;&nbsp; .print("Arthropod"); }<br />3: }<br />4: public class Spider extends Arthropod {<br />5:&nbsp;&nbsp;&nbsp;&nbsp; public void printName(int input) { System.out.print("Spider"); }<br />6:&nbsp;&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />7:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Spider spider = new Spider();<br />8:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; spider.printName(4);<br />9:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; spider.printName(9.0);<br />10:&nbsp;&nbsp;&nbsp; }<br />11: }</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1088,484,'SpiderArthropod',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1089,484,'ArthropodSpider',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1090,484,'SpiderSpider',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1091,484,'ArthropodArthropod',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1092,484,'The code will not compile because of line 5.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1093,484,'The code will not compile because of line 9.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (485,4,1,'<p>Which statements are true about the following code? (Choose all that apply)</p>
+<p>1: interface HasVocalCords {<br />2:&nbsp;&nbsp;&nbsp;&nbsp; public abstract void makeSound();<br />3: }<br />4: public interface CanBark extends HasVocalCords {<br />5:&nbsp;&nbsp;&nbsp;&nbsp; public void bark();<br />6: }</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1094,485,'The CanBark interface doesn&rsquo;t compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1095,485,'A class that implements HasVocalCords must override the makeSound() method.',false,'Не обязан, т.к. может быть абстрактным.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1096,485,'A class that implements CanBark inherits both the makeSound() and bark() methods.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1097,485,'A class that implements CanBark only inherits the bark() method.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1098,485,'An interface cannot extend another interface.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (486,4,1,'Which of the following is true about a concrete subclass? (Choose all that apply)');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1099,486,'A concrete subclass can be declared as abstract.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1100,486,'A concrete subclass must implement all inherited abstract methods.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1101,486,'A concrete subclass must implement all methods defined in an inherited interface.',false,'Не обязан, т.к. методы интерфейса уже могли быть имплементированы в родительском классе; к тому же, у интерфейса есть дефолтные методы, которые не требуется переопределять.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1102,486,'A concrete subclass cannot be marked as final.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1103,486,'Abstract methods cannot be overridden by a concrete subclass.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (487,4,1,'<p>What is the output of the following code?</p>
+<p>1: abstract class Reptile {<br />2:&nbsp;&nbsp;&nbsp;&nbsp; public final void layEggs() { System.out.println("Reptile laying eggs");<br />&nbsp;&nbsp; }<br />3:&nbsp;&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />4:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reptile reptile = new Lizard();<br />5:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reptile.layEggs();<br />6:&nbsp;&nbsp;&nbsp;&nbsp; }<br />7: }<br />8: public class Lizard extends Reptile {<br />9:&nbsp;&nbsp;&nbsp;&nbsp; public void layEggs() { System.out.println("Lizard laying eggs"); }<br />10: }</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1104,487,'Reptile laying eggs',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1105,487,'Lizard laying eggs',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1106,487,'The code will not compile because of line 4.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1107,487,'The code will not compile because of line 5.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1108,487,'The code will not compile because of line 9.',true,'Нельзя переопределять финальный метод.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (488,4,1,'<p>What is the output of the following code?</p>
+<p>1: public abstract class Whale {<br />2:&nbsp;&nbsp;&nbsp;&nbsp; public abstract void dive() {};<br />3:&nbsp;&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />4:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Whale whale = new Orca();<br />5:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; whale.dive();<br />6:&nbsp;&nbsp;&nbsp;&nbsp; }<br />7: }<br />8: class Orca extends Whale {<br />9:&nbsp;&nbsp;&nbsp;&nbsp; public void dive(int depth) { System.out.println("Orca diving"); }<br />10: }</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1109,488,'Orca diving',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1110,488,'The code will not compile because of line 2.',true,'у абстрактного метода не может быть тела');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1111,488,'The code will not compile because of line 8.',true,'класс не имплеметирует метод dive()');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1112,488,'The code will not compile because of line 9.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1113,488,'The output cannot be determined from the code provided.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (489,4,1,'<p>What is the output of the following code? (Choose all that apply)</p>
+<p>1: interface Aquatic {<br />2:&nbsp;&nbsp;&nbsp;&nbsp; public default int getNumberOfGills(int input) { return 2; }<br />3: }<br />4: public class ClownFish implements Aquatic {<br />5:&nbsp;&nbsp;&nbsp;&nbsp; public String getNumberOfGills() { return "4"; }<br />6:&nbsp;&nbsp;&nbsp;&nbsp; public String getNumberOfGills(int input) { return "6"; }<br />7:&nbsp;&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />8:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(new ClownFish().getNumberOfGills(-1));<br />9:&nbsp;&nbsp;&nbsp;&nbsp; }<br />10: }</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1114,489,'2',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1115,489,'4',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1116,489,'6',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1117,489,'The code will not compile because of line 5.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1118,489,'The code will not compile because of line 6.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1119,489,'The code will not compile because of line 8.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (490,4,1,'<p>Which of the following statements can be inserted in the blank so that the code will compile successfully? (Choose all that apply)</p>
+<p>public class Snake {}<br />public class Cobra extends Snake {}<br />public class GardenSnake {}<br />public class SnakeHandler {<br />&nbsp;&nbsp;&nbsp; private Snake snake;<br />&nbsp;&nbsp;&nbsp; public void setSnake(Snake snake) { this.snake = snake; }<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new SnakeHandler().setSnake(________);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1120,490,'new Cobra()',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1121,490,'new GardenSnake()',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1122,490,'new Snake()',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1123,490,'new Object()',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1124,490,'new String("Snake")',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1125,490,'null',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (491,4,1,'<p>What is the result of the following code?</p>
+<p>1: public abstract class Bird {<br />2:&nbsp;&nbsp;&nbsp;&nbsp; private void fly() { System.out.println("Bird is flying"); }<br />3:&nbsp;&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />4:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bird bird = new Pelican();<br />5:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bird.fly();<br />6:&nbsp;&nbsp;&nbsp;&nbsp; }<br />7: }<br />8: class Pelican extends Bird {<br />9:&nbsp;&nbsp;&nbsp;&nbsp; protected void fly() { System.out.println("Pelican is flying"); }<br />10: }</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1126,491,'Bird is flying',true,'Метод fly() в Bird объявлен private, это означает, что его нельзя переопределить, только скрыть. А скрытие означает, что запустится тот метод, который актуален для контекста вызова (полиморфизм не работает). В данном случае контекст вызова - Bird, т.к. используется ссылка этого типа.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1127,491,'Pelican is flying',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1128,491,'The code will not compile because of line 4.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1129,491,'The code will not compile because of line 5.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1130,491,'The code will not compile because of line 9.',false,'');
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,286);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (6,101);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (6,102);
@@ -2055,6 +2128,16 @@ INSERT INTO ThemeQuestion (themeId,questionId) VALUES (14,478);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (14,479);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (14,480);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (14,481);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (14,482);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (14,483);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (14,484);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (14,485);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (14,486);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (14,487);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (14,488);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (14,489);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (14,490);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (14,491);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,2);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,3);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,4);
