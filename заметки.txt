@@ -30,7 +30,12 @@ runserver.bat --database.0 file:C:\JAVA\hsql\test1 --dbname.0 test1
 runmanager.bat
 
 Выключить БД корректно:
-runmanager.bat, запустить SQL-команду SHUTDOWN
+1) runmanager.bat, запустить SQL-команду SHUTDOWN
+или 2):
+1. сделать файл  shutdown.sql с содержимым 'shutdown;'
+2. сделать файл shutdown.bat:
+java -jar ../lib/sqltool.jar --inlineRc url=jdbc:hsqldb:hsql://localhost/test1,user=SA,password= shutdown.sql
+
 
 Type: HSQL Database Engine Server
 Driver: org.hsqldb.jdbcDriver
