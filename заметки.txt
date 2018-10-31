@@ -953,9 +953,7 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.320
-This rule applies only to checked exceptions.
-
+Доделали книжку по OCA!
 ======
 собирать задачки в интернете. 
 ======
