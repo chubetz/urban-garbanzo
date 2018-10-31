@@ -953,8 +953,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.309
-Catching Various Types of Exceptions
+p.320
+This rule applies only to checked exceptions.
 
 ======
 собирать задачки в интернете. 
