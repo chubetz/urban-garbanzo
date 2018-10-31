@@ -29,6 +29,9 @@ runserver.bat --database.0 file:C:\JAVA\hsql\test1 --dbname.0 test1
 Подключение:
 runmanager.bat
 
+Выключить БД корректно:
+runmanager.bat, запустить SQL-команду SHUTDOWN
+
 Type: HSQL Database Engine Server
 Driver: org.hsqldb.jdbcDriver
 jdbc:hsqldb:hsql://localhost/test1
