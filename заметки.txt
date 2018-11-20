@@ -24,7 +24,11 @@ https://stackoverflow.com/questions/18664579/recommended-way-to-save-uploaded-fi
 runserver.bat --help - список доступных аргументов
 
 новая БД:
-runserver.bat --database.0 file:C:\JAVA\hsql\test1 --dbname.0 test1
+runserver.bat --database.0 file:C:\JAVA\hsql\test1 --dbname.0 test1 [--port 9001]
+
+Вторая БД:
+runserver.bat --database.0 file:C:\JAVA\hsql\test2 --dbname.0 test2 --port 9002
+
 
 Подключение:
 runmanager.bat
