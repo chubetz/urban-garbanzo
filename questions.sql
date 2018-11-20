@@ -22,6 +22,7 @@ INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (4,'oca_1
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (5,'test','ТЕСТ');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (6,'common','Общие вопросы');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (7,'history','История');
+INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (8,'ocp','Сертификат OCP');
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (0,4,'Основы',1.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (1,4,'Особенности экзамена',0.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (2,4,'Задания к теме',1.1);
@@ -39,6 +40,7 @@ INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (13,4,
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (14,4,'Задания к теме',5.1);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (15,4,'Исключения',6.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (16,4,'Задания к теме',6.1);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (17,8,'Расширенный дизайн классов',1.0);
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (0,4,0,'Тесты экзамена предполагают обычно 5 или 6 ответов, со множественным выбором.');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (1,4,0,'Нельзя реализовать в классе два интерфейса с общим дефолтным методом, если не переопределить этот метод в классе.');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (2,4,2,'<p>Перечислите 3 вида комментариев в Java</p>');
@@ -1954,6 +1956,52 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (545,
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1261,545,'An exception with the message set to "2"',false,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1262,545,'An exception with the message set to "3"',true,'исключение из finally отменяет то, которое появилось в блоке catch');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1263,545,'Nothing; the code does not compile.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (546,8,2,'Скомпилируется ли следующий код?<br /><br />
+<div>package cat;</div>
+<div>public class BigCat {</div>
+<div>&nbsp; &nbsp; public String name = "cat";</div>
+<div>&nbsp; &nbsp; protected boolean hasFur = true;</div>
+<div>&nbsp; &nbsp; boolean hasPaws = true;</div>
+<div>&nbsp; &nbsp; private int id;</div>
+<div>}</div>
+<div>&nbsp;</div>
+<div>package cat.species;</div>
+<div>import cat.BigCat;</div>
+<div>public class Lynx extends BigCat {&nbsp;</div>
+<div>&nbsp; &nbsp; public static void main(String[] args) {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; BigCat cat = new Lynx();</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; System.out.println(cat.name);</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; System.out.println(cat.hasFur);</div>
+<div>&nbsp; &nbsp; }</div>
+<div>}</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1264,546,'Нет. К полю&nbsp;<strong>hasFur</strong> имеется доступ у ссылки типа&nbsp;Lynx (по <strong>protected</strong>), но нет доступа у ссылки типа <strong>BigCat</strong>, даже если реальный экземпляр имеет тип <strong>Lynx</strong>. То же самое было бы актуально для <strong>protected</strong>-метода.',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (547,8,2,'Укажите приоритеты критериев, по которым&nbsp;Java выбирает, какой метод вызвать среди перезагруженных, если по аргументу подходят несколько.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1265,547,'1) точное соответствие по типу<br />2) соответствие по родительскому классу<br />3) соответствие по примитивному типу большей размерности<br />4) соответствие по классу обертки<br />5) варарги',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (548,8,1,'<div>К каким строкам нижеприведенного кода можно добавить модификатор <strong>static</strong>? (укажите все возможные варианты)<br /><br />1: abstract class Cat {</div>
+<div>2: &nbsp; &nbsp; String name = "The Cat";</div>
+<div>3: &nbsp; &nbsp; void clean() { }</div>
+<div>4: }</div>
+<div>5: class Lion extends Cat {</div>
+<div>6: &nbsp; &nbsp; void clean() { }</div>
+<div>7: }</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1266,548,'3 и 7',true,'методы с одинаковой сигнатурой &nbsp;могут быть статичными, хотя это не будет наследование');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1267,548,'3',false,'нельзя. переопределяемый метод не может быть static');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1268,548,'7',false,'<span style="line-height: 18.2000007629395px;">нельзя. переопределяющий метод не может быть static</span>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1269,548,'2',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (549,8,1,'<div>К каким строкам нижеприведенного кода можно добавить модификатор <strong>final</strong>? (укажите все возможные варианты)</div>
+<div>&nbsp;</div>
+<div>1: abstract class Cat {</div>
+<div>2: &nbsp; &nbsp; String name = "The Cat";</div>
+<div>3: &nbsp; &nbsp; void clean() { }</div>
+<div>4: }</div>
+<div>5: class Lion extends Cat {</div>
+<div>6: &nbsp; &nbsp; void clean() { }</div>
+<div>7: }</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1270,549,'2',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1271,549,'3',false,'в дочернем классе производится попытка переопределить этот метод, а он финальный');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1272,549,'1',false,'класс не может быть одновременно абстрактным и финальным');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1273,549,'6',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1274,549,'5',true,'');
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,286);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (6,101);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (6,102);
@@ -2463,9 +2511,13 @@ INSERT INTO ThemeQuestion (themeId,questionId) VALUES (16,541);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (1,73);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (16,542);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (16,545);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (17,546);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (2,78);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (17,547);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (2,79);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (17,548);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (2,80);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (17,549);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (2,81);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (2,82);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (2,83);
