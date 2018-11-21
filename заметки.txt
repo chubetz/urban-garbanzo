@@ -967,8 +967,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.6
-Imports
+p.9
+The compiler knows an interface could be added, so the instanceof statement
 ======
 
 =======
