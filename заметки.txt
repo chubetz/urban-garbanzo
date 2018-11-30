@@ -1,4 +1,24 @@
-﻿papinajava@yandex.ru
+﻿Информация по настройке Tomcat и развертыванию war.
+
+1) распаковываем tomcat.
+2) Устанавляваем порт в Connector (в дальнейшем еще и настраиваем SSL). Порт должен быть свободен!!
+2.5) Устанавляваем порт в AJP 1.3 Connector, чтобы не конфликтовали томкаты
+
+ <!-- Define an AJP 1.3 Connector on port 8009 -->
+    <Connector port="8010" protocol="AJP/1.3" redirectPort="8443" />
+
+3) прописываем JAVA_HOME И JRE_HOME в переменных окуржения (если нет) -  без bin!
+- на этом этапе должно уже запуститься
+4) получаем war-файл: Свойства проекта - Build -= Packaging - Compress WAR file
+5) Build (F11) - Clean and Build - смотрим, куда записался war-файл
+6) записываем war-файл в webApps
+7) Положить JDBC-драйвер в Tomcat (в папку lib)
+
+*) проверить, скачиваются ли файлы
+
+
+
+papinajava@yandex.ru
 
 
 Как работать с HSQL
