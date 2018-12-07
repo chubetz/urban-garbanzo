@@ -989,8 +989,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.15
-equals
+p.20
+Working with Enums
 ======
 
 =======
