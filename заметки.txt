@@ -989,8 +989,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.20
-Working with Enums
+p.26
+Since a member inner class is not static, it has to be used with an instance of the outer
 ======
 
 =======
