@@ -148,6 +148,8 @@ JDBC
 
 Apache Commons
 
+какой-нибудь GUI-фреймворк
+
 Spring
 
 org.apache.commons
@@ -989,8 +991,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.26
-Since a member inner class is not static, it has to be used with an instance of the outer
+p.32
+Static Nested Classes
 ======
 
 =======
