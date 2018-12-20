@@ -991,8 +991,9 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.60
-Applying the Predicate Interface
+p.75
+
+Working with Design Patterns
 ======
 
 =======
