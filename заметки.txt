@@ -159,6 +159,7 @@ apache CollectionUtils
 Elements of Programming Interviews in Java: The Insiders' Guide
 
 стандартные алгоритмы, структуры данных, шаблоны проектирования
+(ознакомиться с Design Patterns банды четырех)
 
 
 
@@ -991,11 +992,10 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.75
-
-Working with Design Patterns
+p.95 p. 550
+#1
 ======
-
+Сделать длину Question 20K!
 =======
 собирать задачки в интернете. 
 ======
