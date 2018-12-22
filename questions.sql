@@ -44,6 +44,7 @@ INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (17,8,
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (18,0,'Полезные рецепты',0.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (19,8,'Задания к теме',1.1);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (20,8,'Шаблоны и принципы проектирования',2.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (21,8,'Задания к теме',2.1);
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (0,4,0,'Тесты экзамена предполагают обычно 5 или 6 ответов, со множественным выбором.');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (1,4,0,'Нельзя реализовать в классе два интерфейса с общим дефолтным методом, если не переопределить этот метод в классе.');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (2,4,2,'<p>Перечислите 3 вида комментариев в Java</p>');
@@ -2363,6 +2364,279 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (677,
 <p>public class FoodFactory {<br />&nbsp;&nbsp;&nbsp; public static Food getFood(String animalName) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch(animalName) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "zebra": return new Hay(100);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "rabbit": return new Pellets(5);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "goat": return new Pellets(30);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "polar bear": return new Fish(10);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Good practice to throw an exception if no matching subclass could be found<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw new UnsupportedOperationException("Unsupported animal: "+animalName);<br />&nbsp;&nbsp;&nbsp; }<br />}<br /><br />...<br /><br />final Food food = FoodFactory.getFood("polar bear");<br /><br /><br /></p>');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (678,8,0,'Для работы фабрик в паттерне <strong>Factory</strong> необходим доступ к конструкторам создаваемых объектов. Однако желательно не давать создавать объекты напрямую, без обращения к фабрике. Поэтому популярным решением является помещение классов и их фабрики в один пакет, а конструкторы классов получают default access. Если же фабрика лежит в другом пакете, то конструкторы классов придется делать <strong>public</strong>.');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (679,8,0,'Альтернатива паттерну Factory - создание метода getSomething внутри классов, которые мы подаем фабрике как параметры. Однако в этом случае образуется tight coupling между классом и некоторым Something, что чревато переделками кода, если структура и ассортимент Something изменятся. А фабрика позволяет реализовать loose coupling.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (680,8,1,'Which of the following statements about design principles and design patterns are true? (Choose all that apply.)');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1496,680,'A design principle is focused on solving a specific commonly occurring problem.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1497,680,'Design principles and design patterns are the same thing.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1498,680,'Design principles are often applied throughout an application, whereas design patterns are applied to solve specific problems.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1499,680,'Design patterns can only be applied to static classes.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1500,680,'Design principles and design patterns tend to produce code that is easier to maintain and easier for other developers to read.',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (681,8,1,'<div>What is the result of the following code?</div>
+<div>&nbsp;</div>
+<div>1: public interface CanClimb {</div>
+<div>2:&nbsp; &nbsp; &nbsp;public abstract void climb();</div>
+<div>3: }</div>
+<div>4: public interface CanClimbTrees extends CanClimb {}</div>
+<div>5: public abstract class Chipmunk implements CanClimbTrees {</div>
+<div>6:&nbsp; &nbsp; &nbsp;public abstract void chew();</div>
+<div>7: }</div>
+<div>8: public class EasternChipmunk extends Chipmunk {</div>
+<div>9:&nbsp; &nbsp; &nbsp;public void chew() { System.out.println("Eastern Chipmunk is Chewing"); }</div>
+<div>10: }</div>
+<div>&nbsp;</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1504,681,'The code will not compile because of line 5.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1505,681,'The code will not compile because of line 8.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1506,681,'It compiles but throws an exception at runtime.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1501,681,'It compiles and runs without issue.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1502,681,'The code will not compile because of line 2.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1503,681,'The code will not compile because of line 4.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (682,8,1,'<div>Which of the following are valid functional interfaces? (Choose all that apply.)</div>
+<div>&nbsp;</div>
+<div>public interface Climb {</div>
+<div>&nbsp; &nbsp; public int climb();</div>
+<div>}</div>
+<div>public abstract class Swim {</div>
+<div>&nbsp; &nbsp; public abstract Object swim(double speed, int duration);</div>
+<div>}</div>
+<div>public interface ArcticMountainClimb extends MountainClimb {</div>
+<div>&nbsp; &nbsp; public default int getSpeed();</div>
+<div>}</div>
+<div>public interface MountainClimb extends Climb {}</div>
+<div>&nbsp;</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1507,682,'Climb',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1508,682,'Swim',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1509,682,'ArcticMountainClimb',false,'дефолтный метод должен иметь реализацию');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1510,682,'MountainClimb',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1511,682,'None of these are valid functional interfaces.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (683,8,0,'Функциональный интерфейс может иметь любое число дефолтных методов.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (684,8,1,'Which of the following are valid lambda expressions? (Choose all that apply.)');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1512,684,'() -&gt; ""',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1513,684,'x,y -&gt; x+y',false,'нужны скобки, т.к. параметров несколько');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1514,684,'(Coyote y) -&gt; return 0;',false,'нужны фигурные скобки, т.к. есть return');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1515,684,'(Camel c) -&gt; {return;}',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1516,684,'Wolf w -&gt; 39',false,'нужны скобки, если указан тип аргумента');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1517,684,'() -&gt;',false,'нет тела');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1518,684,'(Animal z, m) -&gt; a',false,'если хотя бы для одного аргумента указан тип, то должен быть указан для всех.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (685,8,1,'What are some of the properties of using the singleton pattern? (Choose all that apply.)');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1520,685,'Requires constructor of singleton class to be private.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1521,685,'Singleton object must be named instance.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1522,685,'Singleton object may be private or protected.',false,'только private');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1523,685,'Ensures that there is only one instance of an object in memory.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1524,685,'Requires a public static method to retrieve the instance of the singleton.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1519,685,'Singleton object can be replaced with encapsulated setter method.',false,'нельзя менять синглтон');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (686,8,1,'<div>What is the result of the following class?</div>
+<div>&nbsp;</div>
+<div>import java.util.function.*;</div>
+<div>public class Panda {</div>
+<div>&nbsp; &nbsp; int age;</div>
+<div>&nbsp; &nbsp; public static void main(String[] args) {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; Panda p1 = new Panda();</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; p1.age = 1;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; check(p1, p -&gt; p.age &lt; 5); // h1</div>
+<div>&nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; private static void check(Panda panda, Predicate&lt;Panda&gt; pred) { // h2</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; String result = pred.test(panda) ? "match": "not match"; // h3</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; System.out.print(result);</div>
+<div>} }</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1525,686,'match',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1526,686,'not match',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1527,686,'Compiler error on line h1.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1528,686,'Compiler error on line h2.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1529,686,'Compile error on line h3.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1530,686,'A runtime exception is thrown.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (687,8,1,'<div>What changes need to be made to make the following immutable object pattern correct? (Choose all that apply.)</div>
+<div>&nbsp;</div>
+<div>import java.util.List;</div>
+<div>public class Seal {</div>
+<div>&nbsp; &nbsp; String name;</div>
+<div>&nbsp; &nbsp; private final List&lt;Seal&gt; friends;</div>
+<div>&nbsp; &nbsp; public Seal(String name, List&lt;Seal&gt; friends) {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; this.name = name;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; this.friends = friends;</div>
+<div>&nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; public String getName() { return name; }</div>
+<div>&nbsp; &nbsp; public List&lt;Seal&gt; getFriends() { return friends; }</div>
+<div>}</div>
+<div>&nbsp;</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1536,687,'Change the type of List&lt;Seal&gt; to List&lt;Object&gt;.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1537,687,'Make a copy of the List&lt;Seal&gt; friends in the constructor.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1538,687,'Mark the Seal class final.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1531,687,'None; the immutable object pattern is properly implemented.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1532,687,'Have Seal implement the Immutable interface.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1533,687,'Mark name final and private.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1534,687,'Add setters for name and List&lt;Seal&gt; friends.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1535,687,'Replace the getFriends() method with methods that do not give the caller direct access to the List&lt;Seal&gt; friends.',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (688,8,1,'<div>Which of the following are true of interfaces? (Choose all that apply.)</div>
+<div>&nbsp;</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1539,688,'They can extend other classes.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1540,688,'They cannot be extended.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1541,688,'They enable classes to have multiple inheritance.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1542,688,'They can only contain abstract methods.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1543,688,'They can be declared final.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1544,688,'All members of an interface are public.',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (689,8,1,'<div>What changes need to be made to make the following singleton pattern correct? (Choose all that apply.)</div>
+<div>&nbsp;</div>
+<div>public class CheetahManager {</div>
+<div>&nbsp; &nbsp; public static CheetahManager cheetahManager;</div>
+<div>&nbsp; &nbsp; private CheetahManager() {}</div>
+<div>&nbsp; &nbsp; public static CheetahManager getCheetahManager() {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; if(cheetahManager == null) {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cheetahManager = new CheetahManager();</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; return cheetahManager;</div>
+<div>&nbsp; &nbsp; }</div>
+<div>}</div>
+<div>&nbsp;</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1545,689,'None; the singleton pattern is properly implemented.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1546,689,'Rename cheetahManager to instance.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1547,689,'Rename getCheetahManager() to getInstance().',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1548,689,'Change the access modifier of cheetahManager from public to private.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1549,689,'Mark cheetahManager final.',false,'<p>Нельзя. Финальную переменную надо сразу инстанциировать, и тогда lazy instantiation будет невозможна</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1550,689,'Add synchronized to getCheetahManager().',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (690,8,1,'<div>What is the result of the following code assuming each interface is a separate file?</div>
+<div>&nbsp;</div>
+<div>1: public interface CanWalk {</div>
+<div>2:&nbsp; &nbsp; &nbsp;default void walk() { System.out.println("Walking"); }</div>
+<div>3: }</div>
+<div>4: public interface CanRun {</div>
+<div>5:&nbsp; &nbsp; &nbsp;public default void walk() { System.out.println("Walking"); }</div>
+<div>6:&nbsp; &nbsp; &nbsp;public abstract void run();</div>
+<div>7: }</div>
+<div>8: public interface CanSprint extends CanWalk, CanRun {</div>
+<div>9:&nbsp; &nbsp; &nbsp;void sprint();</div>
+<div>10: }</div>
+<div>&nbsp;</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1552,690,'The code will not compile because of line 5.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1553,690,'The code will not compile because of line 6.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1554,690,'The code will not compile because of line 8.',true,'компилятор не знает, какой дефолтный метод наследовать');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1555,690,'The code will not compile because of line 9.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1551,690,'The code compiles without issue.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (691,8,1,'<div>Which lambda can replace the MySecret class to return the same value? (Choose all that apply.)</div>
+<div>&nbsp;</div>
+<div>public interface Secret {</div>
+<div>&nbsp; &nbsp; String magic(double d);</div>
+<div>}</div>
+<div>public class MySecret implements Secret {</div>
+<div>&nbsp; &nbsp; public String magic(double d) {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; return "Poof";</div>
+<div>&nbsp; &nbsp; }</div>
+<div>}</div>
+<div>&nbsp;</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1556,691,'caller((e) -&gt; "Poof");',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1557,691,'caller((e) -&gt; {"Poof"});',false,'нет return');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1558,691,'caller((e) -&gt; { String e = ""; "Poof" });',false,'нельзя переопределять переменную в теле; нет return');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1559,691,'caller((e) -&gt; { String e = ""; return "Poof"; });',false,'нельзя переопределять переменную в теле');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1560,691,'caller((e) -&gt; { String e = ""; return "Poof" });',false,'нельзя переопределять переменную в теле; нет точки с запятой');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1561,691,'caller((e) -&gt; { String f = ""; return "Poof"; });',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (692,8,1,'<div>What is the result of the following code?</div>
+<div>&nbsp;</div>
+<div>interface Climb {</div>
+<div>&nbsp; &nbsp; boolean isTooHigh(int height, int limit);</div>
+<div>}</div>
+<div>public class Climber {</div>
+<div>&nbsp; &nbsp; public static void main(String[] args) {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; check((h, l) -&gt; h.toString(), 5); // x1</div>
+<div>&nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; private static void check(Climb climb, int height) {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; if (climb.isTooHigh(height, 10)) // x2</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; System.out.println("too high");</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else System.out.println("ok");</div>
+<div>} }</div>
+<div>&nbsp;</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1562,692,'ok',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1563,692,'too high',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1564,692,'Compiler error on line x1.',true,'попытка применить toString() к int; в теле лямбды возвращается String, а в интерфейсе - boolean');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1565,692,'Compiler error on line x2.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1566,692,'Compiler error on a different line.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1567,692,'A runtime exception is thrown.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (693,8,1,'<div>Which of the following are properties of classes that define immutable objects? (Choose all that apply.)</div>
+<div>&nbsp;</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1568,693,'They don&rsquo;t define any getter methods.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1569,693,'All of the instance variables are marked private and final.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1570,693,'They don&rsquo;t define any setter methods.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1571,693,'They mark all instance variables static.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1572,693,'They prevent methods from being overridden.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1573,693,'All getter methods are marked synchronized.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (694,8,1,'<div>Which of the following statements can be inserted in the blank line so that the code will compile successfully? (Choose all that apply.)</div>
+<div>&nbsp;</div>
+<div>public interface CanHop {}</div>
+<div>public class Frog implements CanHop {</div>
+<div>&nbsp; &nbsp; public static void main(String[] args) {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; _______________ frog = new TurtleFrog();</div>
+<div>&nbsp; &nbsp; }</div>
+<div>}</div>
+<div>public class BrazilianHornedFrog extends Frog {}</div>
+<div>public class TurtleFrog extends Frog {}</div>
+<div>&nbsp;</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1574,694,'Frog',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1575,694,'TurtleFrog',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1576,694,'BrazilianHornedFrog',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1577,694,'CanHop',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1578,694,'Object',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1579,694,'Long',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (695,8,1,'<div>Which of the following statements about polymorphism are true? (Choose all that apply.)</div>
+<div>&nbsp;</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1584,695,'By defining a public instance method in the superclass, you guarantee that the specific method will be called in the parent class at runtime.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1580,695,'A reference to an object may be cast to a subclass of the object without an explicit cast.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1581,695,'If a method takes a class that is the superclass of three different object references, then any of those objects may be passed as a parameter to the method.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1582,695,'A reference to an object may be cast to a superclass of the object without an explicit cast.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1583,695,'All cast exceptions can be detected at compile time.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (696,8,1,'<div>Choose the correct statement about the following code:</div>
+<div>&nbsp;</div>
+<div>1: public interface Herbivore {</div>
+<div>2:&nbsp; &nbsp; &nbsp;int amount = 10;</div>
+<div>3:&nbsp; &nbsp; &nbsp;public static void eatGrass();</div>
+<div>4:&nbsp; &nbsp; &nbsp;public int chew() {</div>
+<div>5:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;return 13;</div>
+<div>6:&nbsp; &nbsp; &nbsp;}</div>
+<div>7: }</div>
+<div>&nbsp;</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1585,696,'It compiles and runs without issue.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1586,696,'The code will not compile because of line 2.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1587,696,'The code will not compile because of line 3.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1588,696,'The code will not compile because of line 4.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1589,696,'The code will not compile because of lines 2 and 3.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1590,696,'The code will not compile because of lines 3 and 4.',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (697,8,1,'<div>Which of the following are properties of classes that are properly encapsulated as a JavaBean? (Choose all that apply.)</div>
+<div>&nbsp;</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1591,697,'All instance variables are marked final.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1592,697,'boolean instance variables are accessed with is or get.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1593,697,'All instance variables are marked private.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1594,697,'They implement the JavaBean interface.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1595,697,'Variables are created using lazy instantiation.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1596,697,'The first letter of the any getter/setter, after the get, set, or is prefix, must be uppercase.',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (698,8,1,'<div>Which of the following statements about inheritance and object composition are correct? (Choose all that apply.)</div>
+<div>&nbsp;</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1600,698,'Object composition supports method overriding at runtime.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1601,698,'Object composition requires a class variable to be declared public or accessible from a public method to be used by a class in a different package.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1602,698,'Object composition is always preferred to inheritance.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1597,698,'Inheritance supports access to protected variables.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1598,698,'Object composition tends to promote greater code reuse than inheritance.',true,'я бы не был так уверен, ну да ладно');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1599,698,'Inheritance relies on the has-a principle.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (699,8,1,'<div>Which three scenarios would best benefit from using a singleton pattern? (Choose all three.)</div>
+<div>&nbsp;</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1603,699,'Create read‐only objects that are thread-safe.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1604,699,'Manage a reusable cache of objects.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1605,699,'Ensure that all objects are lazily instantiated.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1606,699,'Manage write access to a log file.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1607,699,'Provide central access to application configuration data.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1608,699,'Allow multiple instances of a static object to be managed in memory.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (700,8,1,'<div>Choose the correct statement about the following code:</div>
+<div>&nbsp;</div>
+<div>1: public interface CanFly {</div>
+<div>2:&nbsp; &nbsp; &nbsp;void fly();</div>
+<div>3: }</div>
+<div>4: interface HasWings {</div>
+<div>5:&nbsp; &nbsp; &nbsp;public abstract Object getWingSpan();</div>
+<div>6: }</div>
+<div>7: abstract class Falcon implements CanFly, HasWings {</div>
+<div>8: }</div>
+<div>&nbsp;</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1609,700,'It compiles without issue.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1610,700,'The code will not compile because of line 2.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1611,700,'The code will not compile because of line 4.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1612,700,'The code will not compile because of line 5.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1613,700,'The code will not compile because of lines 2 and 5.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1614,700,'The code will not compile because the class Falcon doesn&rsquo;t implement the interface methods.',false,'');
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,286);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (19,609);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (19,610);
@@ -2478,6 +2752,7 @@ INSERT INTO ThemeQuestion (themeId,questionId) VALUES (20,676);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (20,677);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (20,678);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (20,679);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (20,683);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (7,155);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (7,156);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (7,157);
@@ -2499,6 +2774,26 @@ INSERT INTO ThemeQuestion (themeId,questionId) VALUES (7,171);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (7,172);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (7,173);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (7,174);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (21,680);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (21,681);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (21,682);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (21,684);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (21,685);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (21,686);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (21,687);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (21,688);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (21,689);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (21,690);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (21,691);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (21,692);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (21,693);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (21,694);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (21,695);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (21,696);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (21,697);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (21,698);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (21,699);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (21,700);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,175);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,176);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,177);

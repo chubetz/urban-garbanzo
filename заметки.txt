@@ -992,8 +992,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.95 p. 550
-#1
+p.103
+Chapter#3
 ======
 Сделать длину Question 20K!
 =======
