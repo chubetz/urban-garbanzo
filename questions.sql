@@ -45,6 +45,7 @@ INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (18,0,
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (19,8,'Задания к теме',1.1);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (20,8,'Шаблоны и принципы проектирования',2.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (21,8,'Задания к теме',2.1);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (22,8,'Дженерики и коллекции',3.0);
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (0,4,0,'Тесты экзамена предполагают обычно 5 или 6 ответов, со множественным выбором.');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (1,4,0,'Нельзя реализовать в классе два интерфейса с общим дефолтным методом, если не переопределить этот метод в классе.');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (2,4,2,'<p>Перечислите 3 вида комментариев в Java</p>');
@@ -2637,6 +2638,78 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (700,
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1612,700,'The code will not compile because of line 5.',false,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1613,700,'The code will not compile because of lines 2 and 5.',false,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1614,700,'The code will not compile because the class Falcon doesn&rsquo;t implement the interface methods.',false,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (701,8,2,'Как преобразовать массив в список?');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1615,701,'List&lt;String&gt; list = Arrays.asList(array);<br /><br /><br />Список с массивом оказываются связанными. Изменения в одном из них вызовут изменения в другом. Нельзя добавлять элементы к получившемуся списку или удалять их из него.',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (702,8,2,'Как преобразовать список в массив?');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1616,702,'String[] array2 = (String[]) list.toArray();<br />&nbsp; <em>или</em><br />String[] array2 = list.toArray(new String[0]);<br /><br />Получившийся массив не связан со списком, его можно редактировать без опасений повредить список.',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (703,8,2,'Дан код:<br /><br />
+<div>int[] numbers = {6,9,1,8};</div>
+<div>Arrays.sort(numbers);</div>
+<div>int index1 = Arrays.binarySearch(numbers, 6);</div>
+<div>int index2 = Arrays.binarySearch(numbers, 3);</div>
+<div><br />Чему равны <em>index1</em> и <em>index2</em>?</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1617,703,'index1 = 1<br />index2 = -2 (индекс позиции, где должно было бы оказаться это число, умноженный на -1 и уменьшенный на 1)',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (704,8,0,'Для двоичного поиска в коллекции используется <strong>Collections</strong>.<strong>binarySearch</strong>(<em>collection</em>, <em>element</em>), а для поиска в массивах - <strong>Arrays</strong>.<strong>binarySearch</strong>(<em>array</em>, <em>element</em>).');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (705,8,0,'Autoboxing происходит, в том числе, тогда, когда примитив попадает в контекст, который ожидает дженерика.&nbsp;<br /><br />
+<div>&nbsp; &nbsp; static &lt;T&gt; void testAutobox(T i) {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; System.out.println(i.getClass()); //&nbsp;class java.lang.Integer</div>
+<div>&nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; ...<br />&nbsp; &nbsp;testAutobox(4);</div>
+<br />Autounboxing:<br />&nbsp;int i = new Integer(3);');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (706,8,0,'В конструкторы оберток надо подавать строго соответствующие примитивы.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (707,8,2,'Что будет выдано в результате работы следующего кода?<br /><br />
+<div>3: List&lt;Integer&gt; numbers = new ArrayList&lt;Integer&gt;();</div>
+<div>4: numbers.add(1);</div>
+<div>5: numbers.add(new Integer(3));</div>
+<div>6: numbers.add(new Integer(5));</div>
+<div>7: numbers.remove(1);</div>
+<div>8: numbers.remove(new Integer(5));</div>
+<div>9: System.out.println(numbers);</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1618,707,'[1]. Метод&nbsp;<strong>remove</strong>&nbsp;перегружен. Они принимает либо&nbsp;<strong>int</strong>&nbsp;(индекс удаляемого элемента), либо объект, который надо удалить. В строке 4 аргумент не приводится к&nbsp;<strong>Integer</strong>, т.к. есть в наличии метод, принимающий&nbsp;<strong>int</strong>.<br /><br />Кстати, метод&nbsp;<strong>remove</strong>(Object) удалит только первое вхождение.<br /><br />Еще кстати. <strong>remove</strong>(Object) возвращает true/false, а <strong>remove</strong>(int) - удаленный объект',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (708,8,0,'Diamond operator не обязательно должен использоваться в одной строке с объявлением переменной. Например, следующий код тоже вполне корректен:<br /><br />
+<div>ArrayList&lt;String&gt; copyOfNames;</div>
+<div>copyOfNames = new ArrayList&lt;&gt;();</div>');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (709,8,0,'Параметр в угловых скобках в дженериках называется <em>formal type parameter</em>.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (710,8,2,'Приведите пример простого дженерик-класса');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1619,710,'<div>public class GenericContainer&lt;T&gt; {</div>
+<div>&nbsp; &nbsp; private T contents;</div>
+<div>&nbsp; &nbsp; public T getContents() {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; return contents;</div>
+<div>&nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; public void setContents(T contents) {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; this.contents = contents;</div>
+<div>&nbsp; &nbsp; }</div>
+<div>}</div>',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (711,8,0,'<div>Соглашения о именованиях в дженериках.</div>
+<div>&nbsp;</div>
+<div>&nbsp;E for an element</div>
+<div>&nbsp;K for a map key</div>
+<div>&nbsp;V for a map value</div>
+<div>&nbsp;N for a number</div>
+<div>&nbsp;T for a generic data type</div>
+<div>&nbsp;S, U, V, and so forth for multiple generic types</div>');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (712,8,0,'Польза дженериков проявляется тогда, когда нужно обеспечить одинаковый подход к классам, не имеющим между собой иерархической и смысловой связи.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (713,8,2,'Что такое <em>type erasure</em>?<br />');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1620,713,'Это отражение того факта, что работа с дженериками происходит на этапе компиляции. В байт-коде нет информации о том, какими типами параметризованы дженерик-классы - компилятор везде подставит Object. Что же касается присваивания дженерика переменной, то компилятор подставит явный кастинг.',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (714,8,2,'Приведите 3 способа имплементации интерфейса<br /><br />
+<div>public interface Shippable&lt;T&gt; {</div>
+<div>&nbsp; &nbsp; void ship(T t);</div>
+<div>}<br /><br />Опишите их особенности.</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1621,714,'1) Имплементация с конкретным типом. Получившийся класс нельзя будет параметризовать, он будет работать только с одним типом.<br /><br />
+<div>class ShippableRobotCrate implements Shippable&lt;Robot&gt; {</div>
+<div>&nbsp; &nbsp; public void ship(Robot t) { }</div>
+<div>}<br /><br />2) Имплементация с оставлением параметризации. Класс будет работать с любыми типами.<br /><br />
+<div>class ShippableAbstractCrate&lt;U&gt; implements Shippable&lt;U&gt; {</div>
+<div>&nbsp; &nbsp; public void ship(U t) { }</div>
+<div>}<br /><br />(то что формальный параметр отличается, роли не играет)<br /><br />3) Имплементация без параметризации (использование <em>raw type</em>). Вообще не указываем угловые скобки, тогда класс будет работать только с <strong>Object</strong>.<br /><br />
+<div>class ShippableCrate implements Shippable {</div>
+<div>&nbsp; &nbsp; public void ship(Object t) { }</div>
+<div>}</div>
+</div>
+</div>',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (715,8,2,'Что не получится сделать с дженериками во всяком случае, без использования изощренных приемов?');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1622,715,'- вызвать конструктор. new T() в рантайме превратилось бы в new Object()<br />- создать <span style="text-decoration: underline;">массив</span> (не список) дженериков (был бы по факту массив Object)<br />- использовать <strong>instanceof </strong><em>(уточнить, почему)<br />- </em>использовать примитив в качестве типа дженерика (зато можно использовать обертку).<br />- создавать статические переменные типа дженерика (поскольку тип дженерика связан с экземпляром объекта).',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (716,8,0,'Типа, вся информация о которых есть на момент времени выполнения, называются <em>reifiable</em>. С ними можно делать все. У non-reifiable (дженериков) есть ограничения.');
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,286);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (19,609);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (19,610);
@@ -2816,21 +2889,37 @@ INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,192);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,193);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,194);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,195);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,701);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,196);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,702);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,197);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,703);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,198);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,704);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,199);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,705);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,200);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,706);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,201);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,707);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,202);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,708);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,203);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,709);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,204);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,710);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,205);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,711);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,206);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,712);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,207);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,713);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,208);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,714);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,209);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,715);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,210);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,716);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,211);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,212);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (8,213);

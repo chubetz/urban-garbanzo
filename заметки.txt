@@ -992,8 +992,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.103
-Chapter#3
+p.114
+Generic methods
 ======
 Сделать длину Question 20K!
 =======
