@@ -992,8 +992,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.114
-Generic methods
+p.121
+Lower-Bounded Wildcards
 ======
 Сделать длину Question 20K!
 =======
