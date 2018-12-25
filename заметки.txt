@@ -992,8 +992,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.121
-Lower-Bounded Wildcards
+p.124
+Using Lists, Sets, Maps, and Queues
 ======
 Сделать длину Question 20K!
 =======
