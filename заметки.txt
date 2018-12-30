@@ -161,9 +161,13 @@ Elements of Programming Interviews in Java: The Insiders' Guide
 стандартные алгоритмы, структуры данных, шаблоны проектирования
 (ознакомиться с Design Patterns банды четырех)
 
+Функциональное программирование Java.
 
 
-
+что такое U extends Comparable<? super U>
+(static <T,U extends Comparable<? super U>>
+Comparator<T> 	comparing(Function<? super T,? extends U> keyExtractor)
+Accepts a function that extracts a Comparable sort key from a type T, and returns a Comparator<T> that compares by that sort key.)
 
 
 
@@ -789,6 +793,10 @@ new) более удобная работа в окне редактирован
 
 *) в процессе экзамена нужно дать возможность проигнорировать вопрос, чтобы он не учитывался при определении оценки
 
+*) разработать возможность онлайн-редактирования несложных схем
+
+*) кнопка "сохранить" при редактировании карточки
+
 - возможность сразу пройти проверку по проблемнывм вопросам
 
 - возможность отметить вопрос в процессе преверки, чтобы вернуться к нему для редактирования
@@ -992,8 +1000,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.124
-Using Lists, Sets, Maps, and Queues
+p.150
+Searching and Sorting
 ======
 Сделать длину Question 20K!
 =======
