@@ -163,6 +163,8 @@ Elements of Programming Interviews in Java: The Insiders' Guide
 
 Функциональное программирование Java.
 
+Отдельная книжка по дженерикам
+Generics tutorials by Bracha and Langer, and the IBM DeveloperWorks series by Allen
 
 что такое U extends Comparable<? super U>
 (static <T,U extends Comparable<? super U>>
@@ -1000,8 +1002,9 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.150
-Searching and Sorting
+p.161 p.553
+Review Questions #2
+
 ======
 Сделать длину Question 20K!
 =======
