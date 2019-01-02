@@ -1002,8 +1002,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.171
-Chapter 4
+p.176
+Implementing Predicate and BiPredicate
 ======
 Сделать длину Question 20K!
 =======
