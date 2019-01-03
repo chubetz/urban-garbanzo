@@ -3066,7 +3066,163 @@ INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (845,
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1842,845,'@FunctionalInterface public class Consumer&lt;T&gt; {<br />&nbsp;&nbsp;&nbsp; void accept(T t);<br />}<br />@FunctionalInterface public class BiConsumer&lt;T, U&gt; {<br />&nbsp;&nbsp;&nbsp; void accept(T t, U u);<br />}<br /><br />используются тогда, когда нужно что-то сделать с параметрами, но ничего не надо возвращать.<br /><br />Примеры:<br />Consumer&lt;String&gt; c1 = System.out::println;<br />Consumer&lt;String&gt; c2 = x -&gt; System.out.println(x);<br /><br />c1.accept("Annie");<br />c2.accept("Annie");',true,'');
 INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (846,8,2,'Напишите лямбды, которые кладут значение в <strong>Map</strong>.');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1843,846,'Map&lt;String, Integer&gt; map = new HashMap&lt;&gt;();<br />BiConsumer&lt;String, Integer&gt; b1 = map::put;<br />BiConsumer&lt;String, Integer&gt; b2 = (k, v) -&gt; map.put(k, v);',true,'');
-INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (847,8,0,'В описании класса нельзя дважды указывать один и тот же формальный тип параметра:<br /><br />class Test&lt;T,T&gt; {} // doesn''t compile');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (847,8,0,'В описании класса нельзя дважды указывать один и тот же формальный тип параметра:<br /><br />class Test&lt;T,T&gt; {} // doesn''t compile<br /><br />Однако один и тот же формальный тип параметра можно указывать, когда производится наследование:<br /><br />
+<div>public class Test1&lt;T,U&gt; {</div>
+<div>&nbsp; &nbsp; T calc(U u) {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; return (T)u;</div>
+<div>&nbsp; &nbsp; }</div>
+<div>}</div>
+<div>&nbsp;</div>
+<div>class Test1Child&lt;T&gt; extends Test1&lt;T,T&gt; {}<br /><br />В этом конкретном случае унаследованный метод calc будет принимать и возвращать T</div>');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (848,8,2,'Приведите код интерфейсов <strong>Predicate</strong> и <strong>BiPredicate</strong>, смысл их использования. Приведите примеры лямбд, использующих метод <strong>String</strong>.<strong>isEmpty</strong>() и <strong>String</strong>.<strong>startsWith</strong>()');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1844,848,'<div>@FunctionalInterface public class Predicate&lt;T&gt; {</div>
+<div>&nbsp; &nbsp; boolean test(T t);</div>
+<div>}<br /><br /></div>
+<div>@FunctionalInterface public class BiPredicate&lt;T, U&gt; {</div>
+<div>&nbsp; &nbsp; boolean test(T t, U u);</div>
+<div>}<br /><br />Используется, когда надо вернуть булево значение от одного/двух параметров.<br /><br />Примеры:<br />
+<div>Predicate&lt;String&gt; p1 = String::isEmpty;</div>
+<div>Predicate&lt;String&gt; p2 = x -&gt; x.isEmpty();</div>
+<div>&nbsp;</div>
+<div>BiPredicate&lt;String, String&gt; b1 = String::startsWith;</div>
+<div>BiPredicate&lt;String, String&gt; b2 = (string, prefix) -&gt; string.startsWith(prefix);</div>
+</div>',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (849,8,0,'Если в дженерик-классе производится кастинг к дженерику, то реально кастинг состоится только при обращении к методам типа, к которому производится кастинг. Если метод в Object, то кастинга не будет и ошибки ClassCastException не будет.<br /><br />
+<div>public class Test1&lt;T,U&gt; {</div>
+<div>&nbsp; &nbsp;&nbsp;</div>
+<div>&nbsp; &nbsp; public static void main(String[] arh) {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; Test1&lt;Integer, String&gt; t = new Test1&lt;&gt;();</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<br />&nbsp; &nbsp; &nbsp; &nbsp; System.out.println(t.calc("444")); //выполнится без проблем</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; System.out.println(t.calc("444").floatValue()); //ошибка ClassCastException</div>
+<div>&nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp;&nbsp;</div>
+<div>&nbsp; &nbsp; T calc(U u) {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; return (T)u;</div>
+<div>&nbsp; &nbsp; }</div>
+<div>}</div>');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (850,8,0,'Методы-ссылки занимают меньше кода, но зачастую читаются хуже, чем эксплицитные лямбды.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (851,8,0,'Функциональные интерфейсы должны иметь ровно один абстрактный метод, но при этом они могут иметь статичные и дефолтные методы.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (852,8,0,'Интерфейс предикат содержит удобные дефолтные методы:<br /><br />
+<div><em>Predicate&lt;T&gt;</em> <strong>and</strong>(<strong>Predicate</strong>&lt;? super <em>T</em>&gt; <em>other</em>)</div>
+<div>Returns a composed predicate that represents a short-circuiting logical AND of this predicate and another.</div>
+<div>&nbsp;</div>
+<div><em>Predicate&lt;T&gt;</em> <strong>negate</strong>()</div>
+<div>Returns a predicate that represents the logical negation of this predicate.</div>
+<div>&nbsp;</div>
+<div><em>Predicate&lt;T&gt;</em> <strong>or</strong>(<strong>Predicate</strong>&lt;? super <em>T</em>&gt; <em>other</em>)</div>
+<div>Returns a composed predicate that represents a short-circuiting logical OR of this predicate and another.</div>');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (853,8,2,'Приведите код интерфейсов <strong>Function</strong> и <strong>BiFunction</strong> и объясните смысл их использования.<br />Приведите примеры лямбд с использованием методов <strong>String</strong>.<strong>length</strong>() и <strong>String</strong>.<strong>concat</strong>()');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1845,853,'<div>@FunctionalInterface public class Function&lt;T, R&gt; {</div>
+<div>&nbsp; &nbsp; R apply(T t);</div>
+<div>}</div>
+<div>&nbsp;</div>
+<div>@FunctionalInterface public class BiFunction&lt;T, U, R&gt; {</div>
+<div>&nbsp; &nbsp; R apply(T t, U u);</div>
+<div>}<br /><br />Смысл - преобразование одного или двух аргументов потенциально разных типов в объект потенциально иного типа.<br /><br />Примеры:<br /><br />
+<div>Function&lt;String, Integer&gt; f1 = String::length;</div>
+<div>Function&lt;String, Integer&gt; f2 = x -&gt; x.length();</div>
+<div>&nbsp;</div>
+<div>BiFunction&lt;String, String, String&gt; b1 = String::concat;</div>
+<div>BiFunction&lt;String, String, String&gt; b2 = (string, toAdd) -&gt; string.concat(toAdd);</div>
+</div>',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (854,8,2,'Напишите функциональный интерфейс, возвращающий функцию от трех различных аргументов.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1846,854,'<div>interface TriFunction&lt;T,U,V,R&gt; {</div>
+<div>&nbsp; &nbsp; R apply(T t, U u, V v);</div>
+<div>}</div>',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (855,8,2,'Приведите код интерфейсов <strong>UnaryOperator</strong> и <strong>BinaryOperator</strong> и&nbsp; изложите смысл их использования.<br />Приведите примеры лямбд с использованием методов <strong>String</strong>.<strong>toUpperCase</strong>() и <strong>String</strong>.<strong>concat</strong>()<br />');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1847,855,'<div>@FunctionalInterface public class UnaryOperator&lt;T&gt; extends Function&lt;T, T&gt; { }</div>
+<div>&nbsp;</div>
+<div>@FunctionalInterface public class BinaryOperator&lt;T&gt; extends BiFunction&lt;T, T, T&gt; { }<br /><br />(унаследованы методы T apply(T t);
+<div>T apply(T t1, T t2);)</div>
+<br /><br />Преобразуют аргумент или два одинаковых аргумента в объект того же типа.<br /><br />Примеры:<br />
+<div>UnaryOperator&lt;String&gt; u1 = String::toUpperCase;</div>
+<div>UnaryOperator&lt;String&gt; u2 = x -&gt; x.toUpperCase();</div>
+<div>&nbsp;</div>
+<div>BinaryOperator&lt;String&gt; b1 = String::concat;</div>
+<div>BinaryOperator&lt;String&gt; b2 = (string, toAdd) -&gt; string.concat(toAdd);</div>
+</div>',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (856,8,2,'Какой функциональный интерфейс вы использовали бы в следующих ситуациях:<br /><br />1) Вернуть <strong>String</strong> без исходных параметров<br />2) Вернуть <strong>Boolean</strong>, на входе строка<br />3) Вернуть <strong>Integer</strong>, на входе два целых');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1848,856,'1) Supplier&lt;String&gt;<br />2) Function&lt;String, Boolean&gt; (не Predicate, потому что он возвращает примитив, а нужен объект)<br />3) BinaryOperator&lt;Integer&gt;',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (857,8,2,'Вставьте подходящие типа на место прочерков.<br /><br />
+<div>1) _____&lt;List&gt; ex1 = x -&gt; "".equals(x.get(0));</div>
+<div>2) _____&lt;Long&gt; ex2 = (Long l) -&gt; System.out.println(l);</div>
+<div>3) _____ &lt;String, String&gt; ex3 = (s1, s2) -&gt; false;</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1849,857,'1) Predicate<br />2) Consumer<br />3) BiPredicate',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (858,8,2,'Найдите ошибки в следующих строках и опишите способы исправления<br /><br />
+<div>1) Function&lt;List&lt;String&gt;&gt; ex1 = x -&gt; x.get(0); // DOES NOT COMPILE</div>
+<div>2) UnaryOperator&lt;Long&gt; ex2 = (Long l) -&gt; 3.14; // DOES NOT COMIPLE</div>
+<div>3) Predicate ex4 = String::isEmpty; // DOES NOT COMPILE</div>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1850,858,'1) функции нужно два параметра в угловых скобках. Надо добавить String<br />2) неправильный тип возвращаемого значения в лямбде. Нужен кастинг к long, а там сработает автобоксинг в Long.<br />3) нужно параметризовать Predicate с помощью String, поскольку метод isEmpty принимает String, а в Object (ибо у нас raw type) такого метода нет',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (859,8,0,'package <span style="text-decoration: underline;">java.util</span>;<br /><br />class <strong>Optional</strong>&lt;T&gt;<br /><br />Класс-контейнер, который может содержать значение или пустоту.<br /><br />static &lt;T&gt; <em>Optional&lt;T&gt;</em>&nbsp;<strong>empty</strong>() возвращает пустой контейнер.<br /><em><br />Optional&lt;T&gt;&nbsp;</em><strong>of</strong>(<strong>T</strong> <em>value</em>) возвращает контейнер со значением.<br /><em><br />boolean</em> <strong>isPresent</strong>() проверяет, есть ли значение.<br /><em><br />T</em> <strong>get</strong>() возвращает значение (NoSuchElementException, если значения нет)<br /><br />static &lt;T&gt; <em>Optional</em>&lt;<em>T</em>&gt; <strong>ofNullable</strong>(<strong>T</strong> <em>value</em>)&nbsp; возвращает контейнер со значением, либо пустой контейнер, если параметр null<br /><br />
+<div><em>void</em> <strong>ifPresent</strong>(<strong>Consumer</strong>&lt;? super <em>T</em>&gt; <em>consumer</em>) запускает потребителя, если контейнер непуст<br /><br /><em>T</em> <strong>orElse</strong>(<strong>T</strong> <em>other</em>) возвращает содержимое либо other, если контейнер пуст</div>
+<div><br /><em>T</em> <strong>orElseGet</strong>(<strong>Supplier</strong>&lt;? extends <em>T</em>&gt; <em>other</em>) возвращает содержимое либо результат работы поставщика, если контейнер пуст<br /><br />&lt;<em>X</em> extends <em>Throwable</em>&gt; <em>T</em> <strong>orElseThrow</strong>(<strong>Supplier</strong>&lt;? extends <em>X</em>&gt; <em>exceptionSupplier</em>) - возвращает содержимое либо изготавливает исключение.</div>');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (860,8,2,'Опишите преимущества введения <strong>Optional</strong>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1851,860,'1) его можно возвращать вместо null - это способ показать, что метод может вернуть или не вернуть требуемое значение.<br /><br />2) Благодаря функциональному программированию с объектами Optional легко работать "одной строкой" - не надо писать сложное ветвление с if-else',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (861,8,2,'Что такое поток(<em>stream</em>) в java? Что такое конвейер обработки потока&nbsp; (<em>stream pipeline)</em>? Какие бывают потоки?');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1852,861,'Поток - последовательность данных.<br />Конвейер обработки - совокупность операций, применяемых к потоку для получения результата.<br />Потоки бывают конечные (<em>finite</em>) и бесконечные (<em>infinite</em>).',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (862,8,2,'Опишите общую схему конвейера обработки (stream pipeline).');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1853,862,'- Источник данных - исходный поток<br />- Промежуточные операции. Каждая преобразует поток в другой поток<br />- Терминальная операция. Выдает результат (не поток). Поток становится не пригодным к дальнейшим манипуляциям.<br /><br />Внимание! Проемежуточные операции начинают выполняться только тогда, когда приходит запрос на терминальную операцию (lazy evaluation).',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (863,8,0,'Интерфейс <strong>Stream</strong>&lt;<em>T</em>&gt; находится в пакете java.util.stream');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (864,8,2,'Перечислите 3 способа создать конечный поток.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1854,864,'<div>1: Stream&lt;String&gt; empty = Stream.empty();&nbsp;<br /><br /></div>
+<div>2: Stream&lt;Integer&gt; singleElement = Stream.of(1);&nbsp;<br /><br /></div>
+<div>3: Stream&lt;Integer&gt; fromArray = Stream.of(1, 2, 3);&nbsp;</div>',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (865,8,2,'Как превратить список в поток?');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1855,865,'<div>Stream&lt;String&gt; fromList = list.stream();</div>
+<div>&nbsp;</div>
+<div>это обычный поток</div>
+<div>&nbsp;</div>
+<div>Stream&lt;String&gt; fromListParallel = list.parallelStream();</div>
+<div>&nbsp;</div>
+<div>это поток, который может обрабатываться параллельно. Не имеет смысла для маленьких потоков.</div>',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (866,8,2,'Опишите способы получения бесконечного потока.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1856,866,'<div>static &lt;T&gt; Stream&lt;T&gt; generate(Supplier&lt;T&gt; s)</div>
+<div>&nbsp;</div>
+<div>возвращает бесконечный последовательный неупорядоченный поток, каждый элемент которого генерируется поставщиком.</div>
+<div>&nbsp;</div>
+<div>static &lt;T&gt; Stream&lt;T&gt; iterate(T seed, UnaryOperator&lt;T&gt; f)</div>
+<div>&nbsp;</div>
+<div>возвращает бесконечный последовательный упорядоченный поток, каждый элемент которого производится некоторой функцией, прилагаемой к предыдущему значению этой функции, т.е. поток вида seed, f(seed), f(f(seed)), etc.</div>',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (867,8,2,'Создайте следующие потоки:<br /><br />1) бесконечный поток случайных чисел<br />2) бесконечный поток нечетных чисел, начиная с 1');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1857,867,'<div>1) Stream&lt;Double&gt; randoms = Stream.generate(Math::random);</div>
+<div>2) Stream&lt;Integer&gt; oddNumbers = Stream.iterate(1, n -&gt; n + 2);</div>',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (868,8,0,'Можно выполнить терминальную операцию с потоком без промежуточных, но наоборот нельзя.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (869,8,2,'Что такое <em>reduction</em>?');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1858,869,'Это терминальная операция, сводящая <span style="text-decoration: underline;">весь</span> поток к единому объекту (например, коллекции) или примитиву. Т.е. для определения редукции важен каждый элемент потока.',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (870,8,2,'Перечислите основные терминальные операции с потоками.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1859,870,'<div>allMatch()</div>
+<div>anyMatch()</div>
+<div>noneMatch()</div>
+<div>&nbsp;</div>
+<div>collect()</div>
+<div>&nbsp;</div>
+<div>count()</div>
+<div>&nbsp;</div>
+<div>findAny()</div>
+<div>findFirst()</div>
+<div>&nbsp;</div>
+<div>forEach()</div>
+<div>&nbsp;</div>
+<div>min()</div>
+<div>max()</div>
+<div>&nbsp;</div>
+<div>reduce()</div>',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (871,8,2,'Опишите терминальную операцию <strong>count</strong>()');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1860,871,'<em>long</em> <strong>count</strong>()<br /><br />определяет кол-во элементов в конечном потоке. Для бесконечного потока зависает. Это редукция, т.к. возвращает единственный примитив и базируется на всех элементах потока.',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (872,8,2,'Опишите терминальные операции <strong>min</strong>() и <strong>max</strong>()');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1861,872,'<div><em>Optional&lt;T&gt;</em> <strong>min</strong>(<strong>Comparator</strong>&lt;? super <em>T</em>&gt; <em>comparator</em>)</div>
+<div><em>Optional&lt;T&gt;</em> <strong>max</strong>(<strong>Comparator</strong>&lt;? super <em>T</em>&gt; <em>comparator</em>)<br /><br />Возвращает наибольшее или наименьшее значение в конечном потоке в соответствии с поданым компаратором. На бесконечном потоке зависает. Является редукцией, т.к. возвращает единственный объект <strong>Optional</strong>, определенный на материале всего потока.<br /><br />(чтобы отсортировать по естественному порядку, надо подать компаратор Comparator.naturalOrder())</div>',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (873,8,0,'Есть очень полезные универсальные компараторы:<br /><br /><strong>Comparator</strong>.<strong>naturalOrder</strong>()<br />и<br /><strong>Comparator</strong>.<strong>reverseOrder</strong>(),<br /><br />которые можно подавать в методы, где требуется компаратор.<br /><br />Дженерик-тип этих компараторов возьмется из ссылки или контекста.');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (874,8,2,'Опишите операции <strong>findAny</strong>() и <strong>findFirst</strong>()');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1862,874,'<div><em>Optional</em>&lt;<em>T</em>&gt; <strong>findAny</strong>()</div>
+<div><em>Optional</em>&lt;<em>T</em>&gt; <strong>findFirst</strong>()<br /><br /><strong>findAny</strong>&nbsp;возвращает произвольный элемент потока. Удобен для параллельного потока.&nbsp;<strong>findFirst</strong> возвращает первый элемент упорядоченного потока, или любой элемент, если поток не упорядочен. Не являются редукциями. Могут работать с бесконечными потоками (т.е. не вызывают зависания).</div>',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (875,8,2,'Опишите операции <strong>allMatch</strong>(), <strong>anyMatch</strong>(), <strong>noneMatch</strong>()');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1863,875,'<div><em>boolean</em> <strong>anyMatch</strong>(Predicate &lt;? super <em>T</em>&gt; <em>predicate</em>)</div>
+<div><em>boolean</em> <strong>allMatch</strong>(Predicate &lt;? super <em>T</em>&gt; <em>predicate</em>)</div>
+<div><em>boolean</em> <strong>noneMatch</strong>(Predicate &lt;? super <em>T</em>&gt; <em>predicate</em>)<br /><br />Возвращают информацию от том или ином отношении потока к подаваемому предикату. Не являются редукциями (т.к. для вычисления может хватить и части потока). <strong>noneMatch</strong> и <strong>allMatch</strong> могут зависнуть на бесконечных потоках. На пустом потоке предикат не вычисляется, <strong>anyMatch</strong> вернет false, <strong>allMatch</strong> и <strong>noneMatch</strong> вернут true.</div>',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (876,8,2,'Опишите операцию <strong>forEach</strong>().');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (1864,876,'<em>void</em> <strong>forEach</strong>(<strong>Consumer</strong>&lt;? super <em>T</em>&gt; <em>action</em>)<br /><br />Подает каждый элемент потока потребителю. Единственная терминальная операция, возвращающая <strong>void</strong>. На бесконечном потоке зависнет. Не редукция.&nbsp;<br /><br />(Метод <strong>forEach</strong> может вызываться и напрямую на коллекциях.)',true,'');
+INSERT INTO Question (id,realmId,type,text) OVERRIDING SYSTEM VALUE VALUES (877,8,0,'Поток нельзя пробежать в цикле <strong>for</strong>, так как он не реализует интерфейс <strong>Iterable&nbsp;</strong>и не имеет возможности доступа к элементу по индексу. Хотя можно преобразовать в массив объектов методом <strong>toArray</strong>() или в массив произвольного типа и размера методом <strong>toArray</strong>(<strong>IntFunction</strong>&lt;<em>A</em>[]&gt;)');
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (19,609);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (19,610);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (19,612);
@@ -3262,6 +3418,8 @@ INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,810);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,813);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,832);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,847);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,849);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (22,873);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (24,806);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (24,807);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (24,808);
@@ -3298,6 +3456,34 @@ INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,843);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,844);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,845);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,846);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,848);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,850);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,851);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,852);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,853);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,854);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,855);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,856);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,857);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,858);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,859);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,860);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,861);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,862);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,863);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,864);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,865);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,866);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,867);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,868);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,869);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,870);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,871);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,872);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,874);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,875);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,876);
+INSERT INTO ThemeQuestion (themeId,questionId) VALUES (25,877);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,2);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,3);
 INSERT INTO ThemeQuestion (themeId,questionId) VALUES (0,4);

@@ -162,6 +162,11 @@ Elements of Programming Interviews in Java: The Insiders' Guide
 (ознакомиться с Design Patterns банды четырех)
 
 Функциональное программирование Java.
+(плюс самостоятельно изучить дефолтные и статичные методы java.util.function)
+
+посмотреть API по Optional
+
+книги Nathan Clark по Java 
 
 Отдельная книжка по дженерикам
 Generics tutorials by Bracha and Langer, and the IBM DeveloperWorks series by Allen
@@ -1002,8 +1007,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.176
-Implementing Predicate and BiPredicate
+p.193
+reduce()
 ======
 Сделать длину Question 20K!
 =======
