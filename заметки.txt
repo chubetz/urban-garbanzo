@@ -171,6 +171,9 @@ Elements of Programming Interviews in Java: The Insiders' Guide
 Отдельная книжка по дженерикам
 Generics tutorials by Bracha and Langer, and the IBM DeveloperWorks series by Allen
 
+упорядоченные потоки
+
+
 что такое U extends Comparable<? super U>
 (static <T,U extends Comparable<? super U>>
 Comparator<T> 	comparing(Function<? super T,? extends U> keyExtractor)
@@ -1007,8 +1010,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.193
-reduce()
+p.206
+Some of the methods for creating a primitive stream are equivalent to how we
 ======
 Сделать длину Question 20K!
 =======
