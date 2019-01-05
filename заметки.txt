@@ -125,6 +125,11 @@ JUnit?
 
 Javadoc
 
+интерфейс Collector и набор Collectors (см. JavaDoc)
+
+
+Аннотации
+
 Изучить JSP Faqs
 
 Servlet cookbook
@@ -807,6 +812,8 @@ new) более удобная работа в окне редактирован
 
 *) кнопка "сохранить" при редактировании карточки
 
+*) настроить допустимый размер карточек
+
 - возможность сразу пройти проверку по проблемнывм вопросам
 
 - возможность отметить вопрос в процессе преверки, чтобы вернуться к нему для редактирования
@@ -1010,8 +1017,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.206
-Some of the methods for creating a primitive stream are equivalent to how we
+p.226 Review Questions p.556
+#1
 ======
 Сделать длину Question 20K!
 =======
