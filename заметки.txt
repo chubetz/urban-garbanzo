@@ -1017,8 +1017,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.226 Review Questions p.556
-#1
+p.230 Review Questions p.557
+#15
 ======
 Сделать длину Question 20K!
 =======
