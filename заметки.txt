@@ -1017,8 +1017,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.234
-You learned about the basics of Java 8 dates for
+p.245
+luckily, java has a period
 ======
 Сделать длину Question 20K!
 =======
