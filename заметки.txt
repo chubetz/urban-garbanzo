@@ -1017,8 +1017,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.245
-luckily, java has a period
+p.251
+Accounting fo Daylight savings time
 ======
 Сделать длину Question 20K!
 =======
