@@ -1017,10 +1017,12 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.251
-Accounting fo Daylight savings time
+p.278 - ошибок в объяснениях нет
+Review Questions
+#7
 ======
 Сделать длину Question 20K!
+Сделать поля date, order в карточке и режим отображения на экзамене - случайный или последовательный.
 =======
 собирать задачки в интернете. 
 ======
