@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import ru.garbanzo.urban.db.JDBCUtils;
 import static ru.garbanzo.urban.edu.Realm.getMap;
 import ru.garbanzo.urban.exception.JDBCException;
@@ -24,8 +25,9 @@ import ru.garbanzo.urban.util.Utils;
  * @author mithia
  */
 public class Theme extends Entity implements ITreeElement {
-    
+
     public static final Comparator<Theme> NUMBER_COMPARATOR = new NumberComparator();
+    private Comparator<Question> questionComparator = new QuestionComparator();
 
     Theme(int id) {
         super("Theme", id);
@@ -39,13 +41,13 @@ public class Theme extends Entity implements ITreeElement {
 
     @Override
     protected Map<String, Object> getDefaultState() {
-        return defaultState;        
+        return defaultState;
     }
     @Override
     protected Map<String, Object> getDefaultPrimaryKey() {
         return defaultPrimaryKey;
     }
-    
+
     static {
         defaultPrimaryKey = new LinkedHashMap<String, Object>();
         defaultPrimaryKey.put("id", -1);
@@ -55,7 +57,7 @@ public class Theme extends Entity implements ITreeElement {
         defaultState.put("text", "");
         defaultState.put("number", 0.0);
     }
-    
+
     public String getText() { //вспомогательный геттер
         return this.getStr("text");
     }
@@ -81,11 +83,11 @@ public class Theme extends Entity implements ITreeElement {
         }
         return theme;
     }
-    
+
     public static Map<Integer, Theme> getMap() {
         return Collections.unmodifiableMap(getStorage().getThemeMap());
     }
-    
+
     public Realm getRealm() {
         return Realm.getMap().get(this.getInt("realmId"));
     }
@@ -108,14 +110,14 @@ public class Theme extends Entity implements ITreeElement {
     public static Theme getById(int id){
         return Theme.getById(new Integer(id));
     }
-    
+
     public static Theme saveTheme(String id, Map<String, ?> data) throws JDBCException {
         return saveTheme(Integer.parseInt(id), data);
     }
     public static Theme saveTheme(int id, Map<String, ?> data) throws JDBCException {
         Theme theme = getMap().get(id);
         Utils.print("saveTheme", data);
-        if (theme == null) 
+        if (theme == null)
             theme = new Theme(-1);
         if (data != null && !data.isEmpty()) {
             if (data.get(data.keySet().toArray()[0]).getClass().isArray()) { //параметры пришли с фронта
@@ -141,14 +143,14 @@ public class Theme extends Entity implements ITreeElement {
         } else {
             return null;
         }
-            
+
         return theme;
     }
-    
+
     public Map<Integer, Question> getQuestionMap() {
         return Collections.unmodifiableMap(getStorage().getQuestionMap(this));
     }
-    
+
     public List<Question> getValidQuestions() {
         ArrayList<Question> validQuestions = new ArrayList<Question>();
         for (Question q: getQuestionMap().values()) {
@@ -157,11 +159,11 @@ public class Theme extends Entity implements ITreeElement {
         }
         return validQuestions;
     }
-    
+
     public int getInvalidQuestionQty() {
         return getQuestionMap().size() - getValidQuestions().size();
     }
-    
+
     public Map<Integer, ThemeExam> getThemeExamMap() {
         return Collections.unmodifiableMap(getStorage().getThemeExamMap(this));
     }
@@ -216,7 +218,7 @@ public class Theme extends Entity implements ITreeElement {
             sb.append("Процент корректных ответов: <b>" + Utils.round(exam.getPercentage(), 2) + "</b>");
             sb.append("</td>\n");
             sb.append("</tr>\n");
-            
+
         }
         sb.append("</table>\n");
         return sb.toString();
@@ -224,11 +226,11 @@ public class Theme extends Entity implements ITreeElement {
 
     @Override
     public boolean equals(Object obj) {
-        return (obj instanceof Theme) && 
-                ((Theme)obj).getPrimaryKey().equals(this.getPrimaryKey()) && 
+        return (obj instanceof Theme) &&
+                ((Theme)obj).getPrimaryKey().equals(this.getPrimaryKey()) &&
                 ((Theme)obj).getQuestionMap().keySet().equals(this.getQuestionMap().keySet());
     }
-    
+
     public boolean isExaminable() {
         return !getValidQuestions().isEmpty();
     }
@@ -246,15 +248,56 @@ public class Theme extends Entity implements ITreeElement {
         treeSign.setTdBgcolor("#B4ECB7");
         treeSign.setEditLink("controller?action=edit_theme&id=" + getId());
         treeSign.setProfileLink(getProfileURL());
-        
+
         return treeSign;
     }
-    
-    
+
+
     private static class NumberComparator implements Comparator<Theme> {
         @Override
         public int compare(Theme o1, Theme o2) {
             return new Double(o1.getNumber()).compareTo(new Double(o2.getNumber()));
         }
+    }
+
+    private class QuestionComparator implements Comparator<Question> {
+        public int compare(Question q1, Question q2) {
+            Comparator<Question> c = Comparator.comparing(q -> q.getThemeQuestionOrderNum(Theme.this));
+            c = c.thenComparing(q -> q.getRegDate()).thenComparing(q -> q.getId());
+            return c.compare(q1, q2);
+        }
+
+    }
+
+    public Comparator<Question> getQuestionComparator() {
+        return this.questionComparator;
+    }
+
+    public void updateQuestionOrderNums(Question questionUpdated, int numUpdated) {
+
+        List<Question> questionList = new ArrayList<>(this.getQuestionMap().values());
+        Collections.sort(questionList, this.getQuestionComparator()); //сортированный список вопросов, соответствующий отображению в браузере
+
+        //получаем сортированный список ThemeQuestion и проставляем им orderNum
+        List<ThemeQuestion> tqList = questionList.stream()
+                .map(q -> q.getThemeQuestion(this)).collect(Collectors.toList());
+        for (int i=0; i<tqList.size(); i++) {
+            ThemeQuestion tq = tqList.get(i);
+            tq.setStateValue("orderNum", i+1);
+        }
+
+        // ставим новое значение orderNum в ThemeQuestion измененного вопроса
+        ThemeQuestion tqUpd = questionUpdated.getThemeQuestion(this);
+        tqUpd.setStateValue("orderNum", numUpdated);
+        
+        //сортируем список ThemeQuestion согласно изменению и снова проставляем последовательные orderNum
+        Collections.sort(tqList, (tq1, tq2) -> tq1.getInt("orderNum") - tq2.getInt("orderNum"));
+        for (int i=0; i<tqList.size(); i++) {
+            ThemeQuestion tq = tqList.get(i);
+            tq.setStateValue("orderNum", i+1);
+        }
+        
+        //сохраняем изменения в БД
+        
     }
 }

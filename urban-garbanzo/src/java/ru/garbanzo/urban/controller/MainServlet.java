@@ -111,11 +111,17 @@ public class MainServlet extends ErrorHandlingServlet {
                 url = "/edit_question.jsp";
                 Utils.print("Servlet.load_edit_form", request.getParameterMap());
                 Utils.print(request.getParameter("id"));
-                request.setAttribute("question", Question.getById(request.getParameter("id")));
+                question = Question.getById(request.getParameter("id"));
+                request.setAttribute("question", question);
                 request.setAttribute("action", "update_question");
                 request.setAttribute("title", "Редактировать вопрос");
                 request.setAttribute("edit_mode", "on");
                 request.setAttribute("disabled", "disabled");
+                if (request.getParameter("themeId") != null) {
+                    Theme theme = Theme.getById(request.getParameter("themeId"));
+                    request.setAttribute("theme", theme);
+                    request.setAttribute("orderNum", question.getOrderNum(theme));
+                }
                 break;
             case "update_question":
                 Utils.print("Servlet.update_question", request.getParameterMap());
@@ -123,8 +129,21 @@ public class MainServlet extends ErrorHandlingServlet {
                     request.setAttribute("title", Integer.parseInt(request.getParameter("id")) < 0 ? "Вопрос добавлен" : "Вопрос отредактирован");
                     question = Question.saveQuestion(request.getParameter("id"), request.getParameterMap());
                     String newThemeId = request.getParameter("newThemeId");
+                    themeId = request.getParameter("themeId");
                     if (newThemeId != null) {
                         question.linkThemes(new String[]{newThemeId});
+                    }
+                    if (themeId != null) { //пришел вопрос, редактированный в связке с темой и имеющий порядковый номер в теме
+                        int orderNum;
+                        try {
+                            orderNum = Integer.parseInt(request.getParameter("orderNum"));
+                        } catch (NumberFormatException nfe) {
+                            orderNum = -1;
+                        }
+                        Theme theme = Theme.getById(themeId);
+                        if (orderNum >= 0 && orderNum != question.getOrderNum(theme)) { //изменился порядковый номер вопроса в теме
+                            theme.updateQuestionOrderNums(question, orderNum);
+                        }
                     }
                 } catch (JDBCException ex) {
                     Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -290,11 +309,11 @@ public class MainServlet extends ErrorHandlingServlet {
                         sb.append("DROP TABLE Theme IF EXISTS;\r\n");
                         sb.append("CREATE TABLE Theme (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, text VARCHAR(2000), number DOUBLE);\r\n");
                         sb.append("DROP TABLE Question IF EXISTS;\r\n");
-                        sb.append("CREATE TABLE Question (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, type int, text VARCHAR(2000));\r\n");
+                        sb.append("CREATE TABLE Question (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, type int, text VARCHAR(2000)), regDate TIMESTAMP, updateDate TIMESTAMP;\r\n");
                         sb.append("\tDROP TABLE Answer IF EXISTS;\r\n");
                         sb.append("\tCREATE TABLE Answer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean, text VARCHAR(2000), comment VARCHAR(2000));\r\n");
                         sb.append("DROP TABLE ThemeQuestion IF EXISTS;\r\n");
-                        sb.append("CREATE TABLE ThemeQuestion (themeId int, questionId int, PRIMARY KEY(themeId, questionId));\r\n");
+                        sb.append("CREATE TABLE ThemeQuestion (themeId int, questionId int, orderNum int, PRIMARY KEY(themeId, questionId));\r\n");
                         sb.append("DROP TABLE Image IF EXISTS;\r\n");
                         sb.append("CREATE TABLE Image (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, filename VARCHAR(2000), extension VARCHAR(10));\r\n");
                         sb.append("DROP TABLE UserAnswer IF EXISTS;\r\n");
@@ -353,15 +372,7 @@ public class MainServlet extends ErrorHandlingServlet {
                         }
                         sb.append(") OVERRIDING SYSTEM VALUE VALUES (" + q.getId());
                         for (Object o: state.values()) {
-                            String ooo;
-                            if (o instanceof String) {
-                                o = ((String)o).replace("'","''");
-                                ooo = "'" + o + "'";
-                            } else if (o == null)
-                                ooo = "NULL";
-                            else
-                                ooo=o.toString();
-                            sb.append("," + ooo);
+                            sb.append("," + JDBCUtils.getSQLLiteral(o));
                         }
                         sb.append(");\r\n");
                         
@@ -389,10 +400,10 @@ public class MainServlet extends ErrorHandlingServlet {
                     }
 
                     for (Entity themeQuestion :  EduAccess.getThemeQuestionSet()) {
-                        Map<String, Object> pk = themeQuestion.getPrimaryKey();
+                        Map<String, Object> fullState = themeQuestion.getFullState();
                         sb.append("INSERT INTO ThemeQuestion (");
                         boolean first = true;
-                        for (String s: pk.keySet()) {
+                        for (String s: fullState.keySet()) {
                             if (first) {
                                 sb.append(s);
                                 first = false;
@@ -402,8 +413,8 @@ public class MainServlet extends ErrorHandlingServlet {
                         }
                         sb.append(") VALUES (");
                         first = true;
-                        for (String s: pk.keySet()) {
-                            Object o = pk.get(s);
+                        for (String s: fullState.keySet()) {
+                            Object o = fullState.get(s);
                             String ooo;
                             if (o instanceof String) {
                                 o = ((String)o).replace("'","''");

@@ -102,8 +102,19 @@ public abstract class Entity implements DBEntity {
     synchronized public Map<String, Object> getPrimaryKey() {
         return Collections.unmodifiableMap(primaryKey);
     }
+    synchronized public Map<String, Object> getFullState() {
+        LinkedHashMap<String, Object> fullState = new LinkedHashMap<>();
+        fullState.putAll(primaryKey);
+        fullState.putAll(state);
+        return fullState;
+    }
     synchronized protected void setState(Map<String, ?> map) {
         setPKOrState(state, map);
+    }
+    synchronized protected void setStateValue(String fieldName, Object fieldValue) {
+        Map<String, Object> map = new HashMap<>();
+        map.put(fieldName, fieldValue);
+        setState(map);
     }
     synchronized protected void setPrimaryKey(Map<String, ?> map) {
         setPKOrState(primaryKey, map);
@@ -154,7 +165,7 @@ public abstract class Entity implements DBEntity {
     public String getRealmsHTML() {
         StringBuilder sb = new StringBuilder();
         int realmId = this.getInt("realmId");
-        boolean dropDownDisabled = this.getId() < 0 && realmId >= 0;
+        boolean dropDownDisabled = this.getId() > 0 || realmId >= 0;
         
         sb.append("<select " + (dropDownDisabled ? "disabled" : "name=\"realmId\"") + ">\n");
         for (Map.Entry<Integer, String> entry: getAvailableRealms().entrySet()) {

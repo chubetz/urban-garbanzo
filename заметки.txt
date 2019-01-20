@@ -128,6 +128,8 @@ Javadoc
 интерфейс Collector и набор Collectors (см. JavaDoc)
 
 
+API коллекций просмотреть - не все есть в экзамене, например HashMap.forEach, putAll
+
 Аннотации
 
 Изучить JSP Faqs

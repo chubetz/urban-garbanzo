@@ -46,12 +46,14 @@ class ViewUtils {
             counter++;
             String bgcolor = " bgcolor=red";
             if (question.isValid()) {
-                bgcolor = ""; //вопрос валидный, подсчетки не надо
+                bgcolor = ""; //вопрос валидный, подсветки не надо
             }
             sb.append("<tr>");
             sb.append("<td" + bgcolor + "><form name=\"edit\" action=\"controller\" method=\"POST\">");
             sb.append("<input type=\"hidden\" name=\"action\" value=\"load_edit_form\">");
             sb.append("<input type=\"hidden\" name=\"id\" value=\"" + question.getId() + "\">");
+            if (themeId != null)
+                sb.append("<input type=\"hidden\" name=\"themeId\" value=\"" + themeId + "\">");
             sb.append("<input type=\"submit\" value=\"Edit\" /></form></td>");
             sb.append("<td>");
             sb.append(question);

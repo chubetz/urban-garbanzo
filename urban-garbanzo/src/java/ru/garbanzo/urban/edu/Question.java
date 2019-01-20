@@ -5,15 +5,20 @@
  */
 package ru.garbanzo.urban.edu;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 import ru.garbanzo.urban.db.JDBCUtils;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.exception.NoQuestionException;
@@ -28,6 +33,23 @@ public class Question extends Entity implements ITreeElement {
     private boolean neededNewAnswer;
     
     private int themeIdForNewQuestion = -100;
+    
+    private Set<ThemeQuestion> themeQuestionSet = new HashSet<>();
+    
+    public ThemeQuestion getThemeQuestion(Theme theme) {
+        Optional<ThemeQuestion> opt = themeQuestionSet.stream()
+                .filter(t -> t.getPKInt("themeId") == theme.getId())
+                .findFirst();
+        return opt.orElse(null);
+    }
+    
+    void addThemeQuestion(ThemeQuestion tq) {
+        themeQuestionSet.add(tq);
+    }
+    
+    void removeThemeQuestion(ThemeQuestion tq) {
+        themeQuestionSet.remove(tq);
+    }
     
     public boolean isSaveable() {
         return true;
@@ -110,6 +132,8 @@ public class Question extends Entity implements ITreeElement {
         defaultState.put("realmId", -1);
         defaultState.put("type", -1);
         defaultState.put("text", "");
+        defaultState.put("regDate", new Date(0));
+        defaultState.put("updateDate", new Date(0));
 
         availableTypes = new HashMap<Integer, String>();
         availableTypes.put(NB_TYPE, "Nota bene"); //односторонняя флеш-карточка
@@ -338,6 +362,13 @@ public class Question extends Entity implements ITreeElement {
             }
 
         }
+        
+        Date date = new java.sql.Date(System.currentTimeMillis());
+        if (question.getId() == -1) { //новый вопрос
+            question.setStateValue("regDate", date);
+        }
+        question.setStateValue("updateDate", date);
+        
         Map<String, Object> pk = JDBCUtils.saveEntity(question);
         if (pk != null) { // удалось записать объект в БД
             question.setPrimaryKey(pk);
@@ -441,10 +472,48 @@ public class Question extends Entity implements ITreeElement {
         return Question.getTypeText(this.getType());
     }
     
+    public Date getRegDate() {
+        return getDte("regDate");
+    }
+    
+    public String getRegDateStr() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(this.getRegDate());
+    }
+    
+    public Date getUpdateDate() {
+        return getDte("updateDate");
+    }
+    
+    public String getUpdateDateStr() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(this.getUpdateDate());
+    }
+
     public List<Answer> getAnswersShuffled() {
         List<Answer> list = new ArrayList<Answer>(getAnswerMap().values());
         Collections.shuffle(list);
         return list;
+    }
+    
+    public int getThemeQuestionOrderNum(Theme theme) {
+        ThemeQuestion tq = getThemeQuestion(theme);
+        if (tq != null) {
+            return tq.getInt("orderNum");
+        } else {
+            return -1;
+        }
+    }
+
+    public int getOrderNum(Theme theme) {
+        
+        ThemeQuestion tq = getThemeQuestion(theme);
+        if (tq != null) {
+            Collection<Question> questions = theme.getQuestionMap().values();
+            List<Question> sortedQuestions = questions.stream()
+                    .sorted(theme.getQuestionComparator()).collect(Collectors.toList());
+            return Collections.binarySearch(sortedQuestions, this, theme.getQuestionComparator()) + 1;
+        } else {
+            return -1;
+        }
     }
     
     public boolean isReal() {

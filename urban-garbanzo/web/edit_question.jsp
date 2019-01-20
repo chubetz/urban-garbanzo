@@ -9,6 +9,9 @@
 <c:import url= "/includes/newheader.jsp" />
 <%--c:import url= "/includes/icons.jsp" /--%>
         <p>${question.getId() < 0  ? "<Новый вопрос>" : question}</p>
+        <c:if test="${question.id >= 0}">
+            <p>Создан: ${question.regDateStr}&nbsp;&nbsp;&nbsp;Изменен: ${question.updateDateStr}</p>
+        </c:if>
         <form name="${action}" action="controller" method="POST">
             <input id="actiontag" type="hidden" name="action" value="${action}">        
             <input type="hidden" name="id" value="${question.id}">        
@@ -23,6 +26,10 @@
                 ${question.getTypesHTML()}
             </select>
             <br>
+            <c:if test="${theme != null}">
+                <span style="border: 1px solid black;padding: 1px;background-color:#C7AE99;">Порядковый номер вопроса в теме <b>${theme.text}<b>&nbsp;&nbsp;&nbsp;<input type="text" size="3" name="orderNum" value="${orderNum}"></span>
+                <input type="hidden" name="themeId" value="${theme.id}">
+            </c:if>
             <table width="800" cellpadding="10">
                 <tr>
                     <td>

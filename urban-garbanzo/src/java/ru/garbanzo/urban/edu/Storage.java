@@ -268,6 +268,7 @@ public class Storage {
         Utils.print("ThemeQuestion hashcode " + tq, tq.hashCode());
         themeMapForQuestion.get(questionId).put(themeId, theme);
         questionMapForTheme.get(themeId).put(questionId, question);
+        question.addThemeQuestion(tq);
         
     }
     
@@ -279,6 +280,8 @@ public class Storage {
         themeQuestionSet.remove(tq);
         themeMapForQuestion.get(questionId).remove(themeId);
         questionMapForTheme.get(themeId).remove(questionId);
+        Question q = Question.getById(questionId);
+        q.removeThemeQuestion(tq);
         
     }
 

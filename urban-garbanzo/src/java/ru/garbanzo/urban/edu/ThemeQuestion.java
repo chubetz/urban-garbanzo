@@ -43,7 +43,8 @@ class ThemeQuestion extends Entity {
         defaultPrimaryKey.put("themeId", -1);
         defaultPrimaryKey.put("questionId", -1);
 
-        defaultState = new LinkedHashMap<String, Object>(); //нет полей, кроме PK
+        defaultState = new LinkedHashMap<String, Object>();
+        defaultState.put("orderNum", -1);
     }
     
 
