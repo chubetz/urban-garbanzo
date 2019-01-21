@@ -14,6 +14,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import ru.garbanzo.urban.db.JDBCUtils;
 import static ru.garbanzo.urban.edu.Realm.getMap;
@@ -273,29 +275,34 @@ public class Theme extends Entity implements ITreeElement {
         return this.questionComparator;
     }
 
-    public void updateQuestionOrderNums(Question questionUpdated, int numUpdated) {
+    public void updateQuestionOrderNums(Question questionUpdated, int numUpdated) throws JDBCException {
 
         List<Question> questionList = new ArrayList<>(this.getQuestionMap().values());
         Collections.sort(questionList, this.getQuestionComparator()); //сортированный список вопросов, соответствующий отображению в браузере
 
-        //получаем сортированный список ThemeQuestion и проставляем им orderNum
+        //получаем сортированный список ThemeQuestion
         List<ThemeQuestion> tqList = questionList.stream()
                 .map(q -> q.getThemeQuestion(this)).collect(Collectors.toList());
+
+        // переставляем измененный ThemeQuestion в место согласно numUpdated.
+        // если номер за пределами диапазона - ставим в конец или начало.
+        if (numUpdated > tqList.size())
+            numUpdated = tqList.size();
+        else if (numUpdated < 1)
+            numUpdated = 1;
+            
+        ThemeQuestion tqUpd = questionUpdated.getThemeQuestion(this);
+        tqList.remove(tqUpd);
+        tqList.add(numUpdated-1, tqUpd);
+
+        //проставляем новые orderNum
         for (int i=0; i<tqList.size(); i++) {
             ThemeQuestion tq = tqList.get(i);
             tq.setStateValue("orderNum", i+1);
+            tq.save();
         }
 
-        // ставим новое значение orderNum в ThemeQuestion измененного вопроса
-        ThemeQuestion tqUpd = questionUpdated.getThemeQuestion(this);
-        tqUpd.setStateValue("orderNum", numUpdated);
         
-        //сортируем список ThemeQuestion согласно изменению и снова проставляем последовательные orderNum
-        Collections.sort(tqList, (tq1, tq2) -> tq1.getInt("orderNum") - tq2.getInt("orderNum"));
-        for (int i=0; i<tqList.size(); i++) {
-            ThemeQuestion tq = tqList.get(i);
-            tq.setStateValue("orderNum", i+1);
-        }
         
         //сохраняем изменения в БД
         

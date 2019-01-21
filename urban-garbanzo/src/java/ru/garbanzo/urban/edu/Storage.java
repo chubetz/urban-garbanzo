@@ -339,6 +339,7 @@ public class Storage {
             for (DBEntity entity : data) {
                 ThemeQuestion tq = new ThemeQuestion(-1,-1);
                 tq.setPrimaryKey(entity.getPrimaryKey());
+                tq.setState(entity.getState());
                 storage.registerLink(tq);
 
             }
