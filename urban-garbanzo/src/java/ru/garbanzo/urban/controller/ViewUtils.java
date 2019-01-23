@@ -9,7 +9,11 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import ru.garbanzo.urban.edu.Answer;
@@ -27,8 +31,11 @@ import ru.garbanzo.urban.exception.JDBCException;
 class ViewUtils {
     
     static void fillAttributesQuestions(HttpServletRequest request) throws JDBCException {
-        String realmId = request.getParameter("realmId");
-        String themeId = request.getParameter("themeId");
+        final Integer realmId, themeId;
+        String realmIdPar = request.getParameter("realmId");
+        String themeIdPar = request.getParameter("themeId");
+        realmId = (realmIdPar != null && !realmIdPar.isEmpty()) ? Integer.parseInt(realmIdPar) : null;
+        themeId = (themeIdPar != null && !themeIdPar.isEmpty()) ? Integer.parseInt(themeIdPar) : null;
 
         StringBuilder sb = new StringBuilder();
         
@@ -36,14 +43,12 @@ class ViewUtils {
         if (Storage.getJdbcException() != null) {
             throw Storage.getJdbcException();
         }
-        int counter = 0;
-        for (Map.Entry<Integer, Question> entry: Question.getMap().entrySet()) {
-            Question question = entry.getValue();
-            if (realmId != null && question.getRealm().getId() != Integer.parseInt(realmId))
-                continue;
-            if (themeId != null && !question.getThemeMap().containsKey(Integer.parseInt(themeId)))
-                continue;
-            counter++;
+        List<Question> questions = Question.getMap().values().stream()
+                .filter(q -> realmId == null || q.getRealm().getId() == realmId)
+                .filter(q -> themeId == null || q.getThemeQuestion(Theme.getById(themeId)) != null)
+                .sorted(themeId != null ? Theme.getById(themeId).getQuestionComparator() : Comparator.naturalOrder())
+                .collect(Collectors.toList());
+        for (Question question: questions) {
             String bgcolor = " bgcolor=red";
             if (question.isValid()) {
                 bgcolor = ""; //вопрос валидный, подсветки не надо
@@ -85,7 +90,7 @@ class ViewUtils {
         sb.append("</table>");
         
         request.setAttribute("list_table", sb.toString());
-        request.setAttribute("total", counter);
+        request.setAttribute("total", questions.size());
         
     }
 

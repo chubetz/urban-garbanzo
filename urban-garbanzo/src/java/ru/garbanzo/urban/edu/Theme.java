@@ -265,7 +265,7 @@ public class Theme extends Entity implements ITreeElement {
     private class QuestionComparator implements Comparator<Question> {
         public int compare(Question q1, Question q2) {
             Comparator<Question> c = Comparator.comparing(q -> q.getThemeQuestionOrderNum(Theme.this));
-            c = c.thenComparing(q -> q.getRegDate()).thenComparing(q -> q.getId());
+            c = c.thenComparing(Comparator.naturalOrder());
             return c.compare(q1, q2);
         }
 

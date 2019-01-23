@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -28,7 +29,7 @@ import ru.garbanzo.urban.util.Utils;
  *
  * @author d.gorshenin
  */
-public class Question extends Entity implements ITreeElement {
+public class Question extends Entity implements ITreeElement, Comparable<Question> {
     
     private boolean neededNewAnswer;
     
@@ -407,6 +408,9 @@ public class Question extends Entity implements ITreeElement {
                     ThemeQuestion link = new ThemeQuestion(theme.getId(), this.getId());
                     if (link.save() == link) { //записалось успешно
                         getStorage().registerLink(link);
+                        
+                        //ставим вопрос на последнее место в новой теме
+                        link.setStateValue("orderNum", theme.getQuestionMap().size() + 1);
                     }
                 }
             }
@@ -551,5 +555,11 @@ public class Question extends Entity implements ITreeElement {
         //treeSign.setProfileLink(getProfileURL());
 
         return treeSign;
+    }
+    
+    @Override
+    public int compareTo(Question obj) {
+        Comparator<Question> c = Comparator.<Question,Date>comparing(q -> q.getRegDate()).thenComparing(q -> q.getId());
+        return c.compare(this, obj);
     }
 }
