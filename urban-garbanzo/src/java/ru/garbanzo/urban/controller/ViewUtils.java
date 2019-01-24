@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.servlet.ServletContext;
@@ -36,6 +37,9 @@ class ViewUtils {
         String themeIdPar = request.getParameter("themeId");
         realmId = (realmIdPar != null && !realmIdPar.isEmpty()) ? Integer.parseInt(realmIdPar) : null;
         themeId = (themeIdPar != null && !themeIdPar.isEmpty()) ? Integer.parseInt(themeIdPar) : null;
+        Theme theme = themeId != null ? Theme.getById(themeId) : null;
+        if (theme != null)
+            request.setAttribute("addInfo", "<b style='color:" + theme.getTreeSign().getTableBgcolor() + "'>Тема: " + theme.getProfileLink(theme.getTitle()) + "</b>");
 
         StringBuilder sb = new StringBuilder();
         
@@ -57,8 +61,9 @@ class ViewUtils {
             sb.append("<td" + bgcolor + "><form name=\"edit\" action=\"controller\" method=\"POST\">");
             sb.append("<input type=\"hidden\" name=\"action\" value=\"load_edit_form\">");
             sb.append("<input type=\"hidden\" name=\"id\" value=\"" + question.getId() + "\">");
-            if (themeId != null)
+            if (themeId != null) {
                 sb.append("<input type=\"hidden\" name=\"themeId\" value=\"" + themeId + "\">");
+            }
             sb.append("<input type=\"submit\" value=\"Edit\" /></form></td>");
             sb.append("<td>");
             sb.append(question);

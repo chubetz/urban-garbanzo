@@ -9,6 +9,7 @@
 <c:import url= "/includes/newheader.jsp" />
 <c:import url= "/includes/icons.jsp" />
         <h3>(всего ${total} элементов)</h3>
+        <p>${addInfo}</p>
         
         ${list_table}
 <c:import url= "/includes/newfooter.jsp" />

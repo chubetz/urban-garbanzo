@@ -394,10 +394,15 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
     public void linkThemes(String[] ids) throws JDBCException {
         //сначала убираем из вопроса все имеющиеся темы
         List<Theme> tList = new ArrayList<Theme>(getThemeMap().values());
+        Map<ThemeQuestion, Integer> orderNumByLink = new HashMap<>();
         for (Theme t: tList) {
             ThemeQuestion link = new ThemeQuestion(t.getId(), this.getId());
             if (link.delete()) { // удалось стереть из базы
+                //сохраняем порядковый номер вопроса в теме - вдруг связка останется
+                orderNumByLink.put(link, this.getOrderNum(t));
+
                 getStorage().unregisterLink(link);
+                
             }
         }
         
@@ -409,8 +414,12 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
                     if (link.save() == link) { //записалось успешно
                         getStorage().registerLink(link);
                         
-                        //ставим вопрос на последнее место в новой теме
-                        link.setStateValue("orderNum", theme.getQuestionMap().size() + 1);
+                        //восстанавливаем номер вопроса в теме.
+                        // если тема новая - ставим вопрос на последнее место
+                        if (orderNumByLink.containsKey(link))
+                            link.setStateValue("orderNum", orderNumByLink.get(link));
+                        else
+                            link.setStateValue("orderNum", theme.getQuestionMap().size() + 1);
                     }
                 }
             }
