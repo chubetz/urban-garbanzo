@@ -23,6 +23,7 @@ import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.exception.NoMoreQuestionException;
 import ru.garbanzo.urban.users.State;
 import ru.garbanzo.urban.users.User;
+import ru.garbanzo.urban.util.Utils;
 
 /**
  *
@@ -59,9 +60,10 @@ public class Activator extends HttpServlet {
             case "doTheme":
                 Theme theme = Theme.getById(request.getParameter("id"));
                 try {
-                    Exam exam = state.getExam(theme);
+                    Exam exam = state.getExam(theme, "on".equals(request.getParameter("refreshOnly")));
                     request.setAttribute("exam", exam);
                     request.setAttribute("theme", theme);
+                    Utils.print("===", request.getParameterMap());
                     exam.processWorkflow(subAction, request.getParameterMap());
                     request.setAttribute("title", "Проверка знаний");
                     request.setAttribute("exam_mode", "on");

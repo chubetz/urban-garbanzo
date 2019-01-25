@@ -411,15 +411,17 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
                 Theme theme = Theme.getById(themeId);
                 if (theme != null) {
                     ThemeQuestion link = new ThemeQuestion(theme.getId(), this.getId());
+
+                    //восстанавливаем номер вопроса в теме.
+                    // если тема новая - ставим вопрос на последнее место
+                    if (orderNumByLink.containsKey(link))
+                        link.setStateValue("orderNum", orderNumByLink.get(link));
+                    else
+                        link.setStateValue("orderNum", theme.getQuestionMap().size() + 1);
+
                     if (link.save() == link) { //записалось успешно
                         getStorage().registerLink(link);
                         
-                        //восстанавливаем номер вопроса в теме.
-                        // если тема новая - ставим вопрос на последнее место
-                        if (orderNumByLink.containsKey(link))
-                            link.setStateValue("orderNum", orderNumByLink.get(link));
-                        else
-                            link.setStateValue("orderNum", theme.getQuestionMap().size() + 1);
                     }
                 }
             }

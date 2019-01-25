@@ -31,6 +31,7 @@ public class Exam implements Iterator<Question> {
     private Theme theme;
     private Map<Integer, Boolean> answersFromFront, userAnswers = new HashMap<Integer, Boolean>();
     private List<Answer> answers;
+    private boolean refreshOnly;
     
     @Override
     public boolean hasNext() {
@@ -64,10 +65,15 @@ public class Exam implements Iterator<Question> {
         return current;
     }
 
-    public Exam(Theme theme) {
+    public Exam(Theme theme, boolean refreshOnly) {
         this.theme = theme;
+        this.refreshOnly = refreshOnly;
         questionSequence = new ArrayList(theme.getValidQuestions());
-        Collections.shuffle(questionSequence);
+        if (refreshOnly)
+            Collections.sort(questionSequence, theme.getQuestionComparator());
+        else
+            Collections.shuffle(questionSequence);
+        
         iterator = questionSequence.iterator();
     }
     

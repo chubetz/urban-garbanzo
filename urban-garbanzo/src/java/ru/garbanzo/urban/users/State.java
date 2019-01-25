@@ -22,10 +22,10 @@ public class State {
     private Map<Theme, Exam> themeExams = new ConcurrentHashMap<Theme, Exam>();
     private User user;
     
-    public Exam getExam(Theme theme) {
+    public Exam getExam(Theme theme, boolean refreshOnly) {
         Exam exam = themeExams.get(theme);
         if (exam == null) {
-            exam = new Exam(theme);
+            exam = new Exam(theme, refreshOnly);
             themeExams.put(theme, exam);
             exam.next();
         }   
