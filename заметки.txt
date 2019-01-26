@@ -1021,8 +1021,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.283
-Chapter 6. Exceptions and Assertions
+p.291
+Using Multi-catch
 ======
 Сделать длину Question 20K!
 Сделать поля date, order в карточке и режим отображения на экзамене - случайный или последовательный.

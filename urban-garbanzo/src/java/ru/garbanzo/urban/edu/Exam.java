@@ -316,6 +316,9 @@ public class Exam implements Iterator<Question> {
     }
     
     public void saveStatistics() throws JDBCException {
+        if (this.refreshOnly)
+            return;
+        
         int correctAnswersQty = 0;
         for (Map.Entry<Integer, Boolean> entry : userAnswers.entrySet()) {
             Map<String, Object> data = new HashMap<String, Object>();
