@@ -1021,8 +1021,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.298
-Try-With-Resources Basics
+p.305
+Putting It Together
 ======
 Сделать длину Question 20K!
 Сделать поля date, order в карточке и режим отображения на экзамене - случайный или последовательный.
