@@ -96,6 +96,15 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
         if (data.get("newThemeId") != null) {
             question.themeIdForNewQuestion = Integer.parseInt((String)data.get("newThemeId"));
         }
+
+        //даты создания и изменения берем из реального вопроса (если есть) - эти данные не передаются с формы
+        Question realQuestion = getStorage().getQuestionMap().get(question.getId());
+        if (realQuestion != null) {
+            question.setStateValue("regDate", realQuestion.getRegDate());
+            question.setStateValue("updateDate", realQuestion.getUpdateDate());
+            
+        }
+
         return question;
     }
     
