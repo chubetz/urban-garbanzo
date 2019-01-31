@@ -164,9 +164,23 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
                 break;
             }
         }
-        return  (!getStr("text").equals("")) && (getStr("text") != null) && 
-                //((this.getInt("type") == Question.NB_TYPE && getAnswerMap().isEmpty()) || (correctExists && !getAnswerMap().isEmpty()));
-                this.getInt("type") == Question.NB_TYPE ? getAnswerMap().isEmpty() : correctExists && !getAnswerMap().isEmpty();
+        boolean result = false;
+        boolean hasText = getText() != null && !getText().isEmpty();
+        switch (getType()) {
+            case Question.COMMON_TYPE:
+                result = correctExists
+                        && hasText
+                        && getAnswerMap().size() == 1;
+                break;
+            case Question.TEST_TYPE:
+                result = correctExists
+                        && hasText;
+                break;
+            case Question.NB_TYPE:
+                result = hasText && getAnswerMap().isEmpty();
+        }
+        
+        return result;
     }
 
 
