@@ -1021,8 +1021,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.316 p.560
-Review Questions
+p.328
+understanding thread concurrency
 ======
 Сделать длину Question 20K!
 Сделать поля date, order в карточке и режим отображения на экзамене - случайный или последовательный.
