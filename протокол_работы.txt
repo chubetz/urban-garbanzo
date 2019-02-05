@@ -159,3 +159,346 @@ public class ReadInventoryThread extends Thread {
 	
 p.334 Polling with sleep
 
+Вопрос:
+
+Что такое опрашивание потока (thread polling) и как оно реализовано в Java?
+
+Ответ:
+
+Это процесс проверки некоторых данных (состояния) через равные промежутки времени. В Java для этого используется статический метод Thread.sleep(int milliseconds). Выполнение этого метода приводит к "засыпанию" текущего потока на указанное время.
+
+===
+
+Вопрос:
+
+Пример использования Thread.sleep():
+
+Пример:
+
+public class CheckResults {
+    private static int counter = 0;
+    public static void main(String[] args) throws InterruptedException {
+        new Thread(() -> {
+            for(int i=0; i<500; i++) CheckResults.counter++;
+        }).start();
+        while(CheckResults.counter<100) {
+            System.out.println("Not reached yet");
+            Thread.sleep(1000); // 1 SECOND
+        }
+        System.out.println("Reached!");
+    }
+}
+
+
+===
+
+Вопрос:
+
+Метод Thread.sleep() выбрасывает проверяемое исключение InterruptedException (выдается, если спящий поток прерывают), поэтому придется либо объявлять его в вызывающем методе, либо оборачивать в try-catch.
+
+===
+
+Вопрос:
+
+Что такое ExecutorService?
+
+Ответ: Это интерфейс в пакете java.util.concurrent, обладающий API, которое облегчает работу с задачами и потоками. Для получения экземпляря ExecutorService используются фабричные методы класса Executors.
+
+===
+
+Вопрос:
+
+Приведите простейший пример использования ExecutorService.
+
+Ответ:
+
+import java.util.concurrent.*;
+
+public class ZooInfo {
+    public static void main(String[] args) {
+        ExecutorService service = null;
+        try {
+            service = Executors.newSingleThreadExecutor();
+            service.execute(() -> System.out.println("Printing zoo inventory"));
+            service.execute(() -> {for(int i=0; i<3; i++)
+        } finally {
+            if(service != null) service.shutdown();
+        }
+    }
+}
+
+===
+
+Вопрос: 
+
+Как получить single-thread executor и каковы его особенности?
+
+
+ответ:
+
+Получить можно посредством метода Executors.newSingleThreadExecutor(). Особенности:
+- гарантирует задач в том порядке, в котором они ему передаются. 
+- для выполнения задач используется один поток.
+- в каждый момент времени выполняется только одна задача.
+- если поток завершается из-за сбоя, генерится еще один поток, и следующие задачи выполняются в нем.
+
+===
+
+Вопрос:
+
+Поскольку потоки, создаваемые экзекьютором, не являются демонами, необходимо останавливать экзекьютор командой shutdown(), инача есть риск, что приложение не завершится вообще.
+
+===
+
+Вопрос: 
+
+Опишите процесс остановки экзекьютора.
+
+Ответ:
+
+0. экзекьютор перед выключением: принимает новые задачи, выполняет имеющиеся.
+isShutdown() = false, isTerminated() = false
+
+1. поступила команда shutdown(): новые задачи не принимаются (RejectedExecutionException), старые выполняются.
+isShutdown() = true, isTerminated() = false
+
+2. экзекьютор остановлен. все задачи выполнены, новые не принимаются (RejectedExecutionException)
+isShutdown() = true, isTerminated() = true
+
+===
+
+Вопрос:
+
+Опишите 2 способа остановки ServiceExecutor.
+
+1. метод shutdown(). Не останавливает уже переданные задачи.
+
+2. метод shutdownNum(). *Пытается* остановить запущенные задачи (не факт, что сможет, бывают и неубиваемые потоки) и сбрасывает  предстоящие, возвращая их список.
+
+===
+
+Вопрос:
+
+ExecutorService не реализует AutoCloseable, поэтому его нельзя использовать в try-with-resources. Закрывать экзекьюторы полагается в finally. Если мы имеем дело со статическим экзекьютором, которым пользуется все приложение, то надо предусмотреть способ выключить его (например, специальным статическим методом) перед остановкой приложения, иначе оно может зависнуть.
+
+===
+
+Вопрос:
+
+Опишите интерфейс Future.
+
+Ответ:
+
+Интерфейс java.util.concurrent.Future<V> представляет узнать состояние и результат работы некоторой запланированной задачи.
+
+Имеет следующие методы:
+
+boolean	cancel(boolean mayInterruptIfRunning) - попытка прервать выполнение задачи. Возвращает false, если задачу прервать нельзя (например, она уже выполнена). Параметр mayInterruptIfRunning дает полномочия прервать поток задачи, если она в процессе выполнения.
+
+V get() throws InterruptedException, ExecutionException - ожидание завершения вычисления и возвращение результата. ExecutionException - если выполнение задачи упало. InterruptedException - если текущий поток был прерван, находясь в ожидании.
+
+V get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException - ожидание в течение строго заданного времени, затем возвращение результата, если он доступен. TimeoutException - если время вышло.
+
+boolean	isCancelled() - true, если задача была отменена до завершения
+
+boolean	isDone() - true, если задача завершена (т.е. выполнилась, упала или была отменена)
+
+===
+
+Вопрос: 
+
+Перечислите 3 способа подачи задачи на исполнение в ExecutorService.
+
+Ответ:
+
+1. void execute(Runnable task) - выполняет Runnable когда-нибудь в будущем
+2. Future<?> submit(Runnable task)  - выполняет Runnable когда-нибудь в будущем, возвращая экземпляр Future, метод get() которого вернет null после *успешного* выполнения задачи.
+3. <T> Future<T> submit(Callable<T> task) - выполняет задачу Callable когда-либо в будущем, возвращает объект Future, отслеживающий состояние задачи
+
+===
+
+Вопрос: 
+
+Перечислите 2 способа подачи списка задач на исполнение в ExecutorService.
+
+Ответ:
+
+1. <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks) throws InterruptedException -
+выполняет все задачи, возвращая список экземпляров Future, расположенных в том же порядке, что и задачи. Вызывающий метод дожидается конца работы invokeAll(); соответственно, все экземпляры Future, возвращенные в списке, будут isDone() = true.
+2. <T> T invokeAny(Collection<? extends Callable<T>> tasks) throws InterruptedException, ExecutionException - 
+выполняет все задачи; как только хотя бы одна задача будет выполнена, ее результат вернется, а остальные будут отменены. Вызывающий метод дожидается конца работы invokeAny(). ExecutionException будет, если ни одна задача не будет выполнена без Exception.
+
+===
+
+Вопрос:
+
+Метод ExecutorService.submit() предпочтительнее execute(), так как возвращает Future. Можно всегда использовать submit(), даже если не нужен возвращаемый Future.
+
+===
+
+Вопрос: Опишите вызовы методов invokeAll() и invokeAny() интерфейса ExecutorService с заданием безусловного времени ожидания результата.
+
+Ответ:
+
+<T> List<Future<T>>	invokeAll(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit) throws InterruptedException
+возвращает список Future. Если время ожидания истекло, отменяет невыполненные задачи и возвращает, что есть: т.е. в результате могут быть Future, у которых isCancelled() = true и isDone() = true. 
+
+<T> T	invokeAny(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)  throws InterruptedException, ExecutionException, TimeoutException -
+возвращает результат первой успешно (т.е. без Exception) выполненной задачи. Если истек период ожидания, будет выдан TimeoutException. ExecutionException будет, если ни одна задача не будет выполнена без Exception.
+
+===
+
+Вопрос:
+
+Классический пример работы с Future:
+
+import java.util.concurrent.*;
+public class CheckResults {
+    private static int counter = 0;
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
+        ExecutorService service = null;
+        try {
+            service = Executors.newSingleThreadExecutor();
+            *Future<?> result = service.submit(() -> {
+                for(int i=0; i<500; i++) CheckResults.counter++;
+            });
+            result.get(10, TimeUnit.SECONDS);*
+            System.out.println("Reached!");
+        } catch (TimeoutException e) {
+            System.out.println("Not reached in time");
+        } finally {
+            if(service != null) service.shutdown();
+        }
+    }
+}
+
+===
+
+Вопрос:
+
+Перечислите экземпляры энума TimeUnit для разных единиц времени.
+
+Ответ:
+
+TimeUnit.NANOSECONDS
+TimeUnit.MICROSECONDS
+TimeUnit.MILLISECONDS
+TimeUnit.SECONDS
+TimeUnit.MINUTES
+TimeUnit.HOURS
+TimeUnit.DAYS
+
+===
+
+Вопрос:
+
+Опишите интерфейс Callable.
+
+Ответ:
+
+package java.util.concurrent;
+
+@FunctionalInterface public interface Callable<V> {
+    V call() throws Exception;
+}
+
+Это более удачная альтернатива интерфейсу Runnable, т.к. позволяет получить больше информации о выполненной задаче
+
+===
+
+Вопрос:
+
+Интерфейс Callable очень похож на Supplier, но отличается от него тем, что выбрасывает исключение:
+
+void useCallable(Callable<Integer> expression) {}
+void useSupplier(Supplier<Integer> expression) {}
+...
+useCallable(() -> {throw new IOException();}); // COMPILES
+useSupplier(() -> {throw new IOException();}); // DOES NOT COMPILE
+
+
+===
+
+Вопрос в функциональное программирование, определить место:
+
+Если есть перегруженные методы, принимающие разные функциональные интерфейса, которые схожи по сигнатуре и аргументам, компилятор не сможет понять, к какому типу приводить лямбду, и выдаст ошибку:
+
+    static void use(Callable<Integer> expression) {}
+    static void use(Supplier<Integer> expression) {}    
+
+    public static void main(String[] args) {
+        use(() -> 5); //compile error: Reference to use is ambigous
+    }
+    
+Поможет явный кастинг:
+
+    use((Supplier<Integer>)() -> 5);
+	
+===
+
+Вопрос в исключения:
+
+Если в коде метода, возвращающего значение, в каком-то месте неизбежно выбросится исключение (посредством throw), то отсутствие последующего return не будет ошибкой компиляции (а наличие, наоборот, будет - unreacheable code)
+
+===
+
+Вопрос:
+
+Приведите простой пример определения результата задачи с использованием Callable и ExecutorService.submit().
+
+Ответ:
+
+ExecutorService service = null;
+try {
+    service = Executors.newSingleThreadExecutor();
+    Future<Integer> result = service.submit(() -> 30+11);
+    System.out.println(result.get());
+} finally {
+    if(service != null) service.shutdown();
+}
+
+===
+
+Вопрос:
+
+еще одно отличие Callable от Runnable.
+
+Поскольку Callable.call() объявляет Exception, мы можем спокойно создавать лямбды этого типа - нам не придется обрабатывать исключение до того момента, когда мы явно вызовем метод call(). А с учетом того, что часто мы и не вызываем сами call(), а передаем лямбду куда-то в Concurrency API, где и без нас все обрабатывают, нам вообще не приходится возиться с исключением.
+А Runnable.run() исключений не объявляет, поэтому уже в самой лямбде придется ставить try-catch, т.к. объявить исключение в лямбде нельзя, только в соответствующем методе функционального интерфейса.
+
+        Runnable r = () -> {Thread.sleep(3);}; //doesn't compile: unreported exception InterruptedException
+        Callable c = () -> {Thread.sleep(3); return null;}; //OK
+
+===
+
+'
+
+Вопрос:
+
+У экземпляров ExecutorService есть полезный метод
+
+boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException
+
+Он ожидает, когда экзекьютор, на котором вызвали shutdown(), реально остановится. Если экзекьютор выполнит все задачи, тогда метод вернет true, и выполнение кода продолжится. Если выйдет время, то выполнение кода продолжится, но возвращен будет false.
+
+А еще есть полезный метод isTerminated(). Он вернет true, если все задачи выполнены и была отправлена команда shutdown() или shutdownNow().
+
+ExecutorService service = null;
+try {
+    service = Executors.newSingleThreadExecutor();
+    // Add tasks to the thread executor
+    ...
+} finally {
+    if(service != null) service.shutdown();
+}
+if(service != null) {
+    service.awaitTermination(1, TimeUnit.MINUTES);
+    // Check whether all tasks are finished
+    if(service.isTerminated())
+        System.out.println("All tasks finished");
+    else
+        System.out.println("At least one task is still running");
+}
+
+===
+p.345     Scheduling Tasks
