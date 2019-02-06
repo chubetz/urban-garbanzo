@@ -502,3 +502,74 @@ if(service != null) {
 
 ===
 p.345     Scheduling Tasks
+
+Вопрос:
+
+Опишите смысл и вид интерфейса ScheduledExecutorService и приведите пример получения его экземпляра.
+
+Ответ:
+
+Интерфейс java.util.concurrent.ScheduledExecutorService расширяет ExecutorService и предлагает API для планирования задач.
+
+Получить экземпляр можно так:
+ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+
+===
+
+Вопрос:
+Назовите методы ScheduledExecutorService, отвечающие за однократный запуск задач.
+
+Ответ:
+
+1. <V> ScheduledFuture<V> schedule(Callable<V> callable, long delay, TimeUnit unit) 
+
+2. ScheduledFuture<?> schedule(Runnable command, long delay, TimeUnit unit)
+
+оба метода запускают задачу (Callable или Runnable) после заданного временного промежутка.
+
+===
+
+Вопрос:
+Назовите методы ScheduledExecutorService, отвечающие за многоократный запуск задач.
+
+Ответ:
+
+1. ScheduledFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit) -
+по истечении начальной задержки запускает задачу Runnable с указанным периодом. Если используется однопоточный экзекьютор и при этом за период задача не успевает закончится, старт следующей итерации начнется позже.
+
+2. ScheduledFuture<?> scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit) - 
+по истечении начальной задержки запускает задачу Runnable с указанным периодом. Следующая итерация стартует, когда с момента окончания предыдущей пройдет указанная задержка.
+
+Выполнение задачи останавливается только при ее явной отмене, либо при падении, либо при завершении экзекьютора.
+
+===
+
+Вопрос:
+
+Опишите интерфейс ScheduledFuture.
+
+Ответ:
+
+Интерфейс java.util.concurrent.ScheduledFuture<V> наследует интерфейсу Future и некоторым другим. В частности, из интерфейса Delayed он берет метод 
+    long getDelay(TimeUnit unit),
+который возвращает время, оставшееся до следующей итерации(?)
+
+===
+
+
+Вопрос:
+
+Задачи, запущенные посредством ScheduledExecutorService, могут и не стартовать в ожидаемое время. Это зависит, среди прочего,  от наличия доступных потоков.
+
+===
+
+Вопрос:
+Что такое пул потоков (thread pool)?
+
+Ответ:
+
+Это группа предварительно инстанциированных потоков многократного использования, которые предназначены для выполнения набора произвольных задач.
+
+===
+
+p.348 table 7.6
