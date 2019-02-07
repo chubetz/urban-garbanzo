@@ -132,6 +132,8 @@ Javadoc
 
 API коллекций просмотреть - не все есть в экзамене, например HashMap.forEach, putAll
 
+API java.util.concurrent
+
 Аннотации
 
 Изучить JSP Faqs
