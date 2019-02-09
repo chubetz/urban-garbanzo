@@ -673,6 +673,6 @@ int i = new AtomicInteger(5); // 5
 
 ===
 
-p.354  Improving Access with Synchronized Blocks
+p.357  Understanding the Cost of Synchronization
 
 
