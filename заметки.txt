@@ -1023,8 +1023,8 @@ Exam Title: Java SE 8 Programmer I
 
 изучить правила переноса в Java!
 
-p.334 
-Polling with sleep
+p.366
+Working with Parallel Streams
 ======
 Сделать длину Question 20K!
 Сделать поля date, order в карточке и режим отображения на экзамене - случайный или последовательный.
