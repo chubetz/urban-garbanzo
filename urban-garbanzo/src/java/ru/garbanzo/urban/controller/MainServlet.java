@@ -309,9 +309,9 @@ public class MainServlet extends ErrorHandlingServlet {
                         sb.append("DROP TABLE Theme IF EXISTS;\r\n");
                         sb.append("CREATE TABLE Theme (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, text VARCHAR(2000), number DOUBLE);\r\n");
                         sb.append("DROP TABLE Question IF EXISTS;\r\n");
-                        sb.append("CREATE TABLE Question (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, type int, text VARCHAR(2000), regDate TIMESTAMP, updateDate TIMESTAMP);\r\n");
+                        sb.append("CREATE TABLE Question (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, type int, text VARCHAR(4000), regDate TIMESTAMP, updateDate TIMESTAMP);\r\n");
                         sb.append("\tDROP TABLE Answer IF EXISTS;\r\n");
-                        sb.append("\tCREATE TABLE Answer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean, text VARCHAR(2000), comment VARCHAR(2000));\r\n");
+                        sb.append("\tCREATE TABLE Answer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean, text VARCHAR(4000), comment VARCHAR(2000));\r\n");
                         sb.append("DROP TABLE ThemeQuestion IF EXISTS;\r\n");
                         sb.append("CREATE TABLE ThemeQuestion (themeId int, questionId int, orderNum int, PRIMARY KEY(themeId, questionId));\r\n");
                         sb.append("DROP TABLE Image IF EXISTS;\r\n");

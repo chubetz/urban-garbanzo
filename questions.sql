@@ -3,9 +3,9 @@ CREATE TABLE Realm (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, text VA
 DROP TABLE Theme IF EXISTS;
 CREATE TABLE Theme (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, text VARCHAR(2000), number DOUBLE);
 DROP TABLE Question IF EXISTS;
-CREATE TABLE Question (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, type int, text VARCHAR(2000), regDate TIMESTAMP, updateDate TIMESTAMP);
+CREATE TABLE Question (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, realmId int, type int, text VARCHAR(4000), regDate TIMESTAMP, updateDate TIMESTAMP);
 	DROP TABLE Answer IF EXISTS;
-	CREATE TABLE Answer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean, text VARCHAR(2000), comment VARCHAR(2000));
+	CREATE TABLE Answer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean, text VARCHAR(4000), comment VARCHAR(2000));
 DROP TABLE ThemeQuestion IF EXISTS;
 CREATE TABLE ThemeQuestion (themeId int, questionId int, orderNum int, PRIMARY KEY(themeId, questionId));
 DROP TABLE Image IF EXISTS;
@@ -4125,6 +4125,74 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1201,8,0,'В очереди&nbsp;<strong>Queue</strong>&nbsp;запрещается добавлять <strong>null</strong>, т.к. он является специальным значением-индикатором. Некоторые реализации <strong>Queue</strong> (например, <strong>LinkedList</strong>) позволяют хранить <strong>null</strong>, большинство выдаст NPE при&nbsp; попытке добавления. Однако даже если конкретный экземпляр разрешает хранить <strong>null</strong>, не надо их добавлять, если используется ссылка типа <strong>Queue</strong>.',TIMESTAMP '2019-02-10 14:46:12',TIMESTAMP '2019-02-10 14:46:28');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1202,8,2,'<div>Опишите интерфейс <strong>BlockingDeque</strong> и его основные методы.</div>
 <div>&nbsp;</div>',TIMESTAMP '2019-02-10 14:55:17',TIMESTAMP '2019-02-10 14:55:17');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1203,8,2,'<div>Опишите интерфейс <strong>BlockingDeque</strong> и его основные методы.</div>
+<div>&nbsp;</div>',TIMESTAMP '2019-02-10 16:23:50',TIMESTAMP '2019-02-10 16:23:50');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2393,1203,'<div>Интерфейс java.util.concurrent.<strong>BlockingDeque</strong>&lt;E&gt; олицетворяет двустороннюю очередь, которая при выполнении некоторых операций умеет "ждать" благоприятной ситуации. Например, ждать появления в очереди элемента, если она пуста, или ждать возможности добавить&nbsp; элемент в очередь, если в ней нет свободного места.</div>
+<div><strong>BlockingDeque</strong> наследует от <strong>BlockingQueue</strong>. Поэтому 1)реализующие классы - потокобезопасны 2)нельзя помещать <strong>null</strong>, т.к. является специальным возвращаемым значением.</div>
+<div>&nbsp;</div>
+<div><em>boolean</em> <strong>offerFirst</strong>(<em>E</em> e, <em>long</em> timeout, <em>TimeUnit</em> unit) throws <em>InterruptedException</em> -&nbsp;</div>
+<div>добавляет элемент в голову очереди, дожидаясь в течение таймаута. Возвращает <strong>false</strong>, если время истекло.</div>
+<div>&nbsp;</div>
+<div><em>boolean</em> <strong>offerLast</strong>(<em>E</em> e, <em>long</em> timeout, <em>TimeUnit</em> unit) throws <em>InterruptedException</em> -</div>
+<div>добавляет элемент в хвост очереди, дожидаясь в течение таймаута. Возвращает <strong>false</strong>, если время истекло. Аналогичен методу <strong>offer</strong> с такой же сигнатурой.</div>
+<div>&nbsp;</div>
+<div><em>E</em> <strong>pollFirst</strong>(<em>long</em> timeout, <em>TimeUnit</em> unit) throws <em>InterruptedException</em> -</div>
+<div>Удаляет из головы очереди и возвращает элемент, дожидаясь в течении таймаута. Возвращает <strong>null</strong>, если время истекло. Аналогичен методу <strong>poll</strong> с такой же сигнатурой.</div>
+<div>&nbsp;</div>
+<div><em>E</em> <strong>pollLast</strong>(<em>long</em> timeout, <em>TimeUnit</em> unit) throws <em>InterruptedException&nbsp;</em> -</div>
+<div>Удаляет из хвоста очереди и возвращает элемент, дожидаясь в течении таймаута. Возвращает <strong>null</strong>, если время истекло.&nbsp;</div>
+<div>&nbsp;</div>
+<div><em>void</em> <strong>putFirst</strong>(<em>E</em> e) throws <em>InterruptedException</em></div>
+<div><em>void</em> <strong>putLast</strong>(<em>E</em> e) throws <em>InterruptedException</em></div>
+<div><em>E</em> <strong>takeFirst</strong>() throws <em>InterruptedException</em></div>
+<div><em>E</em> <strong>takeLast</strong>() throws <em>InterruptedException</em> -&nbsp;</div>
+<div>методы добавления/извлечения с бесконечным ожиданием.</div>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1204,8,2,'Опишите класс <strong>LinkedBlockingDeque</strong>.',TIMESTAMP '2019-02-10 16:33:34',TIMESTAMP '2019-02-10 16:33:34');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2394,1204,'Класс java.util.concurrent.<strong>LinkedBlockingDeque</strong>&lt;E&gt; реализует интерфейс <strong>BlockingDeque</strong>. Использует связанные узлы для хранения элементов. Большинство операций занимают фиксированное время; операции, основанные на <strong>equals</strong> (<strong>contains</strong> и удаление по конкретному элементу), занимают линейное время. Есть конструктор, позволяющий задать размер очереди (по умолчанию - Integer.MAX_VALUE)',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1205,8,2,'Опишите класс <strong>ConcurrentSkipListSet</strong>.',TIMESTAMP '2019-02-10 16:52:48',TIMESTAMP '2019-02-10 16:52:48');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2395,1205,'Класс java.util.concurrent.Class <strong>ConcurrentSkipListSet</strong>&lt;E&gt; является многопоточным аналогом <strong>TreeSet</strong>. Рекомендуется использовать со ссылками <strong>SortedSet</strong> и <strong>NavigableSet</strong>. Особенности: 1) метод <strong>size</strong>() не выполняется за фиксированное время, так как для подсчета приходится пробегать коллекцию. 2) не разрешается использовать <strong>null</strong> в качестве элемента.
+<div>&nbsp;</div>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1206,8,2,'Опишите класс&nbsp;<strong>ConcurrentSkipListMap</strong>.',TIMESTAMP '2019-02-10 17:01:00',TIMESTAMP '2019-02-10 17:01:00');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2396,1206,'Класс java.util.concurrent.Class&nbsp;<strong>ConcurrentSkipListMap</strong>&lt;K,V&gt; является многопоточным аналогом&nbsp;<strong>TreeMap</strong>. Рекомендуется использовать со ссылками&nbsp;<strong>SortedMap</strong>&nbsp;и&nbsp;<strong>NavigableMap</strong>. Особенности: 1) метод&nbsp;<strong>size</strong>() не выполняется за фиксированное время, так как для подсчета приходится пробегать коллекцию. 2) не разрешается использовать&nbsp;<strong>null</strong>&nbsp;в качестве ключа или значения. 3) Map.Entry.<strong>setValue</strong> не поддерживается.
+<div>&nbsp;</div>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1207,8,2,'Опишите класс&nbsp;<strong>CopyOnWriteArrayList</strong>.',TIMESTAMP '2019-02-10 17:19:04',TIMESTAMP '2019-02-10 17:19:04');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2397,1207,'Класс java.util.concurrent.<strong>CopyOnWriteArrayList</strong>&lt;E&gt; представляет собой потокобезопасную версию <strong>ArrayList</strong>. Каждая операция, изменяющая состав коллекции (удаление, добавление, замена элемента), приводит к появлению фактически новой коллекции. Благодаря этому итерация всегда безопасна и предсказуема: на ней не сказываются никакие изменения, происходящие&nbsp; в данный момент с коллекцией. Недостатком является повышенный расход памяти, поэтому использовать эту коллекцию надо тогда, когда чтение происходит значительно чаще, чем модификации.
+<div>&nbsp;</div>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1208,8,2,'Что напечатает следующий код?<br /><br />
+<div>List&lt;Integer&gt; list = new CopyOnWriteArrayList&lt;&gt;(Arrays.asList(4,3,52));</div>
+<div>for(Integer item: list) {</div>
+<div>&nbsp; &nbsp; System.out.print(item+" ");</div>
+<div>&nbsp; &nbsp; list.add(9);</div>
+<div>}</div>
+<div>System.out.println();</div>
+<div>System.out.println("Size: "+list.size());</div>',TIMESTAMP '2019-02-10 17:21:09',TIMESTAMP '2019-02-10 17:21:09');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2398,1208,'<div>4 3 52</div>
+<div>Size: 6<br /><br />На каждом шаге итерации содержимое коллекции меняется, но мы этого не видим, т.к. итерируемся по первоначальному варианту. Впоследствии оказывается, что элементов в коллекции уже 6.</div>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1209,8,2,'Опишите класс <strong>CopyOnWriteArraySet</strong>.',TIMESTAMP '2019-02-10 18:49:45',TIMESTAMP '2019-02-10 18:49:45');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2399,1209,'<div>Класс java.util.concurrent.<strong>CopyOnWriteArraySet</strong>&lt;E&gt; - это потокобезопасный Set, основанный на внутреннем <strong>CopyOnWriteArrayList</strong> и имеющий его особенности. Каждая операция, изменяющая состав коллекции (удаление, добавление, замена элемента), приводит к появлению фактически новой коллекции. Благодаря этому итерация всегда безопасна и предсказуема: на ней не сказываются никакие изменения, происходящие&nbsp; в данный момент с коллекцией. Недостатком является повышенный расход памяти, поэтому использовать эту коллекцию надо тогда, когда чтение происходит значительно чаще, чем модификации.</div>
+<div>&nbsp;</div>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1210,8,2,'Перечислите методы, позволяющие получить синхронизированные коллекции из обычных.',TIMESTAMP '2019-02-10 19:04:57',TIMESTAMP '2019-02-10 19:04:57');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2400,1210,'<div>1. static &lt;T&gt; Collection&lt;T&gt; <strong>synchronizedCollection</strong>(Collection&lt;T&gt; c)</div>
+<div>2. static &lt;T&gt; List&lt;T&gt; <strong>synchronizedList</strong>(List&lt;T&gt; list)</div>
+<div>3. static &lt;K,V&gt; Map&lt;K,V&gt; <strong>synchronizedMap</strong>(Map&lt;K,V&gt; m)</div>
+<div>4. static &lt;K,V&gt; NavigableMap&lt;K,V&gt; <strong>synchronizedNavigableMap</strong>(NavigableMap&lt;K,V&gt; m)</div>
+<div>5. static &lt;T&gt; NavigableSet&lt;T&gt; <strong>synchronizedNavigableSet</strong>(NavigableSet&lt;T&gt; s)</div>
+<div>6. static &lt;T&gt; Set&lt;T&gt; <strong>synchronizedSet</strong>(Set&lt;T&gt; s)</div>
+<div>7. static &lt;K,V&gt; SortedMap&lt;K,V&gt; <strong>synchronizedSortedMap</strong>(SortedMap&lt;K,V&gt; m)</div>
+<div>8. static &lt;T&gt; SortedSet&lt;T&gt; <strong>synchronizedSortedSet</strong>(SortedSet&lt;T&gt; s)</div>
+<div>&nbsp;</div>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1211,8,0,'В синхнонизированных коллекциях, полученных из обычных методами <strong>Collections</strong>, потокобезопасен только прямой доступ к элементам. Итераторы надо синхронизировать вручную!<br /><br />
+<div>List&lt;Integer&gt; list = Collections.synchronizedList(</div>
+<div>&nbsp; new ArrayList&lt;&gt;(Arrays.asList(4,3,52)));</div>
+<div>synchronized(list) {</div>
+<div>&nbsp; &nbsp; for(int data: list)</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; System.out.print(data+" ");</div>
+<div>}</div>
+<br />И еще один важный момент. Если возникла необходимость получить синхронизированную версию коллекции, работать в дальнейшем нужно только с ней.',TIMESTAMP '2019-02-10 19:06:50',TIMESTAMP '2019-02-10 19:08:14');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1212,8,2,'Опишите классы&nbsp;<strong>ConcurrentLinkedQueue</strong> и <strong>ConcurrentLinkedDeque</strong>.',TIMESTAMP '2019-02-10 19:30:59',TIMESTAMP '2019-02-10 19:30:59');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2401,1212,'Классы&nbsp;java.util.concurrent.<strong>ConcurrentLinkedQueue&lt;E&gt; </strong>и java.util.concurrent.<strong>ConcurrentLinkedDeque&lt;E&gt;&nbsp;</strong>являются потокобезопасными реализациями соответствующих интерфейсов. Особенности:<br /><br />1) Не имеют ограничений на размер очереди.<br />2) Не разрешают использование <strong>null</strong> в качестве элемента.<br />3) итераторы и массовые операции (addAll и т.п.) являются слабо консистентными.<br />4) метод <strong>size</strong>() выполняется не за фиксированное время, так как итерируется по данным.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1213,8,2,'Опишите класс <strong>ConcurrentHashMap</strong>.',TIMESTAMP '2019-02-10 19:48:09',TIMESTAMP '2019-02-10 19:48:09');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2402,1213,'<p>Класс java.util.concurrent.<strong>ConcurrentHashMap</strong>&lt;E&gt; является потокобезопасной реализацией <em>Hashtable</em>. Имеет следующие особенности:<br /><br />1) чтение данных идет по самому свежему состоянию. Если данные другим потоком добавлялись/удалялись&nbsp;массово (<strong>putAll</strong>, <strong>clear</strong>), то есть шанс, что при чтении будет доступна только часть данных (вместо всего набора либо пустого результата, соответственно).<br /><br />2) Итераторы не выдают <strong>ConcurrentModificationException</strong>, но в случае многопоточных модификаций могут быть не вполне консистентными, поэтому предназначены для использования одним потоком в конкретный момент времени.<br /><br />3) <strong>null</strong> в качестве ключа или значения - запрещен.</p>',true,'');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,609,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,610,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,612,0);
@@ -4861,17 +4929,28 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (34,1197,62);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (34,1198,63);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (34,1199,64);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (34,1200,65);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (34,1203,66);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (7,155,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (34,1204,67);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (7,156,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (34,1205,68);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (7,157,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (34,1206,69);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (7,158,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (34,1207,70);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (7,159,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (34,1208,71);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (7,160,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (34,1209,72);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (7,161,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (34,1210,73);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (7,162,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (34,1211,74);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (7,163,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (34,1212,75);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (1,386,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (7,164,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (34,1213,76);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (7,165,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (7,166,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (7,167,0);
