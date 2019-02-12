@@ -160,3 +160,5 @@ Arrays.asList(1,2,3,4,5,6).stream().unordered().parallel();
 ===
 
 p. 375 Combing Results with collect()
+
+p. 377 Managing Concurrent Processes
