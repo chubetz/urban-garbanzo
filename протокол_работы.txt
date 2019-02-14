@@ -1,164 +1,62 @@
-﻿Вопрос:
+﻿
+p. 377 Managing Concurrent Processes
 
-Что такое последовательный поток (serial stream)?
+Вопрос:
+
+Опишите класс CyclicBarrier.
 
 Ответ:
 
-Это поток, в котором элементы обрабатываются по порядку, причем в конкретный момент времени обрабатывается только один элемент.
-
-===
-
-Вопрос:
-
-Количество потоков (thread), доступных по умолчанию для параллельных потоков (stream), базируется на числе доступных процессоров.
-
-===
-
-Вопрос:
-
-Опишите 2 способа создания параллельных потоков.
-
-Ответ:
-
-1. Метод parallel(), определенный для любого потока:
-
-Stream<Integer> stream = Arrays.asList(1,2,3,4,5,6).stream();
-Stream<Integer> parallelStream = stream.parallel();
-
-Это промежуточная операция.
-
-2. Метод parallelStream(), определенный на интерфейсе Collection:
-
-Stream<Integer> parallelStream2 = Arrays.asList(1,2,3,4,5,6).parallelStream();
-
-===
-
-Вопрос:
-
-В интерфейсе Stream есть метод isParallel(), позволяющий узнать, пригоден ли поток для параллельной обработки. Некоторые операции с параллельным потоком (например, Stream.concat(Stream s1, Stream s2), s1 или s2 - паралелльный) сохраняют параллельность; другие (например, flatMap()) - не сохраняют.
-
-===
-
-Операция forEach для параллельного потока не сохраняет порядок обработки:
-
-Arrays.asList(1,2,3,4,5,6)
-  .parallelStream()
-  .forEach(s -> System.out.print(s+" "));
-
->>  4 1 6 5 2 3
-
-Фактически, forEach на параллелльном потоке эквивалентен регистрации нескольких Runnable в экзекьюторе с пулом.
-
-===
-
-Вопрос:
-
-В интерфейсе Stream существует метод forEachOrdered(), который обеспечивает упорядоченную обработку для параллельных потоков. Правда, за счет потерь в быстродействии.
-
-Arrays.asList(1,2,3,4,5,6)
-  .parallelStream()
-  .forEachOrdered(s -> System.out.print(s+" "));
-
-  >> 1 2 3 4 5 6
-  
-  
-  ==
-  
-  Вопрос:
-  
-  Использование параллельных потоков оправдано при значительном объеме данных в потоке. Если наборы небольшие, выигрыш по производительности будет несущественным, и этот выигрыш будет еще уменьшен (иногда до отрицательных величин) за счет собственно расходов на подготовку параллельной обработки.
-  
-  ===
-  
-  Вопрос:
-  
-  Что такое независимая операция (independent operation) применительно к потокам?
-  
-  Ответ:
-  
-  Это операция, выполнение которой не зависит от результатов, полученных на других элементах потока (и не влияет на них). Пример - преобразование всех строк в в потоке к верхнему регистру. Если мы имеем дело с независимыми операциями и не нуждаемся в сохранении порядка элементов, это прямое показание для использования параллельных потоков.
-  
-  ===
-  
-Вопрос:
+Класс java.util.concurrent.CyclicBarrier предназначен для остановки на определенном месте в ожидании момента, когда до  этого места дойдет заданное число потоков.
+Имеет конструкторы
+  CyclicBarrier(int parties)
+  CyclicBarrier(int parties, Runnable barrierAction) - после снятия барьера выполняется barrierAction
  
-Если мы используем параллельный поток и forEachOrdered, то элементы в forEachOrdered будут обрабатываться в соответствии с исходным порядком, но порядок предыдущих операций не определен, поэтому если в них используются операции с побочными эффектами, общий результат обработки непредсказуем:
-  
-List<Integer> data = Collections.synchronizedList(new ArrayList<>());
-Arrays.asList(1,2,3,4,5,6).parallelStream()
-  .map(i -> {data.add(i); return i;}) // AVOID STATEFUL LAMBDA EXPRESSIONS!
-  .forEachOrdered(i -> System.out.print(i+" "));
-System.out.println();
-for(Integer e: data) {
-    System.out.print(e+" ");
+ Барьер устанавливается методами
+ int await() throws InterruptedException, BrokenBarrierException
+ int await(long timeout, TimeUnit unit) throws InterruptedException, BrokenBarrierException, TimeoutException - барьер снимается, если истек таймаут.
+ 
+===
+
+Вопрос:
+
+Пример использования CyclicBarrier. 
+ 
+import java.util.concurrent.*;
+public class LionPenManager {
+    public void performTask(CyclicBarrier cb) {
+        try {
+            someAction();
+            cb.await();
+            otherAction();
+        } catch (InterruptedException | BrokenBarrierException e) {
+            // Handle checked exceptions here
+        }
+    }
+    public static void main(String[] args) {
+        ExecutorService service = null;
+        try {
+            LionPenManager manager = new LionPenManager();
+            CyclicBarrier cb = new CyclicBarrier(4);
+            for(int i=0; i<4; i++)
+                service.submit(() -> manager.performTask(cb));
+        } finally {
+            if(service != null) service.shutdown();
+        }
+    }
 }
 
->> 1 2 3 4 5 6
-   2 4 3 5 6 1
-   //
-   
- (вообще лучше не использовать операции с побочными эффектами даже в последовательных потоках)
-   
-===
+====
 
 Вопрос:
+Если в пуле потоков меньше, чем установлено в используемом CyclicBarrier, то будет deadlock.
 
-Перечислите операции Stream, результат которых не зависит от того, параллельный у нас поток или нет.
-
-Ответ:
-skip(), limit(), findFirst(), distinct() (проверить), sorted()
-
-Поток при этом еще должен быть упорядоченным.
-
-===
+====
 
 Вопрос:
-
-Если вызвать метод unordered() на потоке, то JVM получает разрешение не учитывать порядок элементов в тех операциях, где подразумевается порядок.
-Для последовательных потоков метод unordered() ничего не изменит, но если такой поток сделать параллельным, то резко возрастет производительность, и потеряется порядок:
-
-Arrays.asList(1,2,3,4,5,6).stream().unordered().parallel();
-
-
- ===
- 
- Вопрос:
- 
- Перечислите требования к аргументам метода reduce(), выполнение которых гарантирует работу метода в параллельной обработке с сохранением ожидаемого порядка.
- 
- Ответ:
- 
- сигнатура:
- <U> U	reduce(U identity, BiFunction<U,? super T,U> accumulator, BinaryOperator<U> combiner)
- 
- 1) identity: для любого элемента u потока должно выполняться условие combiner.apply(identity, u) = u
- 2) accumulator: операция op, определяемая аккумулятором, должна быть ассоциативной - (a op b) op c = a op (b op c), плюс не должна иметь побочных эффектов (изменять состояние чего-то)
- 3) combiner: для любой пары элементов u и t должно выполняться условие combiner.apply(u,accumulator.apply(identity,t)) =  accumulator.apply(u,t), плюс не должно быть побочных эффектов
-  
- К перегруженным методам reduce
-   Optional<T> reduce(BinaryOperator<T> accumulator)
-   T reduce(T identity, BinaryOperator<T> accumulator)
- вышеуказанные требования также применимы, они нужны для стабильности результата.
- 
- ===
- 
- Вопрос:
- 
- Пример reduce(), удовлетворяющего принципам:
- 
- System.out.println(Arrays.asList('w', 'o', 'l', 'f')
-  .stream()
-  .reduce("",(s1, c) -> s1 + c,
-    (s2,s3) -> s2 + s3));
-	
-===
-
-Вопрос:
-
-В методе reduce() очень желательно задавать Combiner, если речь идет о параллельной обработке.
+После того как CyclicBarrier открылся, он пригоден к повторному использованию, т.е. следующий поток после открытия станет первым в новой очереди ожидающих.
 
 ===
 
-p. 375 Combing Results with collect()
+p.381 Applying the Fork/Join Framework
 
-p. 377 Managing Concurrent Processes
