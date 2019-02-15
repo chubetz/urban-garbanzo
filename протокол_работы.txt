@@ -1,63 +1,40 @@
-﻿
-p. 377 Managing Concurrent Processes
+﻿===
 
 Вопрос:
 
-Опишите класс CyclicBarrier.
+Метод compute() в RecursiveAction и RecursiveTask - protected
+
+===
+
+Вопрос:
+
+Метод invokeAll класса ForkJoinTask может принимать либо два объекта ForkJoinTask, либо варарг из них же.
+
+===
+
+Вопрос:
+
+Метод compute() в RecursiveAction и RecursiveTask не принимает аргументов. Поэтому всю необходимую для выполнения задачу информацию принято передавать через конструктор.
+
+===
+
+Если есть несколько участков кода, синхронизированных по одному объекту, то в момент выполнения одного из этих участков блокируется доступ не только к этому участку, но и к остальным.
+
+===
+
+Вопрос:
+
+Опишите три ситуации нарушения жизнеспособности программы с точки зрения конкурентности.
 
 Ответ:
 
-Класс java.util.concurrent.CyclicBarrier предназначен для остановки на определенном месте в ожидании момента, когда до  этого места дойдет заданное число потоков.
-Имеет конструкторы
-  CyclicBarrier(int parties)
-  CyclicBarrier(int parties, Runnable barrierAction) - после снятия барьера выполняется barrierAction
- 
- Барьер устанавливается методами
- int await() throws InterruptedException, BrokenBarrierException
- int await(long timeout, TimeUnit unit) throws InterruptedException, BrokenBarrierException, TimeoutException - барьер снимается, если истек таймаут.
- 
-===
+1. Deadlock. Поток A заблокировал ресурс X и ожидает ресурса Y, который в свою очередь заблокирован потоком B, ждущим ресурса X. Ожидание будет бесконечным, так как ресурсы никогда не освободятся.
 
-Вопрос:
+2. Starvation. Поток не может получить доступ к ресурсу, так как его каждый раз получают другие потоки.
 
-Пример использования CyclicBarrier. 
- 
-import java.util.concurrent.*;
-public class LionPenManager {
-    public void performTask(CyclicBarrier cb) {
-        try {
-            someAction();
-            cb.await();
-            otherAction();
-        } catch (InterruptedException | BrokenBarrierException e) {
-            // Handle checked exceptions here
-        }
-    }
-    public static void main(String[] args) {
-        ExecutorService service = null;
-        try {
-            LionPenManager manager = new LionPenManager();
-            CyclicBarrier cb = new CyclicBarrier(4);
-            for(int i=0; i<4; i++)
-                service.submit(() -> manager.performTask(cb));
-        } finally {
-            if(service != null) service.shutdown();
-        }
-    }
-}
+3. Livelock. Потоки не могут получить доступ к ресурсам, но не находятся в режиме ожидания, просто при каждой попытке доступа к ресурсам "мешают" друг другу (взаимное Starvation).
 
 ====
 
-Вопрос:
-Если в пуле потоков меньше, чем установлено в используемом CyclicBarrier, то будет deadlock.
+p.394 Review Questions
 
-====
-
-Вопрос:
-После того как CyclicBarrier открылся, он пригоден к повторному использованию, т.е. следующий поток после открытия станет первым в новой очереди ожидающих.
-
-===
-
-p.381 Applying the Fork/Join Framework
-
-p.386 Identifying Fork/Join Issues
