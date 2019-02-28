@@ -61,6 +61,7 @@ INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (32,8,
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (33,8,'Задания к теме',6.1);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (34,8,'Многопоточность',7.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (35,8,'Задания к теме',7.1);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (36,8,'Ввод-вывод',8.0);
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (0,4,0,'Тесты экзамена предполагают обычно 5 или 6 ответов, со множественным выбором.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1,4,0,'Нельзя реализовать в классе два интерфейса с общим дефолтным методом, если не переопределить этот метод в классе.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2,4,2,'<p>Перечислите 3 вида комментариев в Java</p>',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
@@ -4436,6 +4437,9 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2557,1271,'It hangs indefinitely at runtime.',false,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2558,1271,'The output cannot be determined.',false,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2559,1271,'The code will not compile because of line n1.',true,'execute()&nbsp; возвращает void, а не Future');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1272,8,2,'Опишите концепцию пути к файлу (<em>file path</em>).',TIMESTAMP '2019-02-28 20:41:25',TIMESTAMP '2019-02-28 20:44:07');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2561,1272,'Путь к файлу можно охарактеризовать как строковое представление файла (или папки) внутри файловой системы.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1273,8,0,'Класс java.io.<strong>File</strong> является представлением конкретного файла или папки файловой системы. Не может самостоятельно осуществлять чтение или запись.',TIMESTAMP '2019-02-28 21:13:00',TIMESTAMP '2019-02-28 21:13:00');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,609,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,610,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,612,0);
@@ -5346,8 +5350,10 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (8,256,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (8,257,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (8,258,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (8,259,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1272,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (8,261,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (9,224,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1273,2);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (8,262,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (8,263,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (8,264,0);
