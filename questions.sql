@@ -4476,6 +4476,108 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1296,8,0,'Пример использования <strong>mark</strong>:<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; InputStream is = new ByteArrayInputStream("ABCD".getBytes());<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print ((char)is.read());<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(is.markSupported()) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; is.mark(100);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print((char)is.read());<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print((char)is.read());<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; is.reset();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print((char)is.read());<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print((char)is.read());<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print((char)is.read());<br /><br />&gt;&gt;&gt; ABCBCD',TIMESTAMP '2019-03-02 13:44:57',TIMESTAMP '2019-03-02 13:44:57');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1297,8,2,'Опишите метод <strong>read</strong>() классов <strong>InputStream</strong> и <strong>Reader</strong>.',TIMESTAMP '2019-03-02 14:05:32',TIMESTAMP '2019-03-02 14:05:32');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2572,1297,'<strong>InputStream</strong>:<br /><br />public abstract <em>int </em><strong>read</strong>() throws <em>IOException</em><br /><br />Считывает следующий байт из потока, возвращаемый как <strong>int</strong>-значение в диапазоне 0-255. Если достигнут конец потока, возвращает -1. Метод ожидает поступления данных, конца потока или исключения.<br /><br />public <em>int </em><strong>read</strong>(<em>byte</em>[] b) throws <em>IOException</em><br />public <em>int </em><strong>read</strong>(<em>byte</em>[] b, <em>int</em> offset, <em>int</em> len) throws <em>IOException</em><br /><br />оба метода возвращают число байт, помещенных в массив (-1, если достигнут конец потока)<br /><br /><strong>Reader</strong>:<br /><br />public <em>int </em><strong>read</strong>() throws <em>IOException</em><br /><br />Считывает символ и возвращает как <strong>int</strong> в диапазоне 0-65535. Если достигнут конец потока, возвращает -1. Метод ожидает поступления данных, конца потока или исключения.<br /><br />public <em>int </em><strong>read</strong>(<em>char</em>[] cbuf) throws <em>IOException</em><br />public abstract <em>int </em><strong>read</strong>(<em>char</em>[] cbuf, <em>int</em> off, <em>int</em> len) throws <em>IOException</em><br /><br />оба метода возвращают число символов, помещенных в массив (-1, если достигнут конец потока)',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1298,8,2,'Опишите процедуру <strong>skip</strong> применительно к потокам ввода-вывода.',TIMESTAMP '2019-03-03 18:33:10',TIMESTAMP '2019-03-03 18:33:10');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2573,1298,'<p>В классах <strong>Reader</strong> и <strong>InputStream</strong> есть метод<br /><br />public <em>long</em> <strong>skip</strong>(long n) throws <em>IOException</em><br /><br />Возвращает количество пропущенных байт/символов. Если метод вернул 0 или -1, это означает, что в процессе пропуска был достигнут конец потока, и в результате ничего не пропустилось.<br /><br />Поскольку <strong>skip</strong>() работает массивами, пропуск большого числа элементов осуществится быстрее, чем идентичный по результату многократный вызов <strong>read</strong>() без обработки полученного значения.</p>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1299,8,2,'Перечислите конструкторы классов <strong>FileInputStream</strong>/<strong>FileOutputStream</strong>.',TIMESTAMP '2019-03-03 18:35:43',TIMESTAMP '2019-03-03 18:57:53');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2574,1299,'<div>public <strong>FileInputStream</strong>(<em>File </em>file) throws <em>FileNotFoundException</em></div>
+<div>public <strong>FileInputStream</strong>(<em>String&nbsp;</em>name) throws <em>FileNotFoundException</em></div>
+<div>&nbsp;</div>
+<div>public <strong>FileOutputStream</strong>(<em>File&nbsp;</em>file) throws <em>FileNotFoundException</em> - перезаписываем файл</div>
+<div>public <strong>FileOutputStream</strong>(<em>File</em> file, <em>boolean</em> append) throws&nbsp;<em>FileNotFoundException&nbsp;</em>- пишем поток в конец файла</div>
+<div>public <strong>FileOutputStream</strong>(<em>String</em> name) throws <em>FileNotFoundException</em> - перезаписываем файл</div>
+<div>public <strong>FileOutputStream</strong>(<em>String</em> name, <em>boolean</em> append) throws <em>FileNotFoundException</em> - пишем поток в конец файла</div>
+<div>&nbsp;</div>
+<div>Если файл отсутствует, или является папкой, или не может быть прочитан по какой-либо другой причине, будет выдано <em>FileNotFoundException</em></div>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1300,8,0,'Класс <strong>FileInputStream</strong> имеет те же методы <strong>read</strong>(), что и <strong>InputStream</strong>, с теми же исключениями.',TIMESTAMP '2019-03-03 19:04:41',TIMESTAMP '2019-03-03 19:04:41');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1301,8,2,'Опишите метод <strong>write</strong>() классов <strong>OutputStream</strong> и <strong>Writer</strong>.',TIMESTAMP '2019-03-03 19:25:39',TIMESTAMP '2019-03-03 19:25:39');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2575,1301,'<div><strong>OutputStream</strong>:</div>
+<div>&nbsp;</div>
+<div>public abstract void <strong>write</strong>(<em>int</em> b) throws <em>IOException</em></div>
+<div>&nbsp;</div>
+<div>Записывает байт в поток. Старшие 24 бита игнорируются. Выдает IOException в случае ошибки ввода-вывода или попытки записи в закрытый поток.</div>
+<div>&nbsp;</div>
+<div>public void <strong>write</strong>(<em>byte</em>[] b) throws <em>IOException</em></div>
+<div>public void <strong>write</strong>(<em>byte</em>[] b, <em>int</em> off, <em>int</em> len) throws <em>IOException</em></div>
+<div>&nbsp;</div>
+<div>Записывает в поток байты из массива. Каждый байт записывается методом <strong>write</strong>() (в подклассах приветствуется более эффективное переопределение)</div>
+<div>&nbsp;</div>
+<div><strong>Writer</strong>:</div>
+<div>&nbsp;</div>
+<div>public void <strong>write</strong>(<em>int</em> c) throws <em>IOException</em></div>
+<div>&nbsp;</div>
+<div>Записывает символ в поток. Старшие 16 бит игнорируются.</div>
+<div>&nbsp;</div>
+<div>public void <strong>write</strong>(<em>char</em>[] cbuf) throws <em>IOException</em></div>
+<div>public abstract void <strong>write</strong>(<em>char</em>[] cbuf, <em>int</em> off, <em>int</em> len) throws <em>IOException</em></div>
+<div>&nbsp;</div>
+<div>Записывает массив символов (или его часть) в поток.</div>
+<div>&nbsp;</div>
+<div>public void <strong>write</strong>(<em>String</em> str) throws <em>IOException</em></div>
+<div>public void <strong>write</strong>(<em>String</em> str, <em>int</em> off, <em>int</em> len) throws <em>IOException</em></div>
+<div>&nbsp; &nbsp;</div>
+<div>Записывает строку (или ее часть) в поток.</div>
+<div>&nbsp;</div>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1302,8,2,'Напишите самый простой метод копирования одного файла в другой.',TIMESTAMP '2019-03-03 19:32:07',TIMESTAMP '2019-03-03 19:32:32');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2576,1302,'<div>public static void copy(File source, File destination) throws IOException {</div>
+<div>&nbsp; &nbsp; try (InputStream in = new FileInputStream(source);</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; OutputStream out = new FileOutputStream(destination)) {</div>
+<div>&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; int b;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; while((b = in.read()) != -1) {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; out.write(b);</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; }&nbsp;&nbsp;</div>
+<div>&nbsp; &nbsp; }</div>
+<div>}</div>
+<div>&nbsp;</div>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1303,8,0,'Если мы оперируем массивами байт, то практически всегда следует использовать Buffered-классы.',TIMESTAMP '2019-03-03 20:06:29',TIMESTAMP '2019-03-03 20:06:29');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1304,8,2,'Напишите простой метод копирования содержимого одного файла в другой с использованием буферизации.',TIMESTAMP '2019-03-03 20:14:05',TIMESTAMP '2019-03-03 20:14:05');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2577,1304,'<div>public static void copy(File source, File destination) throws IOException {</div>
+<div>&nbsp; &nbsp; try (</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; InputStream in = new BufferedInputStream(new FileInputStream(source));</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; OutputStream out = new BufferedOutputStream(</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; new FileOutputStream(destination))) {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; byte[] buffer = new byte[1024];</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; int lengthRead;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; while ((lengthRead = in.read(buffer)) &gt; 0) { // последний кусочек, скорее всего, будет меньше 1024</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; out.write(buffer,0,lengthRead);</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; out.flush(); //актуально, поскольку используем буферизацию</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; }</div>
+<div>}</div>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1305,8,0,'Значением буфера в Buffered-классах при работе с файлами желательно выбирать степень числа 2. <br />1024 - наиболее популярный выбор.',TIMESTAMP '2019-03-03 20:21:21',TIMESTAMP '2019-03-03 20:21:21');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1306,8,0,'Классы <strong>FileReader</strong> и <strong>FileWriter</strong> являются, фактически, частными случаями <strong>InputStreamReader</strong> и <strong>OutputStreamWriter</strong>, использующими дефолтную кодировку и размер буфера.&nbsp;',TIMESTAMP '2019-03-03 20:34:39',TIMESTAMP '2019-03-03 20:34:39');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1307,8,2,'Напишите метод, который читает массив строк из файла, используя Buffered-классы.',TIMESTAMP '2019-03-03 20:41:18',TIMESTAMP '2019-03-03 20:44:59');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2578,1307,'<div>public static List&lt;String&gt; readFile(File source) throws IOException {</div>
+<div>&nbsp; &nbsp; List&lt;String&gt; data = new ArrayList&lt;String&gt;();</div>
+<div>&nbsp; &nbsp; try (BufferedReader reader = new BufferedReader(new FileReader(source))) {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; String s;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; while((s = reader.readLine()) != null) {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; data.add(s);</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; }&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>&nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; return data;</div>
+<div>}</div>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1308,8,0,'Конструкторы Buffered-классов не генерят исключений, а вот их методы чтения-записи - генерят IOException.',TIMESTAMP '2019-03-03 20:43:08',TIMESTAMP '2019-03-03 20:43:23');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1309,8,2,'Опишите метод <strong>BufferedReader</strong>.<strong>readLine</strong>().',TIMESTAMP '2019-03-03 20:50:55',TIMESTAMP '2019-03-03 20:52:12');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2579,1309,'<div>public <em>String</em> <strong>readLine</strong>() throws <em>IOException</em></div>
+<div>&nbsp;</div>
+<div>Читает строку. Разделителем строк считается \n или \r или \r\n.</div>
+<div>Прочитанная строка не имеет символов перевода строки.</div>
+<div>Возвращается null, если достигнут конец потока.</div>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1310,8,2,'Напишите метод, который записывает файл из массива строк, используя Buffered-классы.',TIMESTAMP '2019-03-03 20:59:29',TIMESTAMP '2019-03-03 20:59:29');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2580,1310,'<div>public static void writeFile(List&lt;String&gt; data, File destination) throws IOException {</div>
+<div>&nbsp; &nbsp; try (BufferedWriter writer = new BufferedWriter(</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; new FileWriter(destination))) {</div>
+<div>&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; for(String s: data) {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; writer.write(s);</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; writer.newLine();</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; }</div>
+<div>}</div>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1311,8,2,'Опишите способ получения объекта кодировки.',TIMESTAMP '2019-03-03 21:10:21',TIMESTAMP '2019-03-03 21:10:21');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2581,1311,'java.nio.charset.Charset utf8Charset = Charset.forName("UTF-8");',true,'');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,609,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,610,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,612,0);
@@ -5436,7 +5538,21 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1295,24);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (8,284,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1296,25);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1297,26);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1298,27);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1299,28);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1300,29);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1301,30);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1302,31);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1303,32);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1304,33);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1305,34);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1306,35);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1307,38);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1308,36);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (9,260,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1309,37);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1310,39);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1311,40);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (8,312,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (10,285,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (10,287,0);
