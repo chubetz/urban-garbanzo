@@ -1,4 +1,4 @@
 ﻿
-p.420 Skipping over Data
-
 p.426 The ObjectInputStream and ObjectOutputStream Classes
+
+p.436 Fi gure 8 . 3 Diagram of java.io classes

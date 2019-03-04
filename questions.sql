@@ -4578,6 +4578,61 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 <div>}</div>',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1311,8,2,'Опишите способ получения объекта кодировки.',TIMESTAMP '2019-03-03 21:10:21',TIMESTAMP '2019-03-03 21:10:21');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2581,1311,'java.nio.charset.Charset utf8Charset = Charset.forName("UTF-8");',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1312,8,0,'Чтобы объекты класса могли быть сериализованы, он должен имплементировать маркерный (т.е. не содержащий методов) интерфейс java.io.<strong>Serializable</strong>.',TIMESTAMP '2019-03-04 12:21:00',TIMESTAMP '2019-03-04 12:21:00');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1313,8,0,'Если мы объявляем класс <strong>Serializable</strong>, классы его ссылочных полей тоже должны быть <strong>Serializable</strong>, иначе при попытке сериализации будет выдано проверяемое исключение&nbsp;<em>NotSerializableException, </em>которое является потомком IOException &gt; ObjectStreamException.<br /><br />Возможно избежать исключения <em>NotSerializableException</em>, если пометить несериализуемые поля ключевым словом <strong>transient</strong>.',TIMESTAMP '2019-03-04 12:25:04',TIMESTAMP '2019-03-04 12:31:39');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1314,8,0,'Статические поля не сериализуются. Если нужно сохранить информацию из статического поля, необходимо скопировать ее в поле экземпляра.',TIMESTAMP '2019-03-04 12:32:18',TIMESTAMP '2019-03-04 12:32:18');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1315,8,0,'При сериализации класса следует задавать переменную<br /><br />private static final long <strong>serialVersionUID</strong> = 1L;<br /><br />которая сохраняется вместе с сериализованным объектом и должна меняться при каждом изменении структуры класса. Это позволит избежать конфликтов версий при десериализации. Если не указать это поле, его добавит JVM, но на такое поле лучше не полагаться - могут быть разные имплементации на разных версиях JDK.',TIMESTAMP '2019-03-04 12:51:31',TIMESTAMP '2019-03-04 12:51:31');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1316,8,2,'Опишите процедуру сериализации объекта при помощи потоков ввода-вывода.',TIMESTAMP '2019-03-04 13:09:04',TIMESTAMP '2019-03-04 13:09:04');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2582,1316,'1. Создать объект <strong>ObjectOutputStream </strong>посредством конструктора<br />public <strong>ObjectOutputStream</strong>(<em>OutputStream</em> out) throws <em>IOException</em><br /><br />2. Сериализовать файл методом <br />public final void <strong>writeObject</strong>(<em>Object</em> obj) throws IOException<br /><br />3. Закрыть поток.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1317,8,2,'Опишите процедуру десериализации объекта&nbsp;при помощи потоков ввода-вывода.',TIMESTAMP '2019-03-04 13:22:47',TIMESTAMP '2019-03-04 13:22:47');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2583,1317,'<p>1. Создать объект <strong>ObjectInputStream</strong> при помощи конструктора<br />public <strong>ObjectInputStream</strong>(<em>InputStream</em> in) throws <em>IOException</em><br /><br />2. Прочитать объект(ы) из потока с помощью метода<br />public final <em>Object </em><strong>readObject</strong>() throws <em>IOException</em>, <em>ClassNotFoundException</em><br /><br />обеспечить явный кастинг к нужному типу.<br /><br />3. Закрыть поток</p>
+<p>&nbsp;</p>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1318,8,2,'Напишите метод, сериализующий список объектов в файл.',TIMESTAMP '2019-03-04 13:26:31',TIMESTAMP '2019-03-04 13:26:31');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2584,1318,'<p>public static void createAnimalsFile(List&lt;Animal&gt; animals, File dataFile) throws IOException {<br />&nbsp;&nbsp;&nbsp; try (ObjectOutputStream out = new ObjectOutputStream(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new BufferedOutputStream(new FileOutputStream(dataFile)))) {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(Animal animal: animals)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.writeObject(animal);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1319,8,2,'Напишите метод, десериализующий список объектов из файла.',TIMESTAMP '2019-03-04 13:28:49',TIMESTAMP '2019-03-04 13:28:49');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2585,1319,'<p>public static List&lt;Animal&gt; getAnimals(File dataFile) throws IOException, ClassNotFoundException {<br />&nbsp;&nbsp;&nbsp; List&lt;Animal&gt; animals = new ArrayList&lt;Animal&gt;();<br />&nbsp;&nbsp;&nbsp; try (ObjectInputStream in = new ObjectInputStream(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new BufferedInputStream(new FileInputStream(dataFile)))) {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while(true) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Object object = in.readObject();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(object instanceof Animal)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; animals.add((Animal)object);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; } catch (EOFException e) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // File end reached<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; return animals;<br />}</p>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1320,8,0,'Никогда не используйте <em>InputStream</em>.<strong>available</strong>() для определения конца потока.',TIMESTAMP '2019-03-04 15:30:50',TIMESTAMP '2019-03-04 15:30:50');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1321,8,2,'Опишите процесс создания объекта при десериализации.',TIMESTAMP '2019-03-04 15:44:47',TIMESTAMP '2019-03-04 15:44:47');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2586,1321,'1. Вызывается первый no-arg конструктор первого <span style="text-decoration: underline;">несериализуемого</span> родительского класса. Все нижележащие конструкторы игнорируются.<br />2.&nbsp; Игнорируются все instance clause.<br /><br />Таким образом, любые <strong>transient</strong>-поля получают при десериализации дефолтные значения своего типа, даже если из заполнение предусмотрено конструктором.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1322,8,2,'Опишите предназначение классов <strong>PrintStream</strong> и <strong>PrintWriter</strong>.',TIMESTAMP '2019-03-04 16:21:15',TIMESTAMP '2019-03-04 16:21:15');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2587,1322,'java.io.<strong>PrintStream</strong> оборачивает <strong>OutputStream</strong> и позволяет записывать в него строковые представления объектов и примитивов Java. Аналогичным образом java.io.<strong>PrintWriter</strong> оборачивает <strong>Writer</strong>.<br /><br />Основное преимущество данных классов - удобство подачи данных в поток, т.к. <strong>print</strong>-методы не выбрасывают проверяемых исключений.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1323,8,2,'Опишите возможности создания экземпляров <strong>PrintStream</strong>.',TIMESTAMP '2019-03-04 16:38:30',TIMESTAMP '2019-03-04 16:39:17');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2588,1323,'<p>public <strong>PrintStream</strong>(<em>File</em> file) throws <em>FileNotFoundException</em><br />public <strong>PrintStream</strong>(<em>String</em> fileName) throws <em>FileNotFoundException</em></p>
+<p>поток для записи данных в файл с использованием кодировки по умолчанию (файл создается при отсутствии и обнуляется при наличии)</p>
+<p>public <strong>PrintStream</strong>(<em>File</em> file, <em>String</em> csn) throws <em>FileNotFoundException</em>, <em>UnsupportedEncodingException</em><br />public <strong>PrintStream</strong>(<em>String</em> fileName, <em>String</em> csn) throws <em>FileNotFoundException</em>, <em>UnsupportedEncodingException</em></p>
+<p>то же самое, но с указанием кодировки</p>
+<p>public <strong>PrintStream</strong>(<em>OutputStream</em> out)</p>
+<p>поток для записи</p>
+<p>public <strong>PrintStream</strong>(<em>OutputStream</em> out, <em>boolean</em> autoFlush)</p>
+<p>поток для записи с возможностью автофлаша: при записи массива байт, при использовании <strong>println</strong>(), при записи \n</p>
+<p>public <strong>PrintStream</strong>(<em>OutputStream</em> out, <em>boolean</em> autoFlush, <em>String</em> encoding) throws <em>UnsupportedEncodingException</em></p>
+<p>то же самое, но с указанием кодировки</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1324,8,2,'Опишите возможности создания экземпляров <strong>PrintWriter</strong>.',TIMESTAMP '2019-03-04 16:46:42',TIMESTAMP '2019-03-04 16:56:35');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2589,1324,'<p>public <strong>PrintWriter</strong>(<em>File</em> file) throws <em>FileNotFoundException</em><br />public <strong>PrintWriter</strong>(<em>String</em> fileName) throws <em>FileNotFoundException</em></p>
+<p>поток для записи данных в файл с использованием кодировки по умолчанию (файл создается при отсутствии и обнуляется при наличии)</p>
+<p>public <strong>PrintWriter</strong>(<em>File</em> file, <em>String</em> csn) throws <em>FileNotFoundException</em>, <em>UnsupportedEncodingException</em><br />public <strong>PrintWriter</strong>(<em>String</em> fileName, <em>String</em> csn) throws <em>FileNotFoundException</em>, <em>UnsupportedEncodingException</em></p>
+<p>то же самое, но с указанием кодировки</p>
+<p>public <strong>PrintWriter</strong>(<em>OutputStream</em> out)<br />public <strong>PrintWriter</strong>(<em>Writer</em> out)</p>
+<p>поток для записи</p>
+<p>public <strong>PrintWriter</strong>(<em>OutputStream</em> out, <em>boolean</em> autoFlush)<br />public <strong>PrintWriter</strong>(<em>Writer</em> out, <em>boolean</em> autoFlush)</p>
+<p>поток для записи с возможностью автофлаша: при вызове методов <strong>println</strong>, <strong>printf</strong>, или <strong>format</strong></p>
+<p>&nbsp;</p>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1325,8,0,'<strong>System</strong>.<strong>out</strong> и <strong>System</strong>.<strong>err</strong> - объекты <strong>PrintStream</strong>.',TIMESTAMP '2019-03-04 16:57:48',TIMESTAMP '2019-03-04 16:57:48');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1326,8,0,'Классы <strong>PrintWriter</strong> и <strong>PrintStream</strong> имеют метод<br /><br />public <em>boolean</em> <strong>checkError</strong>()<br /><br />который возвращает <strong>true</strong>, если после вызова print-методов&nbsp;произошла какая-то проблема.',TIMESTAMP '2019-03-04 17:00:40',TIMESTAMP '2019-03-04 17:00:40');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1327,8,0,'Класс <strong>Console</strong> имеет методы <strong>format</strong>() и <strong>printf</strong>().',TIMESTAMP '2019-03-04 17:03:42',TIMESTAMP '2019-03-04 17:03:42');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1328,8,2,'Опишите методы <strong>print</strong>() и <strong>println</strong>()&nbsp;классов <strong>PrintWriter</strong> и <strong>PrintStream</strong>.',TIMESTAMP '2019-03-04 17:16:00',TIMESTAMP '2019-03-04 17:16:00');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2590,1328,'Метод <strong>print</strong>() принимает все примитивы, <strong>Object</strong> и <strong>String</strong>. По факту вызывает на аргументе String.<strong>valueOf</strong>() и передает результат в метод <strong>write</strong>(). Если передается null, то преобразуется к "null". <br /><br />Метод <strong>println</strong>() добавляет перенос строки в соответствии со значением System.getProperty("line.separator");',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1329,8,2,'Опишите методы <strong>format</strong>() и <strong>printf</strong>() классов <strong>PrintStream</strong> и <strong>PrintWriter</strong>.',TIMESTAMP '2019-03-04 17:25:05',TIMESTAMP '2019-03-04 17:25:05');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2591,1329,'Метод <strong>format</strong>()&nbsp;пишет в поток форматированные данные (работает так же, как String.<strong>format</strong>) и имеет сигнатуру<br /><br />public <em>ThisStream</em> <strong>format</strong>(<em>Locale</em> l, <em>String</em> format, <em>Object</em>... args)<br />public <em>ThisStream</em> <strong>format</strong>(<em>String</em> format, <em>Object</em>... args)<br /><br />Методы <strong>printf</strong>() делают то же самое.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1330,8,0,'<p>new PrintWriter(source)</p>
+<p>аналогично</p>
+<p>new BufferedWriter(new OutputStreamWriter(new FileOutputStream(source)))</p>
+<p>Можно делать и так:</p>
+<p>new PrintWriter(new BufferedWriter(new FileWriter(source))) </p>',TIMESTAMP '2019-03-04 17:30:50',TIMESTAMP '2019-03-04 17:30:50');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,609,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,610,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,612,0);
@@ -5553,7 +5608,26 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (9,260,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1309,37);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1310,39);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1311,40);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1312,41);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1313,42);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1314,43);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1315,44);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1316,45);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1317,46);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1318,47);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1319,48);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1320,49);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1321,50);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1322,51);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1323,52);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (8,312,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1324,53);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1325,54);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1326,55);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1327,56);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1328,57);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1329,58);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1330,59);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (10,285,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (10,287,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (10,288,0);
