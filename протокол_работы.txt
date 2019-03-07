@@ -1,3 +1,3 @@
-﻿p. 448 Review Question #13   - p.566
+﻿p.460 Working with Legacy File Instances
 
-p.460 Working with Legacy File Instances
+p.465 Checking Path Type with isAbsolute() and toAbsolutePath()

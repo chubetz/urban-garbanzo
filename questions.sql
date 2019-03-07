@@ -4869,6 +4869,27 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1385,8,0,'У класса <strong>FileSystem</strong> есть метод экземпдяра <strong>getPath</strong>(<em>String</em> first, <em>String</em>... more), полностью аналогичный методу <strong>Paths.get</strong>() с той же сигнатурой.',TIMESTAMP '2019-03-06 17:34:54',TIMESTAMP '2019-03-06 17:34:54');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1386,8,2,'Как можно подключиться к внешней файловой системе и ее ресурсам?',TIMESTAMP '2019-03-06 17:38:12',TIMESTAMP '2019-03-06 17:38:12');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2752,1386,'FileSystem fileSystem = FileSystems.getFileSystem(new URI("http://www.selikoff.net"));<br />Path path = fileSystem.getPath("duck.txt");<br /><br />Метод <strong>getFileSystem</strong>() может выбрасывать несколько непроверяемых исключений.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1387,8,2,'Как получить <strong>Path</strong> из <strong>File </strong>и наоборот?',TIMESTAMP '2019-03-07 11:09:18',TIMESTAMP '2019-03-07 11:09:18');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2753,1387,'Вызвать метод <strong>toPath</strong>():<br /><br />File file = new File("pandas/cuddly.png");<br />Path path = file.toPath();<br /><br />Вызвать метод <strong>toFile</strong>():<br /><br />Path path = Paths.get("cuddly.png");<br />File file = path.toFile();',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1388,8,0,'Многие операции Path API можно выполнить, не имея в реальности файла или папки - например, получение родительской папки.',TIMESTAMP '2019-03-07 11:13:56',TIMESTAMP '2019-03-07 11:13:56');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1389,8,2,'Перечислите опциональные аргументы NIO.2 (с кратким описанием).',TIMESTAMP '2019-03-07 11:42:59',TIMESTAMP '2019-03-07 11:42:59');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2754,1389,'NOFOLLOW_LINKS (тип энума java.nio.file.<strong>LinkOption</strong>): не просматривать симолические ссылки<br /><br />FOLLOW_LINKS (тип энума java.nio.file.<strong>FileVisitOption</strong>): просматривать симолические ссылки<br /><br />COPY_ATTRIBUTES, REPLACE_EXISTING, ATOMIC_MOVE (тип энума java.nio.file.<strong>StandardCopyOption</strong>): копировать атрибуты, заменить имеющийся, перенести в атомарном стиле (если позволяет ОС)',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1390,8,0,'Энумы <strong>LinkOption</strong> и <strong>StandartCopyOption</strong> наследуют от интерфейса <em><strong>CopyOption</strong></em>, а энум <strong>FileVisitOption</strong> - нет.',TIMESTAMP '2019-03-07 11:47:34',TIMESTAMP '2019-03-07 11:47:34');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1391,8,0,'При атомарном переносе файла процесс, мониторящий файловую систему, никогда не увидит неполный или частично записанный файл.',TIMESTAMP '2019-03-07 15:11:08',TIMESTAMP '2019-03-07 15:11:08');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1392,8,0,'<em>AtomicMoveNotSupportedException</em> (потомок <em>IOException</em>) выдается при попытке атомарного переноса, если файловая система такую операцию не поддерживает.',TIMESTAMP '2019-03-07 15:23:48',TIMESTAMP '2019-03-07 15:23:48');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1393,0,0,'Использование varargs позволяет оставить задел на будущее. Если в методе когда-нибудь понадобится не один параметр, а несколько, не нужно будет менять сигнатуру.',TIMESTAMP '2019-03-07 15:48:26',TIMESTAMP '2019-03-07 15:48:26');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1394,8,2,'Опишите методы <strong>getName</strong>() и <strong>getNameCount</strong>()&nbsp;интерфейса <strong>Path</strong>.',TIMESTAMP '2019-03-07 16:25:45',TIMESTAMP '2019-03-07 16:25:45');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2755,1394,'<em>Path</em> <strong>getName</strong>(<em>int</em> index)<br />возвращает элемент&nbsp;пути в&nbsp;виде объекта <strong>Path</strong>. Элементы индексируются от корня слева&nbsp;направо, начиная с 0.<br /><br /><em>int</em> <strong>getNameCount</strong>()<br />возвращает число элементов пути (0, если корневой компонент)',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1395,8,2,'Приведите пример использования <strong>getName</strong>() и <strong>getNameCount</strong>() интерфейса <strong>Path</strong>.',TIMESTAMP '2019-03-07 16:26:59',TIMESTAMP '2019-03-07 16:26:59');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2756,1395,'<p>Path path = Paths.get("/land/hippo/harry.happy");<br />System.out.println("The Path Name is: "+path);</p>
+<p>for(int i=0; i&lt;path.getNameCount(); i++) {<br />&nbsp;&nbsp;&nbsp; System.out.println(" Element "+i+" is: "+path.getName(i));<br />}</p>
+<p>&gt;&gt;</p>
+<p>The Path Name is: /land/hippo/harry.happy<br />Element 0 is: land<br />Element 1 is: hippo<br />Element 2 is: harry.happy</p>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1396,8,2,'Опишите методы <strong>getFileName</strong>(), <strong>getParent</strong>(), <strong>getRoot</strong>() интерфейса <strong>Path</strong>.',TIMESTAMP '2019-03-07 16:44:11',TIMESTAMP '2019-03-07 16:44:11');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2757,1396,'<em>Path</em> <strong>getFileName</strong>()<br />Возвращает самый правый элемент пути (папку или файл) в виде объекта <strong>Path</strong>. null, если корневой компонент.<br /><br /><em>Path</em> <strong>getParent</strong>()<br />Возвращает родительскую папку или <strong>null</strong>, если ее нет. Если исходный путь относительный, то и родительский будет относительным.<br /><br /><em>Path</em> <strong>getRoot</strong>()<br />Возвращает корневой компонент как объект <strong>Path</strong>, или <strong>null</strong>, если корневого компонента нет.<br /><br />',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1397,8,0,'<p>Пример использования методов <strong>getFileName</strong>(), <strong>getParent</strong>() и <strong>getRoot</strong>()<br /><br />public class PathFilePathTest {<br />&nbsp;&nbsp;&nbsp; public static void printPathInformation(Path path) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Filename is: "+path.getFileName());<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Root is: "+path.getRoot());<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Path currentParent = path;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while((currentParent = currentParent.getParent()) != null) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(" Current parent is: "+currentParent);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printPathInformation(Paths.get("/zoo/armadillo/shells.txt"));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printPathInformation(Paths.get("armadillo/shells.txt"));<br />&nbsp;&nbsp;&nbsp; }<br />}</p>
+<p>&gt;&gt;&gt;</p>
+<p>Filename is: shells.txt<br />Root is: /<br />Current parent is: /zoo/armadillo<br />Current parent is: /zoo<br />Current parent is: /<br />Filename is: shells.txt<br />Root is: null<br />Current parent is: armadillo</p>',TIMESTAMP '2019-03-07 16:50:56',TIMESTAMP '2019-03-07 16:52:06');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,609,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,610,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,612,0);
@@ -5091,6 +5112,7 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (24,831,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (24,833,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (24,834,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (24,835,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (9,1393,10);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (25,836,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (25,837,2);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (25,838,3);
@@ -5973,16 +5995,26 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1385,15);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,337,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1386,16);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,338,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1387,17);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,339,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1388,18);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,340,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1389,19);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,341,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1390,20);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,342,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1391,21);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,343,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1392,22);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,344,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,345,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1394,23);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,346,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1395,24);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,347,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1396,25);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,348,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1397,26);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,349,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,350,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,351,0);
