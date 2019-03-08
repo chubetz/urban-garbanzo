@@ -4904,6 +4904,44 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2762,1404,'<strong>Path</strong> <em>normalize</em>()<br /><br />Возвращает путь, очищенный от спец. обозначений (./..) и связанных с ними избыточных элементов.<br /><br />Paths.get("E:\\data\\..\\user\\home").normalize();<br />&gt;&gt; E:\user\home<br />',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1405,10,2,'Составить программу вывода на экран числа, вводимого с клавиатуры. Выводимому числу должно предшествовать сообщение "Вы ввели число".',TIMESTAMP '2019-03-08 08:54:53',TIMESTAMP '2019-03-08 08:54:53');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2763,1405,'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BufferedReader br = new BufferedReader(new InputStreamReader(System.in));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String input = br.readLine();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String output;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double d = Double.parseDouble(input);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (d == (long)d)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; output = "" + (long)d;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; output = "" + d;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Вы ввели число " + output);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (NumberFormatException nfe) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(String.format("Вы ввели не число! (%s)", input));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1406,8,2,'Опишите метод <strong>toRealPath</strong>() интерфейса <strong>Path</strong>.',TIMESTAMP '2019-03-08 13:38:22',TIMESTAMP '2019-03-08 13:38:22');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2764,1406,'<em>Path</em> <strong>toRealPath</strong>(<em>LinkOption</em>... options) throws <em>IOException</em><br /><br />Проверяет наличие файла (или папки)&nbsp; и возвращает абсолютный нормализованный путь к нему. Если файла нет, будет <em>IOException </em>(вероятно, <em>NoSuchFileException</em>). Если подать энум&nbsp;NOFOLLOW_LINKS, то символические ссылки не будут резолвиться.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1407,8,0,'Пример символической ссылки:<br /><br />/zebra/food.source ссылается на&nbsp; /horse/food.txt',TIMESTAMP '2019-03-08 13:38:50',TIMESTAMP '2019-03-08 13:38:50');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1408,8,0,'Класс&nbsp;java.nio.file.<strong>Files</strong> является хелпером для экземпляров <strong>Path</strong>, не <strong>File</strong>.',TIMESTAMP '2019-03-08 13:42:30',TIMESTAMP '2019-03-08 13:42:30');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1409,8,2,'Опишите методы <strong>exists</strong>() и <strong>notExists</strong>() класса <strong>Files</strong>.',TIMESTAMP '2019-03-08 18:48:04',TIMESTAMP '2019-03-08 18:48:04');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2765,1409,'<div>public static <em>boolean</em> <strong>exists</strong>(<em>Path</em> path, <em>LinkOption</em>... options)</div>
+<div>public static <em>boolean</em> <strong>notExists</strong>(<em>Path</em> path, <em>LinkOption</em>... options)<br /><br />Возвращают <strong>true</strong>, если указаныный файл существует/не существует, и <strong>false</strong> в противоположном случае, либо если проверить факт существования/несуществования не удается. Результат сразу устаревает. <br /><br />Могут принимать опцию NOFOLLOW_LINKS</div>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1410,8,2,'Опишите метод <strong>isSameFile</strong>() класса <strong>Files</strong>.',TIMESTAMP '2019-03-08 19:01:37',TIMESTAMP '2019-03-08 19:01:37');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2766,1410,'public static <em>boolean</em> <strong>isSameFile</strong>(<em>Path</em> path, <em>Path</em> path2) throws <em>IOException</em><br /><br />Проверяет, указывают ли подаваемые пути на один и тот же файл (папку)<br /><br />- если оба пути равны по <strong>equals</strong>(), то вернет <strong>true&nbsp;</strong>(независимо от наличия файла);<br />- если пути из разных файловых систем, то будет false;<br />- иначе, проверяется наличие и идентичность файла (если файла нет, будет <em>IOException</em>)<br /><br />Метод рефлексивен, симметричен, транзитивен.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1411,8,2,'Пусть в нижеприведенном примере все файлы существуют, а "<strong>cobra</strong>" - это символичская ссылка на файл "<strong>snake</strong>". Каким тогда будет вывод?<br /><br />
+<div>try {</div>
+<div>&nbsp; &nbsp; System.out.println(Files.isSameFile(Paths.get("/user/home/cobra"),</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; Paths.get("/user/home/snake")));</div>
+<div>&nbsp; &nbsp; System.out.println(Files.isSameFile(Paths.get("/user/tree/../monkey"),</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; Paths.get("/user/monkey")));</div>
+<div>&nbsp; &nbsp; System.out.println(Files.isSameFile(Paths.get("/leaves/./giraffe.exe"),</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; Paths.get("/leaves/giraffe.exe")));</div>
+<div>&nbsp; &nbsp; System.out.println(Files.isSameFile(Paths.get("/flamingo/tail.data"),</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; Paths.get("/cardinal/tail.data")));</div>
+<div>} catch (IOException e) {</div>
+<div>&nbsp; &nbsp; // Handle file I/O exception...</div>
+<div>}</div>',TIMESTAMP '2019-03-08 19:07:59',TIMESTAMP '2019-03-08 19:07:59');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2767,1411,'true<br />true<br />true<br />false',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1412,8,2,'Опишите методы <strong>createDirectory</strong>() и <strong>createDirectories</strong>() класса <strong>Files</strong>.',TIMESTAMP '2019-03-08 19:33:06',TIMESTAMP '2019-03-08 19:33:06');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2768,1412,'public static <em>Path</em> <strong>createDirectory</strong>(<em>Path</em> dir, <em>FileAttribute</em>&lt;?&gt;... attrs) throws <em>IOException</em><br />Создает новую папку. Если папка уже есть, либо есть файл с таким именем, либо если родительская папка отсутствует, будет <em>IOException</em>.<br /><br />Если подано несколько атрибутов с одинаковым именем - учтется только последний.<br /><br />public static <em>Path</em> <strong>createDirectories</strong>(<em>Path</em> dir, <em>FileAttribute</em>&lt;?&gt;... attrs) throws <em>IOException</em><br />Создает папку, а также все промежуточные папки, если потребуется. Если папка уже есть - исключения не будет.<br />Атрибуты будут проставлены всем создаваемым папкам. Если подано несколько с одинаковым именем - учтется только последний.<br />Если что-то пошло не так - есть вероятность, что какие-то папки успеют создаться.<br />',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1413,8,2,'Опишите метод&nbsp;<strong>copy</strong>(<em>Path</em>, <em>Path</em>, <em>CopyOption</em>...) класса <strong>Files</strong>.',TIMESTAMP '2019-03-08 19:51:31',TIMESTAMP '2019-03-08 20:04:18');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2769,1413,'public static <em>Path</em> <strong>copy</strong>(<em>Path</em> source, <em>Path</em> target, <em>CopyOption</em>... options) throws <em>IOException</em><br />Копирует файл. Опциональные параметры - REPLACE_EXISTING, COPY_ATTRIBUTES, NOFOLLOW_LINKS.<br /><br /><em>IOException</em> выдается, если целевой файл уже существует (и нет опции REPLACE_EXISTING); если есть REPLACE_EXISTING, а целевая папка непуста; если исходный файл не существует; если в целевом пути не все папки созданы.<br /><br />При копировании папки содержимое не копируется!',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1414,8,2,'Напишите стандартный алгоритм копирования файла в новую папку с использованием NIO.2.',TIMESTAMP '2019-03-08 20:00:53',TIMESTAMP '2019-03-08 20:00:53');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2770,1414,'<div>&nbsp; &nbsp; &nbsp; &nbsp; Path source = Paths.get("C:\\java_tmp\\file1.txt");</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; Path newdir = Paths.get("C:\\java_tmp2\\");</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; try {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Files.copy(source, newdir.resolve(source.getFileName()));</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; } catch (IOException ex) {&nbsp;<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //handling exception</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp;</div>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1415,8,0,'В классе Files есть интересный метод walkFileTree.',TIMESTAMP '2019-03-08 20:06:44',TIMESTAMP '2019-03-08 20:06:44');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1416,8,2,'Опишите методы <strong>copy</strong>() класса <strong>Files</strong>, предназначенные для работы с потокам ввода-вывода.',TIMESTAMP '2019-03-08 20:13:20',TIMESTAMP '2019-03-08 20:19:46');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2771,1416,'public static <em>long</em> <strong>copy</strong>(<em>InputStream</em> in, <em>Path</em> target, <em>CopyOption</em>... options) throws <em>IOException</em><br />Копирует байты из потока в файл. Возвращает число прочитанных/записанных байт. <br />Выдает <em>IOException</em>, &nbsp;если целевой файл уже существует (и нет опции REPLACE_EXISTING); если есть REPLACE_EXISTING, а целевая файл является папкой и непуст; если в целевом пути не все папки созданы.<br /><br />public static <em>long</em> <strong>copy</strong>(<em>Path</em> source, <em>OutputStream</em> out) throws <em>IOException</em><br /><br />копирует байты из файла в поток. IOException выдается, в частности,если нет исходного файла. На некоторых целевых потоках (<em>Flushable</em>) может потребоваться <strong>flush</strong>().',true,'');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,609,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,610,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,612,0);
@@ -6045,16 +6083,27 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,355,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1404,33);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,356,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,357,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1406,34);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,358,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1407,35);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,359,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1408,36);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,360,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1409,37);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,361,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1410,38);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,362,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1411,39);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,363,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1412,40);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,364,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1413,41);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,365,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1414,42);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,366,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1415,43);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,367,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1416,44);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,368,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,369,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,370,0);
