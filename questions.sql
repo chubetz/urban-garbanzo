@@ -64,6 +64,7 @@ INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (35,8,
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (36,8,'Ввод-вывод',8.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (37,8,'Задания к теме',8.1);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (38,8,'NIO.2',9.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (39,8,'Задания к теме',9.1);
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (0,4,0,'Тесты экзамена предполагают обычно 5 или 6 ответов, со множественным выбором.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1,4,0,'Нельзя реализовать в классе два интерфейса с общим дефолтным методом, если не переопределить этот метод в классе.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2,4,2,'<p>Перечислите 3 вида комментариев в Java</p>',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
@@ -4447,8 +4448,8 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1275,8,2,'Укажите три основных способа создания объекта <strong>File</strong>.',TIMESTAMP '2019-03-01 16:04:49',TIMESTAMP '2019-03-01 16:14:38');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2563,1275,'1) Конструктор, принимающий абсолютный путь:<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File file = new File("C:\\tmp2\\new&nbsp; 32.rb");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File file = new File("/home/smith/data/zoo.txt");<br /><br />2) Конструктор, принимающий относительный путь:<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File file = new File("."); //текущая папка<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File file = new File("build.xml"); //файл в текущей папке<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File file = new File("./build.xml"); //файл в текущей папке<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File file = new File(".\\build.xml"); //файл в текущей папке<br /><br />3) Конструктор, принимающий папку и относительный путь:<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File file = new File(new File(".."), "Test/build.xml");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File file = new File(new File(".."), "/Test/build.xml");<br /><br /><br />
 <div style="padding-left: 30px;">&nbsp;</div>',true,'');
-INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1276,8,2,'Перечислите методы объекта <strong>File</strong>, которые возвращают информацию о данном файле.',TIMESTAMP '2019-03-01 16:14:12',TIMESTAMP '2019-03-01 16:24:22');
-	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2564,1276,'<strong>exists</strong>()<br /><br /><strong>getName</strong>() - имя файла/папки<br /><br /><strong>getAbsolutePath</strong>()<br /><br /><strong>isDirectory</strong>() <br /><br /><strong>isFile</strong>() <br /><br /><em>long</em><strong> length</strong>() - длина файла, 0 для несуществующих, непредсказуемо для папок<br /><br /><em>long</em><strong> lastModified</strong>() - время в миллисекундах с эпохи.<br /><br /><strong>getParent</strong>() - имя родительской папки (независимо от существования), либо null, если папки нет<br /><br /><strong>File</strong>[] <strong>listFiles</strong>() - массив файлов/папок&nbsp;в папке',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1276,8,2,'Перечислите методы объекта <strong>File</strong>, которые возвращают информацию о данном файле.',TIMESTAMP '2019-03-01 16:14:12',TIMESTAMP '2019-03-10 14:41:20');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2564,1276,'<strong>exists</strong>()<br /><br /><strong>getName</strong>() - имя файла/папки<br /><br /><strong>getAbsolutePath</strong>()<br /><br /><strong>isDirectory</strong>() <br /><br /><strong>isFile</strong>()<br /><br /><strong>isHidden</strong>()<br /><br /><em>long</em><strong> length</strong>() - длина файла, 0 для несуществующих, непредсказуемо для папок<br /><br /><em>long</em><strong> lastModified</strong>() - время в миллисекундах с эпохи.<br />(сеттер -&nbsp;boolean setLastModified(long time))<br /><br /><strong>getParent</strong>() - имя родительской папки (независимо от существования), либо null, если папки нет<br /><br /><strong>File</strong>[] <strong>listFiles</strong>() - массив файлов/папок&nbsp;в папке',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1277,8,2,'Перечислите основные управляющие методы объекта <strong>File</strong>.',TIMESTAMP '2019-03-01 16:22:02',TIMESTAMP '2019-03-01 16:30:16');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2565,1277,'<em>boolean</em><strong> delete</strong>() - удаление файла/пустой папки<br /><br /><em>boolean</em> <strong>renameTo</strong>(<em>File</em> dest) - переименование в dest<br /><br /><em>boolean</em> <strong>mkdir</strong>()&nbsp; - создать папку, выраженную данным объектом File.<br /><br /><em>boolean</em> <strong>mkdirs</strong>()&nbsp; - создать папку, выраженную данным объектом File, плюс все промежуточные, какие требуются',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1278,8,2,'Дайте общее определение потока ввода-вывода (<em>IO Stream</em>).',TIMESTAMP '2019-03-01 16:56:02',TIMESTAMP '2019-03-01 16:57:06');
@@ -4878,8 +4879,8 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1391,8,0,'При атомарном переносе файла процесс, мониторящий файловую систему, никогда не увидит неполный или частично записанный файл.',TIMESTAMP '2019-03-07 15:11:08',TIMESTAMP '2019-03-07 15:11:08');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1392,8,0,'<em>AtomicMoveNotSupportedException</em> (потомок <em>IOException</em>) выдается при попытке атомарного переноса, если файловая система такую операцию не поддерживает.',TIMESTAMP '2019-03-07 15:23:48',TIMESTAMP '2019-03-07 15:23:48');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1393,0,0,'Использование varargs позволяет оставить задел на будущее. Если в методе когда-нибудь понадобится не один параметр, а несколько, не нужно будет менять сигнатуру.',TIMESTAMP '2019-03-07 15:48:26',TIMESTAMP '2019-03-07 15:48:26');
-INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1394,8,2,'Опишите методы <strong>getName</strong>() и <strong>getNameCount</strong>()&nbsp;интерфейса <strong>Path</strong>.',TIMESTAMP '2019-03-07 16:25:45',TIMESTAMP '2019-03-07 23:02:09');
-	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2755,1394,'<em>Path</em> <strong>getName</strong>(<em>int</em> index)<br />возвращает элемент&nbsp;пути в&nbsp;виде объекта <strong>Path</strong>. Элементы индексируются от корня слева&nbsp;направо, начиная с 0. Если с индексом что-то не так, то будет <em>IllegalArgumentException</em>.<br /><br /><em>int</em> <strong>getNameCount</strong>()<br />возвращает число элементов пути (0, если корневой компонент)',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1394,8,2,'Опишите методы <strong>getName</strong>() и <strong>getNameCount</strong>()&nbsp;интерфейса <strong>Path</strong>.',TIMESTAMP '2019-03-07 16:25:45',TIMESTAMP '2019-03-10 19:59:56');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2755,1394,'<em>Path</em> <strong>getName</strong>(<em>int</em> index)<br />возвращает элемент&nbsp;пути в&nbsp;виде объекта <strong>Path</strong>. Элементы индексируются от корня слева&nbsp;направо, начиная с 0. Если с индексом что-то не так, то будет <em>IllegalArgumentException</em>.<br /><br /><em>int</em> <strong>getNameCount</strong>()<br />возвращает число элементов пути (0, если корневой компонент)<br />У пустого пути (Paths.get("")) будет равен 1',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1395,8,2,'Приведите пример использования <strong>getName</strong>() и <strong>getNameCount</strong>() интерфейса <strong>Path</strong>.',TIMESTAMP '2019-03-07 16:26:59',TIMESTAMP '2019-03-07 16:26:59');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2756,1395,'<p>Path path = Paths.get("/land/hippo/harry.happy");<br />System.out.println("The Path Name is: "+path);</p>
 <p>for(int i=0; i&lt;path.getNameCount(); i++) {<br />&nbsp;&nbsp;&nbsp; System.out.println(" Element "+i+" is: "+path.getName(i));<br />}</p>
@@ -4927,8 +4928,8 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 <div>&nbsp; &nbsp; // Handle file I/O exception...</div>
 <div>}</div>',TIMESTAMP '2019-03-08 19:07:59',TIMESTAMP '2019-03-08 19:07:59');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2767,1411,'true<br />true<br />true<br />false',true,'');
-INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1412,8,2,'Опишите методы <strong>createDirectory</strong>() и <strong>createDirectories</strong>() класса <strong>Files</strong>.',TIMESTAMP '2019-03-08 19:33:06',TIMESTAMP '2019-03-08 19:33:06');
-	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2768,1412,'public static <em>Path</em> <strong>createDirectory</strong>(<em>Path</em> dir, <em>FileAttribute</em>&lt;?&gt;... attrs) throws <em>IOException</em><br />Создает новую папку. Если папка уже есть, либо есть файл с таким именем, либо если родительская папка отсутствует, будет <em>IOException</em>.<br /><br />Если подано несколько атрибутов с одинаковым именем - учтется только последний.<br /><br />public static <em>Path</em> <strong>createDirectories</strong>(<em>Path</em> dir, <em>FileAttribute</em>&lt;?&gt;... attrs) throws <em>IOException</em><br />Создает папку, а также все промежуточные папки, если потребуется. Если папка уже есть - исключения не будет.<br />Атрибуты будут проставлены всем создаваемым папкам. Если подано несколько с одинаковым именем - учтется только последний.<br />Если что-то пошло не так - есть вероятность, что какие-то папки успеют создаться.<br />',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1412,8,2,'Опишите методы <strong>createDirectory</strong>() и <strong>createDirectories</strong>() класса <strong>Files</strong>.',TIMESTAMP '2019-03-08 19:33:06',TIMESTAMP '2019-03-10 16:43:46');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2768,1412,'public static <em>Path</em> <strong>createDirectory</strong>(<em>Path</em> dir, <em>FileAttribute</em>&lt;?&gt;... attrs) throws <em>IOException</em><br />Создает новую папку. Если папка уже есть, либо есть файл с таким именем, либо если родительская папка отсутствует, будет <em>IOException</em>.<br /><br />Если подано несколько атрибутов с одинаковым именем - учтется только последний.<br /><br /><br />public static <em>Path</em> <strong>createDirectories</strong>(<em>Path</em> dir, <em>FileAttribute</em>&lt;?&gt;... attrs) throws <em>IOException</em><br />Создает папку, а также все промежуточные папки, если потребуется. Если папка уже есть - исключения не будет.<br />Атрибуты будут проставлены всем создаваемым папкам. Если подано несколько с одинаковым именем - учтется только последний.<br />Если что-то пошло не так - есть вероятность, что какие-то папки успеют создаться.<br /><br />Актуально для обоих методов: Если в пути есть символическая ссылка на папку, то создаваемая папка будет создана относительно этой адресуемой папки.',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1413,8,2,'Опишите метод&nbsp;<strong>copy</strong>(<em>Path</em>, <em>Path</em>, <em>CopyOption</em>...) класса <strong>Files</strong>.',TIMESTAMP '2019-03-08 19:51:31',TIMESTAMP '2019-03-08 20:04:18');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2769,1413,'public static <em>Path</em> <strong>copy</strong>(<em>Path</em> source, <em>Path</em> target, <em>CopyOption</em>... options) throws <em>IOException</em><br />Копирует файл. Опциональные параметры - REPLACE_EXISTING, COPY_ATTRIBUTES, NOFOLLOW_LINKS.<br /><br /><em>IOException</em> выдается, если целевой файл уже существует (и нет опции REPLACE_EXISTING); если есть REPLACE_EXISTING, а целевая папка непуста; если исходный файл не существует; если в целевом пути не все папки созданы.<br /><br />При копировании папки содержимое не копируется!',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1414,8,2,'Напишите стандартный алгоритм копирования файла в новую папку с использованием NIO.2.',TIMESTAMP '2019-03-08 20:00:53',TIMESTAMP '2019-03-08 20:00:53');
@@ -4942,8 +4943,8 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1415,8,0,'В классе Files есть интересный метод walkFileTree.',TIMESTAMP '2019-03-08 20:06:44',TIMESTAMP '2019-03-08 20:06:44');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1416,8,2,'Опишите методы <strong>copy</strong>() класса <strong>Files</strong>, предназначенные для работы с потокам ввода-вывода.',TIMESTAMP '2019-03-08 20:13:20',TIMESTAMP '2019-03-08 20:19:46');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2771,1416,'public static <em>long</em> <strong>copy</strong>(<em>InputStream</em> in, <em>Path</em> target, <em>CopyOption</em>... options) throws <em>IOException</em><br />Копирует байты из потока в файл. Возвращает число прочитанных/записанных байт. <br />Выдает <em>IOException</em>, &nbsp;если целевой файл уже существует (и нет опции REPLACE_EXISTING); если есть REPLACE_EXISTING, а целевая файл является папкой и непуст; если в целевом пути не все папки созданы.<br /><br />public static <em>long</em> <strong>copy</strong>(<em>Path</em> source, <em>OutputStream</em> out) throws <em>IOException</em><br /><br />копирует байты из файла в поток. IOException выдается, в частности,если нет исходного файла. На некоторых целевых потоках (<em>Flushable</em>) может потребоваться <strong>flush</strong>().',true,'');
-INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1417,8,2,'Опишите метод <strong>move</strong>() класса <strong>Files</strong>.',TIMESTAMP '2019-03-08 23:38:51',TIMESTAMP '2019-03-08 23:43:07');
-	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2772,1417,'public static <em>Path</em> <strong>move</strong>(<em>Path</em> source, <em>Path</em> target, <em>CopyOption</em>... options) throws <em>IOException</em><br />переносится/переименовывается файл/папка. Символические ссылки переносятся сами по себе, а не те файлы, на которые они ссылаются. Непустую папку можно только переименовать, перенести в новое место нельзя (будет <em>IOException</em>). Опции: REPLACE_EXISTING, ATOMIC_MOVE<br /><br /><em>IOException</em>, кроме того, выдается, если целевой файл уже существует (и нет опции REPLACE_EXISTING); если есть REPLACE_EXISTING, а целевая папка непуста; если исходный файл не существует; если в целевом пути не все папки созданы; если задана опция ATOMIC_MOVE, а атомарное перемещение не поддерживается файловой системой',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1417,8,2,'Опишите метод <strong>move</strong>() класса <strong>Files</strong>.',TIMESTAMP '2019-03-08 23:38:51',TIMESTAMP '2019-03-10 18:40:25');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2772,1417,'public static <em>Path</em> <strong>move</strong>(<em>Path</em> source, <em>Path</em> target, <em>CopyOption</em>... options) throws <em>IOException</em><br />переносится/переименовывается файл/папка. Символические ссылки переносятся сами по себе, а не те файлы, на которые они ссылаются. Непустую папку можно только переименовать, перенести в новое место нельзя (будет <em>IOException</em>). Опции: REPLACE_EXISTING, ATOMIC_MOVE (обе из энума StandardCopyOption), NOFOLLOW_LINKS (возможно синтаксически, но имеет ли смысл??)<br /><br /><em>IOException</em>, кроме того, выдается, если целевой файл уже существует (и нет опции REPLACE_EXISTING); если есть REPLACE_EXISTING, а целевая папка непуста; если исходный файл не существует; если в целевом пути не все папки созданы; если задана опция ATOMIC_MOVE, а атомарное перемещение не поддерживается файловой системой',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1418,8,2,'Опишите методы <strong>delete</strong>() и <strong>deleteIfExists</strong>() класса <strong>Files</strong>.',TIMESTAMP '2019-03-09 13:14:22',TIMESTAMP '2019-03-09 13:14:22');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2773,1418,'public static <em>void</em> <strong>delete</strong>(<em>Path</em> path) throws <em>IOException</em><br /><br />Удаляет файл/папку. Если удаляется символическая ссылка, то удаляется именно она, а не представляемый ею файл. Выдает <em>IOException</em>, если файл не существует, если папка непуста, если произошла иная ошибка ввода-вывода.<br /><br />public static <em>boolean</em> <strong>deleteIfExists</strong>(<em>Path</em> path) throws <em>IOException</em><br /><br />Удаляет файл/папку возвращая <strong>true</strong>, если удаление произошло, и <strong>false</strong>, если файла нет. В остальном схож с <strong>delete</strong>().',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1419,8,2,'Опишите методы <strong>newBufferedReader</strong>() и <strong>newBufferedWriter</strong>() класса <strong>Files</strong>.',TIMESTAMP '2019-03-09 16:10:34',TIMESTAMP '2019-03-09 16:10:34');
@@ -4983,8 +4984,274 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1437,8,2,'Опишите две возможные стратегии при поиске файлов.',TIMESTAMP '2019-03-09 22:32:28',TIMESTAMP '2019-03-09 22:32:28');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2790,1437,'1) <em>depth-first search</em>: опускаемся от корня к произвольному узлу и поднимаемся обратно, внимательно исследуя все пропущенного. <em>Глубиной поиска</em> называется расстояние от корня до узла.<br /><br />2) <em>breadth-first search</em>: начинаем с корня и пробегаем все элементы одинаковой глубины, прежде чем переходим на единицу глубже.',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1438,8,0,'Java Streams API, ориентированный на файловый поиск, использует стратегию <em>depth-first</em> с глубиной по умолчанию, равной Integer.MAX_VALUE',TIMESTAMP '2019-03-09 22:33:43',TIMESTAMP '2019-03-09 22:33:43');
-INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1439,8,2,'Опишите метод <strong>walk</strong>() класса <strong>Files</strong>.',TIMESTAMP '2019-03-09 23:04:59',TIMESTAMP '2019-03-09 23:04:59');
-	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2791,1439,'public static <em>Stream&lt;Path&gt;</em> <strong>walk</strong>(<em>Path</em> start, <em>int</em> maxDepth, <em>FileVisitOption</em>... options) throws <em>IOException</em><br />public static <em>Stream&lt;Path&gt;</em> <strong>walk</strong>(<em>Path</em> start, <em>FileVisitOption</em>... options) throws <em>IOException</em><br /><br />Второй метод - частный случай первого с maxDepth = Integer.MAX_VALUE<br /><br />Метод возвращает поток объектов Path. Поток является lazy, т.е. дерево не пробегается, пока на началась работа с потоком. Возвращаемые пути резолвятся относительно стартового. Этот поток очень желательно использовать в try-with-resources.<br />FileVisitOption - это FOLLOW_LINKS. Может привести к зацикливанию, если адресатом является папка, расположенная выше.<br /><em>IOException</em> будет, если нет доступа к стартовому узлу или произошло зацикливание из-за FOLLOW_LINKS. Если нет доступа к нижележащему узлу, он просто не будет включен в поток.<br />Если maxDepth == 0, то поток будет состоять только из стартового элемента.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1439,8,2,'Опишите метод <strong>walk</strong>() класса <strong>Files</strong>.',TIMESTAMP '2019-03-09 23:04:59',TIMESTAMP '2019-03-10 14:03:16');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2791,1439,'public static <em>Stream&lt;Path&gt;</em> <strong>walk</strong>(<em>Path</em> start, <em>int</em> maxDepth, <em>FileVisitOption</em>... options) throws <em>IOException</em><br />public static <em>Stream&lt;Path&gt;</em> <strong>walk</strong>(<em>Path</em> start, <em>FileVisitOption</em>... options) throws <em>IOException</em><br /><br />Второй метод - частный случай первого с maxDepth = Integer.MAX_VALUE<br /><br />Метод возвращает поток объектов Path. Поток является lazy, т.е. дерево не пробегается, пока на началась работа с потоком. Возвращаемые пути резолвятся относительно стартового. <br />Поток слабо консистентен, т.е. может отражать (или не отражать) изменения, которые произошли в файловой структуре после начала работы с потоком.<br />Этот поток очень желательно использовать в try-with-resources.<br />FileVisitOption - это FOLLOW_LINKS. Может привести к зацикливанию, если адресатом является папка, расположенная выше.<br /><em>IOException</em> будет, если нет доступа к стартовому узлу или произошло зацикливание из-за FOLLOW_LINKS. Если нет доступа к нижележащему узлу, он просто не будет включен в поток.<br />Если maxDepth == 0, то поток будет состоять только из стартового элемента.<br />Если очень нужно интерпретировать символические ссылки, то, во избежание зацикливания (и исключения) следует грамотно выбрать maxDepth.<br />Если при попытке доступа к папке, возвращенной потоком, возникает&nbsp;<em>IOException</em>, оно оборачивается в&nbsp;<em>UncheckedIOException</em>, в котором можно посмотреть исходную причину (<strong>getCause</strong>())',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1440,8,0,'Интерфейс <strong>DirectoryStream,</strong> возвращаемый методом Files.<strong>newDirectoryStream</strong>(), не является потоком Java 8 и не должен использоваться.',TIMESTAMP '2019-03-10 13:22:09',TIMESTAMP '2019-03-10 13:22:09');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1441,8,2,'Опишите метод <strong>find</strong>() класса <strong>Files</strong>.',TIMESTAMP '2019-03-10 13:44:40',TIMESTAMP '2019-03-10 13:44:40');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2792,1441,'<div>public static <em>Stream&lt;Path&gt;</em> <strong>find</strong>(<em>Path</em> start, <em>int</em> maxDepth,&nbsp;</div>
+<div>&nbsp; &nbsp;<em> BiPredicate&lt;Path,BasicFileAttributes&gt;</em> matcher, <em>FileVisitOption</em>... options) throws <em>IOException</em><br /><br />возвращает lazy-поток узлов, соответствующих предикату.<br />Дерево пробегается так же, как при использовании <strong>walk</strong>(). Метод работает быстрее, чем <strong>walk</strong>() с <strong>filter</strong>().<br />Получаемый поток надо использовать с try-with-resources.<br />Если при попытке доступа к папке, возвращенной потоком, возникает <em>IOException</em>, оно оборачивается в <em>UncheckedIOException</em>, в котором можно посмотреть исходную причину (<strong>getCause</strong>())<br />По умолчанию символические ссылки не интерпретируются. Если нужно обратное, использовать FOLLOW_LINKS.<br />Если проблема с доступом к стартовому пути, будет <em>IOException</em>. Если maxDepth отрицателен, будет <em>IllegalArgumentException</em>.</div>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1442,8,0,'Пример использования Files.<strong>find</strong>():<br /><br />
+<div>Path path = Paths.get("/bigcats");</div>
+<div>long dateFilter = 1420070400000L;</div>
+<div>&nbsp;</div>
+<div>try {</div>
+<div>&nbsp; &nbsp; Stream&lt;Path&gt; stream = Files.find(path, 10,</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; (p,a) -&gt; p.toString().endsWith(".java")</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;&amp; a.lastModifiedTime().toMillis()&gt;dateFilter);</div>
+<div>&nbsp; &nbsp; stream.forEach(System.out::println);</div>
+<div>} catch (Exception e) {</div>
+<div>&nbsp; &nbsp; // Handle file I/O exception...</div>
+<div>}</div>',TIMESTAMP '2019-03-10 13:47:12',TIMESTAMP '2019-03-10 13:47:12');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1443,8,2,'Опишите метод <strong>list</strong>() класса <strong>Files</strong>.',TIMESTAMP '2019-03-10 14:02:33',TIMESTAMP '2019-03-10 14:07:01');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2793,1443,'public static <em>Stream&lt;Path</em>&gt; <strong>list</strong>(<em>Path</em> dir) throws <em>IOException</em><br /><br />Возвращает lazy-поток с содержимым текущей папки. Получаемые пути резолвятся по имени элемента относительно исходной папки. Специальные ссылки (../.) не включаются.<br />Поток слабо консистентен, т.е. может отражать (или не отражать) изменения, которые произошли в файловой структуре после начала работы с потоком.<br />Надо использовать с try-with-resources.<br />Если при попытке доступа к папке, возвращенной потоком, возникает <em>IOException</em>, оно оборачивается в <em>UncheckedIOException</em>, в котором можно посмотреть исходную причину (<strong>getCause</strong>())<br /><em>IOException</em> выдается, если возникли проблемы с доступом к исходной папке, либо исходная папка оказалась не папкой.<br />',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1444,8,2,'Опишите метод <strong>lines</strong>() класса <strong>Files</strong>.',TIMESTAMP '2019-03-10 14:28:30',TIMESTAMP '2019-03-10 14:28:30');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2794,1444,'<div>public static <em>Stream&lt;String&gt;</em> <strong>lines</strong>(<em>Path</em> path, <em>Charset</em> cs) throws <em>IOException</em></div>
+<div>public static <em>Stream&lt;String&gt;</em> <strong>lines</strong>(<em>Path</em> path) throws <em>IOException</em></div>
+<div><br />Возвращает lazy-поток строк файла. Второй метод аналогичен первому с кодировкой&nbsp;StandardCharsets.<strong>UTF_8</strong>.<br />Разделители строк те же, что и в <strong>readAllLines</strong>().<br />Ошибки <em>IOException</em>, которые возникают при работе с потоком из-за невозможности применить кодировку или по иным причинам, либо при закрытии файла, оборачиваются в <em>UncheckedIOException</em>, выдаваемый при попытке чтения данных.<br />Поток следует использовать с try-with-resources.<br /><em>IOException</em> будет выдано при проблемах с доступом к исходному файлу, в т.ч. если он - не файл.</div>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1445,8,1,'<div>What is the output of the following code?</div>
+<div>&nbsp;</div>
+<div>Path path = Path.get("/user/.././root","../kodiacbear.txt");</div>
+<div>path.normalize().relativize("/lion");</div>
+<div>System.out.println(path);</div>
+<div>&nbsp;</div>',TIMESTAMP '2019-03-10 15:48:15',TIMESTAMP '2019-03-10 15:50:42');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2800,1445,'The code does not compile.',true,'Сразу две ошибки: Path.get вместо Paths; строка (а не путь), поданная в relativize');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2795,1445,'/user/.././root/../kodiacbear.txt',false,'Если бы не ошибки компиляции, это был бы правильный ответ, т.к. normalize() и relativize() возвращают новые пути, а не тот же самый');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2796,1445,'/user/./root/kodiacbear.txt/lion',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2797,1445,'<div>/kodiacbear.txt</div>
+<div>&nbsp;</div>',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2798,1445,'kodiacbear.txt',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2799,1445,'../lion',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1446,8,1,'<div>For which values of path inserted on the blank line would it be possible for the following code to output Success? (Choose all that apply.)</div>
+<div>&nbsp;</div>
+<div>Path path = ____________________;</div>
+<div>if(Files.isDirectory(path))</div>
+<div>&nbsp; &nbsp; System.out.println(Files.deleteIfExists(path) ? "Success": "Try Again");</div>
+<div>&nbsp;</div>',TIMESTAMP '2019-03-10 16:07:52',TIMESTAMP '2019-03-10 16:07:52');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2801,1446,'path refers to a regular file in the file system.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2802,1446,'path refers to a symbolic link in the file system.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2803,1446,'path refers to an empty directory in the file system.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2804,1446,'path refers to a directory with content in the file system.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2805,1446,'path does not refer to a record that exists within the file system.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2806,1446,'The code does not compile.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1447,8,1,'<div>What is the result of executing the following code? (Choose all that apply.)</div>
+<div>&nbsp;</div>
+<div>3: Path path = Paths.get("sloth.schedule");</div>
+<div>4: BasicFileAttributes attributes = Files.readAttributes(path, BasicFileAttributes.class);</div>
+<div>5: if(attributes.size()&gt;0 &amp;&amp; attributes.creationTime().toMillis()&gt;0) {</div>
+<div>6:&nbsp; &nbsp; &nbsp;attributes.setTimes(null,null,null);</div>
+<div>7: }</div>
+<div>&nbsp;</div>',TIMESTAMP '2019-03-10 16:14:24',TIMESTAMP '2019-03-10 16:14:58');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2807,1447,'It compiles and runs without issue.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2808,1447,'The code will not compile because of line 4.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2809,1447,'The code will not compile because of line 5.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2810,1447,'The code will not compile because of line 6.',true,'это представление - только для чтения, у него нет сеттеров');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2811,1447,'The code compiles but throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1448,8,1,'<div>If the current working directory is /user/home, then what is the output of the following code?</div>
+<div>&nbsp;</div>
+<div>Path path = Paths.get("/zoo/animals/bear/koala/food.txt");</div>
+<div>System.out.println(path.subpath(1,3).getName(1).toAbsolutePath());</div>
+<div>&nbsp;</div>',TIMESTAMP '2019-03-10 16:25:22',TIMESTAMP '2019-03-10 16:25:22');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2816,1448,'/user/home/food.txt',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2817,1448,'/user/home/koala/food.txt',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2818,1448,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2812,1448,'animals/bear',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2813,1448,'koala',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2814,1448,'/user/home/bear',true,'getNames вернет относительный путь bear, относительно текущей папки&nbsp;');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2815,1448,'/user/home/koala/koala',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1449,8,1,'<div>Assume /kang exists as a symbolic link to the directory /mammal/kangaroo within the file system. Which of the following statements are correct about this code snippet? (Choose all that apply.)</div>
+<div>&nbsp;</div>
+<div>Path path = Paths.get("/kang");</div>
+<div>if(Files.isDirectory(path) &amp;&amp; Files.isSymbolicLink(path))</div>
+<div>&nbsp; &nbsp; Files.createDirectory(path.resolve("joey"));</div>
+<div>&nbsp;</div>',TIMESTAMP '2019-03-10 16:39:38',TIMESTAMP '2019-03-10 16:39:38');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2819,1449,'A new directory will always be created.',false,'/mammal/kangaroo may not exist or /mammal/kangaroo/joey may already exist');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2820,1449,'A new directory will be created only if /mammal/kangaroo exists.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2821,1449,'If the code creates a directory, it will be reachable at /kang/joey.',true,'создастся папка /mammal/kangaroo/joey, но будет доступна и по пути /kang/joey');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2822,1449,'If the code creates a directory, it will be reachable at /mammal/kangaroo/joey.',true,'создастся папка /mammal/kangaroo/joey');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2823,1449,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2824,1449,'The code will compile but always throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1450,8,1,'<div>Given that /animals is a directory that exists and it is empty, what is the result of the following code?</div>
+<div>&nbsp;</div>
+<div>Path path = Paths.get("/animals");</div>
+<div>boolean myBoolean = Files.walk(path)</div>
+<div>&nbsp; &nbsp; .filter((p,a) -&gt; a.isDirectory() &amp;&amp; !path.equals(p)) // w1</div>
+<div>&nbsp; &nbsp; .findFirst().isPresent(); // w2</div>
+<div>System.out.println(myBoolean ? "No Sub-directory": "Has Sub-directory");</div>
+<div>&nbsp;</div>',TIMESTAMP '2019-03-10 16:52:04',TIMESTAMP '2019-03-10 16:52:04');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2825,1450,'It prints No Sub-directory.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2826,1450,'It prints Has Sub-directory.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2827,1450,'The code will not compile because of line w1.',true,'filter() принимает Predicate, а не BiPredicate');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2828,1450,'The code will not compile because of line w2.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2829,1450,'The output cannot be determined.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2830,1450,'It produces an infinite loop at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1451,8,1,'<div>If the current working directory is /zoo, and the path /zoo/turkey does not exist, then what is the result of executing the following code? (Choose all that apply.)</div>
+<div>&nbsp;</div>
+<div>Path path = Paths.get("turkey");</div>
+<div>if(Files.isSameFile(path,Paths.get("/zoo/turkey"))) // x1</div>
+<div>&nbsp; &nbsp; Files.createDirectory(path.resolve("info")); // x2</div>
+<div>&nbsp;</div>',TIMESTAMP '2019-03-10 17:01:52',TIMESTAMP '2019-03-10 17:01:52');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2832,1451,'The directory /zoo/turkey is created.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2833,1451,'The directory /zoo/turkey/info is created.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2834,1451,'The code will not compile because of line x1.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2835,1451,'The code will not compile because of line x2.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2836,1451,'It compiles but throws an exception at runtime.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2831,1451,'The code compiles and runs without issue, but it does not create any directories.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1452,8,1,'<div>What is the output of the following code?</div>
+<div>&nbsp;</div>
+<div>Path path1 = Paths.get("/pets/../cat.txt");</div>
+<div>Path path2 = Paths.get("./dog.txt");</div>
+<div>System.out.println(path1.resolve(path2));</div>
+<div>System.out.println(path2.resolve(path1));</div>
+<div>&nbsp;</div>',TIMESTAMP '2019-03-10 17:10:20',TIMESTAMP '2019-03-10 17:10:20');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2837,1452,'<div>/pets/../cat.txt/./dog.txt</div>
+<div>/pets/../cat.txt</div>',true,'/pets/../cat.txt - абсолютный путь');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2838,1452,'<div>/pets/../cat.txt/./dog.txt</div>
+<div>./dog.txt/pets/../cat.txt</div>',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2839,1452,'<div>/cats.txt</div>
+<div>/dog.txt</div>',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2840,1452,'<div>/cats.txt/dog.txt</div>
+<div>/cat.txt</div>',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2841,1452,'It compiles but throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1453,8,1,'<div>What are some advantages of using Files.lines() over Files.readAllLines()? (Choose all that apply.)</div>
+<div>&nbsp;</div>',TIMESTAMP '2019-03-10 17:15:15',TIMESTAMP '2019-03-10 17:15:15');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2842,1453,'It is often faster.',false,'не факт');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2843,1453,'It can be run on large files with very little memory available.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2844,1453,'It can be chained with stream methods directly.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2845,1453,'It does not modify the contents of the file.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2846,1453,'It ensures the file is not read-locked by the file system.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2847,1453,'There are no differences, because one method is a pointer to the other.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1454,8,1,'<div>What is correct about the following code snippet? (Choose all that apply.)</div>
+<div>&nbsp;</div>
+<div>Files.move(Paths.get("monkey.txt"), Paths.get("/animals"),</div>
+<div>&nbsp; &nbsp; StandardCopyOption.ATOMIC_MOVE,</div>
+<div>&nbsp; &nbsp; LinkOption.NOFOLLOW_LINKS);</div>
+<div>&nbsp;</div>',TIMESTAMP '2019-03-10 17:31:11',TIMESTAMP '2019-03-10 17:31:11');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2848,1454,'If /animals exists, it will be overwritten at runtime.',false,'нет, поскольку нет REPLACE_EXISTING');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2849,1454,'If monkey.txt is a symbolic link, the file it points to will be moved at runtime.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2850,1454,'If another process is monitoring the file system, it will not see an incomplete file at runtime.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2851,1454,'The code will always throw an exception, since no filename is specified in the target folder path.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2852,1454,'The metadata of monkey.txt will be moved along with the file.',true,'перемещение сохраняет метаданные');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1455,8,1,'<div>For the copy() method shown here, assume that the source exists as regular file and that the target does not. What is the result of the following code?</div>
+<div>&nbsp;</div>
+<div>Path path1 = Paths.get("./goat.txt").normalize(); // k1</div>
+<div>Path path2 = Paths.get("mule.png");</div>
+<div>Files.copy(path1,path2,StandardCopyOption.COPY_ATTRIBUTES); //k2</div>
+<div>System.out.println(Files.isSameFile(path1, path2)); //k3</div>
+<div>&nbsp;</div>',TIMESTAMP '2019-03-10 18:48:43',TIMESTAMP '2019-03-10 18:48:43');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2853,1455,'It will output false.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2854,1455,'It will output true.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2855,1455,'It does not compile because of line k1.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2856,1455,'It does not compile because of line k2.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2857,1455,'It does not compile because of line k3.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2858,1455,'It compiles but throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1456,8,1,'<div>Which of the following methods cannot be used to obtain a Path instance? (Choose all that apply.)</div>
+<div>&nbsp;</div>',TIMESTAMP '2019-03-10 18:58:58',TIMESTAMP '2019-03-10 18:58:58');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2864,1456,'new FileSystem().getPath("leopard")',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2865,1456,'Paths.get("ocelot.txt")',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2859,1456,'new Path("jaguar.txt")',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2860,1456,'FileSystems.getDefault().getPath("puma.txt")',false,'так можно');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2861,1456,'Paths.get(new URI("cheetah.txt"))',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2862,1456,'Paths.get("cats","lynx.txt")',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2863,1456,'new java.io.File("tiger.txt").toPath()',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1457,8,1,'<div>Assume /monkeys exists as a regular directory containing multiple files, symbolic links, and subdirectories. What is true about the following code? (Choose all that apply.)</div>
+<div>&nbsp;</div>
+<div>Path path = Paths.get("/monkeys");</div>
+<div>Files.find(path, 0, (p,a) -&gt; a.isSymbolicLink()).map(p -&gt; p.toString()) // y1</div>
+<div>&nbsp; &nbsp; .collect(Collectors.toList()) // y2</div>
+<div>&nbsp; &nbsp; .stream() // y3</div>
+<div>&nbsp; &nbsp; .filter(x -&gt; x.toString().endsWith(".txt")) // y4</div>
+<div>&nbsp; &nbsp; .forEach(System.out::println);</div>
+<div>&nbsp;</div>',TIMESTAMP '2019-03-10 19:07:08',TIMESTAMP '2019-03-10 19:07:08');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2866,1457,'It will print all symbolic links in the directory tree ending in .txt.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2867,1457,'It will print nothing.',true,'из-за depth==0 в поток попадет только сама исходная папка');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2868,1457,'It does not compile because of line y1.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2869,1457,'It does not compile because of line y2.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2870,1457,'It does not compile because of line y3.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2871,1457,'It does not compile because of line y4.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2872,1457,'It compiles but throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1458,8,1,'<div>Which NIO.2 method is most similar to the legacy java.io.File.listFiles() method?</div>
+<div>&nbsp;</div>',TIMESTAMP '2019-03-10 19:10:39',TIMESTAMP '2019-03-10 19:10:39');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2873,1458,'Path.listFiles()',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2874,1458,'Files.walk()',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2875,1458,'Files.find()',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2876,1458,'Files.files()',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2877,1458,'Files.list()',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2878,1458,'Files.lines()',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1459,8,1,'<div>What are some advantages of using NIO.2 views to read metadata rather than individually from java.nio.Files methods? (Choose all that apply.)</div>
+<div>&nbsp;</div>',TIMESTAMP '2019-03-10 19:16:01',TIMESTAMP '2019-03-10 19:16:01');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2880,1459,'For reading a single attribute, it is often more performant.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2881,1459,'It allows you to read symbolic links.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2882,1459,'It makes fewer round-trips to the file system.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2883,1459,'It can be used to access file system&ndash;dependent attributes.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2884,1459,'For reading multiple attributes, it is often more performant.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2879,1459,'It can be used on both files and directories.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1460,8,1,'<div>Assuming /squid/food-schedule.csv exists as a regular non-empty file that a program has access to read, what is correct about the following code snippet? (Choose all that apply.)</div>
+<div>&nbsp;</div>
+<div>Path path = Paths.get("/squid/food-schedule.csv");</div>
+<div>Files.lines(path) // r1</div>
+<div>&nbsp; &nbsp; .flatMap(p -&gt; Stream.of(p.split(","))) // r2</div>
+<div>&nbsp; &nbsp; .map(s -&gt; s.toUpperCase()) // r3</div>
+<div>&nbsp; &nbsp; .forEach(System.out::println);</div>
+<div>&nbsp;</div>',TIMESTAMP '2019-03-10 19:27:16',TIMESTAMP '2019-03-10 19:27:16');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2885,1460,'It compiles but may throw an exception at runtime.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2886,1460,'The code will not compile because of line r1.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2887,1460,'The code will not compile because of line r2.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2888,1460,'The code will not compile because of line r3.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2889,1460,'It may not print anything at runtime.',true,'такое может случиться, если файл состоит из одних запятых');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2890,1460,'If it prints anything, it will not include commas.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1461,8,1,'<div>Assuming the current directory is /animals/cute, which are possible results of executing the following code? (Choose all that apply.)</div>
+<div>&nbsp;</div>
+<div>Files.walk(Paths.get("..").toRealPath().getParent()) // u1</div>
+<div>&nbsp; &nbsp; .map(p -&gt; p.toAbsolutePath().toString()) // u2</div>
+<div>&nbsp; &nbsp; .filter(s -&gt; s.endsWith(".java")) // u3</div>
+<div>&nbsp; &nbsp; .collect(Collectors.toList())</div>
+<div>&nbsp; &nbsp; .forEach(System.out::println);</div>
+<div>&nbsp;</div>',TIMESTAMP '2019-03-10 19:38:55',TIMESTAMP '2019-03-10 19:38:55');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2896,1461,'It prints all .java files in the /animals/cute directory tree.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2897,1461,'It prints all .java files in the root directory tree.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2891,1461,'It compiles but may throw an exception at runtime.',true,'например, если нет доступа к какому-нибудь файлу (что вполне возможно, если бежим с корня по всей файловой системе)');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2892,1461,'The code will not compile because of line u1.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2893,1461,'The code will not compile because of line u2.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2894,1461,'The code will not compile because of line u3.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2895,1461,'It prints all .java files in the /animals directory tree.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1462,8,1,'<div>Assuming the directories and files referenced here all exist and are accessible within the file system, what is the result of the following code?</div>
+<div>&nbsp;</div>
+<div>Path path1 = Paths.get("/lizard/./").resolve(Paths.get("walking.txt"));</div>
+<div>Path path2 = new File("/lizard/././actions/../walking.txt").toPath();</div>
+<div>&nbsp;</div>
+<div>System.out.print(Files.isSameFile(path1,path2));</div>
+<div>System.out.print(" "+path1.equals(path2));</div>
+<div>System.out.print(" "+path1.normalize().equals(path2.normalize()));</div>
+<div>&nbsp;</div>',TIMESTAMP '2019-03-10 19:46:11',TIMESTAMP '2019-03-10 19:46:11');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2898,1462,'true true true',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2899,1462,'false false false',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2900,1462,'false true false',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2901,1462,'true false true',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2902,1462,'true false false',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2903,1462,'The code does not compile.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1463,8,1,'<div>What are three advantages of the NIO.2 API over the legacy java.io.File class for working with files?</div>
+<div>&nbsp;</div>',TIMESTAMP '2019-03-10 19:49:20',TIMESTAMP '2019-03-10 19:49:20');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2904,1463,'NIO.2 supports file system&ndash;dependent attributes.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2905,1463,'NIO.2 can be used to list all the files within a single directory.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2906,1463,'NIO.2 allows you to traverse a directory tree directly.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2907,1463,'NIO.2 can be used to delete files and non-empty directories.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2908,1463,'NIO.2 supports symbolic links.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2909,1463,'NIO.2 can be used to read the last-modified time.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1464,8,1,'<div>Assuming the current directory is /seals/harp/food, what is the result of executing the following code?</div>
+<div>&nbsp;</div>
+<div>final Path path = Paths.get(".").normalize(); // h1</div>
+<div>int count = 0;</div>
+<div>for(int i=0; i&lt;path.getNameCount(); ++i) {</div>
+<div>&nbsp; &nbsp; count++;</div>
+<div>}</div>
+<div>System.out.println(count);</div>
+<div>&nbsp;</div>',TIMESTAMP '2019-03-10 20:01:09',TIMESTAMP '2019-03-10 20:01:09');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2912,1464,'2',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2913,1464,'3',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2914,1464,'4',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2915,1464,'The code throws a runtime exception because of line h1.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2910,1464,'0',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2911,1464,'1',true,'getNameCount() пустого пути равен 1');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,609,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,610,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,612,0);
@@ -6188,7 +6455,12 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1436,64);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1437,65);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1438,66);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1439,67);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1440,68);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,392,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1441,69);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1442,70);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1443,71);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (38,1444,72);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,387,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,388,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,389,0);
@@ -6198,25 +6470,45 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,393,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,394,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,395,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,396,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (39,1445,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,397,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (39,1446,2);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,398,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (39,1447,3);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,399,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (39,1448,4);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,400,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (39,1449,5);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,401,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (39,1450,6);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,402,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (39,1451,7);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,403,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (39,1452,8);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,404,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (39,1453,9);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,405,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (39,1454,10);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,406,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (39,1455,11);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,407,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (39,1456,12);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,408,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (39,1457,13);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,409,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (39,1458,14);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,410,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (39,1459,15);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,411,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (39,1460,16);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,412,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (39,1461,17);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,413,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (39,1462,18);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,414,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (39,1463,19);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,415,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (39,1464,20);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,416,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,417,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,418,0);
