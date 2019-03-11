@@ -1,3 +1,3 @@
-﻿p.490 You see that the Stream<Path> object returned
+﻿p.505 JDBC
 
-p.505 JDBC
+p.515 In some databases, you use an alias rather than the database name.
