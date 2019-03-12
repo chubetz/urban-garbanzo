@@ -5272,6 +5272,19 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1474,8,0,'Примеры строк подключения JBDC:<br /><br />jdbc:postgresql://localhost/zoo<br />jdbc:oracle:thin:@123.123.123.123:1521:zoo<br />jdbc:mysql://localhost:3306/zoo?profileSQL=true',TIMESTAMP '2019-03-11 18:11:56',TIMESTAMP '2019-03-11 18:11:56');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1475,8,2,'Объясните, в чем некорректность следующих строк подключения.<br /><br />1) jdbc:postgresql://local/zoo<br /><br />2) jdbc:mysql://123456/zoo<br /><br />3) jdbc;oracle;thin;/localhost/zoo',TIMESTAMP '2019-03-11 18:39:21',TIMESTAMP '2019-03-11 18:39:21');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2923,1475,'1) local вместо localhost. На экзамене это важно<br />2) 123456 в качестве расположения БД. Бессмыслица с т.з. экзамена<br />3) неправильный разделитель.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1476,8,0,'<strong>Connection</strong> можно получить двумя способами: через класс java.sql.<strong>DriverManager</strong> или через&nbsp;интерфейс javax.sql.<strong>DataSource</strong>. Первый в реальной жизни использовать не надо.',TIMESTAMP '2019-03-12 11:05:43',TIMESTAMP '2019-03-12 11:05:43');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1477,8,2,'Как получить объект <strong>Connection</strong>?',TIMESTAMP '2019-03-12 11:14:05',TIMESTAMP '2019-03-12 11:35:05');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2924,1477,'<p>public static <em>Connection</em> <strong>getConnection</strong>(<em>String</em> url, <em>Properties</em> info) throws <em>SQLException</em></p>
+<p>Properties обычно содержат (по меньшей мере )свойства "user" и "password"</p>
+<p>public static <em>Connection</em> <strong>getConnection</strong>(<em>String</em> url, <em>String</em> user<em>,</em> <em>String</em> password) throws <em>SQLException</em></p>
+<p>(это плохая сигнатура, не надо светить логин/пароль в коде)<br /><br />public static <em>Connection</em> <strong>getConnection</strong>(<em>String</em> url) throws <em>SQLException</em></p>
+<p><em>SQLException</em> выдается, если с доступом к БД проблемы, или если <em>url</em> пустой<br /><br /></p>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1478,8,0,'Пример получения <strong>Connection</strong>:<br /><br />import java.sql.*;<br />public class TestConnect {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) throws SQLException {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Connection conn = DriverManager.getConnection("jdbc:derby:zoo");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(conn);<br />&nbsp;&nbsp;&nbsp; }<br />}',TIMESTAMP '2019-03-12 11:14:43',TIMESTAMP '2019-03-12 11:14:43');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1479,8,0,'Если в экзамене не идет специально речь о наличии/отсутствии JDBC-драйвера в CLASSPATH, то считаем, что порядок. В противном случае это будет оговорено и будет приведена командная строка',TIMESTAMP '2019-03-12 11:39:49',TIMESTAMP '2019-03-12 11:39:49');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1480,8,2,'Как <strong>DriverManager</strong> ищет подходящий драйвер?',TIMESTAMP '2019-03-12 11:45:16',TIMESTAMP '2019-03-12 11:45:16');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2925,1480,'- идет поиск среди JAR-файлов<br />- у JAR-драйверов в директории META-INF/services есть файл под названием java.sql.Driver<br />- внутри файла расположено полное имя класса, имплементирующего <strong>Driver</strong>.<br />- DriverManager пробует все найденный драйвера на предмет возможности обработки JDBC url. Если получается - то создается <strong>Connection</strong> с использованием найденного драйвера. Если драйвер подобрать не удалось - выдается <em>SQLException</em>.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1481,8,0,'<strong>DataSource</strong> лучше тем, что не надо самостоятельно передавать пароли к БД, т.к. это делается на стороне самой БД ее разработчиками при подготовке источника. Второе преимущество - возможность использования пула подключений, чтобы не надо было изготавливать каджый раз новое.',TIMESTAMP '2019-03-12 12:10:44',TIMESTAMP '2019-03-12 12:10:44');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1482,8,0,'Если использовать метод<br /><br />Class.<strong>forName</strong>("org.postgresql.Driver");<br />(public static Class&lt;?&gt; <strong>forName</strong>(String className) throws ClassNotFoundException)<br /><br />то можно загрузить драйвер, даже если в JAR-файле отсутствует META-INF/services/java.sql.Driver<br /><br />Вреда в использованиии этого метода нет',TIMESTAMP '2019-03-12 13:00:30',TIMESTAMP '2019-03-12 13:00:30');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,609,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,610,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,612,0);
@@ -6552,12 +6565,19 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1474,10);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,426,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1475,11);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,427,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1476,12);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,428,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1477,13);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,429,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1478,14);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,430,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1479,15);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,431,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1480,16);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,432,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1481,17);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,433,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1482,18);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,434,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,435,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,436,0);
