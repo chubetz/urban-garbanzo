@@ -5285,6 +5285,57 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2925,1480,'- идет поиск среди JAR-файлов<br />- у JAR-драйверов в директории META-INF/services есть файл под названием java.sql.Driver<br />- внутри файла расположено полное имя класса, имплементирующего <strong>Driver</strong>.<br />- DriverManager пробует все найденный драйвера на предмет возможности обработки JDBC url. Если получается - то создается <strong>Connection</strong> с использованием найденного драйвера. Если драйвер подобрать не удалось - выдается <em>SQLException</em>.',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1481,8,0,'<strong>DataSource</strong> лучше тем, что не надо самостоятельно передавать пароли к БД, т.к. это делается на стороне самой БД ее разработчиками при подготовке источника. Второе преимущество - возможность использования пула подключений, чтобы не надо было изготавливать каджый раз новое.',TIMESTAMP '2019-03-12 12:10:44',TIMESTAMP '2019-03-12 12:10:44');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1482,8,0,'Если использовать метод<br /><br />Class.<strong>forName</strong>("org.postgresql.Driver");<br />(public static Class&lt;?&gt; <strong>forName</strong>(String className) throws ClassNotFoundException)<br /><br />то можно загрузить драйвер, даже если в JAR-файле отсутствует META-INF/services/java.sql.Driver<br /><br />Вреда в использованиии этого метода нет',TIMESTAMP '2019-03-12 13:00:30',TIMESTAMP '2019-03-12 13:00:30');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1483,8,2,'Опишите разницу в META-INF/services междуJDBC &lt;= 3.0 и JDBC &gt;= 4.0',TIMESTAMP '2019-03-15 13:33:56',TIMESTAMP '2019-03-15 13:33:56');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2926,1483,'обязательное присутствие java.sql.Driver&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>Нет&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Да</strong><br />процессинг java.sql.Driver при его наличии&nbsp; <strong>&nbsp;Да&nbsp;&nbsp;&nbsp;&nbsp; Да</strong><br />Обязательное использование Class.forName&nbsp; <strong>Да&nbsp;&nbsp;&nbsp;&nbsp; Нет</strong><br />допустимость Class.forName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong> Да&nbsp;&nbsp;&nbsp;&nbsp; Да</strong>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1484,8,2,'Для чего нужен объект <strong>Statement</strong>?',TIMESTAMP '2019-03-15 13:37:55',TIMESTAMP '2019-03-15 13:37:55');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2927,1484,'Для выполнения непосредственно SQL.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1485,8,2,'Как можно получить объект <strong>Statement</strong>?',TIMESTAMP '2019-03-15 13:52:56',TIMESTAMP '2019-03-15 13:52:56');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2928,1485,'<p>Получается с объекта <strong>Connection</strong>.<br /><br /><em>Statement</em> <strong>createStatement</strong>() throws <em>SQLException</em><br /><em>Statement</em> <strong>createStatement</strong>(<em>int</em> resultSetType, <em>int</em> resultSetConcurrency) throws <em>SQLException</em><br /><em>Statement</em> <strong>createStatement</strong>(<em>int</em> resultSetType, <em>int</em> resultSetConcurrency, <em>int</em> resultSetHoldability) throws <em>SQLException</em></p>
+<p>Объект для однократного выполнения запроса.</p>
+<p>resultSetType принимает одно из значений: ResultSet.TYPE_FORWARD_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.TYPE_SCROLL_SENSITIVE<br />resultSetConcurrency принимает одно из значений: ResultSet.CONCUR_READ_ONLY, ResultSet.CONCUR_UPDATABLE<br />resultSetHoldability&nbsp; принимает одно из значений: ResultSet.HOLD_CURSORS_OVER_COMMIT, ResultSet.CLOSE_CURSORS_AT_COMMIT</p>
+<p>Полученный <strong>ResultSet</strong> по умолчанию будет иметь характеристики TYPE_FORWARD_ONLY и СONCUR_READ_ONLY.</p>
+<p><br /><em>SQLException</em>, если нет доступа к БД, или соединение закрыто, или поданные параметры не входят в число допустимых констант.</p>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1486,8,2,'Опишите константы типа <strong>ResultSet</strong>.',TIMESTAMP '2019-03-15 15:42:42',TIMESTAMP '2019-03-15 15:42:42');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2929,1486,'<strong>TYPE_FORWARD_ONLY</strong>. Значение по умолчанию. Можно получать данные в том порядке, в каком они были извлечены из БД.<br /><strong>TYPE_SCROLL_INSENSITIVE</strong>. Прохождение по данным (скроллинг) возможно в оба конца. Можно получить доступ к произвольным данным. Изменения в БД не влияют на просмотр данных.<br /><strong>TYPE_SCROLL_SENSITIVE</strong>. То же, что и предыдущее, только данные обновляются синхронно с БД (<span style="text-decoration: underline;">не всеми БД поддерживается</span>).',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1487,8,0,'Если требуемый параметр <strong>ResultSet</strong> не поддерживается конкретным драйвером, последний может вернуть Statement другого типа. Например <em>TYPE_SCROLL_INSENSITIVE</em> вместо <em>TYPE_SCROLL_SENSITIVE, CONCUR_READ_ONLY вместо CONCUR_UPDATABLE.</em>',TIMESTAMP '2019-03-15 15:44:32',TIMESTAMP '2019-03-15 15:52:21');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1488,8,2,'Опишите константы конкурентного режима <strong>ResultSet</strong>.',TIMESTAMP '2019-03-15 15:51:34',TIMESTAMP '2019-03-15 15:51:34');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2930,1488,'<strong>CONCUR_READ_ONLY</strong>. Значение по умолчанию. Не позволяет изменять <strong>ResultSet</strong>.<br /><strong>CONCUR_UPDATABLE</strong>. Позволяет. Не всеми БД поддерживается.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1489,8,2,'Каким методом выполняется запрос, изменяющий БД?',TIMESTAMP '2019-03-15 16:13:30',TIMESTAMP '2019-03-15 16:13:30');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2931,1489,'<p>Объект <strong>Statement</strong>.<br />Методы: <br /><br /><em>int </em><strong>executeUpdate</strong>(<em>String</em> sql) throws <em>SQLException</em></p>
+<p>Выполняет INSERT, UPDATE, DELETE или ничего не возвращающее SQL-выражение (например, SQL DDL)<br />Возвращает число строк, подвергнутых воздействию, или 0</p>
+<p><em>SQLException</em>, если<br />- ошибка доступа к БД<br />- вызов на закрытом <strong>Statement</strong><br />- выражение продуцирует <strong>ResultSet</strong><br />- метод вызван на <strong>PreparedStatement</strong> или <strong>CallableStatement</strong></p>
+<p><em>int</em> <strong>executeUpdate</strong>(<em>String</em> sql, <em>int</em> autoGeneratedKeys) throws <em>SQLException</em></p>
+<p>То же самое, но позволяет задать Statement.RETURN_GENERATED_KEYS или Statement.NO_GENERATED_KEYS.</p>
+<p><em>int</em> <strong>executeUpdate</strong>(<em>String</em> sql, <em>int</em>[] columnIndexes) throws <em>SQLException</em><br /><em>int</em> <strong>executeUpdate</strong>(<em>String</em> sql, <em>String</em>[] columnNames) throws <em>SQLException</em></p>
+<p>разновидности предыдущего</p>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1490,8,2,'Каким методом выполняется SELECT-запрос?',TIMESTAMP '2019-03-15 16:22:41',TIMESTAMP '2019-03-15 16:22:41');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2932,1490,'<p>Объект <strong>Statement</strong>.<br />Метод:</p>
+<p><em>ResultSet</em> <strong>executeQuery</strong>(<em>String</em> sql) throws <em>SQLException</em></p>
+<p><em>SQLException</em>, если <br />- ошибка доступа к БД<br />- вызов на закрытом <strong>Statement</strong><br />- SQL выражение генерирует что-то отличное от <strong>ResultSet</strong><br />- метод вызван на <strong>PreparedStatement</strong> или <strong>CallableStatement</strong></p>
+<p>&nbsp;</p>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1491,8,2,'Каким методом можно выполнить любой запрос?',TIMESTAMP '2019-03-15 16:28:15',TIMESTAMP '2019-03-15 16:28:15');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2933,1491,'<p>Объект <strong>Statement</strong>.<br />Метод:<br /><br /><em>boolean</em> <strong>execute</strong>(<em>String</em> sql) throws <em>SQLException</em></p>
+<p>Выполняет любой запрос.<br />Возвращает <strong>true</strong>, если получился <strong>ResultSet</strong>, и <strong>false</strong>, если вернулось число измененных строк</p>
+<p><em>SQLException</em>, если <br />- ошибка доступа к БД<br />- метод вызван на закрытом <strong>Statement</strong><br />- метод вызван на <strong>PrepareStatement</strong> или <strong>CallableStatement</strong></p>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1492,8,2,'Как извлечь данные о результатах запроса, если использовался метод <strong>execute</strong>() объекта <strong>Statement</strong>?',TIMESTAMP '2019-03-15 16:34:48',TIMESTAMP '2019-03-15 16:34:48');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2934,1492,'<p>Объект <strong>Statement</strong>.<br />Методы:<br /><br /><em>ResultSet</em> <strong>getResultSet</strong>() throws <em>SQLException</em></p>
+<p>возвращает <strong>null</strong>, если нет <strong>ResultSet''а</strong>, или нет <strong>moreResults</strong></p>
+<p><em>int</em> <strong>getUpdateCount</strong>() throws <em>SQLException</em></p>
+<p>возвращает -1, если есть <strong>ResultSet</strong> или нет <strong>moreResults</strong></p>
+<p>Оба метода должны быть вызваны один раз на результат.</p>
+<p>SQLException, если<br />- ошибка доступа к БД<br />- метод вызван на закрытом Statement<br /><br /><br /></p>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1493,8,0,'Пример использование Statement.<strong>execute</strong>():<br /><br />boolean isResultSet = stmt.execute(sql);<br />if (isResultSet) {<br />&nbsp;&nbsp;&nbsp; ResultSet rs = stmt.getResultSet();<br />&nbsp;&nbsp;&nbsp; System.out.println("ran a query");<br />} else {<br />&nbsp;&nbsp;&nbsp; int result = stmt.getUpdateCount();<br />&nbsp;&nbsp;&nbsp; System.out.println("ran an update");<br />}',TIMESTAMP '2019-03-15 16:35:13',TIMESTAMP '2019-03-15 16:35:13');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1494,8,2,'Чем <strong>PreparedStatement</strong> лучше <strong>Statement</strong>?',TIMESTAMP '2019-03-15 16:45:47',TIMESTAMP '2019-03-15 16:45:47');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2935,1494,'1) Быстродействие. Можно выполнять один <strong>PreparedStatement</strong> несколько раз.<br /><br />2) Безопасность. Противодействие SQL-injection с помощью<br /><br />PreparedStatement ps = conn.prepareStatement("delete from animal where name = ?");<br />ps.setString(1, name);<br />ps.execute();<br /><br />3) Читаемость. Нет необходимости производить сложную конкатенацию при подготовке SQL-запроса',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1495,8,2,'Перечислите основные методы для извлечения данных из однонаправленного <strong>RecordSet.</strong>',TIMESTAMP '2019-03-15 17:14:47',TIMESTAMP '2019-03-15 17:14:47');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2936,1495,'<p><em>boolean </em><strong>next()</strong> throws <em>SQLException</em></p>
+<p>передвигает курсор на следующую позицию. В начале располагается до первой позиции.<br />возвращает false, если ушел с последней позиции</p>
+<p><em>SQLException</em>, если<br />- ошибка доступа к БД<br />- вызов на закрытом <strong>ResultSet</strong></p>
+<p><em>int</em> <strong>getInt</strong>(<em>int</em> columnIndex) throws <em>SQLException</em><br /><em>int</em> <strong>getInt</strong>(<em>String</em> columnLabel) throws <em>SQLException</em><br /><em>String</em> <strong>getString</strong>(<em>int</em> columnIndex) throws <em>SQLException</em><br /><em>String</em> <strong>getString</strong>(<em>String</em> columnLabel) throws <em>SQLException</em></p>
+<p>возвращает целое из указанной колонки по имени или индексу (индекс первой колонки - 1). <br />getInt: 0, если в ячейке NULL<br />getString: NULL, если в ячейке NULL</p>
+<p><em>SQLException</em>, если <br />- ошибка доступа к БД<br />- неверный номер колонки<br />- вызов на закрытом <strong>ResultSet</strong></p>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1496,8,2,'приведите пример кода, считывающего данные из однонаправленного <strong>RecordSet</strong>',TIMESTAMP '2019-03-15 17:16:01',TIMESTAMP '2019-03-15 17:16:01');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2937,1496,'Map&lt;Integer, String&gt; idToNameMap = new HashMap&lt;&gt;();<br />ResultSet rs = stmt.executeQuery("select id, name from species");<br />while(rs.next()) {<br />&nbsp;&nbsp;&nbsp; int id = rs.getInt("id");<br />&nbsp;&nbsp;&nbsp; String name = rs.getString("name");<br />&nbsp;&nbsp;&nbsp; idToNameMap.put(id, name);<br />}',true,'');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,609,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,610,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,612,0);
@@ -6579,18 +6630,32 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1481,17);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,433,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1482,18);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,434,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1483,19);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,435,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1484,20);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,436,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1485,21);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,437,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1486,22);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,438,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1487,24);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,439,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1488,23);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1489,25);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,441,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1490,26);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,442,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1491,27);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,443,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1492,28);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,444,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1493,29);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,445,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1494,30);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,446,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1495,31);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,447,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (40,1496,32);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,448,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,449,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,450,0);

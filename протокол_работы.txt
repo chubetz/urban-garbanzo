@@ -1,3 +1,3 @@
-﻿p.515 In some databases, you use an alias rather than the database name.
+﻿p. 518 Obviously, this is not a valid driver name.
 
-p. 518 Obviously, this is not a valid driver name.
+p. 525 We did say the “best way.”
