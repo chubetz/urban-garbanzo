@@ -19,7 +19,7 @@ public class User {
     private Storage storage;
     
     public static User getDefaultUser() {
-        if (defaultUser == null) {
+        if (defaultUser == null || Storage.getStorage() != defaultUser.storage) {
             defaultUser = new User();
             defaultUser.login = "chubetz";
             defaultUser.state = new State();

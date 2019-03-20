@@ -26,6 +26,16 @@
             </form>
         </td>
     </tr>
+    <tr>
+        <td colspan="2" class="min_header" bgcolor="#d8cFaA">
+        <form name="upload_sql" action="controller" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="action" value="upload_sql">        
+            <input type="file" name="file" accept="text/plain">
+            <input type="submit" value="Загрузить SQL" /> 
+        </form>
+        
+        </td>
+    </tr>
 </table>
             
         </td>

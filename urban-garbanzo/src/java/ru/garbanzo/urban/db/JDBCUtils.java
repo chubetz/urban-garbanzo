@@ -124,6 +124,32 @@ public class JDBCUtils {
         return list;
     }
     
+    public static int executeUpdate(String sql) throws JDBCException {
+        try (Connection conn = JDBCUtils.getHSQLConnection();
+              Statement stmt = conn.createStatement()) {
+            
+            return stmt.executeUpdate(sql);
+        } catch (SQLException ex) {
+            throw new JDBCException(ex, sql, null);
+        }
+    }
+    
+    public static int executeUpdateList(List<String> sqls) throws JDBCException {
+        String currentSql = null;
+        try (Connection conn = JDBCUtils.getHSQLConnection();
+              Statement stmt = conn.createStatement()) {
+            int total = 0;
+            for (String sql: sqls) {
+                currentSql = sql;
+                Utils.print("executing " + sql);
+                total += stmt.executeUpdate(sql);
+            }
+            return total;
+        } catch (SQLException ex) {
+            throw new JDBCException(ex, currentSql, null);
+        }
+    }
+
     public static String getSQLLiteral(Object obj) {
         String result = null;
         if (obj instanceof String) {

@@ -5,10 +5,12 @@
  */
 package ru.garbanzo.urban.controller;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -292,6 +295,57 @@ public class MainServlet extends ErrorHandlingServlet {
                         } finally {
                             fos.close();
                         }
+                        
+                    }
+                }
+                break;
+                
+            case "upload_sql":
+                {
+                    url = "/";
+                    Part part = request.getPart("file");
+                    try (BufferedReader br = new BufferedReader(
+                                new InputStreamReader(part.getInputStream(), "UTF-8"));) {
+                        
+                        
+                        int chr;
+                        int ap_count = 0; //счетчик апострофов, нужен, чтобы отличить разделяющий ; от внутритекстового
+                        StringBuilder sb = new StringBuilder();
+                        boolean firstLine = true;
+                        List<String> list = new LinkedList<>();
+                        while ((chr = br.read()) != -1) {
+                            char c = (char)chr;
+                            if (c == '\'')
+                                ap_count++;
+                            if (c == ';' && ap_count % 2 == 0) { //закончилось SQL-выражение
+                                String stmt = sb.toString().trim();
+                                if (firstLine) { // Избавляемся от служебных символов в начале файла
+                                    stmt = stmt.replaceFirst("^\\W+", "");
+                                    firstLine = false;
+                                }
+                                sb = new StringBuilder();
+                                //Utils.print(stmt);
+                                //int processedQty = JDBCUtils.executeUpdate(stmt);
+                                //Utils.print("Обработано " + processedQty + "строк");
+                                list.add(stmt);
+                            } else {
+                                sb.append(c);
+                            }
+                                
+                        }
+                        
+                        int processedQty = JDBCUtils.executeUpdateList(list);
+                        Utils.print("Обработано " + processedQty + "строк");
+                        
+                        Storage.init();
+                        
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    } catch (JDBCException e) {
+                        Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, e);
+                        url = "/db_error.jsp";
+                        request.setAttribute("exception", e);
+                        break;
                         
                     }
                 }
