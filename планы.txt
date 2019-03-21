@@ -1,10 +1,4 @@
-﻿!!! отметить, что ресурсы в try-with-resources закрываются всегда, даже если исключение или return
-
-!!! Символьные литералы!
-Characters in Java are indices into the Unicode character set. They are 16-bit values that can be converted into integers and manipulated with the integer operators, such as the addition and subtraction operators. A literal character is represented inside a pair of single quotes. All of the visible ASCII characters can be directly entered inside the quotes, such as ‘a’, ‘z’, and ‘@’. For characters that are impossible to enter directly , there are several escape sequences that allow you to enter the character you need, such as ‘\’’ for the single-quote character itself and ‘\n’ for the newline character. There is also a mechanism for directly entering the value of a character in octal or hexadecimal. For octal notation, use the backslash followed by the three-digit number. For example, ‘\141’ is the letter ‘a’. For hexadecimal, you enter a backslash-u ( \u ), then exactly four hexadecimal digits. For example, ‘\u0061’ is the ISO-Latin-1 ‘a’ because the top byte is zero. ‘\ua432’ is a Japanese Katakana character.
-
-\u000d и \u000a использовать нельзя, надо '\r' и '\n'
-
+﻿
 +++
 Предметная область переименовывается в Группу. Группы могут быть вложенные. При этом они остаются самостоятельными.
 В группе могут быть карточки. В группу можно добавить материал. Другую группу или материал внутрь материала вложить нельзя.
