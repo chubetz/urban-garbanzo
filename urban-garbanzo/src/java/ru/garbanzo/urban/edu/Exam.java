@@ -328,16 +328,10 @@ public class Exam implements Iterator<Question> {
         if (this.refreshOnly)
             return;
         
-        int correctAnswersQty = 0;
-        for (Map.Entry<Integer, Boolean> entry : userAnswers.entrySet()) {
-            Map<String, Object> data = new HashMap<String, Object>();
-            data.put("questionId", entry.getKey());
-            data.put("correct", entry.getValue());
-            data.put("answerDate", new java.sql.Date(System.currentTimeMillis()));
-            if (entry.getValue())
-                correctAnswersQty++;
-            UserAnswer.saveUserAnswer(-1, data);
-        }
+        saveUserAnswers();
+        
+        int correctAnswersQty = (int)userAnswers.values().stream().filter(a -> a).count();
+
         if ((qState == QuestionState.Answered || current.getType() == Question.NB_TYPE) && !hasNext()) { // экзамен пройден до конца, следует записать по нему статистику
             int realQuestionsQty = 0;
             for (Question q : questionSequence) {
@@ -352,6 +346,17 @@ public class Exam implements Iterator<Question> {
                 ThemeExam.saveThemeExam(-1, data);
             }
         }
+    }
+    
+    protected void saveUserAnswers() throws JDBCException { //сохраняет пользовательские ответы и возвращает число
+        for (Map.Entry<Integer, Boolean> entry : userAnswers.entrySet()) {
+            Map<String, Object> data = new HashMap<String, Object>();
+            data.put("questionId", entry.getKey());
+            data.put("correct", entry.getValue());
+            data.put("answerDate", new java.sql.Date(System.currentTimeMillis()));
+            UserAnswer.saveUserAnswer(-1, data);
+        }
+        
     }
     
     private enum QuestionState {
