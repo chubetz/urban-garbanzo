@@ -206,7 +206,7 @@ public class Storage {
         
         int questionId = answer.getInt("questionId");
         if (questionMap.get(questionId) == null)
-            throw new RuntimeException("Ответ с идентификатором " + questionId + ", для которого производится попытка зарегистрировать ответ, не найден в памяти");
+            throw new RuntimeException("Вопрос с идентификатором " + questionId + ", для которого производится попытка зарегистрировать ответ, не найден в памяти");
         provideDefaultMap(answerMapForQuestion, questionId);
         answerMapForQuestion.get(questionId).put(answer.getId(), answer);
     }
@@ -232,6 +232,8 @@ public class Storage {
     }
     void register(UserAnswer userAnswer) {
         userAnswerMap.put(userAnswer.getId(), userAnswer);
+        questionMap.get(userAnswer.getInt("questionId")).setLastUserAnswer(userAnswer);
+        
     }
     void register(ThemeExam themeExam) {
         themeExamMap.put(themeExam.getId(), themeExam);
@@ -361,6 +363,16 @@ public class Storage {
                 userAnswer.setState(entity.getState());
                 storage.register(userAnswer);
             }
+            //проставляем lastUserAnswer вопросам
+            storage.userAnswerMap.values().stream()
+                .sorted((a1, a2) -> a2.getDte("answerDate").compareTo(a1.getDte("answerDate")))
+                .forEach(
+                    ua -> {
+                        Question q = storage.getQuestionMap().get(ua.getInt("questionId"));
+                        if (q.getLastUserAnswer() == null)
+                            q.setLastUserAnswer(ua);
+                    }
+                );
 
             storage.themeExamMap = new HashMap<Integer, ThemeExam>();
             storage.themeExamMapForTheme = new HashMap<Integer, Map<Integer, ThemeExam>>();    

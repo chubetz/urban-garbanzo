@@ -5,6 +5,7 @@
  */
 package ru.garbanzo.urban.edu;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -23,15 +24,19 @@ import ru.garbanzo.urban.util.Utils;
  */
 public class Exam implements Iterator<Question> {
     
-    private List<Question> questionSequence;
-    private Iterator<Question> iterator;
+    protected List<Question> questionSequence;
+    protected Iterator<Question> iterator;
     private Question current;
     private QuestionState qState;
     private int counter;
-    private Theme theme;
+    protected Theme theme;
     private Map<Integer, Boolean> answersFromFront, userAnswers = new HashMap<Integer, Boolean>();
     private List<Answer> answers;
     private boolean refreshOnly;
+    
+    public static final int REGULAR = 0;
+    public static final int WORK_ON_ERRORS = 1;
+    public static final int REFRESH_ONLY = 2;
     
     @Override
     public boolean hasNext() {
@@ -75,6 +80,10 @@ public class Exam implements Iterator<Question> {
             Collections.shuffle(questionSequence);
         
         iterator = questionSequence.iterator();
+    }
+    
+    protected Exam() {
+        //пустой конструктор для вызова из подкласса
     }
     
     public Theme getTheme() {
@@ -324,6 +333,7 @@ public class Exam implements Iterator<Question> {
             Map<String, Object> data = new HashMap<String, Object>();
             data.put("questionId", entry.getKey());
             data.put("correct", entry.getValue());
+            data.put("answerDate", new java.sql.Date(System.currentTimeMillis()));
             if (entry.getValue())
                 correctAnswersQty++;
             UserAnswer.saveUserAnswer(-1, data);

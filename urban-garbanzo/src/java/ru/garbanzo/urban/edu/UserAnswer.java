@@ -5,6 +5,7 @@
  */
 package ru.garbanzo.urban.edu;
 
+import java.sql.Date;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -42,6 +43,8 @@ public class UserAnswer extends  Entity{
         defaultState = new LinkedHashMap<String, Object>();
         defaultState.put("questionId", -1);
         defaultState.put("correct", false);
+        defaultState.put("answerDate", new Date(0));
+
     }
 
     @Override

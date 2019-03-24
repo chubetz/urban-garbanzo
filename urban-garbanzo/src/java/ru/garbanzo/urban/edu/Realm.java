@@ -138,7 +138,11 @@ public class Realm extends Entity implements ITreeElement {
         List<Theme> themeList = new ArrayList<Theme>(getThemeMap().values());
         Collections.sort(themeList, Theme.NUMBER_COMPARATOR);
         for (Theme theme: themeList) {
-            sb.append("\t<li>" + theme.getProfileLink(theme.getNumberStr() + " " + theme.getText()) + "\r\n");
+            String weak = "";
+            if (theme.isNeedWorkOnErrors()) {
+                weak = "<font style=\"color: red;\">(!)</font>";
+            }
+            sb.append("\t<li>" + weak + theme.getProfileLink(theme.getNumberStr() + " " + theme.getText()) + "\r\n");
         }
         sb.append("</ul>");
         return sb.toString();
@@ -151,11 +155,16 @@ public class Realm extends Entity implements ITreeElement {
         Collections.sort(themeList, Theme.NUMBER_COMPARATOR);
         for (int i=0; i<themeList.size(); i++) {
             Theme theme = themeList.get(i);
+            String weak = "";
+            if (theme.isNeedWorkOnErrors()) {
+                weak = "<font style=\"color: red;\">(!)</font>";
+            }
             sb.append("<tr bgcolor=" + (i%2 == 0 ? "white" : "#D7DDDD") + ">\n");
             sb.append("<td>\n");
             sb.append(theme.getNumberStr());
             sb.append("</td>\n");
             sb.append("<td>\n");
+            sb.append(weak);
             sb.append(theme.getProfileLink(theme.getText()));
             sb.append("</td>\n");
             sb.append("</tr>\n");

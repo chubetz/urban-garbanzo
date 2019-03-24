@@ -10,6 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import ru.garbanzo.urban.edu.Exam;
 import ru.garbanzo.urban.edu.Storage;
 import ru.garbanzo.urban.edu.Theme;
+import ru.garbanzo.urban.edu.WorkOnErrorsExam;
 import ru.garbanzo.urban.exception.ExamException;
 import ru.garbanzo.urban.exception.JDBCException;
 
@@ -22,10 +23,20 @@ public class State {
     private Map<Theme, Exam> themeExams = new ConcurrentHashMap<Theme, Exam>();
     private User user;
     
-    public Exam getExam(Theme theme, boolean refreshOnly) {
+    public Exam getExam(Theme theme, int examType) {
         Exam exam = themeExams.get(theme);
         if (exam == null) {
-            exam = new Exam(theme, refreshOnly);
+            switch (examType) {
+                case Exam.REGULAR:
+                    exam = new Exam(theme, false);
+                    break;
+                case Exam.REFRESH_ONLY:
+                    exam = new Exam(theme, true);
+                    break;
+                case Exam.WORK_ON_ERRORS:
+                    exam = new WorkOnErrorsExam(theme);
+                    break;
+            }
             themeExams.put(theme, exam);
             exam.next();
         }   

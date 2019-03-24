@@ -371,7 +371,7 @@ public class MainServlet extends ErrorHandlingServlet {
                         sb.append("DROP TABLE Image IF EXISTS;\r\n");
                         sb.append("CREATE TABLE Image (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, filename VARCHAR(2000), extension VARCHAR(10));\r\n");
                         sb.append("DROP TABLE UserAnswer IF EXISTS;\r\n");
-                        sb.append("CREATE TABLE UserAnswer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean);\r\n");
+                        sb.append("CREATE TABLE UserAnswer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean, answerDate TIMESTAMP);\r\n");
                         sb.append("DROP TABLE ThemeExam IF EXISTS;\r\n");
                         sb.append("CREATE TABLE ThemeExam (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, themeId int, percentage DOUBLE, date TIMESTAMP);\r\n");
                     for (Realm r: Realm.getMap().values()) {
@@ -518,15 +518,7 @@ public class MainServlet extends ErrorHandlingServlet {
                         }
                         sb.append(") OVERRIDING SYSTEM VALUE VALUES (" + i.getId());
                         for (Object o: state.values()) {
-                            String ooo;
-                            if (o instanceof String) {
-                                o = ((String)o).replace("'","''");
-                                ooo = "'" + o + "'";
-                            } else if (o == null)
-                                ooo = "NULL";
-                            else
-                                ooo=o.toString();
-                            sb.append("," + ooo);
+                            sb.append("," + JDBCUtils.getSQLLiteral(o));
                         }
                         sb.append(");\r\n");
 

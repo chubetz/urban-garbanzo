@@ -142,6 +142,14 @@
                 <input type="checkbox" name="refreshOnly">
                 <font class="calibri_new" style="background:#E1E3E1; color:black; font-size:10px">только освежить</font>
             </form>
+            <c:if test="${theme.needWorkOnErrors}">
+                <form method="POST" action="doActive">
+                    <input type="hidden" name="id" value="${theme.id}">
+                    <input type="hidden" name="action" value="doTheme">
+                    <input type="hidden" name="examType" value="workOnErrors">
+                    <input class="calibri_new" style="background:#E1E3E1; color:black; font-size:10px" type="Submit" value="Работа над ошибками">
+                </form>
+            </c:if>
             <div align="left" style="font-size: 14px;"><b>${theme.examsTableHTML}</b></div>
         </td>
                     

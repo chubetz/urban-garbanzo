@@ -162,6 +162,16 @@ public class Theme extends Entity implements ITreeElement {
         return validQuestions;
     }
 
+    public List<Question> getWeakQuestions() {
+        ArrayList<Question> weakQuestions = new ArrayList<Question>();
+        for (Question q: getQuestionMap().values()) {
+            if (q.isValid()) {
+                //validQuestions.add(q);
+            }
+        }
+        return weakQuestions;
+    }
+
     public int getInvalidQuestionQty() {
         return getQuestionMap().size() - getValidQuestions().size();
     }
@@ -235,6 +245,10 @@ public class Theme extends Entity implements ITreeElement {
 
     public boolean isExaminable() {
         return !getValidQuestions().isEmpty();
+    }
+
+    public boolean isNeedWorkOnErrors() {
+        return getValidQuestions().stream().filter(q -> q.isWeak()).findAny().isPresent();
     }
 
     @Override

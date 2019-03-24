@@ -60,7 +60,13 @@ public class Activator extends HttpServlet {
             case "doTheme":
                 Theme theme = Theme.getById(request.getParameter("id"));
                 try {
-                    Exam exam = state.getExam(theme, "on".equals(request.getParameter("refreshOnly")));
+                    String examTypeRequest = request.getParameter("examType");
+                    int examType = Exam.REGULAR;
+                    if ("workOnErrors".equals(request.getParameter("examType")))
+                        examType = Exam.WORK_ON_ERRORS;
+                    if ("on".equals(request.getParameter("refreshOnly")))
+                        examType = Exam.REFRESH_ONLY;
+                    Exam exam = state.getExam(theme, examType);
                     request.setAttribute("exam", exam);
                     request.setAttribute("theme", theme);
                     Utils.print("===", request.getParameterMap());

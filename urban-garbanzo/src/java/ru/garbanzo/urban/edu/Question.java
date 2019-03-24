@@ -37,6 +37,20 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
     
     private Set<ThemeQuestion> themeQuestionSet = new HashSet<>();
     
+    private UserAnswer lastUserAnswer; 
+
+    public UserAnswer getLastUserAnswer() {
+        return lastUserAnswer;
+    }
+
+    public void setLastUserAnswer(UserAnswer lastUserAnswer) {
+        this.lastUserAnswer = lastUserAnswer;
+    }
+    
+    public boolean isWeak() {
+        return lastUserAnswer != null && !lastUserAnswer.getBool("correct");
+    }
+    
     public ThemeQuestion getThemeQuestion(Theme theme) {
         Optional<ThemeQuestion> opt = themeQuestionSet.stream()
                 .filter(t -> t.getPKInt("themeId") == theme.getId())
@@ -557,6 +571,7 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
     public boolean isReal() {
         return getType() != Question.NB_TYPE;
     }
+    
 
     @Override
     public List<ITreeElement> getTreeElements() {
