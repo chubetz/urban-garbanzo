@@ -72,6 +72,7 @@ INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (42,11
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (43,11,'Working with Java Data Types',2.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (44,11,'Using Operators and Decision Constructs',3.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (45,11,'Creating and Using Arrays',4.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (46,11,'Using Loop Constructs',5.0);
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (0,4,0,'Тесты экзамена предполагают обычно 5 или 6 ответов, со множественным выбором.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1,4,0,'Нельзя реализовать в классе два интерфейса с общим дефолтным методом, если не переопределить этот метод в классе.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2,4,2,'<p>Перечислите 3 вида комментариев в Java</p>',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
@@ -542,8 +543,8 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (326,152,'optionalLabel: while(booleanExpression) {<br />&nbsp;&nbsp;&nbsp; //body<br />&nbsp;&nbsp;&nbsp; //somewhere in loop<br />&nbsp;&nbsp;&nbsp; break optionalLabel;<br />}',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (153,4,2,'Чем <em>continue</em> отличается от <em>break</em>? А чем похоже?',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (327,153,'<em>break</em> прерывает цикл, на который ссылается (либо текущий, если метка не указана).<br /><em>continue</em> передает управление&nbsp;проверке условия выполнения цикла, на который ссылается (либо текущего цикла, если метка не указана). Фактически, <em>continue</em> прерывает текущую итерацию цикла.<br />Сходство состоит в том, что синтаксис использования <em>break</em> и <em>continue </em>одинаковый, так же как и логика выбора адресного цикла в зависимости от наличия/отсутствия метки.',true,'');
-INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (154,4,2,'<p>Где могут быть использованы метки, <em>break</em>, <em>continue</em>?</p>',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
-	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (328,154,'Метки допустимы перед любой Java-инструкцией, в том числе перед блоком&nbsp;(но использовать их не надо).<br /><em>break</em> с меткой допустим внутри блока, если&nbsp;какой-то из окружающих блоков (либо управляющая конструкция, открывающая блок) помечен этой меткой.<br /><em>break</em> без метки допустим внутри цикла или <em>switch</em>.<br /><em>continue</em> допустим внутри цикла.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (154,4,2,'<p>Где могут быть использованы метки, <em>break</em>, <em>continue</em>?</p>',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '2019-03-28 18:06:08');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (328,154,'Метки допустимы перед любой Java-инструкцией, в том числе перед блоком&nbsp;(но использовать их не надо).<br /><em>break</em> с меткой допустим внутри блока, если&nbsp;какой-то из окружающих блоков (либо управляющая конструкция, открывающая блок) помечен этой меткой. Правда, при этом&nbsp;не скомпилируется ситуация с unreachable code.<br /><em>break</em> без метки допустим внутри цикла или <em>switch</em>.<br /><em>continue</em> допустим внутри цикла.',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (155,4,1,'Which of the following Java operators can be used with boolean variables? (Choose all that apply)',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (329,155,'==',true,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (330,155,'+',false,'');
@@ -6620,6 +6621,210 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3893,1737,'1',false,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3894,1737,'The code does not compile.',true,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3895,1737,'The code compiles but throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1738,11,1,'Which type of loop is best known for its boolean condition that controls entry to the loop?',TIMESTAMP '2019-03-28 11:53:54',TIMESTAMP '2019-03-28 11:53:54');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3896,1738,'do-while loop',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3897,1738,'for (traditional)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3898,1738,'for-each',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3899,1738,'while',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1739,11,1,'Which type of loop is best known for using an index or counter?',TIMESTAMP '2019-03-28 12:09:13',TIMESTAMP '2019-03-28 12:09:13');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3900,1739,'do-while loop',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3901,1739,'for (traditional)',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3902,1739,'for-each',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3903,1739,'while',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1740,11,1,'Which type of loop is guaranteed to have the body execute at least once?',TIMESTAMP '2019-03-28 12:20:11',TIMESTAMP '2019-03-28 12:20:11');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3904,1740,'do-while loop',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3905,1740,'for (traditional)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3906,1740,'for-each',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3907,1740,'while',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1741,11,1,'Which of the following can loop through an array without referring to the elements by index?',TIMESTAMP '2019-03-28 12:26:03',TIMESTAMP '2019-03-28 12:26:03');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3908,1741,'do-while loop',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3909,1741,'for (traditional)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3910,1741,'for-each',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3911,1741,'while',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1742,11,1,'What keyword is used to end the current loop iteration and proceed execution with the next iteration of that loop?',TIMESTAMP '2019-03-28 13:14:56',TIMESTAMP '2019-03-28 13:14:56');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3912,1742,'break',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3913,1742,'continue',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3914,1742,'end',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3915,1742,'skip',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1743,11,1,'What keyword is used to proceed with execution immediately after a loop?',TIMESTAMP '2019-03-28 13:15:49',TIMESTAMP '2019-03-28 13:15:49');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3916,1743,'break',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3917,1743,'continue',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3918,1743,'end',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3919,1743,'skip',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1744,11,1,'Which type of loop has three segments within parentheses?',TIMESTAMP '2019-03-28 13:16:55',TIMESTAMP '2019-03-28 13:16:55');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3920,1744,'do-while loop',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3921,1744,'for (traditional)',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3922,1744,'for-each',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3923,1744,'while',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1745,11,1,'<p>Which of the following statements is/are true?</p>
+<p>I. A traditional for loop can iterate through an array starting from index 0.<br />II. A traditional for loop can iterate through an array starting from the end.</p>',TIMESTAMP '2019-03-28 14:04:35',TIMESTAMP '2019-03-28 14:04:35');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3924,1745,'Only I',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3925,1745,'Only II',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3926,1745,'Both statements',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3927,1745,'Neither statement',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1746,11,1,'<p>Which of the following statements is/are true?</p>
+<p>I. A for-each loop can iterate through an array starting from index 0.<br />II. A for-each loop can iterate through an array starting from the end.</p>',TIMESTAMP '2019-03-28 14:05:51',TIMESTAMP '2019-03-28 14:05:51');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3928,1746,'Only I',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3929,1746,'Only II',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3930,1746,'Both statements',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3931,1746,'Neither statement',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1747,11,1,'Which type of loop has a boolean condition that is first checked after a single iteration through the loop?',TIMESTAMP '2019-03-28 14:07:16',TIMESTAMP '2019-03-28 14:07:16');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3932,1747,'do-while loop',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3933,1747,'for (traditional)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3934,1747,'for-each',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3935,1747,'while',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1748,11,1,'<p>What does the following code output?</p>
+<p>int singer = 0;<br />while (singer)<br />&nbsp;&nbsp;&nbsp; System.out.println(singer++);</p>
+<p>&nbsp;</p>',TIMESTAMP '2019-03-28 15:16:55',TIMESTAMP '2019-03-28 15:16:55');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3936,1748,'0',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3937,1748,'The code does not compile.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3938,1748,'The loops complete with no output.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3939,1748,'This is an infinite loop.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1749,11,1,'<p>What does the following code output?</p>
+<p>List&lt;String&gt; drinks = Arrays.asList("can", "cup");<br />for (int container = drinks.size() - 1; container &gt;= 0; container--)<br />&nbsp;&nbsp;&nbsp; System.out.print(drinks.get(container) + ",");</p>',TIMESTAMP '2019-03-28 15:19:40',TIMESTAMP '2019-03-28 15:19:40');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3940,1749,'can,cup,',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3941,1749,'cup,can,',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3942,1749,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3943,1749,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1750,11,1,'<p>What does the following code output?</p>
+<p>public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp; List&lt;String&gt; bottles = Arrays.asList("glass", "plastic");<br />&nbsp;&nbsp;&nbsp; for (int type = 0; type &lt; bottles.size();) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(bottles.get(type) + ",");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; System.out.print("end");<br />}</p>',TIMESTAMP '2019-03-28 15:37:03',TIMESTAMP '2019-03-28 15:37:03');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3944,1750,'glass,end',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3945,1750,'glass,plastic,end',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3946,1750,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3947,1750,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1751,11,1,'<p>What does the following code output?</p>
+<p>String letters = "";<br />while (letters.length() != 2)<br />&nbsp;&nbsp;&nbsp; letters+="a";<br />System.out.println(letters);</p>',TIMESTAMP '2019-03-28 15:40:22',TIMESTAMP '2019-03-28 15:40:22');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3948,1751,'aa',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3949,1751,'aaa',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3950,1751,'The loops complete with no output.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3951,1751,'This is an infinite loop.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1752,11,1,'<p>What is the result of the following when run with java peregrine.TimeLoop September 3 1940?</p>
+<p>package peregrine;<br />public class TimeLoop {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = args.length; i&gt;=0; i++)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("args");<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-03-28 15:45:28',TIMESTAMP '2019-03-28 15:45:28');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3952,1752,'args',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3953,1752,'argsargs',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3954,1752,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3955,1752,'None of the above',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1753,11,1,'<p>What is the output of the following code?</p>
+<p>package chicago;<br />public class Loop {<br />&nbsp;&nbsp;&nbsp; private static int count;<br />&nbsp;&nbsp;&nbsp; private static String[] stops = new String[] { "Washington",<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Monroe", "Jackson", "LaSalle" };<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (count &lt; stops.length) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (stops[count++].length() &lt; 8) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(count);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-03-28 15:57:21',TIMESTAMP '2019-03-28 15:57:21');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3956,1753,'1',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3957,1753,'2',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3958,1753,'4',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3959,1753,'The code does not compile.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1754,11,1,'<p>What is the result of the following code?</p>
+<p>do {<br />&nbsp;&nbsp;&nbsp; int count = 0;<br />&nbsp;&nbsp;&nbsp; do {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; count++;<br />&nbsp;&nbsp;&nbsp; } while (count &lt; 2);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />} while (true);<br />System.out.println(count);</p>',TIMESTAMP '2019-03-28 15:59:54',TIMESTAMP '2019-03-28 15:59:54');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3960,1754,'2',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3961,1754,'3',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3962,1754,'The code does not compile.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3963,1754,'This is an infinite loop.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1755,11,1,'<p>Which of the following segments of a for loop can be left blank?</p>
+<p>for (segmentA; segmentB; segmentC) {<br />}</p>',TIMESTAMP '2019-03-28 16:01:26',TIMESTAMP '2019-03-28 16:01:26');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3964,1755,'segmentA',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3965,1755,'segmentB',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3966,1755,'segmentC',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3967,1755,'All of the above',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1756,11,1,'How many of the loop types (while, do while, traditional for, and enhanced for) allow you to write code that creates an infinite loop?',TIMESTAMP '2019-03-28 16:06:06',TIMESTAMP '2019-03-28 16:06:06');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3968,1756,'One',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3969,1756,'Two',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3970,1756,'Three',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3971,1756,'Four',false,'Хотя можно и написать for-each на бесконечном Iterable, на экзаменах OCA/OCP этот кейс не предусмотрен');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1757,11,1,'<p>What is the output of the following?</p>
+<p>List&lt;String&gt; drinks = Arrays.asList("can", "cup");<br />for (int container = 0; container &lt; drinks.size(); container++)<br />&nbsp;&nbsp;&nbsp; System.out.print(drinks.get(container) + ",");</p>',TIMESTAMP '2019-03-28 16:23:38',TIMESTAMP '2019-03-28 16:23:38');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3972,1757,'can,cup,',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3973,1757,'cup,can,',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3974,1757,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3975,1757,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1758,11,1,'<p>What happens when running the following code?</p>
+<p>do (<br />&nbsp;&nbsp;&nbsp; System.out.println("helium");<br />) while (false);</p>',TIMESTAMP '2019-03-28 16:27:31',TIMESTAMP '2019-03-28 16:27:31');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3976,1758,'It completes successfully without output.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3977,1758,'It outputs helium once.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3978,1758,'It keeps outputting helium.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3979,1758,'The code does not compile.',true,'Скобки-то обычные, а не фигурные');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1759,11,1,'<p>Which of the following is equivalent to this code snippet given an array of String objects?</p>
+<p>for (int i=0; i&lt;fun.length; i++)<br />&nbsp;&nbsp;&nbsp; System.out.println(fun[i]);</p>',TIMESTAMP '2019-03-28 16:30:04',TIMESTAMP '2019-03-28 16:30:04');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3980,1759,'for (String f = fun) System.out.println(f);',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3981,1759,'for (String f : fun) System.out.println(f);',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3982,1759,'for (String = fun) System.out.println(it);',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3983,1759,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1760,11,1,'<p>How many of these statements can be inserted after the println to have the code flow follow the arrow in this diagram?</p>
+<p>break;<br />break letters;<br />break numbers;</p>
+<p>----------&gt; letters: for (char ch=''a''; ch&lt;=''z''; ch++) {<br />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; numbers: for (int n=0; n&lt;=10; n++) {<br />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(ch);<br />---------------------------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>',TIMESTAMP '2019-03-28 16:39:12',TIMESTAMP '2019-03-28 16:39:12');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3984,1760,'None',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3985,1760,'One',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3986,1760,'Two',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3987,1760,'Three',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1761,11,1,'<p>Using the diagram, how many of these statements can be inserted after the println to have the code flow follow the arrow in the diagram?</p>
+<p>continue;<br />continue letters;<br />continue numbers;</p>
+<p><br />----------&gt; letters: for (char ch=''a''; ch&lt;=''z''; ch++) {<br />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; numbers: for (int n=0; n&lt;=10; n++) {<br />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(ch);<br />---------------------------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>',TIMESTAMP '2019-03-28 16:41:11',TIMESTAMP '2019-03-28 16:41:11');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3988,1761,'None',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3989,1761,'One',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3990,1761,'Two',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3991,1761,'Three',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1762,11,1,'<p>What does the following code output?</p>
+<p>int singer = 0;<br />while (singer &gt; 0)<br />&nbsp;&nbsp;&nbsp; System.out.println(singer++);</p>
+<p>&nbsp;</p>',TIMESTAMP '2019-03-28 16:43:03',TIMESTAMP '2019-03-28 16:43:03');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3992,1762,'0',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3993,1762,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3994,1762,'The loops completes with no output.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3995,1762,'This is an infinite loop.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1763,11,1,'<p>Which of the following types is taxis not allowed to be in order for this code to compile?</p>
+<p>for (Object obj : taxis) {<br />}</p>',TIMESTAMP '2019-03-28 16:46:07',TIMESTAMP '2019-03-28 16:46:07');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3996,1763,'ArrayList&lt;Integer&gt;',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3997,1763,'int[]',false,'можно. будет autoboxing');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3998,1763,'StringBuilder',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3999,1763,'All of these are allowed.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1764,11,1,'<p>What is the output of the following?</p>
+<p>boolean balloonInflated = false;<br />do {<br />&nbsp;&nbsp;&nbsp; if (!balloonInflated) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; balloonInflated = true;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("inflate-");<br />&nbsp;&nbsp;&nbsp; }<br />} while (! balloonInflated);<br />System.out.println("done");</p>',TIMESTAMP '2019-03-28 17:44:07',TIMESTAMP '2019-03-28 17:44:07');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4000,1764,'done',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4001,1764,'inflate-done',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4002,1764,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4003,1764,'This is an infinite loop.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1765,11,1,'<p>What does the following code output?</p>
+<p>String letters = "";<br />while (letters.length() != 3)<br />&nbsp;&nbsp;&nbsp; letters+="ab";<br />System.out.println(letters);</p>',TIMESTAMP '2019-03-28 17:45:51',TIMESTAMP '2019-03-28 17:45:51');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4004,1765,'ab',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4005,1765,'abab',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4006,1765,'The loop completes with no output.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4007,1765,'This is an infinite loop.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1766,11,1,'What describes the order in which the three expressions appear in a for loop?',TIMESTAMP '2019-03-28 17:47:06',TIMESTAMP '2019-03-28 17:47:06');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4008,1766,'boolean conditional, initialization expression, update statement',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4009,1766,'initialization expression, boolean conditional, update statement',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4010,1766,'initialization expression, update statement, boolean conditional',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4011,1766,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1767,11,1,'<p>What is the result of the following?</p>
+<p>int count = 10;<br />List&lt;Character&gt; chars = new ArrayList&lt;&gt;();<br />do {<br />&nbsp;&nbsp;&nbsp; chars.add(''a'');<br />&nbsp;&nbsp;&nbsp; for (Character x : chars) count -=1;<br />} while (count &gt; 0);<br />System.out.println(chars.size());</p>',TIMESTAMP '2019-03-28 17:51:50',TIMESTAMP '2019-03-28 17:51:50');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4012,1767,'3',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4013,1767,'4',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4014,1767,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4015,1767,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1768,11,1,'<p>What is the result of the following?</p>
+<p>int k = 0;<br />for (int i = 10; i &gt; 0; i--) {<br />&nbsp;&nbsp;&nbsp; while (i &gt; 3) i -= 3;<br />&nbsp;&nbsp;&nbsp; k += 1;<br />}<br />System.out.println(k);</p>',TIMESTAMP '2019-03-28 17:57:15',TIMESTAMP '2019-03-28 17:57:15');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4016,1768,'1',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4017,1768,'2',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4018,1768,'3',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4019,1768,'4',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1769,11,1,'<p>Which of the following is equivalent to this code snippet given an array of String objects?</p>
+<p>for (int i=fun.length-1; i&gt;=0; i--)<br />&nbsp;&nbsp;&nbsp; System.out.println(fun[i]);</p>',TIMESTAMP '2019-03-28 17:59:28',TIMESTAMP '2019-03-28 17:59:28');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4020,1769,'for (String f = fun) System.out.println(f);',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4021,1769,'for (String f : fun) System.out.println(f);',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4022,1769,'for (String f fun) System.out.println(it);',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4023,1769,'None of the above',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1770,11,1,'<p>What does the following code output?</p>
+<p>public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp; List&lt;String&gt; bottles = Arrays.asList("glass", "plastic");<br />&nbsp;&nbsp;&nbsp; for (int type = 0; type &lt; bottles.size();)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(bottles.get(type) + ",");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />&nbsp;&nbsp;&nbsp; System.out.print("end");<br />}</p>',TIMESTAMP '2019-03-28 18:03:32',TIMESTAMP '2019-03-28 18:03:32');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4024,1770,'glass,end',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4025,1770,'glass,plastic,end',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4026,1770,'The code does not compile.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4027,1770,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1771,11,1,'<p>What is the result of the following?</p>
+<p>String[] nycTourLoops = new String[] { "Downtown", "Uptown", "Brooklyn" };<br />String[] times = new String[] { "Day", "Night" };<br />for (int i = 0, j = 0; i &lt; nycTourLoops.length<br />&nbsp;&nbsp;&nbsp; &amp;&amp; j &lt; times.length; i++; j++)<br />{<br />&nbsp;&nbsp;&nbsp; System.out.print(nycTourLoops[i] + " " + times[j] + "-");<br />}</p>',TIMESTAMP '2019-03-28 18:09:25',TIMESTAMP '2019-03-28 18:09:25');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4028,1771,'Downtown Day-',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4029,1771,'Downtown Day-Uptown Night-',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4030,1771,'The code does not compile.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4031,1771,'The code compiles but throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1772,11,1,'<p>What is the result of the following when run with java peregrine.TimeLoop September 3 1940?</p>
+<p>package peregrine;<br />public class TimeLoop {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = args.length; i&gt;=0; i--)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(args[i]);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-03-28 18:12:50',TIMESTAMP '2019-03-28 18:12:50');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4032,1772,'September',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4033,1772,'1940',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4034,1772,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4035,1772,'None of the above',true,'');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,609,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,610,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,612,0);
@@ -7739,6 +7944,41 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (45,1734,47);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (45,1735,48);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (45,1736,49);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (45,1737,50);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1738,1);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1739,2);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1740,3);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1741,4);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1742,5);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1743,6);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1744,7);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1745,8);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1746,9);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1747,10);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1748,11);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1749,12);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1750,13);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1751,14);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1752,15);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1753,16);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1754,17);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1755,18);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1756,19);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1757,20);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1758,21);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1759,22);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1760,23);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1761,24);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1762,25);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1763,26);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1764,27);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1765,28);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1766,29);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1767,30);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1768,31);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1769,32);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1770,33);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1771,34);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (46,1772,35);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,2,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,3,2);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,4,3);
