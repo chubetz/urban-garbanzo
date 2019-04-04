@@ -734,7 +734,7 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (450,198,'a=abcdefg<br />b=abcdefg<br /><br /><strong>a</strong> и <strong>b</strong> указывают на один и тотже объект StringBuilder',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (199,4,2,'Назовите 4 способа создать объект <strong>StringBuilder</strong>. (посредством конструктора)',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (451,199,'1) new StringBuilder()<br />2) new StringBuilder(CharSequence seq)<br />3) new StringBuilder(String str)<br />4) new StringBuilder(int capacity)<br /><br />по умолчанию capacity=16, увеличивается, если содержимое растет',true,'');
-INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (200,4,0,'Методы <strong>charAt</strong>(), <strong>indexOf</strong>(), <strong>length</strong>(), <strong>substring</strong>() класса <strong>StringBuilder</strong> по аргументам и возвращаемым типам аналогичны таковым класса <strong>String</strong>. <br /><strong>substring</strong>() <span style="text-decoration: underline;">не меняет</span> исходный объект.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (200,4,0,'Методы <strong>charAt</strong>(), <strong>indexOf</strong>(), <strong>length</strong>(), <strong>substring</strong>() класса <strong>StringBuilder</strong> по аргументам и возвращаемым типам аналогичны таковым класса <strong>String</strong>. <br /><strong>substring</strong>() <span style="text-decoration: underline;">не меняет</span> исходный объект, а возвращает String.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '2019-04-04 17:22:09');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (201,4,2,'Каким будет вывод следующего кода?<br /><br />StringBuilder sb = new StringBuilder("animals");<br />String sub = sb.substring(sb.indexOf("a"), sb.indexOf("al"));<br />int len = sb.length();<br />char ch = sb.charAt(6);<br />System.out.println(sub + " " + len + " " + ch);',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (452,201,'anim 7 s',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (202,4,0,'Существует более 10 перезагрузок метода <strong>StringBuilder</strong>.<em>append</em>():<br /><br />StringBuilder&nbsp;append(boolean b)<br />StringBuilder&nbsp;append(char c)<br />StringBuilder&nbsp;append(char[] str)<br />StringBuilder&nbsp;append(char[] str, int offset, int len)<br />StringBuilder&nbsp;append(CharSequence s)<br />StringBuilder&nbsp;append(CharSequence s, int start, int end)<br />StringBuilder&nbsp;append(double d)<br />StringBuilder&nbsp;append(float f)<br />StringBuilder&nbsp;append(int i)<br />StringBuilder&nbsp;append(long lng)<br />StringBuilder&nbsp;append(Object obj)<br />StringBuilder&nbsp;append(String str)',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
@@ -743,8 +743,8 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (204,4,2,'Опишите методы <strong>delete</strong> и <strong>deleteCharAt</strong> класса StringBuilder',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '2019-03-23 18:00:30');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3472,204,'<em><br /></em>StringBuilder <strong>delete</strong>(int <em>start</em>, int <em>end</em>)<br />StringBuilder <strong>deleteCharAt</strong>(int <em>index</em>)<br /><br />удаление части последовательности или символа.<br /><br /><em>start</em> и <em>end</em> используются с теми же принципами и ограничениями, что и <strong>substring, </strong>с той разницей, что <em>end</em> должен быть просто больше чем <em>start</em>;&nbsp;<em>index</em> должен соответствовать реальному индексу.',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (205,4,0,'<em><span style="text-decoration: underline;">StringBuilder</span></em><br /><br />StringBuilder <strong>reverse</strong>()<br /><br />переворачивает&nbsp;последовательность и возвращает ссылку на тот же объект.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
-INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (206,4,2,'Перечислите методы класса <strong>String</strong>, отобранные для использования на экзамене OCA.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
-	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (453,206,'length()<br />charAt()<br />indexOf()<br />substring()<br />toLowerCase()<br />toUpperCase()<br />equals()<br />equalsIgnoreCase()<br />startsWith()<br />endsWith()<br />contains()<br />replace()<br />trim()<br /><br />',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (206,4,2,'Перечислите методы класса <strong>String</strong>, отобранные для использования на экзамене OCA.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '2019-04-04 15:22:54');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (453,206,'length()<br />charAt()<br />indexOf()<br />substring()<br />toLowerCase()<br />toUpperCase()<br />equals()<br />equalsIgnoreCase()<br />startsWith()<br />endsWith()<br />contains()<br />replace()<br />trim()<br />concat()',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (207,4,2,'Перечислите методы класса <strong>StringBuilder</strong>, отобранные для использования на экзамене OCA.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (454,207,'charAt()<br />indexOf()<br />length()<br />substring()<br />append()<br />insert()<br />delete()<br />deleteCharAt()<br />reverse()<br />toString()',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (208,4,0,'Класс <strong>StringBuffer</strong> делает приблизительно то же самое, что и <strong>StringBuilder</strong>, но он старше (появился до Java 5) и медленнее, так как является thread-safe. На экзамене OCA встретиться не должен, но кто знает...',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
@@ -792,8 +792,8 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (234,4,2,'Напишите алгоритм перебора двумерного массива с помощью for-each',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (470,234,'<p>int[][] twoD = new int[3][2];</p>
 <p>for (int[] inner : twoD) {<br />&nbsp;&nbsp;&nbsp; for (int num : inner)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(num + " ");<br />&nbsp;&nbsp;&nbsp; System.out.println();<br />}</p>',true,'');
-INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (235,4,2,'Укажите 3 способа создать объект ArrayList. (посредством конструктора)',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
-	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (471,235,'ArrayList list1 = new ArrayList(); // пустой<br />ArrayList list2 = new ArrayList(10); //10 пустых элементов<br />ArrayList list3 = new ArrayList(list2); //копия массива',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (235,4,2,'Укажите 3 способа создать объект ArrayList. (посредством конструктора)',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '2019-04-04 13:28:30');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (471,235,'ArrayList list1 = new ArrayList(); // пустой с начальной емкостью 10<br />ArrayList list2 = new ArrayList(10); //пустой с указанной начальной емкостью<br />ArrayList list3 = new ArrayList(list2); //копия массива',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (236,4,2,'Укажите два способа создать пустой ArrayList:',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (472,236,'ArrayList&lt;String&gt; list4 = new ArrayList&lt;String&gt;();<br />ArrayList&lt;String&gt; list5 = new ArrayList&lt;&gt;(); // начиная с Java 7',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (237,4,0,'ArrayList реализует toString(), так что его содержимое удобно печатать.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
@@ -863,8 +863,8 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (263,4,0,'Удобно использовать method chaining при работе с датой/временем:<br /><br />LocalDate date = LocalDate.of(2020, Month.JANUARY, 20);<br />LocalTime time = LocalTime.of(5, 15);<br />LocalDateTime dateTime = LocalDateTime.of(date2, time)<br />&nbsp;&nbsp;&nbsp; .minusDays(1).minusHours(10).minusSeconds(30);',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (264,4,2,'Что напечатается после выполнения следующего кода?<br /><br />LocalDate date = LocalDate.of(2020, Month.JANUARY, 20);<br />date.plusDays(10);<br />System.out.println(date);',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (501,264,'2020-01-20<br /><br />дата не изменится, так как неизменяемая',true,'');
-INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (265,4,2,'Опишите методы <strong>isBefore</strong> и <strong>isAfter</strong> применительно к классам пакета java.time',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '2019-03-26 23:43:21');
-	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3479,265,'<br />java.time.<em><span style="text-decoration: underline;">LocalDate</span></em><br /><br />boolean <strong>isBefore</strong>(ChronoLocalDate <em>other</em>)<br />boolean <strong>isAfter</strong>(ChronoLocalDate <em>other</em>)<br /><br />java.time.<em><span style="text-decoration: underline;">LocalDateTime<br /></span></em><br />boolean <strong>isBefore</strong>(ChronoLocalDateTime&lt;?&gt; <em>other</em>)<br />boolean <strong>isAfter</strong>(ChronoLocalDateTime&lt;?&gt; <em>other</em>)',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (265,4,2,'Опишите методы <strong>isBefore</strong> и <strong>isAfter</strong> применительно к классам пакета java.time',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '2019-04-04 12:12:20');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3479,265,'<br />java.time.<em><span style="text-decoration: underline;">LocalDate</span></em><br /><br />boolean <strong>isBefore</strong>(ChronoLocalDate <em>other</em>)<br />boolean <strong>isAfter</strong>(ChronoLocalDate <em>other</em>)<br /><br />java.time.<em><span style="text-decoration: underline;">LocalDateTime<br /></span></em><br />boolean <strong>isBefore</strong>(ChronoLocalDateTime&lt;?&gt; <em>other</em>)<br />boolean <strong>isAfter</strong>(ChronoLocalDateTime&lt;?&gt; <em>other</em>)<br /><br />LocalDate и LocalDateTime взаимно этими методами не сравнимы',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (266,4,2,'Опишите методы <strong>toEpochDay</strong> и <strong>toEpochSecond</strong> применительно к классам java.time',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '2019-03-26 23:59:18');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (3480,266,'<br />java.time.<em><span style="text-decoration: underline;">LocalDate</span></em><br /><br />long <strong>toEpochDay</strong>()<br /><br />прошло дней с 01.01.1970<br /><br />===<br /><br />java.time.<em><span style="text-decoration: underline;">LocalDateTime</span></em><br /><br />long <strong>toEpochSecond</strong>()<br /><br />прошло&nbsp;секунд с 01.01.1970',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (267,4,2,'Укажите, как создать и использовать экземпляры класса Period.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
@@ -1353,8 +1353,8 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (809,381,'Нет, т.к. идет попытка переприсвоить переменную <strong>a</strong>. С т.з. Java это повторное объявление локальной переменной.',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (382,4,2,'Что такое функциональный интерфейс (на уровне OCA)?',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (810,382,'Это интерфейс с единственным методом.',true,'');
-INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (383,4,2,'Что Вы можете рассказать об интерфейсе java.util.function.Predicate&lt;T&gt;?',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
-	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (811,383,'Это функциональный интерфейс с методом test , возвращающим булево значение от одного аргумента).',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (383,4,2,'Что Вы можете рассказать об интерфейсе <strong>Predicate</strong>?',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '2019-04-04 16:19:24');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (811,383,'java.util.function.Predicate&lt;T&gt;? - это функциональный интерфейс с методом test , возвращающим булево значение от одного аргумента).',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (384,4,0,'<em>интерфейс java.util.Collection<span style="text-decoration: underline;">&lt;E&gt;</span></em><br /><br />default&nbsp;boolean <strong>removeIf</strong>(Predicate&lt;? super E&gt; <em>filter</em>)<br /><br />удаляет все элементы коллекции, удовлетворяющие заданному предикату.<br /><br />возвращает true, если было произведено хоть одно удаление<br />',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (385,4,2,'Напишите код в функциональном стиле, удаляющий из списка строк <strong>lines</strong> элементы, начинающиеся с символа ''1''',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (812,385,'lines.removeIf(s -&gt; s.charAt(0) == ''1'');',true,'');
@@ -7764,6 +7764,298 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4721,1960,'It is mutable.',true,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4718,1960,'It can be created without coding a call to a constructor.',false,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4719,1960,'It can be reused via the string pool.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1961,4,0,'К LocalDate можно прибавить/вычесть только Period, к LocalTime - только Duration. К LocalDateTime - и то, и то.<br /><br />Иначе - RuntimeException',TIMESTAMP '2019-04-04 12:22:31',TIMESTAMP '2019-04-04 12:22:31');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1962,4,0,'Если к Period прибавить/вычесть (plus/minus) Duration, то скомпилируется, но не выполнится.<br /><br />Если к Duration прибавить Period - не скомпилируется.',TIMESTAMP '2019-04-04 12:26:53',TIMESTAMP '2019-04-04 12:26:53');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1963,11,1,'Which of the following creates a StringBuilder with a different value than the other options?',TIMESTAMP '2019-04-04 13:01:23',TIMESTAMP '2019-04-04 13:01:23');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4722,1963,'new StringBuilder().append("clown")',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4723,1963,'new StringBuilder("clown")',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4724,1963,'new StringBuilder("cl").insert(2, "own")',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4725,1963,'All of them create the same value.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1964,11,1,'<p>What is the output of the following?</p>
+<p>StringBuilder teams = new StringBuilder("333");<br />teams.append(" 806");<br />teams.append(" 1601");<br />System.out.print(teams);</p>',TIMESTAMP '2019-04-04 13:04:21',TIMESTAMP '2019-04-04 13:04:21');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4726,1964,'333',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4727,1964,'333 806 1601',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4728,1964,'The code compiles but outputs something else.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4729,1964,'The code does not compile.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1965,11,1,'<p>How many of the types ArrayList, List, and Object can fill in the blank to produce code that compiles?</p>
+<p>List frisbees = new ();</p>',TIMESTAMP '2019-04-04 13:10:50',TIMESTAMP '2019-04-04 13:10:50');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4730,1965,'None',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4731,1965,'One',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4732,1965,'Two',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4733,1965,'Three',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1966,11,1,'<p>What is the output of the following?</p>
+<p>List&lt;String&gt; tools = new ArrayList&lt;&gt;();<br />tools.add("hammer");<br />tools.add("nail");<br />tools.add("hex key");<br />System.out.println(tools.get(1));</p>',TIMESTAMP '2019-04-04 13:12:29',TIMESTAMP '2019-04-04 13:12:29');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4736,1966,'nail',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4737,1966,'None of the above',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4734,1966,'hammer',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4735,1966,'hex key',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1967,4,0,'Остерегаться <br /><br />StringBuilder sb = new StringBuilder("radical")<br />&nbsp;&nbsp;&nbsp; .insert(sb.length(), "robots");<br /><br />(использование ссылки при инициализации этой же ссылки).',TIMESTAMP '2019-04-04 13:19:08',TIMESTAMP '2019-04-04 13:19:08');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1968,11,1,'<p>What is the result of the following code?</p>
+<p>StringBuilder sb = new StringBuilder("radical")<br />&nbsp;&nbsp;&nbsp; .insert(sb.length(), "robots");<br />System.out.println(sb);</p>',TIMESTAMP '2019-04-04 13:19:27',TIMESTAMP '2019-04-04 13:19:27');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4738,1968,'radicarobots',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4739,1968,'radicalrobots',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4740,1968,'The code does not compile.',true,'Использование ссылки при инициализации этой же ссылки.');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4741,1968,'The code compiles but throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1969,11,1,'<p>What is the output of the following?</p>
+<p>List&lt;String&gt; museums = new ArrayList&lt;&gt;(1);<br />museums.add("Natural History");<br />museums.add("Science");<br />museums.add("Art");<br />museums.remove(2);<br />System.out.println(museums);</p>',TIMESTAMP '2019-04-04 13:29:03',TIMESTAMP '2019-04-04 13:29:03');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4742,1969,'[Natural History, Science]',true,'new ArrayList&lt;&gt;(1) создает <span style="text-decoration: underline;">пустой</span> список');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4743,1969,'[Natural History, Art, Science]',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4744,1969,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4745,1969,'The code compiles but throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1970,11,1,'<p>What is the output of the following?</p>
+<p>12: StringBuilder b = new StringBuilder("12");<br />13: b = b.append("3");<br />14: b.reverse();<br />15: System.out.println(b.toString());</p>',TIMESTAMP '2019-04-04 14:44:01',TIMESTAMP '2019-04-04 14:44:01');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4746,1970,'12',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4747,1970,'123',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4748,1970,'321',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4749,1970,'The code does not compile.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1971,11,1,'What is the main benefit of a lambda expression?',TIMESTAMP '2019-04-04 14:48:53',TIMESTAMP '2019-04-04 14:48:53');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4752,1971,'It allows you to inherit from multiple classes.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4753,1971,'It allows you to write code that has the execution deferred.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4750,1971,'It allows you to convert a primitive to a wrapper class.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4751,1971,'It allows you to change the bytecode while the application is running.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1972,11,1,'<p>What is the output of the following?</p>
+<p>5: StringBuilder line = new StringBuilder("-");<br />6: StringBuilder anotherLine = line.append("-");<br />7: System.out.print(line == anotherLine);<br />8: System.out.print(" ");<br />9: System.out.print(line.length());</p>',TIMESTAMP '2019-04-04 14:51:37',TIMESTAMP '2019-04-04 14:51:37');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4754,1972,'false 1',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4755,1972,'false 2',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4756,1972,'true 1',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4757,1972,'true 2',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1973,11,1,'<p>The author of this method forgot to include the data type. Which of the following reference types can fill in the blank to complete this method?</p>
+<p>public static void secret(___________ mystery) {<br />&nbsp;&nbsp;&nbsp; mystery.add("metal");<br />&nbsp;&nbsp;&nbsp; String str = mystery.get(0);<br />&nbsp;&nbsp;&nbsp; int num = mystery.length();<br />}</p>',TIMESTAMP '2019-04-04 15:01:36',TIMESTAMP '2019-04-04 15:02:01');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4758,1973,'ArrayList',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4759,1973,'ArrayList&lt;String&gt;',false,'У ArrayList нет метода length()');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4760,1973,'StringBuilder',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4761,1973,'None of the above',true,'<p>&nbsp;</p>');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1974,11,1,'<p>Which portion of code can be removed so that this line of code continues to compile?</p>
+<p>Predicate&lt;StringBuilder&gt; p = (StringBuilder b) -&gt; {return true;};</p>',TIMESTAMP '2019-04-04 15:05:46',TIMESTAMP '2019-04-04 15:05:46');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4762,1974,'Remove StringBuilder b',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4763,1974,'Remove -&gt;',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4764,1974,'Remove { and ;}',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4765,1974,'Remove { return and ;}',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1975,4,0,'Аргументом лямбды не может быть уже определенная переменная, даже если лямбда используется для инициализации этой переменной:<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Predicate&lt;StringBuilder&gt; pp1 = (StringBuilder pp1) -&gt; {return true;};&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // compile error',TIMESTAMP '2019-04-04 15:08:12',TIMESTAMP '2019-04-04 15:08:12');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1976,11,1,'<p>What is the output of the following?</p>
+<p>20: List&lt;Character&gt; chars = new ArrayList&lt;&gt;();<br />21: chars.add(''a'');<br />22: chars.add(''b'');<br />23: chars.set(1, ''c'');<br />24: chars.remove(0);<br />25: System.out.print(chars.size() + " " + chars.contains(''b''));</p>',TIMESTAMP '2019-04-04 15:10:12',TIMESTAMP '2019-04-04 15:10:12');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4768,1976,'2 false',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4769,1976,'2 true',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4766,1976,'1 false',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4767,1976,'1 true',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1977,11,1,'<p>What is the output of the following?</p>
+<p>12: String b = "12";<br />13: b += "3";<br />14: b.reverse();<br />15: System.out.println(b.toString());</p>',TIMESTAMP '2019-04-04 15:12:43',TIMESTAMP '2019-04-04 15:12:43');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4770,1977,'12',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4771,1977,'123',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4772,1977,'321',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4773,1977,'The code does not compile.',true,'У String нет метода reverse()');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1978,11,1,'<p>How many of these lines fail to compile?</p>
+<p>Predicate&lt;String&gt; pred1 = s -&gt; false;<br />Predicate&lt;String&gt; pred2 = (s) -&gt; false;<br />Predicate&lt;String&gt; pred3 = String s -&gt; false;<br />Predicate&lt;String&gt; pred4 = (String s) -&gt; false;</p>',TIMESTAMP '2019-04-04 15:15:05',TIMESTAMP '2019-04-04 15:15:05');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4774,1978,'One',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4775,1978,'Two',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4776,1978,'Three',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4777,1978,'Four',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1979,11,1,'What does the following do?<br />public class Shoot {<br />&nbsp;&nbsp;&nbsp; interface Target {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; boolean needToAim(double angle);<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; static void prepare(double angle, Target t) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; boolean ready = t.needToAim(angle); // k1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(ready);<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; prepare(45, d -&gt; d &gt; 5 || d &lt; -5); // k2<br />&nbsp;&nbsp;&nbsp; }<br />}',TIMESTAMP '2019-04-04 15:20:14',TIMESTAMP '2019-04-04 15:20:14');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4778,1979,'It prints true.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4779,1979,'It prints false.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4780,1979,'It doesn&rsquo;t compile due to line k1.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4781,1979,'It doesn&rsquo;t compile due to line k2.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1980,11,1,'<p>What is the output of the following?</p>
+<p>String teams = new String("694");<br />teams.concat(" 1155");<br />teams.concat(" 2265");<br />teams.concat(" 2869");<br />System.out.println(teams);</p>',TIMESTAMP '2019-04-04 15:23:27',TIMESTAMP '2019-04-04 15:23:27');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4784,1980,'The code compiles but outputs something else.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4785,1980,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4782,1980,'694',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4783,1980,'694 1155 2265 2869',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1981,11,1,'<p>Which of these classes are in the java.util package?</p>
+<p>I. ArrayList<br />II. LocalDate<br />III. String</p>',TIMESTAMP '2019-04-04 15:25:00',TIMESTAMP '2019-04-04 15:25:00');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4786,1981,'I only',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4787,1981,'II only',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4788,1981,'I and II',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4789,1981,'I, II, and III',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1982,11,1,'<p>Which of the answer choices results in a different value being output than the other three choices?</p>
+<p>StringBuilder sb = new StringBuilder("radical ");<br />sb = ___________________;<br />System.out.print(sb);</p>',TIMESTAMP '2019-04-04 16:00:24',TIMESTAMP '2019-04-04 16:00:24');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4790,1982,'new StringBuilder("radical ")<br />&nbsp; .append("robots")',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4791,1982,'new StringBuilder("radical ")<br />&nbsp; .delete(1, 100)<br />&nbsp; .append("obots")<br />&nbsp; .insert(1, "adical r")',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4792,1982,'new StringBuilder("radical ")<br />&nbsp; .insert(7, "robots")',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4793,1982,'new StringBuilder("radical ")<br />&nbsp; .insert(sb.length(), "robots")',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1983,11,1,'<p>What is the output of the following?</p>
+<p>String[] array = {"Natural History", "Science"};<br />List&lt;String&gt; museums = Arrays.asList(array);<br />museums.set(0, "Art");<br />System.out.println(museums.contains("Art"));</p>',TIMESTAMP '2019-04-04 16:04:33',TIMESTAMP '2019-04-04 16:04:33');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4794,1983,'true',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4795,1983,'false',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4796,1983,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4797,1983,'The code compiles but throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1984,11,1,'Which is a true statement?',TIMESTAMP '2019-04-04 16:05:55',TIMESTAMP '2019-04-04 16:05:55');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4800,1984,'If s.startsWith("abc") is true, then s.equals("abc") is also true.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4801,1984,'If s.startsWith("abc") is true, then s.contains("abc") is also true.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4798,1984,'If s.contains("abc") is true, then s.equals("abc") is also true.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4799,1984,'If s.contains("abc") is true, then s.startsWith("abc") is also true.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1985,11,1,'<p>What is the output of the following?</p>
+<p>20: List&lt;Character&gt; chars = new ArrayList&lt;&gt;();<br />21: chars.add(''a'');<br />22: chars.add(''b'');<br />23: chars.set(1, ''c'');<br />24: chars.remove(0);<br />25: System.out.print(chars.length());</p>',TIMESTAMP '2019-04-04 16:07:57',TIMESTAMP '2019-04-04 16:07:57');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4802,1985,'0',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4803,1985,'1',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4804,1985,'2',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4805,1985,'None of the above',true,'у списка есть метод size(), а не length()');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1986,11,1,'<p>The author of this method forgot to include the data type. Which of the following reference types can fill in the blank to complete this method?</p>
+<p>public static void secret( __________ mystery) {<br />&nbsp;&nbsp;&nbsp; mystery = mystery.replace("1", "8");<br />&nbsp;&nbsp;&nbsp; mystery.startsWith("paper");<br />&nbsp;&nbsp;&nbsp; String s = mystery.toString();<br />}</p>',TIMESTAMP '2019-04-04 16:12:02',TIMESTAMP '2019-04-04 16:12:02');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4806,1986,'ArrayList',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4807,1986,'String',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4808,1986,'StringBuilder',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4809,1986,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1987,4,0,'diamond operator можно использовать всегда, даже если работаем с raw-типами.<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List l = new ArrayList&lt;&gt;();&nbsp; //скомпилируется<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new ArrayList&lt;&gt;(); //скомпилируется',TIMESTAMP '2019-04-04 16:16:36',TIMESTAMP '2019-04-04 16:16:36');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1988,11,1,'<p>Which statement is true about the following figure while ensuring the code continues to compile?</p>
+<p>List P balloons = new ArrayList Q ();</p>',TIMESTAMP '2019-04-04 16:16:44',TIMESTAMP '2019-04-04 16:16:44');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4810,1988,'&lt;&gt; can be inserted at position P without making any other changes.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4811,1988,'&lt;&gt; can be inserted at position Q without making any other changes.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4812,1988,'&lt;&gt; can be inserted at both positions P and Q.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4813,1988,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1989,11,1,'<p>Which of the following can fill in the blank to make the code compile?</p>
+<p>import java.util.function.*;<br />public class Card {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] s) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Predicate&lt;String&gt; pred = ___________ -&gt; true;<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-04-04 16:21:25',TIMESTAMP '2019-04-04 16:21:25');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4816,1989,'(String s)',false,'использует в аргументах уже имеющуюся переменную');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4817,1989,'None of the above',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4814,1989,'(Integer i)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4815,1989,'(Object o)',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1990,11,1,'<p>What is the output of the following?</p>
+<p>5: String line = new String("-");<br />6: String anotherLine = line.concat("-");<br />7: System.out.print(line == anotherLine);<br />8: System.out.print(" ");<br />9: System.out.print(line.length());</p>',TIMESTAMP '2019-04-04 16:23:35',TIMESTAMP '2019-04-04 16:23:35');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4818,1990,'false 1',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4819,1990,'false 2',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4820,1990,'true 1',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4821,1990,'true 2',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1991,11,1,'<p>What does the following output?</p>
+<p>Predicate dash = c -&gt; c.startsWith("-");<br />System.out.println(dash.test("&ndash;"));</p>',TIMESTAMP '2019-04-04 16:26:36',TIMESTAMP '2019-04-04 16:26:36');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4822,1991,'true',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4823,1991,'false',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4824,1991,'The code does not compile.',true,'лямбда ждет объекта Object, а у него нет метода startsWith');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4825,1991,'The code compiles but throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1992,11,1,'Of the classes LocalDate, LocalDateTime, LocalTime, and LocalTimeStamp, how many include hours, minutes, and seconds?',TIMESTAMP '2019-04-04 16:27:51',TIMESTAMP '2019-04-04 16:27:51');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4826,1992,'One',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4827,1992,'Two',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4828,1992,'Three',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4829,1992,'Four',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1993,11,1,'<p>What is the output of the following class?</p>
+<p>1: package rocket;<br />2: public class Countdown {<br />3:&nbsp;&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />4:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String builder = "54321";<br />5:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; builder = builder.substring(4);<br />6:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(builder.charAt(2));<br />7:&nbsp;&nbsp;&nbsp;&nbsp; }<br />8: }</p>',TIMESTAMP '2019-04-04 16:30:53',TIMESTAMP '2019-04-04 16:30:53');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4832,1993,'4',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4833,1993,'None of the above',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4830,1993,'2',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4831,1993,'3',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1994,11,1,'<p>Which equivalent code can replace i -&gt; i != 0 in the following line?</p>
+<p>Predicate&lt;Integer&gt; ip = i -&gt; i != 0;</p>',TIMESTAMP '2019-04-04 16:47:32',TIMESTAMP '2019-04-04 16:47:32');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4834,1994,'i -&gt; { i != 0 }',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4835,1994,'i -&gt; { i != 0; }',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4836,1994,'i -&gt; { return i != 0 }',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4837,1994,'i -&gt; { return i != 0; }',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1995,11,1,'<p>What is the output of the following?</p>
+<p>LocalDate xmas = LocalDate.of(2016, 12, 25);<br />xmas.plusDays(-1);<br />System.out.println(xmas.getDayOfMonth());</p>',TIMESTAMP '2019-04-04 16:49:45',TIMESTAMP '2019-04-04 16:49:45');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4838,1995,'24',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4839,1995,'25',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4840,1995,'26',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4841,1995,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1996,11,1,'<p>What is the output of the following?</p>
+<p>1: public class Legos {<br />2:&nbsp;&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />3:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StringBuilder sb = new StringBuilder();<br />4:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sb.append("red");<br />5:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sb.deleteCharAt(0);<br />6:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sb.delete(1, 2);<br />7:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(sb);<br />8:&nbsp;&nbsp;&nbsp;&nbsp; }<br />9: }</p>',TIMESTAMP '2019-04-04 16:52:55',TIMESTAMP '2019-04-04 16:52:55');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4842,1996,'e',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4843,1996,'d',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4844,1996,'ed',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4845,1996,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1997,11,1,'<p>What does the following output?</p>
+<p>Predicate clear = c -&gt; c.equals("clear");<br />System.out.println(clear.test("pink"));</p>',TIMESTAMP '2019-04-04 16:55:14',TIMESTAMP '2019-04-04 16:55:14');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4848,1997,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4849,1997,'The code compiles but throws an exception at runtime.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4846,1997,'true',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4847,1997,'false',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1998,11,1,'Which starts counting from one rather than zero?',TIMESTAMP '2019-04-04 16:56:39',TIMESTAMP '2019-04-04 16:56:39');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4850,1998,'Array indexes',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4851,1998,'The index used by charAt in a String',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4852,1998,'The months in a LocalDateTime',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4853,1998,'The months in a LocalTime',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1999,11,1,'Which statement is not true of Predicate?',TIMESTAMP '2019-04-04 16:57:56',TIMESTAMP '2019-04-04 16:57:56');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4854,1999,'A boolean is returned from the method it declares.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4855,1999,'It is an interface.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4856,1999,'The method it declares accepts two parameters.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4857,1999,'The method it declares is named test.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2000,11,1,'<p>Which of these periods represents a larger amount of time?</p>
+<p>Period period1 = Period.ofWeeks(1).ofDays(3);<br />Period period2 = Period.ofDays(10);</p>',TIMESTAMP '2019-04-04 16:59:56',TIMESTAMP '2019-04-04 16:59:56');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4858,2000,'period1',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4859,2000,'period2',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4860,2000,'They represent the same length of time.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4861,2000,'None of the above. This code does not compile.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2001,11,1,'<p>What is the result of the following?</p>
+<p>import java.time.*;<br />import java.time.format.*;</p>
+<p>public class HowLong {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LocalDate newYears = LocalDate.of(2017, 1, 1);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Period period = Period.ofDays(1);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DateTimeFormatter format = DateTimeFormatter.ofPattern("MM-dd-yyyy");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(format.format(newYears.minus(period)));<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-04-04 17:03:34',TIMESTAMP '2019-04-04 17:03:34');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4864,2001,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4865,2001,'The code compiles but throws an exception at runtime.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4862,2001,'01-01-2017',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4863,2001,'12-31-2016',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2002,11,1,'<p>Which of the following can fill in the blank so the following code prints true?</p>
+<p>String happy = " :) - (: ";<br />String really = happy.trim();<br />String question = _______________ ;<br />System.out.println(really.equals(question));</p>',TIMESTAMP '2019-04-04 17:05:57',TIMESTAMP '2019-04-04 17:05:57');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4866,2002,'happy.substring(0, happy.length() - 1)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4867,2002,'happy.substring(0, happy.length())',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4868,2002,'happy.substring(1, happy.length() - 1)',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4869,2002,'happy.substring(1, happy.length())',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2003,11,1,'Which is not a true statement about the Period class?',TIMESTAMP '2019-04-04 17:07:41',TIMESTAMP '2019-04-04 17:07:41');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4870,2003,'A Period is immutable.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4871,2003,'A Period is typically used for adding or subtracting time from dates.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4872,2003,'You can create a Period representing 2 minutes.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4873,2003,'You can create a Period representing 5 years.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2004,11,1,'<p>What is the output of the following class?</p>
+<p>1: package rocket;<br />2: public class Countdown {<br />3:&nbsp;&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />4:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StringBuilder builder = new StringBuilder("54321");<br />5:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; builder.substring(2);<br />6:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(builder.charAt(1));<br />7:&nbsp;&nbsp;&nbsp;&nbsp; }<br />8: }</p>',TIMESTAMP '2019-04-04 17:21:36',TIMESTAMP '2019-04-04 17:21:36');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4874,2004,'1',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4875,2004,'2',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4876,2004,'3',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4877,2004,'4',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2005,11,1,'<p>What does the following output?</p>
+<p>List&lt;Integer&gt; pennies = new ArrayList&lt;&gt;();<br />pennies.add(3);<br />pennies.add(2);<br />pennies.add(1);<br />pennies.remove(2);<br />System.out.println(pennies);</p>',TIMESTAMP '2019-04-04 17:24:09',TIMESTAMP '2019-04-04 17:24:09');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4880,2005,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4881,2005,'The code compiles but throws an exception at runtime.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4878,2005,'[3, 1]',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4879,2005,'[3, 2]',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2006,11,1,'<p>The author of this method forgot to include the data type. Which of the following reference types can best fill in the blank to complete this method?</p>
+<p>public static void secret( ________ mystery) {<br />&nbsp;&nbsp;&nbsp; char ch = mystery.charAt(3);<br />&nbsp;&nbsp;&nbsp; mystery = mystery.insert(1, "more");<br />&nbsp;&nbsp;&nbsp; int num = mystery.length();<br />}</p>',TIMESTAMP '2019-04-04 17:26:22',TIMESTAMP '2019-04-04 17:26:22');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4882,2006,'ArrayList',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4883,2006,'String',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4884,2006,'StringBuilder',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4885,2006,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2007,11,1,'What is the smallest unit you can add to a LocalTime object?',TIMESTAMP '2019-04-04 17:27:55',TIMESTAMP '2019-04-04 17:27:55');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4886,2007,'Second',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4887,2007,'Millisecond',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4888,2007,'Nanosecond',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4889,2007,'Picosecond',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2008,4,0,'Не забывать о том, что единственный во всем java.time фреймворке метод, непосредственно оперирующий с миллисекундами - это Duration ofMillis(long millis). Во всех остальных случаях придется работать через наносекунды (которая представляет собой 1/1 000 000 миллисекунды)',TIMESTAMP '2019-04-04 17:31:05',TIMESTAMP '2019-04-04 17:31:05');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2009,4,0,'Не забывать, что в паттерне форматтера дат <strong>MM</strong> - это месяц, а <strong>mm</strong> - это минута',TIMESTAMP '2019-04-04 17:34:41',TIMESTAMP '2019-04-04 17:34:41');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2010,11,1,'<p>What is the result of the following?</p>
+<p>import java.time.*;<br />import java.time.format.*;</p>
+<p>public class HowLong {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LocalDate newYears = LocalDate.of(2017, 1, 1);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Period period = Period.ofDays(1);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DateTimeFormatter format = DateTimeFormatter.ofPattern("mm-dd-yyyy");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(format.format(newYears.minus(period)));<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-04-04 17:35:08',TIMESTAMP '2019-04-04 17:35:08');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4890,2010,'01-01-2017',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4891,2010,'12-31-2016',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4892,2010,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4893,2010,'The code compiles but throws an exception at runtime.',true,'mm - это минуты, а не месяцы');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2011,11,1,'<p>Which of the following types can you pass as a parameter to the replace() method on the String class?</p>
+<p>I. char<br />II. String<br />III. StringBuilder</p>',TIMESTAMP '2019-04-04 17:38:33',TIMESTAMP '2019-04-04 17:38:33');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4896,2011,'II and III',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4897,2011,'I, II, and III',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4894,2011,'I',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4895,2011,'I and II',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2012,11,1,'<p>How many lines does this code output?</p>
+<p>import java.util.*;<br />import java.util.function.*;</p>
+<p>public class PrintNegative {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List&lt;String&gt; list = new ArrayList&lt;&gt;();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list.add("-5");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list.add("0");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list.add("5");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print(list, e -&gt; e &lt; 0);<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void print(List&lt;String&gt; list, Predicate&lt;Integer&gt; p) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (String num : list)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (p.test(num))<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(num);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-04-04 17:43:12',TIMESTAMP '2019-04-04 17:43:12');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4898,2012,'One',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4899,2012,'Two',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4900,2012,'None. The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4901,2012,'None. The code throws an exception at runtime.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2013,11,1,'<p>What is the output of the following?</p>
+<p>12: List&lt;String&gt; magazines = new ArrayList();<br />13: magazines.add("Readers Digest");<br />14: magazines.add("People");<br />15: magazines.clear();<br />16: magazines.add("The Economist");<br />17: magazines.remove(1);<br />18: System.out.println(magazines.size());</p>',TIMESTAMP '2019-04-04 17:47:09',TIMESTAMP '2019-04-04 17:47:09');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4902,2013,'0',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4903,2013,'1',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4904,2013,'The code does not compile.',false,'List&lt;String&gt; magazines = new ArrayList(); - скомпилируется');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4905,2013,'The code compiles but throws an exception at runtime.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2014,4,0,'<p>Если мы конструируем дженерик-объект без diamond-operator и присваиваем его ссылке с указанием типа, то это скомпилируется:<br /><br />List&lt;Integer&gt; integers = new LinkedList(); //legal<br /><br />Данный конкретный случай будет по функциональности аналогичен <br /><br />List&lt;Integer&gt; integers = new LinkedList&lt;&gt;();<br /><br />Однако в ситуации с подачей аргументов в конструктор будет по-другому:<br /><br />List&lt;String&gt; strings = ... // some list that contains some strings</p>
+<p>// Totally legal since you used the raw type and lost all type checking!<br />List&lt;Integer&gt; integers = new LinkedList(strings);<br /><br />потом все упадет из-за ClassCastException.<br /><br />А аналогичная конструкция с diamond operator просто не скомпилируется, чем спасет нас от многих бед:<br /><br />List&lt;String&gt; strings = ... // some list that contains some strings<br /><br />// Not legal since the right side is actually generic!<br />List&lt;Integer&gt; integers = new LinkedList&lt;&gt;(strings);<br /><br /></p>
+<p>&nbsp;</p>',TIMESTAMP '2019-04-04 17:55:37',TIMESTAMP '2019-04-04 17:55:37');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2015,11,1,'<p>What is the output of the following?</p>
+<p>public class Costume {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] black) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String witch = ''b'';<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String tail = "lack";<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; witch = witch.concat(tail);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(witch);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-04-04 17:57:24',TIMESTAMP '2019-04-04 17:57:24');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4906,2015,'b',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4907,2015,'black',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4908,2015,'The code does not compile.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4909,2015,'The code compiles but throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2016,11,1,'<p>What is the result of the following?</p>
+<p>LocalDate xmas = LocalDate.of(2016, 12, 25);<br />xmas.setYear(2017);<br />System.out.println(xmas.getYear());</p>',TIMESTAMP '2019-04-04 17:59:31',TIMESTAMP '2019-04-04 17:59:31');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4912,2016,'The code does not compile.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4913,2016,'The code compiles but throws an exception at runtime.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4910,2016,'2016',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (4911,2016,'2017',false,'');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,609,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,610,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,612,0);
@@ -9073,11 +9365,14 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1919,16);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1921,17);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1922,18);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1923,19);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (49,1961,16);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1924,20);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (49,1962,17);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1925,21);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1926,22);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1928,23);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1929,24);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (49,1967,18);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1931,25);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1932,26);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1933,27);
@@ -9085,6 +9380,7 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1934,28);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1935,29);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1936,30);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1937,31);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (49,1975,19);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1938,32);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1939,33);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1940,34);
@@ -9097,6 +9393,7 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1946,40);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1947,41);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1948,42);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1949,43);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (49,1987,20);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1950,44);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1952,45);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1953,46);
@@ -9104,8 +9401,59 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1954,47);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1955,48);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1957,49);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (50,1958,50);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (49,2008,21);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (49,2009,22);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (49,2014,23);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1959,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1960,2);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1963,3);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1964,4);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1965,5);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1966,6);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1968,7);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1969,8);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1970,9);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1971,10);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1972,11);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1973,12);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1974,13);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1976,14);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1977,15);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1978,16);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1979,17);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1980,18);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1981,19);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1982,20);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1983,21);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1984,22);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1985,23);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1986,24);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1988,25);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1989,26);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1990,27);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1991,28);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1992,29);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1993,30);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1994,31);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1995,32);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1996,33);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1997,34);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1998,35);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,1999,36);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,2000,37);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,2001,38);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,2002,39);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,2003,40);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,2004,41);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,2005,42);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,2006,43);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,2007,44);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,2010,45);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,2011,46);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,2012,47);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,2013,48);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,2015,49);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,2016,50);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,2,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,3,2);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,4,3);
