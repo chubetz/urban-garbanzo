@@ -8699,6 +8699,201 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5389,2116,'1045',false,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5390,2116,'24, followed by a stack trace',false,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5391,2116,'245',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2117,11,1,'<p>What is the output of the following?</p>
+<p>List&lt;String&gt; drinks = Arrays.asList("can", "cup");<br />for (int container = drinks.size(); container &gt; 0; container++) {<br />&nbsp;&nbsp;&nbsp; System.out.print(drinks.get(container-1) + ",");<br />}</p>',TIMESTAMP '2019-04-09 13:12:05',TIMESTAMP '2019-04-09 13:12:05');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5394,2117,'can,cup,',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5395,2117,'cup,can,',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5396,2117,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5397,2117,'This is an infinite loop.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5398,2117,'The code compiles but throws an exception at runtime.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2118,11,1,'Which of the following method signatures are valid declarations of an entry point in a Java application? (Choose three.)',TIMESTAMP '2019-04-09 13:26:02',TIMESTAMP '2019-04-09 13:26:02');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5399,2118,'public static void main(String... widgets)',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5400,2118,'public static void main(String sprockets)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5401,2118,'protected static void main(String[] args)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5402,2118,'public static int void main(String[] arg)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5403,2118,'public static final void main(String []a)',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5404,2118,'public static void main(String[] data)',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2119,11,1,'<p>Given the application below and the choices available, which lines must all be removed to allow the code to compile? (Choose three.)</p>
+<p>1: package year;<br />2: public class Seasons {<br />3:&nbsp;&nbsp;&nbsp;&nbsp; public static void main(String[] time) {<br />4:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final long winter = 10;<br />5:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final byte season = 2;<br />6:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int fall = 4;<br />7:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final short summer = 3;<br />8:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch(season) {<br />9:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 1:<br />10:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case winter: System.out.print("winter");<br />11:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br />12:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case fall: System.out.print("fall");<br />13:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case summer: System.out.print("summer");<br />14:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br />15:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />16:&nbsp;&nbsp;&nbsp;&nbsp; }<br />17: }</p>',TIMESTAMP '2019-04-09 13:31:09',TIMESTAMP '2019-04-09 13:31:09');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5408,2119,'Line 11',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5409,2119,'Line 12',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5410,2119,'Line 13',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5405,2119,'Line 8',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5406,2119,'Line 9',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5407,2119,'Line 10',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2120,11,1,'<p>Given the application below, which lines do not compile? (Choose three.)</p>
+<p>package furryfriends;<br />interface Friend {<br />&nbsp;&nbsp;&nbsp; protected String getName(); // h1<br />}<br />class Cat implements Friend {<br />&nbsp;&nbsp;&nbsp; String getName() { // h2<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "Kitty";<br />&nbsp;&nbsp;&nbsp; }<br />}<br />public class Dog implements Friend {<br />&nbsp;&nbsp;&nbsp; String getName() throws RuntimeException { // h3<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "Doggy";<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String[] adoption) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Friend friend = new Dog(); // h4<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(((Cat)friend).getName()); // h5<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(((Dog)null).getName()); // h6<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-04-09 13:57:54',TIMESTAMP '2019-04-09 13:57:54');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5411,2120,'Line h1',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5412,2120,'Line h2',true,'понижение видимости');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5413,2120,'Line h3',true,'понижение видимости');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5414,2120,'Line h4',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5415,2120,'Line h5',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5416,2120,'Line h6',false,'так можно, только будет NPE');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2121,4,0,'<strong>null</strong> можно кастить к любому типу, код скомпилируется, но в рантайме будет NPE',TIMESTAMP '2019-04-09 13:59:45',TIMESTAMP '2019-04-09 13:59:45');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2122,11,1,'Which of the following are unchecked exceptions? (Choose three.)',TIMESTAMP '2019-04-09 14:06:31',TIMESTAMP '2019-04-09 14:06:31');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5417,2122,'FileNotFoundException',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5418,2122,'ArithmeticException',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5419,2122,'IOException',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5420,2122,'Exception',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5421,2122,'IllegalArgumentException',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5422,2122,'RuntimeException',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2123,11,1,'<p>What is the result of compiling and executing the following application?</p>
+<p>package ranch;<br />public class Cowboy {<br />&nbsp;&nbsp;&nbsp; private int space = 5;<br />&nbsp;&nbsp;&nbsp; private double ship = space &lt; 2 ? 1 : 10; // g1<br />&nbsp;&nbsp;&nbsp; public void printMessage() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(ship&gt;1) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Goodbye");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } if(ship&lt;10 &amp;&amp; space&gt;=2) System.out.println("Hello"); // g2<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else System.out.println("See you again");<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static final void main(String... stars) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new Cowboy().printMessage();<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-04-09 14:39:03',TIMESTAMP '2019-04-09 14:39:03');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5424,2123,'It only prints Goodbye.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5425,2123,'It only prints See you again.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5426,2123,'It does not compile because of line g1.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5427,2123,'It does not compile because of line g2.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5428,2123,'None of the above',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5423,2123,'It only prints Hello.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2124,11,1,'<p>Given the following three class declarations, which sets of access modifiers can be inserted, in order, into the blank lines below that would allow all of the classes to compile? (Choose three.)</p>
+<p>package wake;<br />public class Alarm {<br />&nbsp;&nbsp;&nbsp; _______ static int clock;<br />&nbsp;&nbsp;&nbsp; _______ long getTime() {return clock;}<br />}</p>
+<p>package wake;<br />public class Coffee {<br />&nbsp;&nbsp;&nbsp; private boolean bringCoffee() { return new Alarm().clock&lt;10;}<br />}</p>
+<p>package sleep;<br />public class Snooze extends wake.Alarm {<br />&nbsp;&nbsp;&nbsp; private boolean checkTime() { return getTime()&gt;10;}<br />}</p>',TIMESTAMP '2019-04-09 14:47:54',TIMESTAMP '2019-04-09 14:47:54');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5429,2124,'protected and package-private (blank)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5430,2124,'public and public',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5431,2124,'package-private (blank) and protected',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5432,2124,'protected and protected',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5433,2124,'private and public',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5434,2124,'package-private (blank) and package-private (blank)',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2125,11,1,'<p>Given that FileNotFoundException is a subclass of IOException and Long is a subclass of Number, what is the output of the following application?</p>
+<p>package materials;</p>
+<p>import java.io.*;</p>
+<p>class CarbonStructure {<br />&nbsp;&nbsp;&nbsp; protected long count;<br />&nbsp;&nbsp;&nbsp; public abstract Number getCount() throws IOException; // q1<br />&nbsp;&nbsp;&nbsp; public CarbonStructure(int count) { this.count = count; }<br />}<br />public class Diamond extends CarbonStructure {<br />&nbsp;&nbsp;&nbsp; public Diamond() { super(15); }<br />&nbsp;&nbsp;&nbsp; public Long getCount() throws FileNotFoundException { // q2<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return count;<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String[] cost) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final CarbonStructure ring = new Diamond(); // q3<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(ring.getCount()); // q4<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (IOException e) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-04-09 14:52:03',TIMESTAMP '2019-04-09 14:52:03');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5440,2125,'It compiles but throws an exception at runtime.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5435,2125,'15',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5436,2125,'It does not compile because of line q1.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5437,2125,'It does not compile because of line q2.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5438,2125,'It does not compile because of line q3.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5439,2125,'It does not compile because of line q4.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2126,11,1,'<p>How many lines contain a compile error?</p>
+<p>1: import java.time.*;<br />2: import java.time.format.*;<br />3:<br />4: public class HowLong {<br />5:&nbsp;&nbsp;&nbsp;&nbsp; public void main(String h) {<br />6:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LocalDate newYears = new LocalDate(2017, 1, 1);<br />7:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Period period = Period.ofYears(1).ofDays(1);<br />8:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DateTimeFormat format = DateTimeFormat.ofPattern("MM-dd-yyyy");<br />9:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(format.format(newYears.minus(period)));<br />10:&nbsp;&nbsp;&nbsp; }<br />11: }</p>',TIMESTAMP '2019-04-09 14:56:09',TIMESTAMP '2019-04-09 14:56:09');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5441,2126,'None',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5442,2126,'One',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5443,2126,'Two',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5444,2126,'Three',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5445,2126,'Four',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5446,2126,'Five',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2127,11,1,'Which of the following statements about try-catch blocks are correct? (Choose two.)',TIMESTAMP '2019-04-09 14:57:51',TIMESTAMP '2019-04-09 14:57:51');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5447,2127,'A catch block can never appear after a finally block.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5448,2127,'A try block must be followed by a catch block.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5449,2127,'A finally block can never appear after a catch block.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5450,2127,'A try block must be followed by a finally block.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5451,2127,'A try block can have zero or more catch blocks.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5452,2127,'A try block can have zero or more finally blocks.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2128,11,1,'<p>What is printed by the following code snippet?</p>
+<p>int fish = 1 + 2 * 5&gt;=2 ? 4 : 2;<br />int mammals = 3 &lt; 3 ? 1 : 5&gt;=5 ? 9 : 7;<br />System.out.print(fish+mammals+"");</p>',TIMESTAMP '2019-04-09 15:40:37',TIMESTAMP '2019-04-09 15:40:37');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5456,2128,'99',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5457,2128,'It does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5453,2128,'49',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5454,2128,'13',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5455,2128,'18',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2129,11,1,'Which of the following statements about objects, reference types, and casting are correct? (Choose three.)',TIMESTAMP '2019-04-09 17:12:17',TIMESTAMP '2019-04-09 17:12:17');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5458,2129,'An object can be assigned to an inherited interface reference variable without an explicit cast.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5459,2129,'The compiler can prevent all explicit casts that lead to an exception at runtime.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5460,2129,'Casting an object to a reference variable does not modify the object in memory.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5461,2129,'An object can be assigned to a subclass reference variable without an explicit cast.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5462,2129,'An object can be assigned to a superclass reference variable without an explicit cast.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5463,2129,'An implicit cast of an object to one of its inherited types can sometimes lead to a ClassCastException at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2130,11,1,'<p>What is the output of the following when run as java EchoFirst seed flower plant?</p>
+<p>package unix;<br />import java.util.*;<br />public class EchoFirst {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int result = Arrays.binarySearch(args, args[0]);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(result);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-04-09 17:14:55',TIMESTAMP '2019-04-09 17:14:55');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5464,2130,'0',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5465,2130,'1',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5466,2130,'2',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5467,2130,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5468,2130,'The code compiles but throws an exception at runtime.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5469,2130,'The output is not guaranteed.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2131,11,1,'<p>How many objects are eligible for garbage collection at the end of the main() method?</p>
+<p>package store;<br />public class Shoes {</p>
+<p>&nbsp;&nbsp;&nbsp; static String shoe1 = new String("sandal");<br />&nbsp;&nbsp;&nbsp; static String shoe2 = new String("flip flop");</p>
+<p>&nbsp;&nbsp;&nbsp; public static void shopping() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String shoe3 = new String("croc");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; shoe2 = shoe1;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; shoe1 = shoe3;<br />&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp; public static void main(String... args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; shopping();<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-04-09 17:19:40',TIMESTAMP '2019-04-09 17:19:40');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5472,2131,'Two',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5473,2131,'Three',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5474,2131,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5470,2131,'None',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5471,2131,'One',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2132,11,1,'Fill in the blanks: The _______ keyword is used in method declarations, the _______ keyword is used to guarantee a statement will execute even if an exception is thrown, and the _______ keyword is used to throw an exception to the surrounding process.',TIMESTAMP '2019-04-09 17:22:04',TIMESTAMP '2019-04-09 17:22:04');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5475,2132,'throw, finally, throws',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5476,2132,'throws, catch, throw',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5477,2132,'catch, finally, throw',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5478,2132,'finally, catch, throw',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5479,2132,'throws, finally, throw',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2133,11,1,'<p>Which statements best describe the result of this code? (Choose two.)</p>
+<p>package nyc;<br />public class TouristBus {<br />&nbsp;&nbsp;&nbsp; public static void main(String... args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String[] nycTourLoops = new String[] { "Downtown", "Uptown", "Brooklyn" };<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String[] times = new String[] { "Day", "Night" };<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0, j = 0; i &lt; nycTourLoops.length; i++, j++)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(nycTourLoops[i] + " " + times[j]);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-04-09 17:37:11',TIMESTAMP '2019-04-09 17:37:11');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5480,2133,'The println causes one line of output.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5481,2133,'The println causes two lines of output.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5482,2133,'The println causes three lines of output.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5483,2133,'The code terminates successfully.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5484,2133,'The code throws an exception at runtime.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2134,11,1,'Fill in the blanks: Because of _______________, it is possible to ____________ a method, which allows Java to support _______________.',TIMESTAMP '2019-04-09 17:39:16',TIMESTAMP '2019-04-09 17:39:16');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5488,2134,'inheritance, abstract, polymorphism',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5489,2134,'virtual methods, override, polymorphism.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5485,2134,'abstract methods, override, inheritance',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5486,2134,'concrete methods, overload, inheritance',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5487,2134,'virtual methods, overload, interfaces',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2135,11,1,'<p>What is the result of the following?</p>
+<p>package calendar;<br />public class Seasons {<br />&nbsp;&nbsp;&nbsp; public static void seasons(String... names) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int l = names[1].length(); // s1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(names[l]); // s2<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; seasons("Summer", "Fall", "Winter", "Spring");<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-04-09 17:42:56',TIMESTAMP '2019-04-09 17:42:56');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5490,2135,'Fall',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5491,2135,'Spring',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5492,2135,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5493,2135,'The code throws an exception on line s1.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5494,2135,'The code throws an exception on line s2.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2136,11,1,'<p>How many lines of the following application contain compilation errors?</p>
+<p>1: package percussion;<br />2:<br />3: interface MakesNoise {}<br />4: abstract class Instrument implements MakesNoise {<br />5:&nbsp;&nbsp;&nbsp;&nbsp; public Instrument(int beats) {}<br />6:&nbsp;&nbsp;&nbsp;&nbsp; public void play() {}<br />7: }<br />8: public class Drum extends Instrument {<br />9:&nbsp;&nbsp;&nbsp;&nbsp; public void play(int count) {}<br />10:&nbsp;&nbsp;&nbsp; public void concert() {<br />11:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super.play(5);<br />12:&nbsp;&nbsp;&nbsp; }<br />13:&nbsp;&nbsp;&nbsp; public static void main(String[] beats) {<br />14:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MakesNoise mn = new Drum();<br />15:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mn.concert();<br />16:&nbsp;&nbsp;&nbsp; }<br />17: }</p>',TIMESTAMP '2019-04-09 17:51:35',TIMESTAMP '2019-04-09 17:51:35');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5495,2136,'None. The code compiles and runs without issue.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5496,2136,'One',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5497,2136,'Two',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5498,2136,'Three',true,'- класс Drum не имеет конструктора, позволяющего наследование (no-arg не вставится)<br />- super.play(5) - не та сигнатура<br />- mn.concert() - с ссылки интерфейса этот метод не виден');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5499,2136,'Four',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2137,4,0,'Если у родительского класса нет конструктора без аргументов, то у дочернего no-arg конструктор создаться не сможет, т.е. дочерний класс без явного конструктора не скомпилируется (ошибка компиляции в объявлении класса)',TIMESTAMP '2019-04-09 17:55:11',TIMESTAMP '2019-04-09 17:55:11');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2138,11,1,'<p>What is the output of the following application?</p>
+<p>package fly;<br />public class Helicopter {<br />&nbsp;&nbsp;&nbsp; public int adjustPropellers(int length, String[] type) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; length++;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; type[0] = "LONG";<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return length;<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String[] climb) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final Helicopter h = new Helicopter();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int length = 5;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String[] type = new String[1];<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; length = h.adjustPropellers(length, type);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(length+","+type[0]);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-04-09 17:58:15',TIMESTAMP '2019-04-09 17:58:15');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5504,2138,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5505,2138,'The code compiles but throws an exception at runtime.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5500,2138,'5,LONG',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5501,2138,'6,LONG',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5502,2138,'5,null',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5503,2138,'6,null',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2139,11,1,'<p>How many lines of the following application do not compile?</p>
+<p>package castles;<br />class OpenDoorException extends Exception {}<br />class CableSnapException extends OpenDoorException {}<br />public class Palace {<br />&nbsp;&nbsp;&nbsp; public void openDrawbridge() throws Exception {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw new Exception("Problem");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (OpenDoorException e) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw new OpenDoorException();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (CableSnapException ex) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw new OpenDoorException();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (Exception ex) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } finally {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Almost done");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } finally {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw new RuntimeException("Unending problem");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String[] moat) throws IllegalArgumentException {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new Palace().openDrawbridge();<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-04-09 18:30:12',TIMESTAMP '2019-04-09 18:30:21');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5506,2139,'None. The code compiles and produces a stack trace at runtime.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5507,2139,'One',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5508,2139,'Two',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5509,2139,'Three',true,'-catch (CableSnapException ex) - unreacheable<br />- вложенное объявление переменной ex<br />- openDrawbridge() не обрабатывает проверяемое исключение');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5510,2139,'Four',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5511,2139,'Five',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2140,11,1,'Choose the best answer: _________ and ___________ are two properties that go hand in hand to improve class design by structuring a class with related attributes and actions while protecting the underlying data from access by other classes.',TIMESTAMP '2019-04-09 18:32:20',TIMESTAMP '2019-04-09 18:32:20');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5512,2140,'Optimization and platform independence',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5513,2140,'Platform independence and encapsulation',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5514,2140,'Platform independence and inheritance',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5515,2140,'Object orientation and encapsulation',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5516,2140,'Inheritance and polymorphism',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2141,11,1,'<p>What is the output of the following?</p>
+<p>string bike1 = "speedy";<br />string bike2 = new String("speedy");<br />boolean test1 = bike1 == bike2;<br />boolean test2 = bike1.equals(bike2);<br />System.out.println(test1 + " " + test2);</p>',TIMESTAMP '2019-04-09 18:34:15',TIMESTAMP '2019-04-09 18:34:15');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5520,2141,'true true',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5521,2141,'The code does not compile.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5522,2141,'The code compiles but throws an exception at runtime.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5517,2141,'false false',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5518,2141,'false true',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5519,2141,'true false',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2142,11,1,'<p>What is the output of the following when run as java EchoFirst seed flower plant?</p>
+<p>package unix;</p>
+<p>import java.util.*;</p>
+<p>public class EchoFirst {</p>
+<p>&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Arrays.sort(args);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int result = Arrays.binarySearch(args, args[0]);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(result);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-04-09 18:37:07',TIMESTAMP '2019-04-09 18:37:07');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5523,2142,'0',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5524,2142,'1',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5525,2142,'2',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5526,2142,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5527,2142,'The code compiles but throws an exception at runtime.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5528,2142,'The output is not guaranteed.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2143,11,1,'Which are true statements? (Choose three.)',TIMESTAMP '2019-04-09 18:39:32',TIMESTAMP '2019-04-09 18:39:32');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5529,2143,'Every do-while loop can be rewritten as a for-each loop.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5530,2143,'Every for-each loop can be rewritten as a do-while loop.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5531,2143,'Every for-each loop can be rewritten as a traditional for loop.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5532,2143,'Every for-each loop can be rewritten as a while loop.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5533,2143,'Every traditional for loop can be rewritten as a for-each loop.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (5534,2143,'Every while loop can be rewritten as a for-each loop.',false,'');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,609,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,610,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,612,0);
@@ -10110,6 +10305,7 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,2013,48);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (49,2089,36);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,2015,49);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (51,2016,50);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (49,2121,37);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (52,2017,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (52,2018,2);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (52,2019,3);
@@ -10118,6 +10314,7 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (52,2022,5);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (52,2023,6);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (52,2024,7);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (52,2025,8);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (49,2137,38);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (52,2026,9);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (52,2027,10);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (52,2028,11);
@@ -10249,30 +10446,58 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2116,50);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (56,2079,3);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,56,47);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (1,19,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2117,51);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,57,48);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2118,52);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,58,49);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2119,53);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,59,50);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2120,54);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,60,51);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,61,52);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2122,55);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (56,2085,4);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,62,53);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2123,56);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,63,54);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2124,57);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,64,55);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2125,58);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (1,28,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2126,59);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2127,60);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,67,56);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2128,61);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,68,58);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2129,62);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,69,60);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2130,63);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,70,61);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2131,64);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,71,62);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2132,65);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,72,63);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2133,66);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2134,67);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,74,64);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2135,68);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,75,65);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2136,69);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,76,66);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,77,67);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2138,70);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2139,71);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2140,72);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2141,73);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (56,2104,5);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2142,74);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2143,75);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (1,58,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (56,2120,6);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (1,64,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (1,73,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (56,2136,7);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (56,2139,8);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (2,78,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (2,79,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (2,80,0);
