@@ -1,7 +1,8 @@
 ﻿
 
-p.136 Ch9#3   p.471
+p.205 Ch12№1   p.490
+-		№14 №15
 
 		
 		
-		
+SQL Fehily: p.42 relationships		
