@@ -1,8 +1,13 @@
 ﻿
 
-p.205 Ch12№1   p.490
--		№14 №15
-
+p.223 Ch13№1   p.495
+№40		№2
 		
 		
 SQL Fehily: p.42 relationships		
+
+
+Bloch: Item 2 p.10
+
+Servlet: Ch2. p.66 The JSP for the second page
+
