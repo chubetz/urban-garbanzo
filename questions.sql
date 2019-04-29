@@ -96,6 +96,7 @@ INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (62,14
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (63,15,'Введение в веб-программирование на Java',1.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (64,15,'Структурирование веб-приложения по паттерну MVC',2.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (65,8,'Дополнительные факты',1000.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (66,12,'Generics and Collections',13.0);
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (0,4,0,'Тесты экзамена предполагают обычно 5 или 6 ответов, со множественным выбором.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1,4,0,'Нельзя реализовать в классе два интерфейса с общим дефолтным методом, если не переопределить этот метод в классе.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2,4,2,'<p>Перечислите 3 вида комментариев в Java</p>',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
@@ -10142,6 +10143,65 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6402,2389,'1) <br />Predicate&lt;Employee&gt; idLessThan4 = e -&gt; e.getId() &lt; 4;<br />Predicate&lt;Employee&gt; salaryGreaterThan200 = e -&gt; e.getSalary() &gt; 200;<br />Predicate&lt;Employee&gt; complex = idLessThan4.and(salaryGreaterThan200);<br /><br />2)<br />Predicate&lt;Employee&gt; idLessThan4 = e -&gt; e.getId() &lt; 4;<br />Predicate&lt;Employee&gt; salaryGreaterThan200 = e -&gt; e.getSalary() &gt; 200;<br />Predicate&lt;Employee&gt; complex = idLessThan4.or(salaryGreaterThan200);<br /><br />3) <br />Predicate&lt;Integer&gt; isEven = i -&gt; i % 2 == 0;<br />Predicate&lt;Integer&gt; isOdd = isEven.negate();',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2390,8,2,'Опишите методы <strong>toArray</strong> класса <strong>Stream</strong>.',TIMESTAMP '2019-04-26 21:59:43',TIMESTAMP '2019-04-26 21:59:57');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6405,2390,'<em>Object[]</em> <strong>toArray</strong>()<br />терминальная операция, возвращающая массив объектов потока<br /><br />&lt;A&gt; <em>A[]</em> <strong>toArray</strong>(<em>IntFunction&lt;A[]&gt;</em> generator)<br />терминальная операция, помещающая объекты потока в массив, создаваемый функцией. Массив можно создать любой, но если он не будет подходящего типа для хранения всех элементов потока, возникнет <em>ArrayStoreException</em>. Типичный пример использования:<br /><br />Person[] men = people.stream().toArray(Person[]::new);',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2391,12,1,'<p>Which of the following can fill in the blank to make the code compile?</p>
+<p>public class News&lt; _______&nbsp;&gt; {}</p>
+<p>I. ?<br />II. News<br />III. Object</p>',TIMESTAMP '2019-04-29 12:35:27',TIMESTAMP '2019-04-29 12:35:27');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6422,2391,'None of them',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6423,2391,'I',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6424,2391,'II and III',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6425,2391,'I, II, and III',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2392,12,1,'Which method is available on both List and Stream implementations?',TIMESTAMP '2019-04-29 12:56:52',TIMESTAMP '2019-04-29 12:56:52');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6426,2392,'filter()',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6427,2392,'forEach()',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6428,2392,'replace()',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6429,2392,'sort()',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2393,12,1,'We are running a library. Patrons select books by name. They get at the back of the checkout line. When they get to the front, they scan the book&rsquo;s ISBN. The checkout system finds the book based on this number and marks the book as checked out. Of these choices, which data structures best represent the line to check out the book and the book lookup to mark it as checked out, respectively?',TIMESTAMP '2019-04-29 13:22:43',TIMESTAMP '2019-04-29 13:22:43');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6432,2393,'ArrayList, TreeMap',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6433,2393,'ArrayList, TreeSet',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6430,2393,'ArrayDeque, TreeMap',true,'ArrayDeque - для очереди посетителей, TreeMap - для маркировки книг');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6431,2393,'ArrayDeque, TreeSet',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2394,12,1,'<p>Which cannot fill in the blank for this code to compile?</p>
+<p>Collection&lt;String&gt; c = new ________&lt;&gt;();<br />c.add("pen");<br />c.remove("pen");<br />System.out.println(c.isEmpty());</p>',TIMESTAMP '2019-04-29 13:34:31',TIMESTAMP '2019-04-29 13:34:31');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6434,2394,'ArrayDeque',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6435,2394,'TreeMap',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6436,2394,'TreeSet',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6437,2394,'All of these can fill in the blank.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2395,12,1,'Suppose we want to implement a Comparator&lt;String&gt; so that it sorts the longest strings first. You may assume there are no nulls. Which method could implement such a comparator?',TIMESTAMP '2019-04-29 13:37:00',TIMESTAMP '2019-04-29 13:37:00');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6438,2395,'public int compare(String s1, String s2) {<br />&nbsp;&nbsp;&nbsp; return s1.length() - s2.length();<br />}',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6439,2395,'public int compare(String s1, String s2) {<br />&nbsp;&nbsp;&nbsp; return s2.length() &ndash; s1.length();<br />}',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6440,2395,'public int compare(Object obj1, object obj2) {<br />&nbsp;&nbsp;&nbsp; String s1 = (String) obj1;<br />&nbsp;&nbsp;&nbsp; String s2 = (String) obj2;<br />&nbsp;&nbsp;&nbsp; return s1.length() - s2.length();<br />}',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6441,2395,'public int compare(Object obj1, object obj2) {<br />&nbsp;&nbsp;&nbsp; String s1 = (String) obj1;<br />&nbsp;&nbsp;&nbsp; String s2 = (String) obj2;<br />&nbsp;&nbsp;&nbsp; return s2.length() &ndash; s1.length();<br />}',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2396,12,1,'Suppose we want to store JellyBean objects. Which of the following pairs require JellyBean to implement the Comparable interface or create a Comparator in order to add them to the Collection?',TIMESTAMP '2019-04-29 13:49:54',TIMESTAMP '2019-04-29 13:49:54');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6442,2396,'ArrayList and ArrayDeque',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6443,2396,'HashMap and HashSet',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6444,2396,'HashMap and TreeMap',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6445,2396,'TreeMap and TreeSet',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2397,12,1,'What is a common reason for a stream pipeline not to run?',TIMESTAMP '2019-04-29 16:25:15',TIMESTAMP '2019-04-29 16:25:15');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6448,2397,'The terminal operation is missing.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6449,2397,'None of the above',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6446,2397,'The source doesn&rsquo;t generate any items.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6447,2397,'There are no intermediate operations.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2398,12,1,'<p>We want this code to print the titles of each book twice. Why doesn&rsquo;t it?</p>
+<p>LinkedList&lt;String&gt; list = new LinkedList&lt;&gt;();<br />list.add("Grapes of Wrath");<br />list.add("1984");</p>
+<p>list.forEach(System.out::println);</p>
+<p>Iterator it = list.iterator();<br />while (it.hasMore())<br />&nbsp;&nbsp;&nbsp; System.out.println(it.next());</p>
+<p>&nbsp;</p>',TIMESTAMP '2019-04-29 16:47:00',TIMESTAMP '2019-04-29 16:47:00');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6450,2398,'The generic type of Iterator is missing.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6451,2398,'The hasMore() method should be changed to hasNext().',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6452,2398,'The iteration code needs to be moved before the forEach() since the stream is used up.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6453,2398,'None of the above. The code does print each book title twice.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2399,12,1,'<p>What is the result of the following?</p>
+<p>ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();<br />list.add(56);<br />list.add(56);<br />list.add(3);</p>
+<p>TreeSet&lt;Integer&gt; set = new TreeSet&lt;&gt;(list);<br />System.out.print(set.size());<br />System.out.print(" " );<br />System.out.print(set.iterator().next());</p>',TIMESTAMP '2019-04-29 17:00:56',TIMESTAMP '2019-04-29 17:00:56');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6454,2399,'2 3',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6455,2399,'2 56',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6456,2399,'3 3',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6457,2399,'3 56',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2400,12,1,'What best describes a reduction?',TIMESTAMP '2019-04-29 17:48:08',TIMESTAMP '2019-04-29 17:48:08');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6458,2400,'An intermediate operation where it filters the stream it receives',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6459,2400,'An intermediate operation where it mathematically divides each element in the stream',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6460,2400,'A terminal operation where a single value is generated by reading each element in the prior step in a stream pipeline',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6461,2400,'A terminal operation where one element is returned from the prior step in a stream pipeline without reading all the elements',false,'');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,609,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,610,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,612,0);
@@ -12258,15 +12318,25 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,327,8);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,328,9);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,329,10);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,330,11);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2391,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,331,12);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2392,2);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,332,13);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2393,3);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,333,14);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2394,4);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,334,15);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2395,5);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,335,16);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2396,6);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,336,17);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2397,7);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,337,18);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2398,8);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,338,19);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2399,9);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,339,20);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2400,10);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,340,21);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,341,22);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,342,23);
