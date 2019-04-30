@@ -1,10 +1,10 @@
 ﻿
 
-p.223 Ch13№11   p.495
+p.223 Ch13№20   p.495
 №40		-
 		
 		
-SQL Fehily: p.42 relationships		
+SQL Fehily: p.57 Creating the Sample Database		
 
 
 Bloch: Item 2 p.10
