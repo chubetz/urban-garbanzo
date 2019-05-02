@@ -6,27 +6,21 @@
 package ru.garbanzo.urban.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Enumeration;
-import java.util.NoSuchElementException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import ru.garbanzo.urban.edu.Exam;
 import ru.garbanzo.urban.edu.Theme;
-import ru.garbanzo.urban.exception.ExamException;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.exception.NoMoreQuestionException;
 import ru.garbanzo.urban.users.State;
 import ru.garbanzo.urban.users.User;
-import ru.garbanzo.urban.util.Utils;
 
 /**
- *
+ * Сервлет, отвечающий за запуск/возобновление/проведение проверки знаний
  * @author d.gorshenin
  */
 public class Activator extends HttpServlet {
@@ -69,7 +63,7 @@ public class Activator extends HttpServlet {
                     Exam exam = state.getExam(theme, examType);
                     request.setAttribute("exam", exam);
                     request.setAttribute("theme", theme);
-                    Utils.print("===", request.getParameterMap());
+                    //Utils.print("===", request.getParameterMap());
                     exam.processWorkflow(subAction, request.getParameterMap());
                     request.setAttribute("title", "Проверка знаний");
                     request.setAttribute("exam_mode", "on");

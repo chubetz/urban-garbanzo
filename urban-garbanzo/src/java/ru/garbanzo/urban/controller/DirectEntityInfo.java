@@ -8,14 +8,12 @@ package ru.garbanzo.urban.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import ru.garbanzo.urban.edu.Answer;
 
 /**
- *
+ * Сервлет, возвращающий информационное окно - пока только с комментарием к ответу
  * @author mithia
  */
 public class DirectEntityInfo extends ErrorHandlingServlet {
