@@ -1,7 +1,7 @@
 ﻿
 
-p.223 Ch13№20   p.495
-№40		-
+p.239 Ch14№1   p.500
+-		#22, #31
 		
 		
 SQL Fehily: p.57 Creating the Sample Database		

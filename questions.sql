@@ -10284,6 +10284,132 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6507,2424,'1',false,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6508,2424,'The code does not compile.',false,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6509,2424,'The result is not defined.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2425,12,1,'<p>How many lines does this code output?</p>
+<p>List&lt;String&gt; list = new LinkedList&lt;&gt;();<br />list.add("Archie");<br />list.add("X-Men");</p>
+<p>Stream&lt;String&gt; s = list.stream();<br />s.forEach(System.out::println);<br />s.forEach(System.out::println);</p>',TIMESTAMP '2019-05-02 12:26:17',TIMESTAMP '2019-05-02 12:26:17');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6512,2425,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6513,2425,'The code compiles but throws an exception at runtime.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6510,2425,'Two',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6511,2425,'Four',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2426,12,1,'<p>Which option cannot fill in the blank to print "Clean socks"?</p>
+<p>class Wash&lt;T&gt; {<br />&nbsp;&nbsp;&nbsp; T item;<br />&nbsp;&nbsp;&nbsp; public void clean(T item) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Clean " + item);<br />&nbsp;&nbsp;&nbsp; }<br />}<br />public class LaundryTime {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ________________<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; wash.clean("socks");<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-02 12:51:48',TIMESTAMP '2019-05-02 12:51:48');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6514,2426,'Wash wash = new Wash();',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6515,2426,'Wash wash = new Wash&lt;String&gt;();',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6516,2426,'Wash&lt;String&gt; wash = new Wash&lt;&gt;();',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6517,2426,'All three can fill in the blank.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2427,12,1,'<p>We want this code to print the titles of each book twice. Why doesn&rsquo;t it?</p>
+<p>LinkedList&lt;String&gt; list = new LinkedList&lt;&gt;();<br />list.add("Grapes of Wrath");<br />list.add("1984");</p>
+<p>list.stream().forEach(System.out::println);</p>
+<p>Iterator it = list.iterator();<br />while (it.hasNext())<br />&nbsp;&nbsp;&nbsp; System.out.println(it.next());</p>',TIMESTAMP '2019-05-02 12:54:54',TIMESTAMP '2019-05-02 12:54:54');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6518,2427,'The generic type of Iterator is missing.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6519,2427,'The hasNext() method should be changed to isNext().',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6520,2427,'The iteration code needs to be moved before the forEach() since the stream is used up.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6521,2427,'None of the above. The code does print each book title twice.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2428,12,1,'<p>Rewrite this lambda using a method reference:</p>
+<p>() -&gt; Math.random()</p>',TIMESTAMP '2019-05-02 12:58:59',TIMESTAMP '2019-05-02 12:58:59');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6522,2428,'Math.random',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6523,2428,'Math::random',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6524,2428,'Math::random()',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6525,2428,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2429,12,1,'<p>Which operation can occur more than once in a stream pipeline?</p>
+<p>Source ===&gt; Intermediate ===&gt; Terminal</p>',TIMESTAMP '2019-05-02 13:07:52',TIMESTAMP '2019-05-02 13:07:52');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6528,2429,'Terminal operation',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6529,2429,'None of the above',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6526,2429,'Source',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6527,2429,'Intermediate operation',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2430,12,1,'Which type allows inserting a null value?',TIMESTAMP '2019-05-02 13:10:47',TIMESTAMP '2019-05-02 13:10:47');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6530,2430,'ArrayDeque',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6531,2430,'ArrayList',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6532,2430,'TreeSet',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6533,2430,'All of these allow nulls.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2431,12,1,'<p>Fill in the blank so this code outputs three lines:</p>
+<p>List&lt;String&gt; list = new ArrayList&lt;&gt;();<br />list.add("Atlanta");<br />list.add("Chicago");<br />list.add("New York");</p>
+<p>list.stream().filter( _________ ).forEach(System.out::println);</p>',TIMESTAMP '2019-05-02 13:12:39',TIMESTAMP '2019-05-02 13:12:39');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6534,2431,'String::isEmpty',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6535,2431,'! String::isEmpty',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6536,2431,'String::! isEmpty',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6537,2431,'None of the above',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2432,12,1,'<p>What is the output of the following?</p>
+<p>TreeMap&lt;String, Integer&gt; map = new TreeMap&lt;&gt;();<br />map.put("3", 3);<br />map.put("three", 3);<br />map.put("THREE", 3);<br />System.out.println(map.firstKey() + " " + map.lastKey());</p>',TIMESTAMP '2019-05-02 13:15:00',TIMESTAMP '2019-05-02 13:15:00');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6538,2432,'3 three',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6539,2432,'3 THREE',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6540,2432,'three 3',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6541,2432,'THREE 3',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2433,8,0,'У класса <strong>TreeMap</strong> (и у интерфейса <strong>SortedMap</strong>) есть методы <strong>firstKey</strong>() и <strong>lastKey</strong>()',TIMESTAMP '2019-05-02 13:18:08',TIMESTAMP '2019-05-02 13:18:08');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2434,12,1,'<p>Which fills in the blank in the method signature to allow this code to compile?</p>
+<p>import java.util.*;<br />public class ExtendingGenerics {<br />&nbsp;&nbsp;&nbsp; private static &lt; ___________ , U&gt; U add(T list, U element) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list.add(element);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return element;<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List&lt;String&gt; values = new ArrayList&lt;&gt;();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add(values, "duck");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add(values, "duck");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add(values, "goose");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(values);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-02 13:22:32',TIMESTAMP '2019-05-02 13:22:32');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6544,2434,'T extends Collection&lt;U&gt;',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6545,2434,'T implements Collection&lt;U&gt;',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6542,2434,'? extends Collection&lt;U&gt;',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6543,2434,'? implements Collection&lt;U&gt;',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2435,12,1,'<p>What is the result of the following?</p>
+<p>List&lt;String&gt; list = new ArrayList&lt;&gt;();<br />list.add("Austin");<br />list.add("Boston");<br />list.add("San Francisco");</p>
+<p>list.removeIf(a -&gt; a.length() &gt; 10);<br />System.out.println(list.size());</p>',TIMESTAMP '2019-05-02 13:29:30',TIMESTAMP '2019-05-02 13:29:30');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6546,2435,'1',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6547,2435,'2',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6548,2435,'3',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6549,2435,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2436,12,1,'<p>What does the following output?</p>
+<p>ArrayDeque&lt;Integer&gt; dice = new ArrayDeque&lt;&gt;();<br />dice.offer(3);<br />dice.offer(2);<br />dice.offer(4);<br />System.out.print(dice.stream().filter(n -&gt; n != 4));</p>',TIMESTAMP '2019-05-02 13:35:04',TIMESTAMP '2019-05-02 13:35:04');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6550,2436,'2',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6551,2436,'3',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6552,2436,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6553,2436,'None of the above',true,'Будет что-то вроде java.util.stream.ReferencePipeline$2@404b9385');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2437,12,1,'<p>Which of the following cannot fill in the blank to make the code compile?</p>
+<p>private void output( ________ &lt;?&gt; x) {<br />&nbsp;&nbsp;&nbsp; x.forEach(System.out::println);<br />}</p>',TIMESTAMP '2019-05-02 13:38:03',TIMESTAMP '2019-05-02 13:38:03');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6554,2437,'ArrayDeque',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6555,2437,'Collection',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6556,2437,'TreeMap',true,'метод forEach на TreeMap принимает два параметра');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6557,2437,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2438,8,2,'Опишите метод <strong>forEach</strong> интерфейса <strong>Map</strong>',TIMESTAMP '2019-05-02 13:43:35',TIMESTAMP '2019-05-02 13:43:35');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6558,2438,'default <em>void</em> <strong>forEach</strong>(<em>BiConsumer</em>&lt;? super K,? super V&gt; action)<br /><br />Производит нужное действие для каждой пары ключ-значение, пока все пары не будут обработаны или пока не возникнет исключение. Перебор должен вестись в том же порядке, в котором&nbsp;идет <strong>entrySet</strong>()',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2439,12,1,'<p>How many lines does this code output?</p>
+<p>List&lt;String&gt; list = new LinkedList&lt;&gt;();<br />list.add("Archie");<br />list.add("X-Men");</p>
+<p>list.stream().forEach(System.out.println);<br />list.stream().forEach(System.out.println);</p>',TIMESTAMP '2019-05-02 13:45:25',TIMESTAMP '2019-05-02 13:45:25');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6560,2439,'Four',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6561,2439,'The code does not compile.',true,'System.out.println&nbsp;вместо System.out::println');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6562,2439,'The code compiles but throws an exception at runtime.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6559,2439,'Two',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2440,12,1,'<p>What is the output of the following?</p>
+<p>class Magazine implements Comparable&lt;Magazine&gt; {<br />&nbsp;&nbsp;&nbsp; private String name;<br />&nbsp;&nbsp;&nbsp; public Magazine(String name) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.name = name;<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; @Override<br />&nbsp;&nbsp;&nbsp; public int compareTo(Magazine m) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return name.compareTo(m.name);<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; @Override<br />&nbsp;&nbsp;&nbsp; public String toString() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return name;<br />&nbsp;&nbsp;&nbsp; }<br />}<br />public class Newstand {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Set&lt;Magazine&gt; set = new TreeSet&lt;&gt;();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set.add(new Magazine("highlights"));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set.add(new Magazine("Newsweek"));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set.add(new Magazine("highlights"));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(set.iterator().next());<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-02 13:56:04',TIMESTAMP '2019-05-02 13:56:04');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6563,2440,'highlights',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6564,2440,'Newsweek',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6565,2440,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6566,2440,'The code compiles but throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2441,12,1,'How many lines does the following code output?<br /><br />import java.util.*;<br />class Blankie {<br />&nbsp;&nbsp;&nbsp; String color;<br />&nbsp;&nbsp;&nbsp; String getColor() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return color;<br />&nbsp;&nbsp;&nbsp; }<br />}<br />public class PreSchool {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Blankie b1 = new Blankie();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Blankie b2 = new Blankie();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b1.color = "pink";<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List&lt;Blankie&gt; list = Arrays.asList(b1, b2);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list.stream().filter(Blankie::getColor).forEach(System.out::println);<br />&nbsp;&nbsp;&nbsp; }<br />}',TIMESTAMP '2019-05-02 13:59:30',TIMESTAMP '2019-05-02 13:59:30');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6567,2441,'One',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6568,2441,'Two',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6569,2441,'The code does not compile.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6570,2441,'The code compiles but throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2442,12,1,'Which statement about a source in a Stream is true?',TIMESTAMP '2019-05-02 14:02:56',TIMESTAMP '2019-05-02 14:02:56');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6571,2442,'The source is mandatory in a stream pipeline.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6572,2442,'The source is only allowed to return primitives.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6573,2442,'The source must be retrieved by calling the stream() method.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6574,2442,'The source must return a finite number of elements.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2443,12,1,'<p>What does the following output?</p>
+<p>List&lt;String&gt; list = new ArrayList&lt;&gt;();<br />list.add("Austin");<br />list.add("Boston");<br />list.add("San Francisco");</p>
+<p>long c = list.stream().filter(a -&gt; a.length() &gt; 10).count();<br />System.out.println(c + " " + list.size());</p>',TIMESTAMP '2019-05-02 14:09:21',TIMESTAMP '2019-05-02 14:09:21');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6576,2443,'1 3',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6577,2443,'2 3',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6578,2443,'None of the above',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6575,2443,'1 1',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2444,12,1,'<p>Which options can fill in the blanks to print "Cleaned 2 items"?</p>
+<p>import java.util.*;<br />class Wash&lt;T ______ Collection&gt; {<br />&nbsp;&nbsp;&nbsp; T item;<br />&nbsp;&nbsp;&nbsp; public void clean(T items) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Cleaned " + items.size() + " items");<br />&nbsp;&nbsp;&nbsp; }<br />}<br />public class LaundryTime {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Wash&lt;List&gt; wash = new _______________<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; wash.clean(Arrays.asList("sock", "tie")); }<br />}</p>',TIMESTAMP '2019-05-02 14:12:42',TIMESTAMP '2019-05-02 14:12:42');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6579,2444,'extends, Wash&lt;ArrayList&gt;();',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6580,2444,'extends, Wash&lt;List&gt;();',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6581,2444,'super, Wash&lt;ArrayList&gt;();',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6582,2444,'super, Wash&lt;List&gt;();',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2445,12,1,'Which of the following declares a Comparator where all objects are treated as equal?',TIMESTAMP '2019-05-02 14:14:09',TIMESTAMP '2019-05-02 14:14:09');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6583,2445,'Comparator&lt;Character&gt; comp = (c1)-&gt; 0;',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6584,2445,'Comparator&lt;Character&gt; comp = (c1)-&gt; {0};',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6585,2445,'Comparator&lt;Character&gt; comp = (c1, c2)-&gt; 0;',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6586,2445,'Comparator&lt;Character&gt; comp = (c1, c2)-&gt; {0};',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2446,12,1,'Why can&rsquo;t String::charAt be used as a method reference with a Function?',TIMESTAMP '2019-05-02 15:22:48',TIMESTAMP '2019-05-02 15:22:48');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6587,2446,'Method references can only be used on static methods.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6588,2446,'Method references can pass either the instance or the parameter from the lambda, but not both.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6589,2446,'The charAt() method takes an int rather than Integer parameter.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6590,2446,'There is no charAt() method in the String class.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6591,2446,'Method reference String::charAt implies 2 parameters (String, Integer =&gt; &nbsp;Character) while the Function interface has only one parameter.',true,'');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,609,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,610,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,612,0);
@@ -11332,6 +11458,8 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (43,1629,47);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (43,1630,48);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (43,1631,49);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (43,1632,50);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (22,2433,118);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (22,2438,119);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (44,1637,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (44,1638,2);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (44,1639,3);
@@ -12468,27 +12596,47 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,362,45);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,363,47);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2424,20);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,364,48);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2425,21);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,365,49);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2426,22);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,366,50);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2427,23);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,367,51);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2428,24);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,368,52);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2429,25);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,369,53);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2430,26);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,370,54);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2431,27);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,371,56);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2432,28);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,372,57);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,373,58);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2434,29);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,374,59);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2435,30);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,375,60);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2436,31);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,376,61);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2437,32);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,377,62);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,378,63);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2439,33);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,379,64);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2440,34);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,380,65);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2441,35);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,381,66);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2442,36);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,382,67);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2443,37);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,383,68);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2444,38);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,384,69);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2445,39);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,385,70);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2446,40);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,392,71);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,387,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,388,0);
