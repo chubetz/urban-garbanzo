@@ -15,7 +15,7 @@ import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
 
 /**
- *
+ * Сущность "Пользовательский ответ на вопрос(карточку)"
  * @author mithia
  */
 public class UserAnswer extends  Entity{
