@@ -30,7 +30,7 @@ import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
 
 /**
- *
+ * 
  * @author d.gorshenin
  */
 public class JDBCUtils {
@@ -173,18 +173,9 @@ public class JDBCUtils {
         int id = -1;
         try {
             conn = JDBCUtils.getHSQLConnection();
-            StringBuilder where_info = new StringBuilder();
-            boolean first = true;
-            for (Map.Entry<String, Object> entry: entity.getPrimaryKey().entrySet()) {
-                if (first) {
-                    first = false;
-                } else {
-                    where_info.append(" AND ");
-                }
-                where_info.append(entry.getKey());
-                where_info.append("=");
-                where_info.append(getSQLLiteral(entry.getValue()));
-            }
+            String where_info = entity.getPrimaryKey().entrySet()
+                    .stream().map(e -> e.getKey() + "=" + getSQLLiteral(e.getValue()))
+                    .reduce((s1,s2)->s1 + " AND " + s2).get();
             sql = "SELECT * FROM " + entity.getTableName() + " WHERE " + where_info;
             Utils.print("select======>", sql);
             //stmt = conn.prepareStatement(sql, 
@@ -195,44 +186,31 @@ public class JDBCUtils {
             ResultSet rs = stmt.executeQuery(sql);
             if (rs.first()) {
                 // обновляем запись
-                StringBuilder set_info = new StringBuilder();
-                first = true;
-                for (Map.Entry<String, Object> entry: entity.getState().entrySet()) {
-                    if (first) {
-                        first = false;
-                    } else {
-                        set_info.append(",");
-                    }
-                    set_info.append(entry.getKey());
-                    set_info.append("=");
-                    set_info.append(getSQLLiteral(entry.getValue()));
-                }
-                sql = "UPDATE " + entity.getTableName() + " SET " + set_info.toString() + " WHERE " + where_info;
+                String set_info = entity.getState().entrySet()
+                        .stream().map(e -> e.getKey() + "=" + getSQLLiteral(e.getValue()))
+                        .reduce((s1,s2)->s1 + "," + s2).get();
+                sql = "UPDATE " + entity.getTableName() + " SET " + set_info + " WHERE " + where_info;
                 Utils.print("update===>", sql);
                 
                 stmt.executeQuery(sql);
                 result = entity.getPrimaryKey();
             } else {
                 //вставляем новую запись 
-                StringBuilder fields = new StringBuilder("("), values = new StringBuilder(" VALUES (");
-                first = true;
+                //StringBuilder fields = new StringBuilder("("), values = new StringBuilder(" VALUES (");
                 Set<Map.Entry<String, Object>> entrySet = new LinkedHashSet<Map.Entry<String, Object>>();
                 if (!entity.isPkAuto()) {
                     entrySet.addAll(entity.getPrimaryKey().entrySet());
                 }
                 entrySet.addAll(entity.getState().entrySet());
+                List<String> fieldList = new ArrayList<>(), valueList = new ArrayList<>();
                 for (Map.Entry<String, Object> entry: entrySet) {
-                    if (first) {
-                        first = false;
-                    } else {
-                        fields.append(",");
-                        values.append(",");
-                    }
-                    fields.append(entry.getKey());
-                    values.append(getSQLLiteral(entry.getValue()));
+                    fieldList.add(entry.getKey());
+                    valueList.add(getSQLLiteral(entry.getValue()));
                 }
-                fields.append(")"); values.append(")");
-                sql = "INSERT INTO " + entity.getTableName() + " " + fields.toString() + values.toString();
+                String fields = String.join(",", fieldList), values = String.join(",", valueList);
+                fields = " ("+fields+") ";
+                values = " VALUES ("+values+") ";
+                sql = "INSERT INTO " + entity.getTableName() + fields+ values;
                 Utils.print(sql);
                 stmt.executeQuery(sql);
                 if (entity.isPkAuto()) {
@@ -267,18 +245,9 @@ public class JDBCUtils {
         String sql = null;
         try {
             conn = JDBCUtils.getHSQLConnection();
-            StringBuilder where_info = new StringBuilder();
-            boolean first = true;
-            for (Map.Entry<String, Object> entry: entity.getPrimaryKey().entrySet()) {
-                if (first) {
-                    first = false;
-                } else {
-                    where_info.append(" AND ");
-                }
-                where_info.append(entry.getKey());
-                where_info.append("=");
-                where_info.append(getSQLLiteral(entry.getValue()));
-            }
+            String where_info = entity.getPrimaryKey().entrySet()
+                    .stream().map(e -> e.getKey() + "=" + getSQLLiteral(e.getValue()))
+                    .reduce((s1,s2)->s1 + " AND " + s2).get();
             sql = "DELETE FROM " + entity.getTableName() + " WHERE " + where_info;
             Utils.print("delete=========>", sql);
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);

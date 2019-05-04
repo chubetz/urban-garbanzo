@@ -16,7 +16,7 @@ import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
 
 /**
- *
+ * Сущность "Пройденная проверка"
  * @author mithia
  */
 public class ThemeExam extends Entity {

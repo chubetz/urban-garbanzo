@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import ru.garbanzo.urban.exception.JDBCException;
 
 /**
- *
+ * Подвид экзамена "Работа над ошибками"
  * @author mithia
  */
 public class WorkOnErrorsExam extends Exam {

@@ -21,7 +21,7 @@ import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
 
 /**
- *
+ * Сервлет, отвечающий за отображение списков сущностей
  * @author mithia
  */
 public class Viewer extends ErrorHandlingServlet {

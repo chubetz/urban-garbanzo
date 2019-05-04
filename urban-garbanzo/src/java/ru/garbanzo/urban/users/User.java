@@ -8,7 +8,7 @@ package ru.garbanzo.urban.users;
 import ru.garbanzo.urban.edu.Storage;
 
 /**
- *
+ * Объект пользователя системы - заготовка
  * @author d.gorshenin
  */
 public class User {

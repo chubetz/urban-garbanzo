@@ -10,7 +10,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import ru.garbanzo.urban.db.JDBCUtils;
 import static ru.garbanzo.urban.edu.Entity.getStorage;
-import static ru.garbanzo.urban.edu.Theme.getMap;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
 
@@ -56,6 +55,7 @@ public class Image extends Entity {
     public static Image saveImage(String id, Map<String, ?> data) throws JDBCException {
         return saveImage(Integer.parseInt(id), data);
     }
+    
     public static Image saveImage(int id, Map<String, ?> data) throws JDBCException {
         Image image = getMap().get(id);
         Utils.print("saveImage", data);

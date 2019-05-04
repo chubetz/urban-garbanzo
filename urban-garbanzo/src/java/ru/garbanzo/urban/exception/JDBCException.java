@@ -8,7 +8,7 @@ package ru.garbanzo.urban.exception;
 import org.apache.catalina.tribes.util.Arrays;
 
 /**
- *
+ * Исключение, содержащее конкретную ошибку JDBC
  * @author mithia
  */
 public class JDBCException extends Exception {

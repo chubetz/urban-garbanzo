@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +20,7 @@ import ru.garbanzo.urban.exception.NoQuestionException;
 import ru.garbanzo.urban.util.Utils;
 
 /**
- *
+ * Сущность "Ответ к карточке"
  * @author d.gorshenin
  */
 public class Answer extends Entity {
@@ -176,12 +174,11 @@ public class Answer extends Entity {
     public static Answer getById(Object id){
         if (id instanceof String)
             return getMap().get(Integer.parseInt((String)id));
+        else if (id instanceof Integer)
+            return getMap().get(id);
         else
-            return getMap().get((Integer)id);
+            throw new IllegalArgumentException();
     }
 
-    public static Answer getById(int id){
-        return Answer.getById(new Integer(id));
-    }
 
 }

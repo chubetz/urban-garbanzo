@@ -6,7 +6,7 @@
 package ru.garbanzo.urban.exception;
 
 /**
- *
+ * Контейнер для пойманных исключений
  * @author d.gorshenin
  */
 public class ExceptionViewer {

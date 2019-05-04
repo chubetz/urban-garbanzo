@@ -26,7 +26,7 @@ import ru.garbanzo.urban.edu.Theme;
 import ru.garbanzo.urban.exception.JDBCException;
 
 /**
- *
+ * утилиты отображения списков сущностей
  * @author d.gorshenin
  */
 class ViewUtils {
@@ -99,102 +99,102 @@ class ViewUtils {
         
     }
 
-    static void fillAttributesRealms(HttpServletRequest request) throws JDBCException {
-
-        StringBuilder sb = new StringBuilder();
-        
-        sb.append("<div style='font-family:Tahoma; color:black; font-weight:bold'><a style='color:black;' href='controller?action=new_realm'>Создать</a></div>\n");
-        sb.append("<table>\n");
-        if (Storage.getJdbcException() != null) {
-            throw Storage.getJdbcException();
-        }
-        int counter = 0;
-        for (Map.Entry<Integer, Realm> entry: Realm.getMap().entrySet()) {
-            Realm realm = entry.getValue();
-            counter++;
-            sb.append("<tr>");
-            sb.append("<td><form name=\"edit\" action=\"controller\" method=\"POST\">");
-            sb.append("<input type=\"hidden\" name=\"action\" value=\"edit_realm\">");
-            sb.append("<input type=\"hidden\" name=\"id\" value=\"" + realm.getId() + "\">");
-            sb.append("<input type=\"submit\" value=\"Edit\" /></form></td>");
-            sb.append("<td>");
-            sb.append(realm.toString());
-            sb.append("</td>");
-            sb.append("<td>");
-            sb.append(realm.getStr("text"));
-            sb.append("</td>");
-            sb.append("<td>");
-            sb.append(realm.getStr("description"));
-            sb.append("</td>");
-            sb.append("<td>");
-            sb.append("                    <form name=\"questions\" action=\"view\" method=\"GET\">\n" +
-"                        <input type=\"hidden\" name=\"info\" value=\"questions\">        \n" +
-"                        <input type=\"hidden\" name=\"realmId\" value=\"" + realm.getId() + "\">        \n" +
-"                        <input type=\"submit\" value=\"Список вопросов\" /> \n" +
-"                    </form>                    \n" +
-"");
-            sb.append("</td>");
-            sb.append("</tr>");
-            sb.append("<tr>");
-            sb.append("<td colspan=5>");
-            sb.append(realm.getThemesHTML());
-            sb.append("</td>");
-            sb.append("</tr>");
-        }
-        sb.append("</table>");
-    
-        request.setAttribute("list_table", sb.toString());
-        request.setAttribute("total", counter);
-    }
-
-    static void fillAttributesThemes(HttpServletRequest request) throws JDBCException {
-        StringBuilder sb = new StringBuilder();
-        sb.append("<div style='font-family:Tahoma; color:black; font-weight:bold'><a style='color:black;' href='controller?action=new_theme'>Создать</a></div>");
-        sb.append("<table>");
-        if (Storage.getJdbcException() != null) {
-            throw Storage.getJdbcException();
-        }
-        int counter = 0;
-        for (Map.Entry<Integer, Theme> entry: Theme.getMap().entrySet()) {
-            Theme theme = entry.getValue();
-            counter++;
-            sb.append("<tr>");
-            sb.append("<td><form name=\"edit\" action=\"controller\" method=\"POST\">");
-            sb.append("<input type=\"hidden\" name=\"action\" value=\"edit_theme\">");
-            sb.append("<input type=\"hidden\" name=\"id\" value=\"" + theme.getId() + "\">");
-            sb.append("<input type=\"submit\" value=\"Edit\" /></form></td>");
-            sb.append("<td>");
-            sb.append(theme.toString());
-            sb.append("</td>");
-            sb.append("<td>");
-            sb.append(theme.getDblStr("number"));
-            //sb.append(theme.getValue().getDbl("number"));
-            sb.append("</td>");
-            sb.append("<td>");
-            sb.append(theme.getStr("text"));
-            if (theme.getQuestionMap().size() > 0) {
-                //sb.append(" (" + theme.getQuestionMap().size() + " вопр.)");
-                sb.append(" (" + theme.getQuestionsHTMLLink("" + theme.getQuestionMap().size() + " вопр.") + ")");
-            }
-            sb.append("</td>");
-            sb.append("<td>");
-            sb.append(theme.getProfileLink());
-            sb.append("</td>");
-            sb.append("</tr>");
+//    static void fillAttributesRealms(HttpServletRequest request) throws JDBCException {
+//
+//        StringBuilder sb = new StringBuilder();
+//        
+//        sb.append("<div style='font-family:Tahoma; color:black; font-weight:bold'><a style='color:black;' href='controller?action=new_realm'>Создать</a></div>\n");
+//        sb.append("<table>\n");
+//        if (Storage.getJdbcException() != null) {
+//            throw Storage.getJdbcException();
+//        }
+//        int counter = 0;
+//        for (Map.Entry<Integer, Realm> entry: Realm.getMap().entrySet()) {
+//            Realm realm = entry.getValue();
+//            counter++;
 //            sb.append("<tr>");
-//            sb.append("<td colspan=2>");
+//            sb.append("<td><form name=\"edit\" action=\"controller\" method=\"POST\">");
+//            sb.append("<input type=\"hidden\" name=\"action\" value=\"edit_realm\">");
+//            sb.append("<input type=\"hidden\" name=\"id\" value=\"" + realm.getId() + "\">");
+//            sb.append("<input type=\"submit\" value=\"Edit\" /></form></td>");
+//            sb.append("<td>");
+//            sb.append(realm.toString());
 //            sb.append("</td>");
-//            sb.append("<td colspan=2>");
+//            sb.append("<td>");
+//            sb.append(realm.getStr("text"));
+//            sb.append("</td>");
+//            sb.append("<td>");
+//            sb.append(realm.getStr("description"));
+//            sb.append("</td>");
+//            sb.append("<td>");
+//            sb.append("                    <form name=\"questions\" action=\"view\" method=\"GET\">\n" +
+//"                        <input type=\"hidden\" name=\"info\" value=\"questions\">        \n" +
+//"                        <input type=\"hidden\" name=\"realmId\" value=\"" + realm.getId() + "\">        \n" +
+//"                        <input type=\"submit\" value=\"Список вопросов\" /> \n" +
+//"                    </form>                    \n" +
+//"");
 //            sb.append("</td>");
 //            sb.append("</tr>");
-        }
-        sb.append("</table>");
-    
-        request.setAttribute("list_table", sb.toString());
-        request.setAttribute("total", counter);
-        
-        
-    }
+//            sb.append("<tr>");
+//            sb.append("<td colspan=5>");
+//            sb.append(realm.getThemesHTML());
+//            sb.append("</td>");
+//            sb.append("</tr>");
+//        }
+//        sb.append("</table>");
+//    
+//        request.setAttribute("list_table", sb.toString());
+//        request.setAttribute("total", counter);
+//    }
+
+//    static void fillAttributesThemes(HttpServletRequest request) throws JDBCException {
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("<div style='font-family:Tahoma; color:black; font-weight:bold'><a style='color:black;' href='controller?action=new_theme'>Создать</a></div>");
+//        sb.append("<table>");
+//        if (Storage.getJdbcException() != null) {
+//            throw Storage.getJdbcException();
+//        }
+//        int counter = 0;
+//        for (Map.Entry<Integer, Theme> entry: Theme.getMap().entrySet()) {
+//            Theme theme = entry.getValue();
+//            counter++;
+//            sb.append("<tr>");
+//            sb.append("<td><form name=\"edit\" action=\"controller\" method=\"POST\">");
+//            sb.append("<input type=\"hidden\" name=\"action\" value=\"edit_theme\">");
+//            sb.append("<input type=\"hidden\" name=\"id\" value=\"" + theme.getId() + "\">");
+//            sb.append("<input type=\"submit\" value=\"Edit\" /></form></td>");
+//            sb.append("<td>");
+//            sb.append(theme.toString());
+//            sb.append("</td>");
+//            sb.append("<td>");
+//            sb.append(theme.getDblStr("number"));
+//            //sb.append(theme.getValue().getDbl("number"));
+//            sb.append("</td>");
+//            sb.append("<td>");
+//            sb.append(theme.getStr("text"));
+//            if (theme.getQuestionMap().size() > 0) {
+//                //sb.append(" (" + theme.getQuestionMap().size() + " вопр.)");
+//                sb.append(" (" + theme.getQuestionsHTMLLink("" + theme.getQuestionMap().size() + " вопр.") + ")");
+//            }
+//            sb.append("</td>");
+//            sb.append("<td>");
+//            sb.append(theme.getProfileLink());
+//            sb.append("</td>");
+//            sb.append("</tr>");
+////            sb.append("<tr>");
+////            sb.append("<td colspan=2>");
+////            sb.append("</td>");
+////            sb.append("<td colspan=2>");
+////            sb.append("</td>");
+////            sb.append("</tr>");
+//        }
+//        sb.append("</table>");
+//    
+//        request.setAttribute("list_table", sb.toString());
+//        request.setAttribute("total", counter);
+//        
+//        
+//    }
 
     static void fillAttributesImages(HttpServletRequest request, ServletContext context) throws JDBCException {
         StringBuilder sb = new StringBuilder();

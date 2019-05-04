@@ -8,7 +8,7 @@ package ru.garbanzo.urban.edu;
 import java.util.Map;
 
 /**
- *
+ * 
  * @author d.gorshenin
  */
 public interface DBEntity {

@@ -5,10 +5,8 @@
  */
 package ru.garbanzo.urban.db;
 
-import java.util.HashMap;
 import java.util.Map;
 import ru.garbanzo.urban.edu.DBEntity;
-import ru.garbanzo.urban.edu.Entity;
 
 /**
  *

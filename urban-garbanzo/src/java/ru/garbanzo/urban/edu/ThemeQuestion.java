@@ -5,16 +5,14 @@
  */
 package ru.garbanzo.urban.edu;
 
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Set;
 import ru.garbanzo.urban.db.JDBCUtils;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
 
 /**
- *
+ * Сущность "Связь темы и вопроса" (многие-ко-многим)
  * @author mithia
  */
 class ThemeQuestion extends Entity {

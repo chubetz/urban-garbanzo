@@ -1,6 +1,11 @@
 ﻿РЕФАКТОРИНГ!
 
 1) Перенос кода в репозиторий dgorshenin - готово
+2) блок "export" в MainServlet - готово
+3) JDBCUtils saveEntity и deleteEntity -  готово
+3) Storage.init() - пока не буду
+4) Рефакторинг IO в сохранении изображений (MainServet::uploadImage) - потом
+
 
 
 +++ порядковые номера карточке, если тема

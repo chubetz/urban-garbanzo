@@ -15,7 +15,7 @@ import ru.garbanzo.urban.exception.ExamException;
 import ru.garbanzo.urban.exception.JDBCException;
 
 /**
- *
+ * Объект, хранящий состояние сеанса работы с системой
  * @author d.gorshenin
  */
 public class State {

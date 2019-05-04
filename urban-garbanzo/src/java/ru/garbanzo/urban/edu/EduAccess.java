@@ -10,7 +10,7 @@ import java.util.Set;
 import static ru.garbanzo.urban.edu.Entity.getStorage;
 
 /**
- *
+ * Заготовка нового класса доступа к сущностям
  * @author d.gorshenin
  */
 public class EduAccess {

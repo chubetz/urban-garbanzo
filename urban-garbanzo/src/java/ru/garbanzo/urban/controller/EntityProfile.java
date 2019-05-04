@@ -6,22 +6,18 @@
 package ru.garbanzo.urban.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import ru.garbanzo.urban.edu.Realm;
 import ru.garbanzo.urban.edu.Theme;
 import ru.garbanzo.urban.exception.JDBCException;
-import ru.garbanzo.urban.util.Utils;
 
 /**
- *
+ * Сервлет, оттвечающий за отображение профиля / редактирование сущности
  * @author d.gorshenin
  */
 public class EntityProfile extends ErrorHandlingServlet {
@@ -45,7 +41,7 @@ public class EntityProfile extends ErrorHandlingServlet {
         while (parNames.hasMoreElements()) {
             String parName = parNames.nextElement();
             switch (parName) {
-                case "theme":
+                case "theme": //имеем дело с профилем темы
                     //url = "/themeProfile.jsp";
                     url = "/themes/profile.jsp";
                     if (request.getParameter(parName).equals("new"))
@@ -75,7 +71,7 @@ public class EntityProfile extends ErrorHandlingServlet {
                     }
                     request.setAttribute("title", "Профиль темы");
                     break;
-                case "realm":
+                case "realm": //имеем дело с профилем предметной области
                     url = "/realms/profile.jsp";
                     if (request.getParameter(parName).equals("new"))
                         request.setAttribute("realm", Realm.getMock());

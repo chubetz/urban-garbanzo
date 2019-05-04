@@ -6,7 +6,7 @@
 package ru.garbanzo.urban.edu;
 
 /**
- *
+ * Набор свойств для отображения в древовидной структуре
  * @author d.gorshenin
  */
 public class TreeSign {

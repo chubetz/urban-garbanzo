@@ -5,7 +5,6 @@
  */
 package ru.garbanzo.urban.edu;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,16 +13,13 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import ru.garbanzo.urban.db.JDBCUtils;
-import static ru.garbanzo.urban.edu.Realm.getMap;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
 
 /**
- *
+ * Сущность "Тема"
  * @author mithia
  */
 public class Theme extends Entity implements ITreeElement {
@@ -164,11 +160,11 @@ public class Theme extends Entity implements ITreeElement {
 
     public List<Question> getWeakQuestions() {
         ArrayList<Question> weakQuestions = new ArrayList<Question>();
-        for (Question q: getQuestionMap().values()) {
-            if (q.isValid()) {
-                //validQuestions.add(q);
-            }
-        }
+//        for (Question q: getQuestionMap().values()) {
+//            if (q.isValid()) {
+//                //validQuestions.add(q);
+//            }
+//        }
         return weakQuestions;
     }
 

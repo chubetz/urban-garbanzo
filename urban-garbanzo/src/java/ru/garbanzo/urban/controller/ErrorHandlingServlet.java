@@ -11,7 +11,7 @@ import ru.garbanzo.urban.exception.ExceptionViewer;
 
 
 /**
- *
+ * сервлет, обрабатывающий случившееся исключение. Родительский для всех пользовательских
  * @author mithia
  */
 public class ErrorHandlingServlet extends HttpServlet {

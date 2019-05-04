@@ -7,24 +7,18 @@ package ru.garbanzo.urban.edu;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ru.garbanzo.urban.db.JDBCUtils;
-import static ru.garbanzo.urban.edu.Entity.getStorage;
-import static ru.garbanzo.urban.edu.Question.COMMON_TYPE;
-import static ru.garbanzo.urban.edu.Question.NB_TYPE;
-import static ru.garbanzo.urban.edu.Question.TEST_TYPE;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.users.IStatistics;
-import ru.garbanzo.urban.users.State;
 import ru.garbanzo.urban.util.Utils;
 
 /**
- *
+ * Класс хранилища сущностей
  * @author d.gorshenin
  */
 public class Storage {

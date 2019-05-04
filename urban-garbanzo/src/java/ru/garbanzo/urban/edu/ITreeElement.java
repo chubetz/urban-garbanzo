@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ * Интерфейс отображения в древовидной структуре
  * @author d.gorshenin
  */
 public interface ITreeElement {

@@ -9,12 +9,12 @@ import java.sql.Date;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
+import ru.garbanzo.urban.db.JDBCUtils;
 import ru.garbanzo.urban.util.Utils;
 
 /**
- *
+ * Родительский класс для всех сущностей
  * @author mithia
  */
 public abstract class Entity implements DBEntity {
@@ -148,6 +148,19 @@ public abstract class Entity implements DBEntity {
             
         }
         
+    }
+    
+    public String getSQLExportString() {
+        Map<String, Object> fullState = this.getFullState();
+        StringBuilder sb = new StringBuilder();
+        sb.append("INSERT INTO " + this.getTableName() + " (");
+        sb.append(String.join(",", fullState.keySet()));
+        String overridingSystemValue = this.primaryKey.containsKey("id") ? " OVERRIDING SYSTEM VALUE" : "";
+        sb.append(")"+overridingSystemValue+" VALUES (");
+        sb.append(fullState.values()
+                .stream().map(JDBCUtils::getSQLLiteral).reduce((s1,s2)-> s1 + "," + s2).get());
+        sb.append(");\r\n");
+        return sb.toString();
     }
 
     protected static Storage getStorage() {

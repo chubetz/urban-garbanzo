@@ -8,7 +8,6 @@ package ru.garbanzo.urban.edu;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -26,7 +25,7 @@ import ru.garbanzo.urban.exception.NoQuestionException;
 import ru.garbanzo.urban.util.Utils;
 
 /**
- *
+ * Сущность "Карточка"
  * @author d.gorshenin
  */
 public class Question extends Entity implements ITreeElement, Comparable<Question> {

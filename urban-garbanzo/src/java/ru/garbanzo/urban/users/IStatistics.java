@@ -6,7 +6,7 @@
 package ru.garbanzo.urban.users;
 
 /**
- *
+ * Интерфейс сводной статистики
  * @author mithia
  */
 public interface IStatistics {

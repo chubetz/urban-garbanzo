@@ -5,7 +5,6 @@
  */
 package ru.garbanzo.urban.edu;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -13,13 +12,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.function.Consumer;
 import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.exception.NoMoreQuestionException;
 import ru.garbanzo.urban.util.Utils;
 
 /**
- *
+ * Класс проверки знаний
  * @author d.gorshenin
  */
 public class Exam implements Iterator<Question> {

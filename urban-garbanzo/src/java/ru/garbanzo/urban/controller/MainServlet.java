@@ -12,17 +12,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -31,7 +24,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
 import ru.garbanzo.urban.db.JDBCUtils;
 import ru.garbanzo.urban.edu.Answer;
@@ -48,7 +40,7 @@ import ru.garbanzo.urban.exception.JDBCException;
 import ru.garbanzo.urban.util.Utils;
 
 /**
- *
+ * Сервлет, отвечающий за редактирование и импорт/экспорт сущностей
  * @author d.gorshenin
  */
 public class MainServlet extends ErrorHandlingServlet {
@@ -79,15 +71,9 @@ public class MainServlet extends ErrorHandlingServlet {
         String url = null;
         Question question;
         Utils.print("Servlet.BEFORE!!!", request.getParameterMap());
-//        try {
-//            Utils.print("Servlet.GET_PAR", request.getPart("file"));
-//            
-//        } catch (Exception e) {
-//            Utils.print("Servlet.GET_PAR_EXCEPTION", e);
-//        }
 
         switch (action) {
-            case "new_question":
+            case "new_question": //редактирование новой карточки
                 url = "/edit_question.jsp";
                 Utils.print("Servlet.new_question", request.getParameterMap());
                 String realmId = request.getParameter("realm");
@@ -102,7 +88,7 @@ public class MainServlet extends ErrorHandlingServlet {
                 request.setAttribute("edit_mode", "on");
                 request.setAttribute("question", mockQuestion);
                 break;
-            case "add_answer":
+            case "add_answer": //добавление ответа в карточку
                 url = "/edit_question.jsp";
                 Utils.print("Servlet.add_answer", request.getParameterMap());
                 request.setAttribute("question", Question.getQuestionFromParameterMap(request.getParameterMap()));
@@ -110,7 +96,7 @@ public class MainServlet extends ErrorHandlingServlet {
                 request.setAttribute("title", "Редактировать вопрос");
                 request.setAttribute("edit_mode", "on");
                 break;
-            case "load_edit_form":
+            case "load_edit_form": //отображение формы редактирования имеющейся карточки
                 url = "/edit_question.jsp";
                 Utils.print("Servlet.load_edit_form", request.getParameterMap());
                 Utils.print(request.getParameter("id"));
@@ -119,14 +105,14 @@ public class MainServlet extends ErrorHandlingServlet {
                 request.setAttribute("action", "update_question");
                 request.setAttribute("title", "Редактировать вопрос");
                 request.setAttribute("edit_mode", "on");
-                request.setAttribute("disabled", "disabled");
+                //request.setAttribute("disabled", "disabled");
                 if (request.getParameter("themeId") != null) {
                     Theme theme = Theme.getById(request.getParameter("themeId"));
                     request.setAttribute("theme", theme);
                     request.setAttribute("orderNum", question.getOrderNum(theme));
                 }
                 break;
-            case "update_question":
+            case "update_question": //сохранение изменений в карточке
                 Utils.print("Servlet.update_question", request.getParameterMap());
                 try {
                     request.setAttribute("title", Integer.parseInt(request.getParameter("id")) < 0 ? "Вопрос добавлен" : "Вопрос отредактирован");
@@ -158,69 +144,69 @@ public class MainServlet extends ErrorHandlingServlet {
                 request.setAttribute("question", question);
                 break;
 
-            case "new_realm":
-                url = "/edit_realm.jsp";
-                Utils.print("Servlet.new_realm", request.getParameterMap());
-                request.setAttribute("realm", Realm.getMock());
-                request.setAttribute("action", "update_realm");
-                request.setAttribute("title", "Редактировать область");
-                break;
-            case "edit_realm":
-                url = "/edit_realm.jsp";
-                Utils.print("Servlet.edit_realm", request.getParameterMap());
-                Utils.print(request.getParameter("id"));
-                request.setAttribute("realm", Realm.getById(request.getParameter("id")));
-                request.setAttribute("action", "update_realm");
-                request.setAttribute("title", "Редактировать область");
-                break;
-            case "update_realm":
-                Realm realm;
-                Utils.print("Servlet.update_realm", request.getParameterMap());
-                try {
-                    realm = Realm.saveRealm(request.getParameter("rid"), request.getParameterMap());
-                } catch (JDBCException ex) {
-                    Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
-                    url = "/db_error.jsp";
-                    request.setAttribute("exception", ex);
-                    break;
-                }
-                url = "/saved_realm.jsp";
-                request.setAttribute("realm", realm);
-                request.setAttribute("title", "Область сохранена");
-                break;
+//            case "new_realm":
+//                url = "/edit_realm.jsp";
+//                Utils.print("Servlet.new_realm", request.getParameterMap());
+//                request.setAttribute("realm", Realm.getMock());
+//                request.setAttribute("action", "update_realm");
+//                request.setAttribute("title", "Редактировать область");
+//                break;
+//            case "edit_realm":
+//                url = "/edit_realm.jsp";
+//                Utils.print("Servlet.edit_realm", request.getParameterMap());
+//                Utils.print(request.getParameter("id"));
+//                request.setAttribute("realm", Realm.getById(request.getParameter("id")));
+//                request.setAttribute("action", "update_realm");
+//                request.setAttribute("title", "Редактировать область");
+//                break;
+//            case "update_realm":
+//                Realm realm;
+//                Utils.print("Servlet.update_realm", request.getParameterMap());
+//                try {
+//                    realm = Realm.saveRealm(request.getParameter("rid"), request.getParameterMap());
+//                } catch (JDBCException ex) {
+//                    Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
+//                    url = "/db_error.jsp";
+//                    request.setAttribute("exception", ex);
+//                    break;
+//                }
+//                url = "/saved_realm.jsp";
+//                request.setAttribute("realm", realm);
+//                request.setAttribute("title", "Область сохранена");
+//                break;
+//
+//            case "new_theme":
+//                url = "/edit_theme.jsp";
+//                Utils.print("Servlet.new_theme", request.getParameterMap());
+//                request.setAttribute("theme", Theme.getMock());
+//                request.setAttribute("action", "update_theme");
+//                request.setAttribute("title", "Редактировать тему");
+//                break;
+//            case "edit_theme":
+//                url = "/edit_theme.jsp";
+//                Utils.print("Servlet.edit_theme", request.getParameterMap());
+//                Utils.print(request.getParameter("id"));
+//                request.setAttribute("theme", Theme.getById(request.getParameter("id")));
+//                request.setAttribute("action", "update_theme");
+//                request.setAttribute("title", "Редактировать тему");
+//                break;
+//            case "update_theme":
+//                Theme theme;
+//                Utils.print("Servlet.update_theme", request.getParameterMap());
+//                try {
+//                    theme = Theme.saveTheme(request.getParameter("tid"), request.getParameterMap());
+//                } catch (JDBCException ex) {
+//                    Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
+//                    url = "/db_error.jsp";
+//                    request.setAttribute("exception", ex);
+//                    break;
+//                }
+//                url = "/saved_theme.jsp";
+//                request.setAttribute("title", "Тема сохранена");
+//                request.setAttribute("theme", theme);
+//                break;
 
-            case "new_theme":
-                url = "/edit_theme.jsp";
-                Utils.print("Servlet.new_theme", request.getParameterMap());
-                request.setAttribute("theme", Theme.getMock());
-                request.setAttribute("action", "update_theme");
-                request.setAttribute("title", "Редактировать тему");
-                break;
-            case "edit_theme":
-                url = "/edit_theme.jsp";
-                Utils.print("Servlet.edit_theme", request.getParameterMap());
-                Utils.print(request.getParameter("id"));
-                request.setAttribute("theme", Theme.getById(request.getParameter("id")));
-                request.setAttribute("action", "update_theme");
-                request.setAttribute("title", "Редактировать тему");
-                break;
-            case "update_theme":
-                Theme theme;
-                Utils.print("Servlet.update_theme", request.getParameterMap());
-                try {
-                    theme = Theme.saveTheme(request.getParameter("tid"), request.getParameterMap());
-                } catch (JDBCException ex) {
-                    Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
-                    url = "/db_error.jsp";
-                    request.setAttribute("exception", ex);
-                    break;
-                }
-                url = "/saved_theme.jsp";
-                request.setAttribute("title", "Тема сохранена");
-                request.setAttribute("theme", theme);
-                break;
-
-            case "link_themes":
+            case "link_themes": // связывание карточки с темами предметной области
                 Utils.print("Servlet.link_themes", request.getParameterMap());
                 Utils.print("Servlet.link_themes", request.getParameterMap().get("themes"));
                 Question qq = Question.getById(request.getParameter("id"));
@@ -237,11 +223,11 @@ public class MainServlet extends ErrorHandlingServlet {
                 url = "/new_question.jsp";
                 break;
 
-            case "new_image":
+            case "new_image": //окно загрузки изображения
                 url = "/upload_image.jsp";
                 Utils.print("Servlet.new_image", request.getParameterMap());
                 break;
-            case "upload_image":
+            case "upload_image": // сохранение (закачка) изображения
                 url = "/view?info=images";
                 Part filePart = request.getPart("file");
                 String fileFullName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
@@ -300,7 +286,7 @@ public class MainServlet extends ErrorHandlingServlet {
                 }
                 break;
                 
-            case "upload_sql":
+            case "upload_sql": //загрузка SQL-файла с данными
                 {
                     url = "/";
                     Part part = request.getPart("file");
@@ -351,7 +337,7 @@ public class MainServlet extends ErrorHandlingServlet {
                 }
                 break;
 
-            case "export":
+            case "export": //выгрузка данных в файл SQL
                 Storage.init(); // реинициализация, чтобы выгрузка была строго из БД
                 try {
                     if (Storage.getJdbcException() != null) {
@@ -375,167 +361,34 @@ public class MainServlet extends ErrorHandlingServlet {
                         sb.append("DROP TABLE ThemeExam IF EXISTS;\r\n");
                         sb.append("CREATE TABLE ThemeExam (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, themeId int, percentage DOUBLE, date TIMESTAMP);\r\n");
                     for (Realm r: Realm.getMap().values()) {
-                        Map<String, Object> state = r.getState();
-                        sb.append("INSERT INTO Realm (id");
-                        for (String s: state.keySet()) {
-                            sb.append("," + s);
-                        }
-                        sb.append(") OVERRIDING SYSTEM VALUE VALUES (" + r.getId());
-                        for (Object o: state.values()) {
-                            String ooo;
-                            if (o instanceof String) {
-                                o = ((String)o).replace("'","''");
-                                ooo = "'" + o + "'";
-                            } else if (o == null)
-                                ooo = "NULL";
-                            else
-                                ooo=o.toString();
-                            sb.append("," + ooo);
-                        }
-                        sb.append(");\r\n");
-
+                        sb.append(r.getSQLExportString());
                     }
 
                     for (Theme t: Theme.getMap().values()) {
-                        Map<String, Object> state = t.getState();
-                        sb.append("INSERT INTO Theme (id");
-                        for (String s: state.keySet()) {
-                            sb.append("," + s);
-                        }
-                        sb.append(") OVERRIDING SYSTEM VALUE VALUES (" + t.getId());
-                        for (Object o: state.values()) {
-                            String ooo;
-                            if (o instanceof String) {
-                                o = ((String)o).replace("'","''");
-                                ooo = "'" + o + "'";
-                            } else if (o == null)
-                                ooo = "NULL";
-                            else
-                                ooo=o.toString();
-                            sb.append("," + ooo);
-                        }
-                        sb.append(");\r\n");
-
+                        sb.append(t.getSQLExportString());
                     }
 
                     for (Question q: Question.getMap().values()) {
-                        Map<String, Object> state = q.getState();
-                        sb.append("INSERT INTO Question (id");
-                        for (String s: state.keySet()) {
-                            sb.append("," + s);
-                        }
-                        sb.append(") OVERRIDING SYSTEM VALUE VALUES (" + q.getId());
-                        for (Object o: state.values()) {
-                            sb.append("," + JDBCUtils.getSQLLiteral(o));
-                        }
-                        sb.append(");\r\n");
-                        
+                        sb.append(q.getSQLExportString());
                         for (Answer a: q.getAnswerMap().values()) {
-                            Map<String, Object> stateA = a.getState();
-                            sb.append("\tINSERT INTO Answer (id");
-                            for (String s: stateA.keySet()) {
-                                sb.append("," + s);
-                            }
-                            sb.append(") OVERRIDING SYSTEM VALUE VALUES (" + a.getId());
-                            for (Object o: stateA.values()) {
-                                String ooo;
-                                if (o instanceof String) {
-                                    o = ((String)o).replace("'","''");
-                                    ooo = "'" + o + "'";
-                                } else if (o == null)
-                                    ooo = "NULL";
-                                else
-                                    ooo=o.toString();
-                                sb.append("," + ooo);
-                            }
-                            sb.append(");\r\n");
-                            
+                            sb.append("\t"+a.getSQLExportString());
                         }
                     }
 
                     for (Entity themeQuestion :  EduAccess.getThemeQuestionSet()) {
-                        Map<String, Object> fullState = themeQuestion.getFullState();
-                        sb.append("INSERT INTO ThemeQuestion (");
-                        boolean first = true;
-                        for (String s: fullState.keySet()) {
-                            if (first) {
-                                sb.append(s);
-                                first = false;
-                            } else {
-                                sb.append("," + s);
-                            }
-                        }
-                        sb.append(") VALUES (");
-                        first = true;
-                        for (String s: fullState.keySet()) {
-                            Object o = fullState.get(s);
-                            String ooo;
-                            if (o instanceof String) {
-                                o = ((String)o).replace("'","''");
-                                ooo = "'" + o + "'";
-                            } else if (o == null)
-                                ooo = "NULL";
-                            else
-                                ooo=o.toString();
-                            if (first) {
-                                sb.append(ooo);
-                                first = false;
-                            } else {
-                                sb.append("," + ooo);
-                            }
-                        }
-                        sb.append(");\r\n");
-
+                        sb.append(themeQuestion.getSQLExportString());
                     }
 
                     for (Image i: Image.getMap().values()) {
-                        Map<String, Object> state = i.getState();
-                        sb.append("INSERT INTO Image (id");
-                        for (String s: state.keySet()) {
-                            sb.append("," + s);
-                        }
-                        sb.append(") OVERRIDING SYSTEM VALUE VALUES (" + i.getId());
-                        for (Object o: state.values()) {
-                            String ooo;
-                            if (o instanceof String) {
-                                o = ((String)o).replace("'","''");
-                                ooo = "'" + o + "'";
-                            } else if (o == null)
-                                ooo = "NULL";
-                            else
-                                ooo=o.toString();
-                            sb.append("," + ooo);
-                        }
-                        sb.append(");\r\n");
-
+                        sb.append(i.getSQLExportString());
                     }
 
-                    for (UserAnswer i: UserAnswer.getMap().values()) {
-                        Map<String, Object> state = i.getState();
-                        sb.append("INSERT INTO UserAnswer (id");
-                        for (String s: state.keySet()) {
-                            sb.append("," + s);
-                        }
-                        sb.append(") OVERRIDING SYSTEM VALUE VALUES (" + i.getId());
-                        for (Object o: state.values()) {
-                            sb.append("," + JDBCUtils.getSQLLiteral(o));
-                        }
-                        sb.append(");\r\n");
-
+                    for (UserAnswer ua: UserAnswer.getMap().values()) {
+                        sb.append(ua.getSQLExportString());
                     }
 
-                    for (ThemeExam i: ThemeExam.getMap().values()) {
-                        Map<String, Object> state = i.getState();
-                        sb.append("INSERT INTO ThemeExam (id");
-                        for (String s: state.keySet()) {
-                            sb.append("," + s);
-                        }
-                        sb.append(") OVERRIDING SYSTEM VALUE VALUES (" + i.getId());
-                        for (Object o: state.values()) {
-                            sb.append("," + JDBCUtils.getSQLLiteral(o));
-                        }
-                        sb.append(");\r\n");
-
+                    for (ThemeExam te: ThemeExam.getMap().values()) {
+                        sb.append(te.getSQLExportString());
                     }
 
                     Utils.print(sb);

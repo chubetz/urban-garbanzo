@@ -5,14 +5,8 @@
  */
 package ru.garbanzo.urban.edu;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import ru.garbanzo.urban.db.JDBCUtils;
-import static ru.garbanzo.urban.edu.Entity.getStorage;
-import ru.garbanzo.urban.exception.NoQuestionException;
-import ru.garbanzo.urban.util.Utils;
 
 /**
  *
