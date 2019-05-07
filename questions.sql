@@ -97,6 +97,8 @@ INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (63,15
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (64,15,'Структурирование веб-приложения по паттерну MVC',2.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (65,8,'Дополнительные факты',1000.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (66,12,'Generics and Collections',13.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (67,12,'Lambda Built-in Functional Interfaces',14.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (68,12,'Java Stream API',15.0);
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (0,4,0,'Тесты экзамена предполагают обычно 5 или 6 ответов, со множественным выбором.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1,4,0,'Нельзя реализовать в классе два интерфейса с общим дефолтным методом, если не переопределить этот метод в классе.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2,4,2,'<p>Перечислите 3 вида комментариев в Java</p>',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
@@ -10410,6 +10412,307 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6589,2446,'The charAt() method takes an int rather than Integer parameter.',false,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6590,2446,'There is no charAt() method in the String class.',false,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6591,2446,'Method reference String::charAt implies 2 parameters (String, Integer =&gt; &nbsp;Character) while the Function interface has only one parameter.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2447,12,1,'Fill in the blanks: The ____________ functional interface does not take any inputs, while the ______________ functional interface does not return any data.',TIMESTAMP '2019-05-07 12:40:39',TIMESTAMP '2019-05-07 12:40:39');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6592,2447,'IntConsumer, LongSupplier',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6593,2447,'IntSupplier, Function',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6594,2447,'Supplier, DoubleConsumer',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6595,2447,'UnaryOperator, Consumer',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2448,12,1,'Which functional interface takes a long value as an input argument and has an accept() method?',TIMESTAMP '2019-05-07 12:43:18',TIMESTAMP '2019-05-07 12:43:18');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6596,2448,'LongConsumer',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6597,2448,'LongFunction',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6598,2448,'LongPredicate',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6599,2448,'LongSupplier',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2449,12,1,'<p>What is the output of the following application?</p>
+<p>package beach;<br />import java.util.function.*;</p>
+<p>class Tourist {<br />&nbsp;&nbsp;&nbsp; public Tourist(double distance) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.distance = distance;<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public double distance;<br />}<br />public class Lifeguard {<br />&nbsp;&nbsp;&nbsp; private void saveLife(Predicate&lt;Tourist&gt; canSave, Tourist tourist) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(canSave.test(tourist) ? "Saved" : "Too far"); // y1<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public final static void main(String... sand) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new Lifeguard().saveLife(s -&gt; s.distance&lt;4, new Tourist(2)); // y2<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-07 12:46:57',TIMESTAMP '2019-05-07 12:46:57');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6600,2449,'Saved',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6601,2449,'Too far',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6602,2449,'The code does not compile because of line y1.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6603,2449,'The code does not compile because of line y2.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2450,12,1,'Which of the following statements about DoubleSupplier and Supplier&lt;Double&gt; is not true?',TIMESTAMP '2019-05-07 12:51:16',TIMESTAMP '2019-05-07 12:51:16');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6604,2450,'Both are functional interfaces.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6605,2450,'Lambdas for both can return a double value.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6606,2450,'Lambdas for both cannot return a null value.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6607,2450,'One supports a generic type, the other does not.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2451,12,1,'<p>Which functional interface, when filled into the blank, allows the class to compile?</p>
+<p>package space;<br />import java.util.function.*;</p>
+<p>public class Asteroid {<br />&nbsp;&nbsp;&nbsp; public void mine( ________ lambda) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // TODO: Apply functional interface<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String[] debris) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new Asteroid().mine((s,p) -&gt; s+p);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-07 12:55:16',TIMESTAMP '2019-05-07 12:55:16');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6608,2451,'BiConsumer&lt;Integer,Double&gt;',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6609,2451,'BiFunction&lt;Integer,Double,Double&gt;',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6610,2451,'BiFunction&lt;Integer,Integer,Double&gt;',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6611,2451,'Function&lt;Integer,Double&gt;',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2452,12,1,'Assuming the proper generic types are used, which lambda expression cannot be assigned to a ToDoubleBiFunction functional interface reference?',TIMESTAMP '2019-05-07 13:02:56',TIMESTAMP '2019-05-07 13:02:56');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6612,2452,'(Integer a, Double b) -&gt; {int c; return b;}',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6613,2452,'(h,i) -&gt; (long)h',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6614,2452,'(String u, Object v) -&gt; u.length()+v.length()',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6615,2452,'(x,y) -&gt; {int z=2; return y/z;}',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2453,12,1,'Which of the following is not a functional interface in the java.util.function package?',TIMESTAMP '2019-05-07 13:07:05',TIMESTAMP '2019-05-07 13:07:05');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6616,2453,'BiPredicate',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6617,2453,'DoubleUnaryOperator',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6618,2453,'ObjectDoubleConsumer',true,'Есть ObjDoubleConsumer');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6619,2453,'ToLongFunction',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2454,12,1,'<p>What is the output of the following application?</p>
+<p>package zoo;<br />import java.util.function.*;</p>
+<p>public class TicketTaker {<br />&nbsp;&nbsp;&nbsp; private static int AT_CAPACITY = 100;<br />&nbsp;&nbsp;&nbsp; public int takeTicket(int currentCount, IntUnaryOperator&lt;Integer&gt; counter) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return counter.applyAsInt(currentCount);<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String...theater) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final TicketTaker bob = new TicketTaker();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final int oldCount = 50;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final int newCount = bob.takeTicket(oldCount,t -&gt; {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(t&gt;AT_CAPACITY) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw new RuntimeException("Sorry, max has been reached");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return t+1;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(newCount);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-07 13:15:55',TIMESTAMP '2019-05-07 13:15:55');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6620,2454,'51',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6621,2454,'The code does not compile because of lambda expression.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6622,2454,'The code does not compile for a different reason.',true,'IntUnaryOperator - не дженерик');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6623,2454,'The code compiles but prints an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2455,12,1,'Which functional interface returns a primitive value?',TIMESTAMP '2019-05-07 13:20:48',TIMESTAMP '2019-05-07 13:20:48');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6624,2455,'BiPredicate',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6625,2455,'CharSupplier',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6626,2455,'LongFunction',false,'ToLongFunction вернуло бы long');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6627,2455,'UnaryOperator',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2456,12,1,'<p>Which functional interface, when entered into the blank below, allows the class to compile?</p>
+<p>package groceries;<br />import java.util.*;<br />import java.util.function.*;</p>
+<p>public class Market {<br />&nbsp;&nbsp;&nbsp; private static void checkPrices(List&lt;Double&gt; prices,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ___________ scanner) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; prices.forEach(scanner);<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String[] right) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List&lt;Double&gt; prices = Arrays.asList(1.2, 6.5, 3.0);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; checkPrices(prices,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p -&gt; {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String result = p&lt;5 ? "Correct" : "Too high";<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(result);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-07 13:26:41',TIMESTAMP '2019-05-07 13:26:41');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6628,2456,'Consumer',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6629,2456,'DoubleConsumer',false,'Не является подклассом Consumer&lt;T&gt;');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6630,2456,'Supplier&lt;Double&gt;',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6631,2456,'None of the above',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2457,8,0,'При работе с функциональными интерфейсами не забываем, что интерфейсы для примитивов несовместимы с дженерик-интерфейсами, и поэтому не являются взаимозаменяемыми в базовам API, таком, как <strong>forEach</strong>()',TIMESTAMP '2019-05-07 13:27:54',TIMESTAMP '2019-05-07 13:27:54');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2458,12,1,'Which of the following three functional interfaces is not equivalent to the other two?',TIMESTAMP '2019-05-07 13:31:47',TIMESTAMP '2019-05-07 13:31:47');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6632,2458,'BiFunction&lt;Double,Double,Double&gt;',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6633,2458,'BinaryOperator&lt;Double&gt;',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6634,2458,'DoubleFunction&lt;Double&gt;',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6635,2458,'None of the above. All three are equivalent.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2459,12,1,'<p>Which lambda expression can be passed to the magic() method?</p>
+<p>package show;<br />import java.util.function.*;</p>
+<p>public class Magician {<br />&nbsp;&nbsp;&nbsp; public void magic(BinaryOperator&lt;Long&gt; lambda) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lambda.apply(3L, 7L);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-07 13:35:43',TIMESTAMP '2019-05-07 13:35:43');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6636,2459,'magic((a) -&gt; a)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6637,2459,'magic((b,w) -&gt; (long)w.intValue())',true,'Метод intValue есть на Long');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6638,2459,'magic((c,m) -&gt; {long c=4; return c+m;})',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6639,2459,'magic((Integer d, Integer r) -&gt; (Long)r+d)',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2460,12,1,'<p>What is the output of the following program?</p>
+<p>package ai;<br />import java.util.function.*;</p>
+<p>public class Android {<br />&nbsp;&nbsp;&nbsp; public void wakeUp(Supplier supplier) { // d1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; supplier.get();<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String... electricSheep) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Android data = new Android();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data.wakeUp(() -&gt; System.out.print("Program started!")); // d2<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-07 14:17:50',TIMESTAMP '2019-05-07 14:17:50');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6640,2460,'Program started!',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6641,2460,'The code does not compile because of line d1 only.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6642,2460,'The code does not compile because of line d2 only.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6643,2460,'The code does not compile because of both lines d1 and d2.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2461,12,1,'Which statement about all UnaryOperator functional interfaces (generic and primitive) is correct?',TIMESTAMP '2019-05-07 14:19:33',TIMESTAMP '2019-05-07 14:19:33');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6644,2461,'The input type must be compatible with the return type.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6645,2461,'Some of them take multiple arguments.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6646,2461,'They each take a generic argument.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6647,2461,'They each return a primitive value.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2462,12,1,'<p>Starting with DoubleConsumer and going downward, fill in the missing values for the table.</p>
+<p>Functional Interface&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Parameters<br />==========================================<br />DoubleConsumer<br />IntFunction<br />LongSupplier<br />ObjDoubleConsumer</p>',TIMESTAMP '2019-05-07 14:29:02',TIMESTAMP '2019-05-07 14:29:02');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6648,2462,'0, 1, 1, 1',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6649,2462,'0, 2, 1, 2',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6650,2462,'1, 1, 0, 2',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6651,2462,'1, 1, 0, 1',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2463,12,1,'<p>Starting with DoubleConsumer and going downward, fill in the values for the table. For the choices below, assume R is a generic type.</p>
+<p>Functional Interface&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Return Type<br />========================================<br />DoubleConsumer<br />IntFunction<br />LongSupplier<br />ObjDoubleConsumer</p>',TIMESTAMP '2019-05-07 14:32:16',TIMESTAMP '2019-05-07 14:32:16');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6652,2463,'double, R, long, R',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6653,2463,'R, int, long, R',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6654,2463,'void, int, R, void',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6655,2463,'void, R, long, void',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2464,12,1,'Fill in the blanks: In the Collection interface, the method removeIf() takes a __________, while the method forEach() takes a __________.',TIMESTAMP '2019-05-07 14:35:05',TIMESTAMP '2019-05-07 14:35:05');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6656,2464,'Function, Function',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6657,2464,'Predicate, Consumer',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6658,2464,'Predicate, Function',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6659,2464,'Predicate, UnaryOperator',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2465,12,1,'<p>What is the output of the following application?</p>
+<p>package nesting;<br />import java.util.function.*;</p>
+<p>public class Doll {<br />&nbsp;&nbsp;&nbsp; private int layer;<br />&nbsp;&nbsp;&nbsp; public Doll(int layer) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.layer = layer;<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void open(UnaryOperator&lt;Doll&gt; task, Doll doll) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while((doll = task.accept(doll)) != null) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("X");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String[] wood) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; open(s -&gt; {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(s.layer&lt;=0) return null;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else return new Doll(s.layer&ndash;&ndash;);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }, new Doll(5));<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-07 14:52:28',TIMESTAMP '2019-05-07 14:52:28');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6660,2465,'XXXXX',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6661,2465,'The code does not compile because of the lambda expression.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6662,2465,'The code does not compile for a different reason.',true,'в интерфейсе UnaryOperator метод называется не accept, а apply');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6663,2465,'The code compiles but produces an infinite loop at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2466,12,1,'Which functional interface has a get() method?',TIMESTAMP '2019-05-07 14:53:51',TIMESTAMP '2019-05-07 14:53:51');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6664,2466,'Consumer',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6665,2466,'Function',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6666,2466,'Supplier',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6667,2466,'UnaryOperator',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2467,12,1,'<p>The following diagram shows input arguments being applied to three functional interfaces of unknown type. Which three functional interfaces, inserted in order from left to right, could be used to complete the diagram?</p>
+<p>&lt;см. рис. OCP_Tests_Ch14_20.png&gt;</p>',TIMESTAMP '2019-05-07 15:01:34',TIMESTAMP '2019-05-07 15:01:34');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6668,2467,'DoubleBinaryOperator<br />ToDoubleBiFunction&lt;Integer,Double&gt;<br />UnaryOperator&lt;Integer&gt;',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6669,2467,'BinaryOperator&lt;Double&gt;<br />BiFunction&lt;Integer,Integer,Double&gt;<br />UnaryOperator&lt;Integer&gt;',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6670,2467,'Function&lt;Double,Integer&gt;<br />BiFunction&lt;Integer,Integer,Double&gt;<br />DoubleToIntFunction',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6671,2467,'BiFunction&lt;Integer,Double,Integer&gt;<br />BinaryOperator&lt;Integer&gt;<br />IntUnaryOperator',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2468,12,1,'Which statement about functional interfaces and lambda expressions is not true?',TIMESTAMP '2019-05-07 15:05:48',TIMESTAMP '2019-05-07 15:05:48');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6672,2468,'A lambda expression may be compatible with multiple functional interfaces.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6673,2468,'A lambda expression must be assigned to a functional interface when it is declared.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6674,2468,'A method can return a lambda expression in the form of a functional interface instance.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6675,2468,'The compiler uses deferred execution to skip determining whether a lambda expression compiles or not.',true,'Deferred execution means the lambda expression is not evaluated until runtime, but it is compiled.');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2469,12,1,'Which expression is compatible with the IntSupplier functional interface?',TIMESTAMP '2019-05-07 15:07:25',TIMESTAMP '2019-05-07 15:07:25');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6676,2469,'() -&gt; 1&lt;10 ? "3" : 4',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6677,2469,'() -&gt; {return 1/0;}',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6678,2469,'() -&gt; return 4',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6679,2469,'System.out::print',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2470,12,1,'<p>What is the output of the following application?</p>
+<p>package tps;<br />import java.util.*;</p>
+<p>class Boss {<br />&nbsp;&nbsp;&nbsp; private String name;<br />&nbsp;&nbsp;&nbsp; public Boss(String name) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.name = name;<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public String getName() {return name.toUpperCase();}<br />&nbsp;&nbsp;&nbsp; public String toString() {return getName();}<br />}<br />public class Initech {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] reports) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final List&lt;Boss&gt; bosses = new ArrayList(8);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bosses.add(new Boss("Jenny"));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bosses.add(new Boss("Ted"));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bosses.add(new Boss("Grace"));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bosses.removeIf(s -&gt; s.equalsIgnoreCase("ted"));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(bosses);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-07 15:13:11',TIMESTAMP '2019-05-07 15:13:11');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6680,2470,'[JENNY, GRACE]',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6681,2470,'[tps.Boss@4218224c, tps.Boss@815f19a]',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6682,2470,'The code does not compile because of the lambda expression.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6683,2470,'The code does not compile for a different reason.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2471,12,1,'<p>Which of the following method references can be passed to a method that takes Consumer&lt;Object&gt; as an argument?</p>
+<p>I. ArrayList::new<br />II. String::new<br />III. System.out::println</p>',TIMESTAMP '2019-05-07 15:17:31',TIMESTAMP '2019-05-07 15:17:31');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6684,2471,'I only',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6685,2471,'I, II, and III',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6686,2471,'I and III',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6687,2471,'III only',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2472,12,1,'Which of the following is a valid functional interface in the java.util.function package?',TIMESTAMP '2019-05-07 15:18:40',TIMESTAMP '2019-05-07 15:18:40');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6688,2472,'FloatPredicate',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6689,2472,'ToDoubleBiFunction',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6690,2472,'UnaryIntOperator',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6691,2472,'TriPredicate',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2473,12,1,'<p>Which functional interface, when filled into the blank, prevents the class from compiling?</p>
+<p>package morning;<br />import java.util.function.*;</p>
+<p>public class Sun {<br />&nbsp;&nbsp;&nbsp; public static void dawn( ________ sunrise) {}<br />&nbsp;&nbsp;&nbsp; public void main(String... rays) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dawn(s -&gt; s+1);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-07 15:30:19',TIMESTAMP '2019-05-07 15:30:19');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6692,2473,'DoubleUnaryOperator',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6693,2473,'Function&lt;String,String&gt;',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6694,2473,'IntToLongFunction',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6695,2473,'UnaryOperator',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2474,12,1,'Which functional interface does not have the correct number of generic arguments?',TIMESTAMP '2019-05-07 15:35:34',TIMESTAMP '2019-05-07 15:35:34');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6696,2474,'BiFunction&lt;T,U,R&gt;',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6697,2474,'DoubleFunction&lt;T,R&gt;',true,'должно быть DoubleFunction&lt;R&gt;');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6698,2474,'ToDoubleFunction&lt;T&gt;',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6699,2474,'ToIntBiFunction&lt;T,U&gt;',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2475,12,1,'<p>Which lambda expression, when filled into the blank, allows the code to compile?</p>
+<p>package ballroom;<br />import java.util.function.*;</p>
+<p>public class Dance {<br />&nbsp;&nbsp;&nbsp; public static Integer rest(BiFunction&lt;Integer,Double,Integer&gt; takeABreak) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return takeABreak.apply(3, 10.2);<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String[] participants) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rest( ___________ );<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-07 15:52:38',TIMESTAMP '2019-05-07 15:52:38');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6700,2475,'(int n, double e) -&gt; (int)(n+e)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6701,2475,'(n,w,e) -&gt; System.out::print',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6702,2475,'(s,w) -&gt; 2*w',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6703,2475,'(s,e) -&gt; s.intValue()+e.intValue()',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2476,12,1,'Fill in the blank: ____________ is the only functional interface that does not involve double, int, or long.',TIMESTAMP '2019-05-07 15:54:20',TIMESTAMP '2019-05-07 15:54:20');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6704,2476,'BooleanSupplier',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6705,2476,'CharPredicate',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6706,2476,'FloatUnaryOperator',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6707,2476,'ShortConsumer',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2477,12,1,'<p>What is the output of the following application?</p>
+<p>package savings;<br />import java.util.function.*;</p>
+<p>public class Bank {<br />&nbsp;&nbsp;&nbsp; private int savingsInCents;<br />&nbsp;&nbsp;&nbsp; private static class ConvertToCents {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; static DoubleToIntFunction f = p -&gt; p*100;<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String... currency) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bank creditUnion = new Bank();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; creditUnion.savingsInCents = 100;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double deposit = 1.5;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; creditUnion.savingsInCents += ConvertToCents.f.applyAsInt(deposit); // j1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(creditUnion.savingsInCents);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-07 15:58:44',TIMESTAMP '2019-05-07 15:58:44');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6708,2477,'200',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6709,2477,'250',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6710,2477,'The code does not compile because of line j1.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6711,2477,'None of the above',true,'&nbsp;f = p -&gt; p*100; несовместимо с&nbsp; DoubleToIntFunction');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2478,12,1,'Which functional interface takes a double value and has a test() method?',TIMESTAMP '2019-05-07 16:10:13',TIMESTAMP '2019-05-07 16:10:13');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6712,2478,'DoubleConsumer',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6713,2478,'DoublePredicate',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6714,2478,'DoubleUnaryOperator',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6715,2478,'ToDoubleFunction',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2479,12,1,'<p>Given the following class, how many lines contain compilation errors?</p>
+<p>1: package showtimes;<br />2: import java.util.*;<br />3: import java.util.function.*;<br />4: public class FindMovie {<br />5:&nbsp;&nbsp;&nbsp;&nbsp; private Function&lt;String&gt; printer;<br />6:&nbsp;&nbsp;&nbsp;&nbsp; protected FindMovie() {<br />7:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printer = s -&gt; {System.out.println(s); return s;}<br />8:&nbsp;&nbsp;&nbsp;&nbsp; }<br />9:&nbsp;&nbsp;&nbsp;&nbsp; void printMovies(List&lt;String&gt; movies) {<br />10:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; movies.forEach(printer);<br />11:&nbsp;&nbsp;&nbsp; }<br />12:&nbsp;&nbsp;&nbsp; public static void main(String[] screen) {<br />13:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List&lt;String&gt; movies = new ArrayList&lt;&gt;();<br />14:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; movies.add("Stream 3");<br />15:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; movies.add("Lord of the Recursion");<br />16:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; movies.add("Silence of the Lambdas");<br />17:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new FindMovie().printMovies(movies);<br />18:&nbsp;&nbsp;&nbsp; }<br />19: }</p>',TIMESTAMP '2019-05-07 16:17:11',TIMESTAMP '2019-05-07 16:17:11');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6716,2479,'None. The code compiles as is.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6717,2479,'One',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6718,2479,'Two',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6719,2479,'Three',true,'- Function параметризуется двумя дженериками<br />- после printer = s -&gt; {System.out.println(s); return s;} должна быть точка с запятой<br />- forEach принимает Consumer, а не Function');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2480,12,1,'Which lambda expression cannot be assigned to a DoubleToLongFunction functional interface?',TIMESTAMP '2019-05-07 16:24:11',TIMESTAMP '2019-05-07 16:24:11');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6720,2480,'a -&gt; null==null ? 1 : 2L',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6721,2480,'e -&gt; (int)(10.0*e)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6722,2480,'(double m) -&gt; {long p = (long)m; return p;}',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6723,2480,'(Double s) -&gt; s.longValue()',true,'неправильный тип входного параметра');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2481,8,0,'Не забываем, что в примитивных функциональных интерфейсах (например, DoubleToLongFunction) никак не упоминаются обертки',TIMESTAMP '2019-05-07 16:25:20',TIMESTAMP '2019-05-07 16:25:20');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2482,12,1,'Which of the following is not a functional interface in the java.util.function package?',TIMESTAMP '2019-05-07 16:29:10',TIMESTAMP '2019-05-07 16:29:10');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6724,2482,'DoublePredicate',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6725,2482,'LongUnaryOperator',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6726,2482,'ShortSupplier',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6727,2482,'ToIntBiFunction',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2483,12,1,'<p>Which functional interface, when filled into the blank, allows the class to compile?</p>
+<p>package sleep;<br />import java.util.function.*;</p>
+<p>class Sheep {}<br />public class Dream {<br />&nbsp;&nbsp;&nbsp; int MAX_SHEEP = 10;<br />&nbsp;&nbsp;&nbsp; int sheepCount;<br />&nbsp;&nbsp;&nbsp; public void countSheep( ____________ backToSleep) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while(sheepCount&lt;MAX_SHEEP) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // TODO: Apply lambda<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sheepCount++;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String[] dark) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new Dream().countSheep(System.out::println);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-07 16:34:30',TIMESTAMP '2019-05-07 16:34:30');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6728,2483,'Consumer&lt;Sheep&gt;',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6729,2483,'Function&lt;Sheep,void&gt;',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6730,2483,'UnaryOperator&lt;Sheep&gt;',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6731,2483,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2484,12,1,'<p>What is the output of the following application?</p>
+<p>package pet;<br />import java.util.*;<br />import java.util.function.*;</p>
+<p>public class DogSearch {<br />&nbsp;&nbsp;&nbsp; void reduceList(List&lt;String&gt; names, Predicate&lt;String&gt; tester) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; names.removeIf(tester);<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String[] treats) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int MAX_LENGTH = 2;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DogSearch search = new DogSearch();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List&lt;String&gt; names = new ArrayList&lt;&gt;();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; names.add("Lassie");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; names.add("Benji");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; names.add("Brian");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MAX_LENGTH += names.size();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; search.reduceList(names, d -&gt; d.length()&gt;MAX_LENGTH);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(names.size());<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-07 16:37:56',TIMESTAMP '2019-05-07 16:37:56');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6732,2484,'2',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6733,2484,'3',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6734,2484,'The code does not compile because of lambda expression.',true,'MAX_LENGTH не эффективно финальная');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6735,2484,'The code does not compile for a different reason.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2485,12,1,'Which functional interface takes two values and has an apply() method?',TIMESTAMP '2019-05-07 16:41:45',TIMESTAMP '2019-05-07 16:41:45');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6736,2485,'BiConsumer',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6737,2485,'BiFunction',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6738,2485,'BiPredicate',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6739,2485,'DoubleBinaryOperator',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2486,12,1,'<p>Which of the following lambda expressions can be passed to a method that takes IntFunction&lt;Integer&gt; as an argument?</p>
+<p>I. (Integer f) -&gt; f<br />II. (v) -&gt; null<br />III. s -&gt; s</p>',TIMESTAMP '2019-05-07 16:43:50',TIMESTAMP '2019-05-07 16:43:50');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6740,2486,'I, II, and III',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6741,2486,'II and III only',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6742,2486,'III only',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6743,2486,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2487,12,1,'<p>What is the output of the following application?</p>
+<p>package lot;<br />import java.util.function.*;</p>
+<p>public class Warehouse {<br />&nbsp;&nbsp;&nbsp; private int quantity = 40;<br />&nbsp;&nbsp;&nbsp; private final BooleanSupplier stock;<br />&nbsp;&nbsp;&nbsp; {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stock = () -&gt; quantity&gt;0;<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public void checkInventory() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(stock.get())<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("Plenty!");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("On Backorder!");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String... widget) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final Warehouse w13 = new Warehouse();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; w13.checkInventory();<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-07 16:49:41',TIMESTAMP '2019-05-07 16:49:41');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6744,2487,'Plenty!',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6745,2487,'On Backorder!',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6746,2487,'The code does not compile because of the checkInventory() method.',true,'BooleanSupplier имеет метод getAsBoolean, а не get');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6747,2487,'The code does not compile for a different reason.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2488,12,1,'Which of the following statements about functional interfaces is true?',TIMESTAMP '2019-05-07 17:26:45',TIMESTAMP '2019-05-07 17:26:45');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6748,2488,'It is possible to define a functional interface that returns two data types.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6749,2488,'It is possible to define a primitive functional interface that uses float, char, or short.',true,'Таких встроенных интерфейсов нет, но их можно создать самостоятельно');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6750,2488,'It is not possible to define a functional interface that does not take any arguments nor return any value.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6751,2488,'None of the primitive functional interfaces include generic arguments.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2489,12,1,'<p>Which of the following fills in the blank so that the code outputs one line but uses a poor practice?</p>
+<p>import java.util.*;</p>
+<p>public class Cheater {<br />&nbsp;&nbsp;&nbsp; int count = 0;<br />&nbsp;&nbsp;&nbsp; public void sneak(Collection&lt;String&gt; coll) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; coll.stream(). __________________;<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Cheater c = new Cheater();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c.sneak(Arrays.asList("weasel"));<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-07 17:39:02',TIMESTAMP '2019-05-07 17:39:02');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6752,2489,'peek(System.out::println)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6753,2489,'peek(System.out::println).findFirst()',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6754,2489,'peek(r -&gt; System.out.println(r)).findFirst()',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6755,2489,'peek(r -&gt; {count++; System.out.println(r); }).findFirst()',true,'peek не должен иметь побочных эффектов');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2490,12,1,'<p>Which can fill in the blank to have the code print true?</p>
+<p>Stream&lt;Integer&gt; stream = Stream.iterate(1, i -&gt; i+1);<br />boolean b = stream. ________(i -&gt; i &gt; 5);<br />System.out.println(b);</p>
+<p>&nbsp;</p>',TIMESTAMP '2019-05-07 17:46:26',TIMESTAMP '2019-05-07 17:46:26');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6756,2490,'anyMatch',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6757,2490,'allMatch',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6758,2490,'noneMatch',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6759,2490,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2491,12,1,'On a DoubleStream, how many of the methods average(), count(), and sum() return an OptionalDouble?',TIMESTAMP '2019-05-07 17:51:06',TIMESTAMP '2019-05-07 17:51:06');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6760,2491,'None',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6761,2491,'One',true,'только average() возвращает Optional');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6762,2491,'Two',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6763,2491,'Three',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2492,12,1,'<p>How many of the following can fill in the blank to have the code print 44?</p>
+<p>Stream&lt;String&gt; stream = Stream.of("base", "ball");<br />stream. ________(s -&gt; s.length()).forEach(System.out::print);</p>
+<p>I. map<br />II. mapToInt<br />III. mapToObject</p>',TIMESTAMP '2019-05-07 17:54:47',TIMESTAMP '2019-05-07 17:54:47');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6764,2492,'None',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6765,2492,'One',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6766,2492,'Two',true,'метода mapToObject нет, есть mapToObj');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6767,2492,'Three',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2493,8,0,'Помним, что в API функциональных интерфейсов&nbsp;в составе названий не бывает Object, только Obj',TIMESTAMP '2019-05-07 17:55:48',TIMESTAMP '2019-05-07 17:55:48');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2494,12,1,'<p>What is the result of the following?</p>
+<p>IntStream s = IntStream.empty();<br />System.out.print(s.average().getAsDouble());</p>',TIMESTAMP '2019-05-07 18:00:39',TIMESTAMP '2019-05-07 18:00:39');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6768,2494,'The code prints 0.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6769,2494,'The code prints 0.0.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6770,2494,'The code does not compile.',false,'average() возвращает OptionalDouble, у него есть метод getAsDouble');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6771,2494,'The code compiles but throws an exception at runtime.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2495,12,1,'Which of these stream pipeline operations takes a Predicate as a parameter and returns an Optional?',TIMESTAMP '2019-05-07 18:04:58',TIMESTAMP '2019-05-07 18:04:58');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6772,2495,'anyMatch()',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6773,2495,'filter()',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6774,2495,'findAny()',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6775,2495,'None of the above',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2496,12,1,'<p>What is the result of the following?</p>
+<p>List&lt;Double&gt; list = new ArrayList&lt;&gt;();<br />list.add(5.4);<br />list.add(1.2);<br />Optional&lt;Double&gt; opt = list.stream().sorted().findFirst();<br />System.out.println(opt.get() + " " + list.get(0));</p>',TIMESTAMP '2019-05-07 18:09:00',TIMESTAMP '2019-05-07 18:09:00');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6776,2496,'1.2 1.2',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6777,2496,'1.2 5.4',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6778,2496,'5.4 5.4',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6779,2496,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2497,12,1,'<p>Fill in the blank so this code prints 8.0.</p>
+<p>IntStream stream = IntStream.of(6, 10);<br />LongStream longs = stream.mapToLong(i -&gt; i);<br />System.out.println( ______________);</p>',TIMESTAMP '2019-05-07 18:14:55',TIMESTAMP '2019-05-07 18:14:55');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6780,2497,'longs.average().get()',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6781,2497,'longs.average().getAsDouble()',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6782,2497,'longs.getAverage().get()',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6783,2497,'longs.getAverage().getAsDouble()',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2498,12,1,'<p>How many of these collectors can fill in the blank to make this code compile?</p>
+<p>Stream&lt;Character&gt; chars = Stream.of(<br />''o'', ''b'', ''s'', ''t'', ''a'', ''c'', ''l'', ''e'');<br />chars.map(c -&gt; c).collect(Collectors. _______);</p>
+<p>I. toArrayList()<br />II. toList()<br />III. toMap()</p>',TIMESTAMP '2019-05-07 18:20:09',TIMESTAMP '2019-05-07 18:20:09');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6784,2498,'None',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6785,2498,'One',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6786,2498,'Two',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6787,2498,'Three',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2499,12,1,'<p>What does the following output?</p>
+<p>import java.util.*;</p>
+<p>public class MapOfMaps {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Map&lt;Integer, Integer&gt; map = new HashMap&lt;&gt;();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; map.put(9, 3);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Map&lt;Integer, Integer&gt; result = map.stream().map((k,v) -&gt; (v,k));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(result.keySet().iterator().next());<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-07 18:25:24',TIMESTAMP '2019-05-07 18:25:24');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6788,2499,'3',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6789,2499,'9',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6790,2499,'The code does not compile.',true,'Нельзя ни взять поток с Map, ни замапить его на другой Map');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6791,2499,'The code compiles but throws an exception at runtime.',false,'');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,609,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,610,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,612,0);
@@ -12587,6 +12890,7 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2418,15);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,358,41);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2419,16);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,359,42);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (65,2457,4);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2420,17);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,360,43);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2421,18);
@@ -12632,41 +12936,83 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2442,36);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,382,67);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2443,37);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,383,68);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (65,2481,5);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2444,38);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,384,69);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2445,39);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,385,70);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2446,40);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,392,71);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (65,2493,6);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2447,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,387,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2448,2);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,388,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2449,3);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,389,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2450,4);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,390,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2451,5);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,391,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2452,6);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2453,7);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,393,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2454,8);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,394,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2455,9);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,395,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2456,10);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,396,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,397,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2458,11);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,398,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2459,12);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,399,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2460,13);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,400,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2461,14);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,401,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2462,15);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,402,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2463,16);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,403,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2464,17);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,404,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2465,18);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,405,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2466,19);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,406,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2467,20);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,407,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2468,21);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,408,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2469,22);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,409,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2470,23);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,410,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2471,24);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,411,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2472,25);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,412,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2473,26);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,413,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2474,27);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,414,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2475,28);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,415,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2476,29);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,416,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2477,30);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2478,31);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2479,32);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2480,33);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2482,34);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2483,35);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2484,36);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2485,37);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2486,38);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2487,39);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2488,40);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,417,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,418,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,419,0);
@@ -12679,16 +13025,26 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,425,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,426,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,427,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,428,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (68,2489,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,429,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (68,2490,2);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,430,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (68,2491,3);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,431,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (68,2492,4);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,432,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,433,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (68,2494,5);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,434,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (68,2495,6);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,435,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (68,2496,7);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,436,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (68,2497,8);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,437,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (68,2498,9);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,438,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (68,2499,10);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,439,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,441,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,442,0);
@@ -12882,6 +13238,7 @@ INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (10,'tm
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (11,'tmp6one-to-many','png');
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (12,'tmp6many-to-many','png');
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (13,'tmp6sample_db_structure','png');
+INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (14,'tmp6OCP_Tests_Ch14_20','png');
 INSERT INTO UserAnswer (id,questionId,correct,answerDate) OVERRIDING SYSTEM VALUE VALUES (0,2,true,TIMESTAMP '2019-03-25 00:04:36');
 INSERT INTO UserAnswer (id,questionId,correct,answerDate) OVERRIDING SYSTEM VALUE VALUES (1,67,true,TIMESTAMP '2019-03-25 00:04:36');
 INSERT INTO UserAnswer (id,questionId,correct,answerDate) OVERRIDING SYSTEM VALUE VALUES (2,70,true,TIMESTAMP '2019-03-25 00:04:36');
