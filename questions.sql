@@ -10719,6 +10719,60 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2502,13,0,'Общая структура SQL-конструкции:<br /><br />&lt;см.рис. sql_ch3_pic1.png&gt;',TIMESTAMP '2019-05-08 01:33:31',TIMESTAMP '2019-05-08 01:33:31');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2503,13,2,'Перечислите типы SQL-выражений с примерами.',TIMESTAMP '2019-05-08 01:39:38',TIMESTAMP '2019-05-08 01:39:38');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6792,2503,'<strong>Case</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CASE WHEN n &lt;&gt; 0 THEN x/n ELSE 0 END<br /><strong>Cast</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CAST(pubdate AS CHARACTER)<br /><strong>Datetime value</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; start_time + ''01:30''<br /><strong>Interval value</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTERVAL ''7'' DAY * 2<br /><strong>Numeric value</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (sales*price)/12<br /><strong>String value</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ''Dear ''||au_fname||'',''',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2504,12,1,'<p>Which of the following creates an Optional that returns true when calling opt.isPresent()?</p>
+<p>I. Optional&lt;String&gt; opt = Optional.empty();<br />II. Optional&lt;String&gt; opt = Optional.of(null);<br />III. Optional&lt;String&gt; opt = Optional.ofNullable(null);</p>',TIMESTAMP '2019-05-08 12:21:13',TIMESTAMP '2019-05-08 12:21:13');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6793,2504,'I',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6794,2504,'I and II',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6795,2504,'I and III',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6796,2504,'None of the above',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2505,12,1,'<p>What is the output of the following?</p>
+<p>Stream&lt;String&gt; s = Stream.of("speak", "bark", "meow", "growl");<br />BinaryOperator&lt;String&gt; merge = (a, b) -&gt; a;<br />Map&lt;Integer, String&gt; map = s.collect(toMap(String::length, k -&gt; k, merge));<br />System.out.println(map.size() + " " + map.get(4));&nbsp;&nbsp;&nbsp; </p>',TIMESTAMP '2019-05-08 12:32:28',TIMESTAMP '2019-05-08 12:32:28');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6800,2505,'None of the above',false,'Скомпилируется, т.к. мы предполагаем, что все импорты, в т.ч. статичные, указаны верно');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6797,2505,'2 bark',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6798,2505,'2 meow',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6799,2505,'4 bark',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2506,12,1,'<p>What is the output of the following?</p>
+<p>1: package reader;<br />2: import java.util.stream.*;<br />3:<br />4: public class Books {<br />5:&nbsp;&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />6:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IntegerStream pages = IntegerStream.of(200, 300);<br />7:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IntegerSummaryStatistics stats = pages.summaryStatistics();<br />8:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; long total = stats.getSum();<br />9:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; long count = stats.getCount();<br />10:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(total + "-" + count);<br />11:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />12: }</p>',TIMESTAMP '2019-05-08 12:34:16',TIMESTAMP '2019-05-08 12:34:16');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6801,2506,'500-0',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6802,2506,'500-2',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6803,2506,'The code does not compile.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6804,2506,'The code compiles but throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2507,12,1,'<p>If this method is called with Stream.of("hi"), how many lines are printed?</p>
+<p>public static void print(Stream&lt;String&gt; stream) {<br />&nbsp;&nbsp;&nbsp; Consumer&lt;String&gt; print = System.out::println;<br />&nbsp;&nbsp;&nbsp; stream.peek(print)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .peek(print)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .map(s -&gt; s)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .peek(print)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .forEach(print);<br />}</p>',TIMESTAMP '2019-05-08 12:41:59',TIMESTAMP '2019-05-08 12:41:59');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6805,2507,'Three',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6806,2507,'Four',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6807,2507,'The code compiles but does not output anything.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6808,2507,'The code does not compile.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2508,12,1,'<p>What is true of the following code?</p>
+<p>Stream&lt;Character&gt; stream = Stream.of(''c'', ''b'', ''a''); // z1<br />stream.sorted().findAny().ifPresent(System.out::println); // z2</p>',TIMESTAMP '2019-05-08 13:09:21',TIMESTAMP '2019-05-08 13:09:21');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6809,2508,'It is guaranteed to print the single character a.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6810,2508,'It can print any single character of a, b, or c.',true,'скорее всего, будет ''a'', но в параллельной обработке может быть и другой символ');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6811,2508,'It does not compile because of line z1.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6812,2508,'It does not compile because of line z2.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2509,12,1,'Suppose you have a stream pipeline where all the elements are of type String. Which of the following can be passed to the intermediate operation sorted()?',TIMESTAMP '2019-05-08 13:23:32',TIMESTAMP '2019-05-08 13:23:32');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6816,2509,'Neither of these',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6813,2509,'(s,t) -&gt; s.length() - t.length()',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6814,2509,'String::isEmpty',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6815,2509,'Both of these',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2510,12,1,'<p>Fill in the blanks so that both methods produce the same output for all inputs.</p>
+<p>private static void longer(Optional&lt;Boolean&gt; opt) {<br />&nbsp;&nbsp;&nbsp; if (opt. _________())<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("run: " + opt.get());<br />}<br />private static void shorter(Optional&lt;Boolean&gt; opt) {<br />&nbsp;&nbsp;&nbsp; opt.map(x -&gt; "run: " + x). ___________(System.out::println);<br />}</p>',TIMESTAMP '2019-05-08 13:47:51',TIMESTAMP '2019-05-08 13:47:51');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6817,2510,'isNotNull, isPresent',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6818,2510,'ifPresent, isPresent',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6819,2510,'isPresent, forEach',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6820,2510,'isPresent, ifPresent',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2511,12,1,'<p>What is the output of this code?</p>
+<p>Stream&lt;Boolean&gt; bools = Stream.iterate(true, b -&gt; !b);<br />Map&lt;Boolean, List&lt;Boolean&gt;&gt; map = bools.limit(1)<br />&nbsp;&nbsp;&nbsp; .collect(partitioningBy(b -&gt; b));<br />System.out.println(map);</p>',TIMESTAMP '2019-05-08 14:44:56',TIMESTAMP '2019-05-08 14:44:56');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6821,2511,'{true=[true]}',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6822,2511,'{false=null, true=[true]}',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6823,2511,'{false=[], true=[true]}',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6824,2511,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2512,12,1,'<p>What does the following output?</p>
+<p>Set&lt;String&gt; set = new HashSet&lt;&gt;();<br />set.add("tire-");<br />List&lt;String&gt; list = new LinkedList&lt;&gt;();<br />Deque&lt;String&gt; queue = new ArrayDeque&lt;&gt;();<br />queue.push("wheel-");<br />Stream.of(set, list, queue)<br />&nbsp;&nbsp;&nbsp; .flatMap(x -&gt; x.stream())<br />&nbsp;&nbsp;&nbsp; .forEach(System.out::print);</p>',TIMESTAMP '2019-05-08 14:54:59',TIMESTAMP '2019-05-08 14:54:59');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6825,2512,'[tire-][wheel-]',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6826,2512,'tire-wheel-',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6827,2512,'None of the above.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6828,2512,'The code does not compile.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2513,8,0,'Если в метод передается vararg T..., то T (и, соответственно, доступный API) будет определяться по типу подаваемых ссылок как самый ближайший общий для всех родитель (класс или интерфейс).',TIMESTAMP '2019-05-08 15:22:11',TIMESTAMP '2019-05-08 15:22:11');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,609,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,610,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,612,0);
@@ -12951,6 +13005,7 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,385,70);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (66,2446,40);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (11,392,71);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (65,2493,6);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (65,2513,7);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2447,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (12,387,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2448,2);
@@ -13056,14 +13111,23 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,439,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,441,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,442,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,443,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (68,2504,11);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,444,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (68,2505,12);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,445,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (68,2506,13);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,446,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (68,2507,14);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,447,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (68,2508,15);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,448,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (68,2509,16);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,449,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (68,2510,17);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,450,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (68,2511,18);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,451,0);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (68,2512,19);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,452,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,453,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (13,454,0);

@@ -1,7 +1,7 @@
 ﻿
 
-p.258 Ch15№11   p.507
--		#22, #31
+p.261 Ch15№19   p.508
+-		-
 		
 		
 SQL Fehily: p.66 Identifiers
