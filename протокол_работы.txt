@@ -1,10 +1,10 @@
 ﻿
 
-p.261 Ch15№19   p.508
+p.271 Ch16№1   p.510
 -		-
 		
 		
-SQL Fehily: p.66 Identifiers
+SQL Fehily: p.87 Ch.4 Retrieving Data From A Table
 
 
 Bloch: Item 2 p.10
