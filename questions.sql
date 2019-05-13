@@ -10914,6 +10914,9 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (6925,2554,'Можно. Например, запросом<br />SELECT MAX(colname)<br />FROM tabname<br />WHERE colname = &lt;not existing&gt;;',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2555,13,0,'Oracle интерпретирует пустую строку '''' как NULL.',TIMESTAMP '2019-05-11 02:03:00',TIMESTAMP '2019-05-11 02:03:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2556,13,0,'Пример выноса колонки, в которой слишком высока частота появления NULL, в отдельную таблицу.<br /><br />&lt;см. рис. SQL-Ch3-pic3.png&gt;',TIMESTAMP '2019-05-11 02:05:18',TIMESTAMP '2019-05-11 02:05:18');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2557,8,0,'<p>Выбрасываемые методом проверяемые исключения определяются по&nbsp; типу ссылки:<br /><br />class AC implements AutoCloseable {</p>
+<p>&nbsp;&nbsp;&nbsp; @Override<br />&nbsp;&nbsp;&nbsp; public void close()&nbsp; {}&nbsp;//метод определен без исключения,&nbsp;объявленного в интерфейсе<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp; void f() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try(AC ac = new AC()){}</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try(AutoCloseable ac = new AC()){} //compile error<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-13 15:18:43',TIMESTAMP '2019-05-13 15:18:43');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,609,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,610,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (19,612,0);
@@ -13210,6 +13213,7 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2478,31);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2479,32);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2480,33);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2482,34);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (65,2557,8);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2483,35);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2484,36);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (67,2485,37);
