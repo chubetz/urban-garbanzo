@@ -4,7 +4,7 @@ p.271 Ch16№1   p.510
 -		-
 		
 		
-SQL Fehily: p.87 Ch.4 Retrieving Data From A Table
+SQL Fehily: p.101 Filtering Rows with WHERE
 
 
 Bloch: Item 2 p.10
