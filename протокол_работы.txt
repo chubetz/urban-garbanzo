@@ -4,7 +4,7 @@ p.285 Ch16№35   p.515
 -		-
 		
 		
-SQL Fehily: p.169 Ch.6
+SQL Fehily: p.179 distinct
 
 
 
