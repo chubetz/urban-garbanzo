@@ -3650,8 +3650,8 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (989,8,2,'Опишите класс java.time.<strong>Duration</strong>&nbsp; и укажите&nbsp;6 способов (методов) создания объекта класса, а также расскажите об общем методе <strong>of</strong>()',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2039,989,'Класс выражает период времени более дробный, чем сутки.<br /><br />Duration daily = Duration.ofDays(1); // PT24H<br />Duration hourly = Duration.ofHours(1); // PT1H<br />Duration everyMinute = Duration.ofMinutes(1); // PT1M<br />Duration everyTenSeconds = Duration.ofSeconds(10); // PT10S<br />Duration everyMilli = Duration.ofMillis(1); // PT0.001S<br />Duration everyNano = Duration.ofNanos(1); // PT0.000000001S<br /><br />Еще можно создавать объекты с помощью статического метода <strong>of</strong>(<strong>long </strong><em>amount</em>, <strong>TemporalUnit </strong><em>unit</em>). У <strong>TemporalUnit</strong> есть набор enum-констант, хранящихся в реализующем данный интерфейс&nbsp;энуме <strong>ChronoUnit</strong>:<br /><br />Duration daily = Duration.of(1, ChronoUnit.DAYS);<br />Duration hourly = Duration.of(1, ChronoUnit.HOURS);<br />Duration everyMinute = Duration.of(1, ChronoUnit.MINUTES);<br />Duration everyTenSeconds = Duration.of(10, ChronoUnit.SECONDS);<br />Duration everyMilli = Duration.of(1, ChronoUnit.MILLIS);<br />Duration everyNano = Duration.of(1, ChronoUnit.NANOS);<br />Duration halfDays = Duration.of(1, ChronoUnit.HALF_DAYS);<br /><br />везде в аргументах - <strong>long</strong>',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (990,8,0,'У класса <strong>Duration</strong> нет возможности создать комплексный период одним методом, как у <strong>Period</strong>. Если нужно задать 1 час 30 минут, следует вызывать ofMinutes(90);',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
-INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (991,8,2,'Расскажите, как с помощью&nbsp;энумов java.time.temporal.<strong>ChronoUnit</strong> можно найти разницу между друмя объектами даты/времени.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
-	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2040,991,'Необходимо вызвать метод <strong>between</strong>() на энуме <strong>ChronoUnit</strong>&nbsp;и подать в этот метод сравниваемые объекты:<br /><br />LocalTime one = LocalTime.of(5, 15);<br />LocalTime two = LocalTime.of(6, 30);<br />LocalDate date = LocalDate.of(2016, 1, 20);<br />System.out.println(ChronoUnit.HOURS.between(one, two)); // 1<br />System.out.println(ChronoUnit.MINUTES.between(one, two)); // 75<br />System.out.println(ChronoUnit.MINUTES.between(one, date)); // DateTimeException',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (991,8,2,'Расскажите, как с помощью&nbsp;энумов java.time.temporal.<strong>ChronoUnit</strong> можно найти разницу между друмя объектами даты/времени.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '2019-05-21 17:27:03');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2040,991,'1-й способ. Необходимо вызвать метод <strong>between</strong>() на энуме <strong>ChronoUnit</strong>&nbsp;и подать в этот метод сравниваемые объекты:<br /><br />LocalTime one = LocalTime.of(5, 15);<br />LocalTime two = LocalTime.of(6, 30);<br />LocalDate date = LocalDate.of(2016, 1, 20);<br />System.out.println(ChronoUnit.HOURS.between(one, two)); // 1<br />System.out.println(ChronoUnit.MINUTES.between(one, two)); // 75<br />System.out.println(ChronoUnit.MINUTES.between(one, date)); // DateTimeException<br /><br />2-й способ. Вызвать метод <strong>until</strong>() на объекте даты/времени и подать в него другую дату/время и энум <strong>ChronoUnit</strong>.<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(one.until(two, ChronoUnit.HOURS)); // 1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(one.until(two, ChronoUnit.MINUTES)); // 75<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(one.until(date, ChronoUnit.MINUTES)); // DateTimeException',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (992,8,2,'Расскажите о добавлении/вычитании объектов класса <strong>Duration</strong>.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '2019-05-16 16:44:28');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7100,992,'Объекты <strong>Duration</strong> можно добавлять/вычитать (посредством методов <strong>plus</strong>(), <strong>minus</strong>()) применительно ко всем объектам даты/времени, кроме <strong>LocalDate</strong>.<br /><br />LocalDate date = LocalDate.of(2015, 1, 20);<br />LocalTime time = LocalTime.of(6, 15);<br />LocalDateTime dateTime = LocalDateTime.of(date, time);<br />Duration duration = Duration.ofHours(6);<br />System.out.println(dateTime.plus(duration)); // 2015&ndash;01&ndash;20T12:15<br />System.out.println(time.plus(duration)); // 12:15<br />System.out.println(date.plus(duration)); // UnsupportedTemporalException',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (993,8,2,'Что представляет собой класс java.time.<strong>Instant</strong>? Как можно получить объект этого класса?',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
@@ -11469,6 +11469,99 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7252,2720,'01:00, 02:00, 03:00',false,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7253,2720,'03:00, 02:00, 01:00',true,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7254,2720,'03:00, 02:00, 03:00',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2721,12,1,'<p>What is the output of the following?</p>
+<p>LocalDate date1 = LocalDate.of(2017, Month.MARCH, 3);<br />LocalDate date2 = LocalDate.of(2017, Month.FEBRUARY, 31);<br />System.out.println(date1.equals(date2));</p>',TIMESTAMP '2019-05-21 15:31:52',TIMESTAMP '2019-05-21 15:31:52');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7255,2721,'false',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7256,2721,'true',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7257,2721,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7258,2721,'The code compiles but throws an exception at runtime.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2722,8,0,'При создании неверных даты/времени методом <strong>of</strong>() будет runtime exception.',TIMESTAMP '2019-05-21 15:33:54',TIMESTAMP '2019-05-21 15:33:54');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2723,12,1,'<p>Given this date/time and time zone offset, what time is it in GMT?</p>
+<p>2017-03-09T16:00-10:00[US/Hawaii]</p>',TIMESTAMP '2019-05-21 15:41:59',TIMESTAMP '2019-05-21 15:41:59');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7259,2723,'02:00',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7260,2723,'04:00',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7261,2723,'06:00',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7262,2723,'10:00',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2724,12,1,'<p>What is a possible output of the following?</p>
+<p>LocalDate trainDay = LocalDate.of(2017, 5, 13);<br />LocalTime time = LocalTime.of(10, 0);<br />ZoneId zone = ZoneId.of("America/Los_Angeles");<br />ZonedDateTime zdt = ZonedDateTime.of(trainDay, time, zone);<br />Instant instant = zdt.toInstant();<br />instant = instant.plus(1, ChronoUnit.DAYS);<br />System.out.println(instant);</p>',TIMESTAMP '2019-05-21 15:47:37',TIMESTAMP '2019-05-21 15:47:37');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7264,2724,'2017-05-13T17:00:00Z',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7265,2724,'2017-05-14T10:00-07:00[America/Los_Angeles]',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7266,2724,'2017-05-14T17:00:00Z',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7263,2724,'2017-05-13T10:00-07:00[America/Los_Angeles]',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2725,12,1,'<p>What is the output of the following?</p>
+<p>LocalDate date = LocalDate.of(2017, Month.JULY, 17);<br />LocalTime time = LocalTime.of(10, 0);<br />ZoneId zone = ZoneId.of("America/New_York");<br />ZonedDateTime iceCreamDay = ZonedDateTime.of(date, time, zone);<br />time = time.plusMonths(1);<br />System.out.println(iceCreamDay.getMonthValue());</p>',TIMESTAMP '2019-05-21 15:52:38',TIMESTAMP '2019-05-21 15:52:38');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7267,2725,'6',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7268,2725,'7',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7269,2725,'8',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7270,2725,'The code does not compile.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2726,12,1,'<p>What does the following print?</p>
+<p>import java.time.*;<br />import java.time.format.*;</p>
+<p>public class PolarBear {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LocalDate polarBearDay = LocalDate.of(2017, 2, 27);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DateTimeFormatter formatter = DateTimeFormatter<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .ofPattern("Holiday: yyyy dd MMM");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(polarBearDay.format(formatter));<br />&nbsp;&nbsp;&nbsp; }<br />}</p>
+<p>&nbsp;</p>',TIMESTAMP '2019-05-21 15:59:24',TIMESTAMP '2019-05-21 15:59:24');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7271,2726,'Holiday: 2017 27 Jan',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7272,2726,'Holiday: 2017 27 Feb',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7273,2726,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7274,2726,'The code compiles but throws an exception at runtime.',true,'В паттерне не должно быть "левых" символов');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2727,8,0,'В паттерне DateTimeFormatter не должно быть никаких <span style="text-decoration: underline;">буквенных</span> символов, кроме установленных. Иначе - IllegalArgumentException',TIMESTAMP '2019-05-21 16:01:31',TIMESTAMP '2019-05-21 16:01:38');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2728,12,1,'Which of these represents the earliest date/time?',TIMESTAMP '2019-05-21 16:05:37',TIMESTAMP '2019-05-21 16:05:37');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7275,2728,'2017-02-15T16:00+07:00[Asia/Bangkok]',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7276,2728,'2017-02-15T18:00+04:00[Asia/Dubai]',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7277,2728,'2017-02-15T20:00+08:00[Asia/Kuala_Lumpur]',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7278,2728,'None of the above. We have a tie.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2729,12,1,'<p>What is the result of the following?</p>
+<p>11: LocalDate waffleDay = LocalDate.of(2017, Month.MARCH, 25);<br />12: Period period = Period.ofYears(1).ofMonths(6).ofDays(3);<br />13: LocalDate later = waffleDay.plus(period);<br />14: later.plusDays(1);<br />15: LocalDate thisOne = LocalDate.of(2018, Month.SEPTEMBER, 28);<br />16: LocalDate thatOne = LocalDate.of(2018, Month.SEPTEMBER, 29);<br />17: System.out.println(later.isBefore(thisOne) + " "<br />18:&nbsp;&nbsp;&nbsp;&nbsp; + later.isBefore(thatOne));</p>',TIMESTAMP '2019-05-21 17:11:55',TIMESTAMP '2019-05-21 17:11:55');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7280,2729,'false true',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7281,2729,'true true',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7282,2729,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7279,2729,'false false',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2730,12,1,'<p>How many of the following can fill in the blank so this code compiles and prints 31?</p>
+<p>LocalDate xmas = LocalDate.of(2017, 12, 25);<br />LocalDate blackFriday = LocalDate.of(2017, 11, 24);<br />long shoppingDaysLeft = ________________;<br />System.out.println(shoppingDaysLeft);</p>
+<p>I. blackFriday.until(xmas, ChronoUnit.DAYS)<br />II. blackFriday.until(xmas, TemporalUnit.DAYS)<br />III. ChronoUnit.DAYS.between(blackFriday, xmas)<br />IV. TemporalUnit.DAYS.between(blackFriday, xmas)</p>',TIMESTAMP '2019-05-21 17:21:43',TIMESTAMP '2019-05-21 17:21:43');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7283,2730,'One',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7284,2730,'Two',true,'I и III');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7285,2730,'Three',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7286,2730,'Four',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2731,12,1,'<p>How many of these classes cause a compiler error when filling in the blank: LocalDate, LocalDateTime, LocalTime, ZonedDateTime?</p>
+<p>private static String formatMe( _________ obj) {<br />&nbsp;&nbsp;&nbsp; DateTimeFormatter f = DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM);<br />&nbsp;&nbsp;&nbsp; return f.format(obj);<br />}</p>',TIMESTAMP '2019-05-21 17:30:48',TIMESTAMP '2019-05-21 17:30:48');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7287,2731,'None',true,'Все скомпилируется, не все запустится');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7288,2731,'One',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7289,2731,'Two',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7290,2731,'Three',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2732,12,1,'<p>What is the output of the following?</p>
+<p>LocalDate date = LocalDate.of(2017, Month.JULY, 17);<br />LocalTime time = LocalTime.of(10, 0);<br />ZoneId zone = ZoneId.of("America/New_York");<br />ZonedDateTime iceCreamDay = ZonedDateTime.of(date, time, zone);<br />date = date.plusMonths(1);<br />System.out.println(iceCreamDay.getMonthValue());</p>',TIMESTAMP '2019-05-21 17:32:55',TIMESTAMP '2019-05-21 17:32:55');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7291,2732,'6',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7292,2732,'7',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7293,2732,'8',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7294,2732,'The code does not compile.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2733,12,1,'<p>Which of the following can fill in the blank to make this code compile?</p>
+<p>public boolean isItMyBirthday(LocalDateTime dateTime) {<br />&nbsp;&nbsp;&nbsp; ______________________________________<br />&nbsp;&nbsp;&nbsp; return now.getMonth() == dateTime.getMonth()<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;&amp; now.getDayOfMonth() == dateTime.getDayOfMonth();<br />}</p>',TIMESTAMP '2019-05-21 17:41:07',TIMESTAMP '2019-05-21 17:41:07');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7296,2733,'LocalDate now = new LocalDate();',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7297,2733,'ZonedDate now = ZonedDate.now();',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7298,2733,'ZonedDate now = new ZonedDate();',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7295,2733,'LocalDate now = LocalDate.now();',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2734,12,1,'<p>What is the output of the following?</p>
+<p>LocalDate date1 = LocalDate.of(2017, Month.MARCH, 3);<br />LocalDate date2 = date1.plusDays(2).minusDays(1).minusDays(1);<br />System.out.println(date1.equals(date2));</p>',TIMESTAMP '2019-05-21 17:43:48',TIMESTAMP '2019-05-21 17:43:48');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7299,2734,'false',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7300,2734,'true',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7301,2734,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7302,2734,'The code compiles but throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2735,12,1,'<p>What is a possible output of the following?</p>
+<p>LocalDate date = LocalDate.of(2017, 5, 13);<br />LocalTime time = LocalTime.of(10, 0);<br />LocalDateTime trainDay = LocalDateTime.of(date, time);<br />Instant instant = trainDay.toInstant();<br />instant = instant.plus(1, ChronoUnit.DAYS);<br />System.out.println(instant);</p>',TIMESTAMP '2019-05-21 17:48:09',TIMESTAMP '2019-05-21 17:48:09');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7303,2735,'2017-05-14T10:00-07:00[America/Los_Angeles]',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7304,2735,'2017-05-14T17:00:00Z',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7305,2735,'The code does not compile.',true,'toInstant() есть только у ZonedDateTime');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7306,2735,'The code compiles but throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2736,12,1,'<p>What is the result of the following?</p>
+<p>public class PiDay {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LocalDateTime pi = LocalDateTime.of(2017, 3, 14, 1, 59);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DateTimeFormatter formatter = DateTimeFormatter<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .ofPattern("M.ddhhmm");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(formatter.format(pi));<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-21 17:51:35',TIMESTAMP '2019-05-21 17:51:35');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7307,2736,'3.140159',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7308,2736,'59.140103',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7309,2736,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7310,2736,'The code compiles but throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2737,12,1,'Daylight savings time ends on November 5, 2017 at 2 a.m. when we repeat the hour. Suppose we have a ZonedDateTime that outputs 2017-11-05T01:00-04:00[America/New_York] when calling toString(). What is a possible value of the ZonedDateTime obtained by adding an hour to this value?',TIMESTAMP '2019-05-21 17:56:56',TIMESTAMP '2019-05-21 17:56:56');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7312,2737,'2017-11-05T02:00-04:00[America/New_York]',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7313,2737,'2017-11-05T01:00-05:00[America/New_York]',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7314,2737,'2017-11-05T02:00-05:00[America/New_York]',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7311,2737,'2017-11-05T01:00-04:00[America/New_York]',false,'');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (74,2661,5);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (74,2662,6);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (74,2663,7);
@@ -11613,19 +11706,34 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (78,2717,22);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (78,2718,23);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (78,2719,24);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (78,2720,25);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (78,2721,26);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (78,2723,27);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (78,2724,28);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (22,701,1);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (78,2725,29);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (22,702,2);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (78,2726,30);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (22,703,3);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (22,704,4);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (78,2728,31);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (22,705,5);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (78,2729,32);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (22,706,6);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (78,2730,33);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (22,707,7);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (78,2731,34);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (22,708,8);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (78,2732,35);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (22,709,9);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (78,2733,36);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (22,710,10);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (78,2734,37);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (22,711,11);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (78,2735,38);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (22,712,12);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (78,2736,39);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (22,713,13);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (78,2737,40);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (22,714,14);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (22,715,15);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (22,716,16);
@@ -11974,9 +12082,9 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (27,1053,86);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (27,1054,87);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (27,1055,88);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (27,1056,89);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (27,1057,90);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (27,1074,91);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (27,1076,92);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (27,1057,91);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (27,1074,92);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (27,1076,93);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (29,1002,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (29,1003,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (25,1169,21);
@@ -12839,6 +12947,7 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (49,1899,6);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (49,1909,7);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (49,1911,8);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (49,1912,9);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (27,2727,90);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (49,1913,10);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (49,1920,11);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (49,1927,12);
@@ -13979,6 +14088,7 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (65,2701,16);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (69,2553,22);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (69,2555,23);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (69,2556,24);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (65,2722,17);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (15,492,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (15,493,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (70,2554,1);
