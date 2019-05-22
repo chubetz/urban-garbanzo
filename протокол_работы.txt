@@ -14,3 +14,5 @@ Bloch: Item 2 p.10
 Servlet: Ch2. p.66 The JSP for the second page
 
 Java 7 Exam: p.83 ch.2
+
+Java 7 concur: p.721, So what happens if we start multiple threads?
