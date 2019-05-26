@@ -1,7 +1,7 @@
 ﻿
 
-p.301 Ch18№1   p.521
-#10		#15
+p.301 Ch18№11   p.522
+		#15
 		
 		
 SQL Fehily: p.179 distinct
@@ -15,4 +15,4 @@ Servlet: Ch2. p.66 The JSP for the second page
 
 Java 7 Exam: p.83 ch.2
 
-Java 7 concur: p.727, The Thread Scheduler
+Java 7 concur: p.735, Setting a Thread's Priority
