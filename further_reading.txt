@@ -1,4 +1,4 @@
-Упражнения по многопоточности.
+﻿Упражнения по многопоточности.
 
 №13-1 OCA_OCA Java 7 стр. 733
 
@@ -7,3 +7,15 @@
 
 - Блокировка потока по вводу-выводу
 - NIO
+
+
+
+Алгоритмы:
+http://algolist.manual.ru/
+Think like a programmer
+57 excercises for programmers
+
+Задачи на интервью:
+ELEMENTS OF
+PROGRAMMING
+INTERVIEWS

@@ -1,7 +1,7 @@
 ﻿
 
-p.301 Ch18№11   p.522
-		#15
+p.308 Ch18№19   p.523
+-		-
 		
 		
 SQL Fehily: p.179 distinct
