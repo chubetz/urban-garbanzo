@@ -4568,8 +4568,8 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1275,8,2,'Укажите три основных способа создания объекта <strong>File</strong>.',TIMESTAMP '2019-03-01 16:04:49',TIMESTAMP '2019-03-01 16:14:38');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2563,1275,'1) Конструктор, принимающий абсолютный путь:<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File file = new File("C:\\tmp2\\new&nbsp; 32.rb");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File file = new File("/home/smith/data/zoo.txt");<br /><br />2) Конструктор, принимающий относительный путь:<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File file = new File("."); //текущая папка<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File file = new File("build.xml"); //файл в текущей папке<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File file = new File("./build.xml"); //файл в текущей папке<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File file = new File(".\\build.xml"); //файл в текущей папке<br /><br />3) Конструктор, принимающий папку и относительный путь:<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File file = new File(new File(".."), "Test/build.xml");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File file = new File(new File(".."), "/Test/build.xml");<br /><br /><br />
 <div style="padding-left: 30px;">&nbsp;</div>',true,'');
-INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1276,8,2,'Перечислите методы объекта <strong>File</strong>, которые возвращают информацию о данном файле.',TIMESTAMP '2019-03-01 16:14:12',TIMESTAMP '2019-03-10 14:41:20');
-	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2564,1276,'<strong>exists</strong>()<br /><br /><strong>getName</strong>() - имя файла/папки<br /><br /><strong>getAbsolutePath</strong>()<br /><br /><strong>isDirectory</strong>() <br /><br /><strong>isFile</strong>()<br /><br /><strong>isHidden</strong>()<br /><br /><em>long</em><strong> length</strong>() - длина файла, 0 для несуществующих, непредсказуемо для папок<br /><br /><em>long</em><strong> lastModified</strong>() - время в миллисекундах с эпохи.<br />(сеттер -&nbsp;boolean setLastModified(long time))<br /><br /><strong>getParent</strong>() - имя родительской папки (независимо от существования), либо null, если папки нет<br /><br /><strong>File</strong>[] <strong>listFiles</strong>() - массив файлов/папок&nbsp;в папке',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1276,8,2,'Перечислите методы объекта <strong>File</strong>, которые возвращают информацию о данном файле.',TIMESTAMP '2019-03-01 16:14:12',TIMESTAMP '2019-05-31 12:22:27');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2564,1276,'<strong>exists</strong>()<br /><br /><strong>getName</strong>() - имя файла/папки<br /><br /><strong>getAbsolutePath</strong>()<br /><br /><strong>isDirectory</strong>() <br /><br /><strong>isFile</strong>()<br /><br /><strong>isHidden</strong>()<br /><br /><em>long</em><strong> length</strong>() - длина файла, 0 для несуществующих, непредсказуемо для папок<br /><br /><em>long</em><strong> lastModified</strong>() - время в миллисекундах с эпохи.<br />(сеттер -&nbsp;boolean setLastModified(long time))<br /><br /><em>String</em><strong> getParent</strong>() - <span style="text-decoration: underline;">имя</span> родительской папки (независимо от существования), либо null, если папки нет<br /><br /><em>File</em><strong> getParentFile</strong>() -&nbsp;<span style="text-decoration: underline;">объект</span> родительской папки (независимо от существования), либо null, если папки нет<br /><strong><br /></strong><em>File[]</em> <strong>listFiles</strong>() - массив файлов/папок&nbsp;в папке. <strong>null</strong>, если не папка<br /><br /><em>String[]</em> <strong>list</strong>() - массив <span style="text-decoration: underline;">имен</span> файлов/папок&nbsp;в папке. <strong>null</strong>, если не папка<br />',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1277,8,2,'Перечислите основные управляющие методы объекта <strong>File</strong>.',TIMESTAMP '2019-03-01 16:22:02',TIMESTAMP '2019-05-27 16:59:20');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2565,1277,'<em>boolean</em> <strong>createNewFile</strong>() <em>throws</em> <em>IOException - атомарное </em>создание файла, если его нет. вернет <strong>true</strong>, если получилось<br /><em><br />boolean</em><strong> delete</strong>() - удаление файла/пустой папки. <strong>false</strong>, если удалить не удалось<br /><br /><em>boolean</em> <strong>renameTo</strong>(<em>File</em> dest) - переименование в dest<br /><br /><em>boolean</em> <strong>mkdir</strong>()&nbsp; - создать папку, выраженную данным объектом File. (возвращает <strong>true</strong>, если папка создалась, иначе <strong>false</strong>)<br /><br /><em>boolean</em> <strong>mkdirs</strong>()&nbsp; - создать папку, выраженную данным объектом File, плюс все промежуточные, какие требуются. (возвращает <strong>true</strong>, если папка создалась, иначе <strong>false</strong>)',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1278,8,2,'Дайте общее определение потока ввода-вывода (<em>IO Stream</em>).',TIMESTAMP '2019-03-01 16:56:02',TIMESTAMP '2019-03-01 16:57:06');
@@ -4592,7 +4592,8 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1291,8,2,'Перечислите основные классы ввода-вывода.',TIMESTAMP '2019-03-01 18:37:47',TIMESTAMP '2019-03-01 18:37:47');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2570,1291,'1) Абстрактные: <strong>InputStream</strong>, <strong>OutputStream</strong>, <strong>Reader</strong>, <strong>Writer</strong><br />2) Файловые: <strong>FileInputStream</strong>, <strong>FileOutputStream</strong>, <strong>FileReader</strong>, <strong>FileWriter<br /></strong>3) Буферизующие: <strong>BufferedInputStream, BufferedOutputStream, </strong><strong>BufferedReader</strong>, <strong>BufferedWriter<br /></strong>4) Сериализация/десериализация: <strong>ObjectInputStream</strong>, <strong>ObjectOutputStream</strong>.<br />5) Конвертеры: <strong>InputStreamReader</strong>, <strong>OutputStreamWriter</strong>.<br />6) <strong>PrintStream</strong>, <strong>PrintWriter</strong> - <em>описать позже.</em>',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1292,8,0,'Потоки ввода-вывода рекомендуется закрывать с помощью <strong>try-with-resource</strong>.',TIMESTAMP '2019-03-02 12:57:55',TIMESTAMP '2019-03-02 12:57:55');
-INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1293,8,0,'У потоков <span style="text-decoration: underline;">вывода</span> есть метод <strong>flush</strong>(), который записывает всю кэшированную информацию. Он запускается автоматически при вызове <strong>close</strong>().',TIMESTAMP '2019-03-02 13:05:42',TIMESTAMP '2019-03-02 13:05:42');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1293,8,2,'<p>расскажите о методе <strong>flush</strong>()</p>',TIMESTAMP '2019-03-02 13:05:42',TIMESTAMP '2019-05-31 12:31:49');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7446,1293,'У потоков <span style="text-decoration: underline;">вывода</span> есть метод <strong>flush</strong>(), который записывает всю кэшированную информацию. Он запускается автоматически при вызове <strong>close</strong>(). Если поток закрыт - будет <strong>IOException</strong>.',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1294,8,2,'Опишите процедуру маркирования потока <span style="text-decoration: underline;">ввода</span>.',TIMESTAMP '2019-03-02 13:24:48',TIMESTAMP '2019-03-02 13:34:37');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2571,1294,'<p>На входном потоке можно вызвать метод <strong>mark</strong>(int <em>readlimit</em>).<br />Если потом вызвать <strong>reset</strong>(), то поток вернется к состоянию на момент вызова <strong>mark</strong>(). <br /><em>readlimit</em> - это число символов/байт, которые можно считать после <strong>mark</strong>() без вреда для последующего <strong>reset</strong>() (если считать больше, <strong>reset</strong>() может выполниться некорректно).<br />Методы <strong>mark</strong>() и <strong>reset</strong>() класса <strong>Reader</strong> выдают <em>IOException</em>, так же как и метод <strong>reset</strong>() класса <strong>InputStream</strong>. Для <strong>reset</strong>() это в основном происходит, если превышен readlimit. Для методов класса <strong>Reader</strong> это исключение может свидетельствовать и о другой ошибке ввода-вывода.<br /><br />Важно! Не все потоки поддерживают <strong>mark</strong>(). Перед использованием этого механизма нужно проверять <strong>markSupported</strong>().<br /><br /></p>',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1295,8,0,'Не следует запускать метод <strong>mark</strong>() с очень ольшим значением <em>readlimit</em>, т.к. это может привести к перерасходу памяти.',TIMESTAMP '2019-03-02 13:28:46',TIMESTAMP '2019-03-02 13:28:46');
@@ -4612,7 +4613,7 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 <div>&nbsp;</div>
 <div>Если файл отсутствует, или является папкой, или не может быть прочитан по какой-либо другой причине, будет выдано <em>FileNotFoundException</em></div>',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1300,8,0,'Класс <strong>FileInputStream</strong> имеет те же методы <strong>read</strong>(), что и <strong>InputStream</strong>, с теми же исключениями.',TIMESTAMP '2019-03-03 19:04:41',TIMESTAMP '2019-03-03 19:04:41');
-INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1301,8,2,'Опишите метод <strong>write</strong>() классов <strong>OutputStream</strong> и <strong>Writer</strong>.',TIMESTAMP '2019-03-03 19:25:39',TIMESTAMP '2019-03-03 19:25:39');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1301,8,2,'Опишите метод <strong>write</strong>() классов <strong>OutputStream</strong> и <strong>Writer</strong>.',TIMESTAMP '2019-03-03 19:25:39',TIMESTAMP '2019-05-31 12:49:16');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2575,1301,'<div><strong>OutputStream</strong>:</div>
 <div>&nbsp;</div>
 <div>public abstract void <strong>write</strong>(<em>int</em> b) throws <em>IOException</em></div>
@@ -4622,7 +4623,7 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 <div>public void <strong>write</strong>(<em>byte</em>[] b) throws <em>IOException</em></div>
 <div>public void <strong>write</strong>(<em>byte</em>[] b, <em>int</em> off, <em>int</em> len) throws <em>IOException</em></div>
 <div>&nbsp;</div>
-<div>Записывает в поток байты из массива. Каждый байт записывается методом <strong>write</strong>() (в подклассах приветствуется более эффективное переопределение)</div>
+<div>Записывает в поток байты из массива. Каждый байт записывается методом <strong>write</strong>() (в подклассах приветствуется более эффективное переопределение). Если не указаны смещение и длина, то запишется весь массив</div>
 <div>&nbsp;</div>
 <div><strong>Writer</strong>:</div>
 <div>&nbsp;</div>
@@ -4983,7 +4984,7 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1379,8,0,'На экзамене будут действовать следующие принципы определения абсолютности/относительности пути:<br />- путь, начинающийся с "/", считается абсолютным<br />- путь, начинающийся с буквы диска, считается абсолютным<br />- все остальные - относительные',TIMESTAMP '2019-03-06 16:20:35',TIMESTAMP '2019-03-06 16:20:35');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1380,8,2,'Что такое URI и как он реализован в Java?',TIMESTAMP '2019-03-06 17:03:59',TIMESTAMP '2019-03-06 17:12:43');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2750,1380,'URI (<em>uniform resource identifier</em>)&nbsp; - это строка, идентифицирующая ресурс. Начинается со схемы, которая обозначает тип ресурса, и <span style="text-decoration: underline;">абсолютного</span> пути (иначе при попытке создания экземпляра &nbsp;<strong>Path</strong> будет <em>IllegalArgumentException</em>). Примеры схем: file://, http://, https://, ftp://<br /><br />В Java имеется класс java.net.<strong>URI</strong>. Создать экземпляр можно так:<br />get(new URI("file:///c:/zoo-info/November/employees.txt")<br /><br />(этот конструктор выбрасывает проверяемое исключения URISyntaxException, если синтаксис не соответствует RFC 2396',true,'');
-INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1381,8,0,'Метод <strong>isAbsolute</strong>() класса <strong>URI</strong> проверяет, есть ли в URI компонент схемы, а не абсолютность пути к ресурсу.',TIMESTAMP '2019-03-06 17:11:08',TIMESTAMP '2019-03-06 17:11:17');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1381,8,0,'Метод <strong>isAbsolute</strong>() класса <strong>URI</strong> проверяет, есть ли в URI компонент схемы (например, <em>http:</em>), а не абсолютность пути к ресурсу.',TIMESTAMP '2019-03-06 17:11:08',TIMESTAMP '2019-05-31 15:32:19');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1382,8,0,'Получение путей к http и ftp:<br /><br />Path path4 = Paths.get(new URI("http://www.wiley.com"));<br />Path path5 = Paths.get(new URI("ftp://username:password@ftp.the-ftp-server.com"));',TIMESTAMP '2019-03-06 17:21:06',TIMESTAMP '2019-03-06 17:21:06');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1383,8,0,'Интерфейс <strong>Path</strong> имеет метод <strong>toUri</strong>(), который преобразует путь в URI.',TIMESTAMP '2019-03-06 17:27:25',TIMESTAMP '2019-03-06 17:27:25');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1384,8,2,'Как получить экземпляр <strong>FileSystem</strong>?',TIMESTAMP '2019-03-06 17:33:25',TIMESTAMP '2019-03-06 17:33:25');
@@ -5000,8 +5001,8 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1391,8,0,'При атомарном переносе файла процесс, мониторящий файловую систему, никогда не увидит неполный или частично записанный файл.',TIMESTAMP '2019-03-07 15:11:08',TIMESTAMP '2019-03-07 15:11:08');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1392,8,0,'<em>AtomicMoveNotSupportedException</em> (потомок <em>IOException</em>) выдается при попытке атомарного переноса, если файловая система такую операцию не поддерживает.',TIMESTAMP '2019-03-07 15:23:48',TIMESTAMP '2019-03-07 15:23:48');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1393,0,0,'Использование varargs позволяет оставить задел на будущее. Если в методе когда-нибудь понадобится не один параметр, а несколько, не нужно будет менять сигнатуру.',TIMESTAMP '2019-03-07 15:48:26',TIMESTAMP '2019-03-07 15:48:26');
-INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1394,8,2,'Опишите методы <strong>getName</strong>() и <strong>getNameCount</strong>()&nbsp;интерфейса <strong>Path</strong>.',TIMESTAMP '2019-03-07 16:25:45',TIMESTAMP '2019-03-10 19:59:56');
-	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2755,1394,'<em>Path</em> <strong>getName</strong>(<em>int</em> index)<br />возвращает элемент&nbsp;пути в&nbsp;виде объекта <strong>Path</strong>. Элементы индексируются от корня слева&nbsp;направо, начиная с 0. Если с индексом что-то не так, то будет <em>IllegalArgumentException</em>.<br /><br /><em>int</em> <strong>getNameCount</strong>()<br />возвращает число элементов пути (0, если корневой компонент)<br />У пустого пути (Paths.get("")) будет равен 1',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1394,8,2,'Опишите методы <strong>getName</strong>() и <strong>getNameCount</strong>()&nbsp;интерфейса <strong>Path</strong>.',TIMESTAMP '2019-03-07 16:25:45',TIMESTAMP '2019-05-31 15:49:45');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2755,1394,'<em>Path</em> <strong>getName</strong>(<em>int</em> index)<br />возвращает <u>некорневой</u> элемент&nbsp;пути в&nbsp;виде объекта <strong>Path</strong>. Элементы индексируются от корня слева&nbsp;направо, начиная с 0. Если с индексом что-то не так, то будет <em>IllegalArgumentException</em>.<br /><br /><em>int</em> <strong>getNameCount</strong>()<br />возвращает число <span style="text-decoration: underline;">некорневых</span> элементов пути (0, если есть только корневой компонент)<br />У пустого пути (Paths.get("")) будет равен 1',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1395,8,2,'Приведите пример использования <strong>getName</strong>() и <strong>getNameCount</strong>() интерфейса <strong>Path</strong>.',TIMESTAMP '2019-03-07 16:26:59',TIMESTAMP '2019-03-07 16:26:59');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2756,1395,'<p>Path path = Paths.get("/land/hippo/harry.happy");<br />System.out.println("The Path Name is: "+path);</p>
 <p>for(int i=0; i&lt;path.getNameCount(); i++) {<br />&nbsp;&nbsp;&nbsp; System.out.println(" Element "+i+" is: "+path.getName(i));<br />}</p>
@@ -11666,8 +11667,8 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7373,2776,'current directory, current working directory',false,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7374,2776,'parent directory, temporary directory',false,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7375,2776,'root directory, current working directory',true,'');
-INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2777,8,2,'Укажите значение <strong>markSupported</strong>() для классов<br /><br />&nbsp;:: FileInputStream<br />&nbsp;:: FilterInputStream<br />&nbsp;:: BufferedInputStream<br />&nbsp;:: ObjectInputStream<br /><br />&nbsp;:: BufferedReader<br />&nbsp;:: InputStreamReader<br />&nbsp;:: FileReader',TIMESTAMP '2019-05-26 20:11:51',TIMESTAMP '2019-05-26 20:12:00');
-	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7377,2777,':: FileInputStream&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>false</strong><br />&nbsp;:: FilterInputStream <em>заранее не известно</em><br />&nbsp;:: BufferedInputStream <strong>true</strong><br />&nbsp;:: ObjectInputStream <strong>false</strong><br /><br />&nbsp;:: BufferedReader <strong>true</strong><br />&nbsp;:: InputStreamReader <strong>false</strong><br />&nbsp;:: FileReader <strong>false</strong>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2777,8,2,'Укажите значение <strong>markSupported</strong>() для классов<br /><br />&nbsp;:: FileInputStream<br />&nbsp;:: FilterInputStream<br />&nbsp;:: BufferedInputStream<br />&nbsp;:: ObjectInputStream<br />&nbsp;::&nbsp;ByteArrayInputStream<br /><br />&nbsp;:: BufferedReader<br />&nbsp;:: InputStreamReader<br />&nbsp;:: FileReader',TIMESTAMP '2019-05-26 20:11:51',TIMESTAMP '2019-05-31 12:59:17');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7377,2777,':: FileInputStream&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>false</strong><br />&nbsp;:: FilterInputStream <em>заранее не известно</em><br />&nbsp;:: BufferedInputStream <strong>true</strong><br />&nbsp;:: ObjectInputStream <strong>false</strong><br />&nbsp;::&nbsp;ByteArrayInputStream&nbsp;<strong>true</strong><br /><br />&nbsp;:: BufferedReader <strong>true</strong><br />&nbsp;:: InputStreamReader <strong>false</strong><br />&nbsp;:: FileReader <strong>false</strong>',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2778,12,1,'<p>Which statement best describes the following two methods?</p>
 <p>public void writeSecret1() throws IOException {<br />&nbsp;&nbsp;&nbsp; final Writer w = new BufferedWriter(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new FileWriter("dont.open"));<br />&nbsp;&nbsp;&nbsp; w.write("Secret passcode");<br />&nbsp;&nbsp;&nbsp; w.close();<br />}<br />public void writeSecret2() throws IOException {<br />&nbsp;&nbsp;&nbsp; try(final Writer w = new BufferedWriter(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new FileWriter("dont.open"))) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; w.write("Secret passcode");<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-27 14:57:57',TIMESTAMP '2019-05-27 14:57:57');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7378,2778,'Both methods compile and are equivalent to each other.',false,'');
@@ -11715,6 +11716,133 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7409,2785,'Three',true,'- нет слова new у FileReader<br />- повторное присваиванием финальной переменной music<br />- не обрабатывается IOException при закрытии BufferedReader');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7406,2785,'None',false,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7407,2785,'One',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2786,12,1,'What is the difference between the two Console methods, format() and printf()?',TIMESTAMP '2019-05-31 11:02:11',TIMESTAMP '2019-05-31 11:02:11');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7410,2786,'One of them takes an optional list of arguments; the other does not.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7411,2786,'One of them takes String as input; the other takes an Object.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7412,2786,'There is no difference between the two methods.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7413,2786,'Trick question! printf() is not defined in Console.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2787,12,1,'Let&rsquo;s say you want to write a lot of text data to a file in an efficient manner. Which two java.io stream classes are best to use?',TIMESTAMP '2019-05-31 11:04:01',TIMESTAMP '2019-05-31 11:04:01');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7414,2787,'FileOutputStream and BufferedOutputStream',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7415,2787,'FileOutputWriter and FileBufferedWriter',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7416,2787,'FileWriter and BufferedWriter',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7417,2787,'ObjectOutputStream and BufferedWriter',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2788,12,1,'<p>Assume the file referenced in the StudentManager class exists and contains data. Which statement about the following class is correct?</p>
+<p>package school;<br />import java.io.*;<br />class Student implements Serializable {}<br />public class StudentManager {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] grades) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try(ObjectInputStream ios = new ObjectInputStream(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new FileInputStream(new File("C://students.data")))) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Student record;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while((record = (Student)ios.readObject()) != null) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(record);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (EOFException e) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (Exception e) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw new RuntimeException(e);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-31 11:49:49',TIMESTAMP '2019-05-31 11:49:49');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7418,2788,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7419,2788,'The code compiles but prints an exception at runtime.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7420,2788,'The program runs and prints all students in the file.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7421,2788,'The program runs but may only print some students in the files.',true,'т.к. в файл мог быть записан null (writeObject(null)), а затем другие объекты');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2789,12,1,'Which java.io class does not have a complementary input stream?',TIMESTAMP '2019-05-31 11:52:40',TIMESTAMP '2019-05-31 11:52:40');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7424,2789,'FileWriter',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7425,2789,'PrintWriter',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7422,2789,'BufferedOutputStream',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7423,2789,'BufferedWriter',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2790,12,1,'<p>Assuming the path /Earth does not exist within the file system, what is the output of the following program?</p>
+<p>package center;<br />import java.io.*;<br />public class Journey {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] dig) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File file = new File("/Earth");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(file.getParent()<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +" - "<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +file.getParent().getParent()); } }</p>',TIMESTAMP '2019-05-31 12:05:56',TIMESTAMP '2019-05-31 12:09:27');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7426,2790,'/ - /',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7427,2790,'/ - null',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7428,2790,'The code does not compile.',true,'getParent() вернет строку, поэтому getParent().getParent() не скомпилируется');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7429,2790,'The code compiles but throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2791,12,1,'<p>Which statements about executing the following program are true?</p>
+<p>package test;<br />import java.io.*;<br />public class Turing {<br />&nbsp;&nbsp;&nbsp; public static void main(String... robots) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Console c = System.console();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final String response = c.readLine("Are you human?");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.err.print(response);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>
+<p>I. The program may ask the user a question and print the response to the error stream.<br />II. The program may throw a NullPointerException at runtime.<br />III. The program may wait indefinitely.</p>',TIMESTAMP '2019-05-31 12:13:23',TIMESTAMP '2019-05-31 12:13:23');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7430,2791,'I',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7431,2791,'I and III',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7432,2791,'II and III',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7433,2791,'I, II, and III',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2792,12,1,'<p>Which of the following statements about the deleteTree() method is correct?</p>
+<p>public void deleteTree(File f) {<br />&nbsp;&nbsp;&nbsp; if(!f.isDirectory())<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f.delete();<br />&nbsp;&nbsp;&nbsp; else {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Stream.of(f.list())<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .forEach(s -&gt; deleteTree(s));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f.deleteDirectory();<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-31 12:23:24',TIMESTAMP '2019-05-31 12:23:24');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7434,2792,'It compiles and is capable of deleting a directory tree.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7435,2792,'If one line were modified, it would be capable of deleting a directory tree.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7436,2792,'If two lines were modified, it would be capable of deleting a directory tree.',true,'- сделать listFiles() вместо list()<br />- сделать delete() вместо deleteDirectory()');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7437,2792,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2793,12,1,'Which of the following is not a built-in stream in Java?',TIMESTAMP '2019-05-31 12:24:15',TIMESTAMP '2019-05-31 12:24:15');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7440,2793,'System.info',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7441,2793,'System.out',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7438,2793,'System.err',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7439,2793,'System.in',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2794,12,1,'<p>Assuming the file path referenced in the following class is accessible and able to be written, what is the output of the following program?</p>
+<p>package store;<br />import java.io.*;<br />public class Furniture {<br />&nbsp;&nbsp;&nbsp; public final static void main(String... inventory) throws Exception {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Writer w = new FileWriter("couch.txt");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try (BufferedWriter bw = new BufferedWriter(w)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bw.write("Blue coach on Sale!");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } finally {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; w.flush();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; w.close();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("Done!");<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-31 12:28:50',TIMESTAMP '2019-05-31 12:28:50');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7442,2794,'Done!',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7443,2794,'The code does not compile for one reason.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7444,2794,'The code does not compile for two reasons.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7445,2794,'The code compiles but throws an exception at runtime.',true,'flush() на закрытом потоке');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2795,8,2,'Что произойдет, если вызвать <strong>close</strong>() на закрытом потоке?',TIMESTAMP '2019-05-31 12:35:09',TIMESTAMP '2019-05-31 12:35:17');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7447,2795,'ничего не произойдет, исключения не будет',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2796,12,1,'Given an instance of Console c, which of the following method calls is not a way to read input from the user?',TIMESTAMP '2019-05-31 12:41:30',TIMESTAMP '2019-05-31 12:41:30');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7448,2796,'c.reader().read()',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7449,2796,'c.reader().readLine()',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7450,2796,'c.readLine()',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7451,2796,'c.readPassword()',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2797,12,1,'<p>The copyPidgin() method is used to copy the contents of one file to another. Which statement about the implementation is correct?</p>
+<p>package birds;<br />import java.io.*;<br />public class Pidgin {<br />&nbsp;&nbsp;&nbsp; public void copyPidgin(File s, File t) throws Exception {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try(InputStream is = new FileInputStream(s);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OutputStream os = new FileOutputStream(t)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; byte[] data = new byte[123];<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int chirps;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while((chirps = is.read(data))&gt;0) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; os.write(data);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }}<br />}}</p>',TIMESTAMP '2019-05-31 12:50:05',TIMESTAMP '2019-05-31 12:50:05');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7452,2797,'The class does not compile because read(byte[]) and write(byte[]) can only be called on BufferedInputStream and BufferOutputStream, respectively.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7453,2797,'The method correctly copies the contents of all files.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7454,2797,'The method correctly copies the contents of some files.',true,'последняя порция может быть меньше 123, а запишется весь массив целиком. Надо использовать write(data,0,chirps)');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7455,2797,'The method will always throw an exception at runtime because the data array size is not a power of 2.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2798,12,1,'Using what you know about java.io stream class names, what would a nonexistent class named BufferedFileReader most likely be used for?',TIMESTAMP '2019-05-31 12:54:28',TIMESTAMP '2019-05-31 12:54:28');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7456,2798,'Reading a small text file from a remote network',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7457,2798,'Reading an image from disk',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7458,2798,'Reading large text files from a file system',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7459,2798,'Reading serialized data from disk',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2799,12,1,'<p>What is the output of the following application?</p>
+<p>package factory;<br />import java.io.*;<br />public class WidgetProcessor {<br />&nbsp;&nbsp;&nbsp; public int getWidgetNumber(byte[] data) throws Exception {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try (InputStream is = new ByteArrayInputStream(data)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; is.read(new byte[2]);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(!is.markSupported()) return -1;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; is.mark(5);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; is.read();is.read();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; is.skip(3);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; is.reset();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return is.read();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String... sprockets) throws Exception {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final WidgetProcessor p = new WidgetProcessor();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(p.getWidgetNumber(new byte[] {1,2,3,4,5,6,7}));<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-31 13:01:43',TIMESTAMP '2019-05-31 13:01:43');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7460,2799,'3',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7461,2799,'5',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7462,2799,'7',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7463,2799,'An exception is thrown at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2800,12,1,'<p>Assuming the working directory is accessible, empty, and able to be written, how many file system objects does the following class create?</p>
+<p>1: package kitchen;<br />2: import java.io.*;<br />3: public class Bakers {<br />4:&nbsp;&nbsp;&nbsp;&nbsp; public static void main(String... tooMany) throws IOException {<br />5:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File cake = new File("cake.txt");<br />6:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Writer pie = new FileWriter("pie.txt");<br />7:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pie.flush();<br />8:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new File("fudge.txt").mkdirs();<br />9: } }</p>',TIMESTAMP '2019-05-31 13:09:17',TIMESTAMP '2019-05-31 13:09:17');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7464,2800,'None',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7465,2800,'One',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7466,2800,'Two',true,'pie.txt и папка fudge.txt');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7467,2800,'Three',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2801,12,1,'Let&rsquo;s say you wanted to read data from a file stored on disk that consists of String, long, and Object values? Given that the file is quite large, you intend to use three classes to achieve this result. Which of the following is not one of the three classes you should use?',TIMESTAMP '2019-05-31 13:14:36',TIMESTAMP '2019-05-31 13:14:36');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7468,2801,'BufferedInputStream',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7469,2801,'BufferedReader',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7470,2801,'FileInputStream',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7471,2801,'ObjectInputStream',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2802,12,1,'<p>Which statement best describes the following two methods?</p>
+<p>public String getNameQuick() throws IOException {<br />&nbsp;&nbsp;&nbsp; final BufferedReader r = new BufferedReader(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new FileReader("saved.name"));<br />&nbsp;&nbsp;&nbsp; final String name = r.readLine();<br />&nbsp;&nbsp;&nbsp; r.flush();<br />&nbsp;&nbsp;&nbsp; return name;<br />}</p>
+<p>public String getNameSafely() throws IOException {<br />&nbsp;&nbsp;&nbsp; try(final BufferedReader r = new BufferedReader(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new FileReader("saved.name"))) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final String name = r.readLine();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r.flush();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return name;<br />}}</p>',TIMESTAMP '2019-05-31 13:18:01',TIMESTAMP '2019-05-31 13:18:01');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7472,2802,'Both methods compile and are equivalent to each other.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7473,2802,'Neither method compiles.',true,'на входных потоках flush() не бывает');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7474,2802,'Only one of the methods compiles.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7475,2802,'The methods compile, but one method may lead to a resource leak.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2803,12,1,'<p>What is the output of the following application? Assume the System.console() is available and the user enters badxbad and presses Enter.</p>
+<p>package hardway;<br />import java.io.*;<br />public class InconvenientImplementation {<br />&nbsp;&nbsp;&nbsp; public static void main(String... dontDoThis) throws Exception {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Console c = System.console();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(c != null) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c.writer().write(''P'');<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c.writer().write(''a'');<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c.writer().write(''s'');<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c.writer().write(''s'');<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c.writer().flush(); // t1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int i;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StringBuilder sb = new StringBuilder();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while((i = c.reader().read()) != ''x'') { // t2<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sb.append((char)i);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c.writer().format("Result: %s",sb.toString());<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-31 13:23:58',TIMESTAMP '2019-05-31 13:23:58');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7476,2803,'Result: bad',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7477,2803,'Line t1 does not compile or triggers an exception at runtime.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7478,2803,'Line t2 does not compile or triggers an exception at runtime.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7479,2803,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2804,12,1,'Why does Console readPassword() return a char array rather than a String?',TIMESTAMP '2019-05-31 13:26:56',TIMESTAMP '2019-05-31 13:26:56');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7480,2804,'It improves performance.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7481,2804,'It improves security.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7482,2804,'Passwords must be stored as a char array.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7483,2804,'String cannot hold the individual password characters.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2805,12,1,'<p>Which statement about the following program is true?</p>
+<p>package mystical;<br />import java.io.*;<br />public class Unicorn {<br />&nbsp;&nbsp;&nbsp; public void findUnicorns() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try(InputStream o = new ObjectInputStream(readBook())) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while(o.read() != -1) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(o.read());<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (Throwable t) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw new RuntimeException(t);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; private InputStream readBook() throws IOException {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return new BufferedInputStream(new FileReader("magic.book"));<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String... horn) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new Unicorn().findUnicorns();<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-05-31 13:29:53',TIMESTAMP '2019-05-31 13:29:53');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7484,2805,'The code does not compile.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7485,2805,'The program prints every byte in the file without throwing an exception.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7486,2805,'The program prints every other byte in the file without throwing an exception.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7487,2805,'The program throws an EOFException when the end of the file is reached.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2806,12,1,'Choose the class that is least likely to be marked Serializable.',TIMESTAMP '2019-05-31 13:31:40',TIMESTAMP '2019-05-31 13:31:40');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7488,2806,'A class that holds data about the amount of rain that has fallen in a given year',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7489,2806,'A class that manages the memory of running processes in an application',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7490,2806,'A class that stores information about apples in an orchard',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7491,2806,'A class that tracks the amount of candy in a gumball machine',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2807,12,1,'<p>What is the output of the following application?</p>
+<p>package cell;<br />import java.io.*;<br />public class TextMessage {<br />&nbsp;&nbsp;&nbsp; public String receiveText() throws Exception {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try (Reader r = new FileReader("messages.txt")) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StringBuilder s = new StringBuilder();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int c;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while((c = r.read()) != -1) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s.append((char)c);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(r.markSupported()) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r.mark(100);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r.skip(10);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r.reset();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return s.toString();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public void sendText(String message) throws Exception {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try (Writer w = new FileWriter("messages.txt")) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(int i=0; i&lt;message.length(); i++) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; w.write(message.charAt(i));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; w.skip(1);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String[] minutes) throws Exception {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final TextMessage m = new TextMessage();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m.sendText("You up?");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(m.receiveText());<br />} }</p>',TIMESTAMP '2019-05-31 13:35:50',TIMESTAMP '2019-05-31 13:35:50');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7492,2807,'You up?',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7493,2807,'Y o u u p ?',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7494,2807,'The code does not compile because of the receiveText() method.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7495,2807,'The code does not compile because of the sendText() method.',true,'метода skip() на выходных потоках нет');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2808,12,1,'<p>What is the output of the following program? Assume the file paths referenced in the class exist and are able to be written to and read from.</p>
+<p>package heart;<br />import java.io.*;<br />public class Valve implements Serializable {<br />&nbsp;&nbsp;&nbsp; private int chambers = -1;<br />&nbsp;&nbsp;&nbsp; private transient Double size = null;<br />&nbsp;&nbsp;&nbsp; private static String color;<br />&nbsp;&nbsp;&nbsp; public Valve() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.chambers = 3;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color = "BLUE";<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String[] love) throws Throwable {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try (ObjectOutputStream o = new ObjectOutputStream(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new FileOutputStream("scan.txt"))) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final Valve v = new Valve();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v.chambers = 2;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v.size = 10.0;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v.color = "RED";<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; o.writeObject(v);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new Valve();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try (ObjectInputStream o = new ObjectInputStream(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new FileInputStream("scan.txt"))) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Valve v = (Valve)o.readObject();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(v.chambers+","+v.size+","+v.color);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; { chambers = 4; }<br />}</p>',TIMESTAMP '2019-05-31 13:43:19',TIMESTAMP '2019-05-31 13:43:19');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7496,2808,'2,null,RED',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7497,2808,'2,null,BLUE',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7498,2808,'3,10.0,RED',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (7499,2808,'The code does not compile.',false,'');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (74,2661,5);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (74,2662,6);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (74,2663,7);
@@ -12031,8 +12159,30 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2782,15);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2783,16);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2784,17);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2785,18);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2786,19);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2787,20);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2788,21);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2789,22);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2790,23);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2791,24);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2792,25);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2793,26);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2794,27);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2796,28);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (22,847,115);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2797,29);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2798,30);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (22,849,116);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2799,31);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2800,32);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2801,33);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2802,34);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2803,35);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2804,36);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2805,37);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2806,38);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2807,39);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (80,2808,40);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (22,873,117);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (24,806,0);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (24,807,0);
@@ -12525,59 +12675,59 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1290,20);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1291,21);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1292,22);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1293,23);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1294,24);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1295,25);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1296,26);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1297,28);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1298,29);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1299,30);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1300,31);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1301,32);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1302,34);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1303,35);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1304,36);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1305,37);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1306,38);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1307,41);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1308,39);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1309,40);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1310,42);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1311,43);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1312,44);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1313,45);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1314,46);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1315,47);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1316,48);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1317,49);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1318,50);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1319,51);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1320,52);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1321,53);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1322,54);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1323,55);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1324,56);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1325,57);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1326,58);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1327,59);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1328,60);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1329,61);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1330,62);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1331,63);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1332,64);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1333,65);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1334,66);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1335,67);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1336,68);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1337,69);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1338,70);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1339,71);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1340,72);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1341,73);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1342,74);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1343,75);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1344,76);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1345,77);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1351,33);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1294,25);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1295,26);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1296,27);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1297,29);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1298,30);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1299,31);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1300,32);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1301,33);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1302,35);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1303,36);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1304,37);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1305,38);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1306,39);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1307,42);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1308,40);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1309,41);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1310,43);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1311,44);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1312,45);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1313,46);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1314,47);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1315,48);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1316,49);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1317,50);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1318,51);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1319,52);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1320,53);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1321,54);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1322,55);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1323,56);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1324,57);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1325,58);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1326,59);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1327,60);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1328,61);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1329,62);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1330,63);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1331,64);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1332,65);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1333,66);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1334,67);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1335,68);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1336,69);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1337,70);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1338,71);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1339,72);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1340,73);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1341,74);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1342,75);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1343,76);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1344,77);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1345,78);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1351,34);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,1358,7);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (37,1346,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (37,1347,2);
@@ -13353,7 +13503,7 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2072,10);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,12,9);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2073,11);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,13,10);
-INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,2777,27);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,2777,28);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2074,12);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,14,11);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2075,13);
@@ -13382,6 +13532,7 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2090,24);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,30,23);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2091,25);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,31,24);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (36,2795,24);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2092,26);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,32,25);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (55,2093,27);
