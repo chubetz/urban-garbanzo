@@ -43,6 +43,9 @@
                         </select>
                         
                     </td>
+                    <td style="vertical-align: top">
+                        <p>Изображения</p>
+                    </td>
                 </tr>
             </table>
             <br>

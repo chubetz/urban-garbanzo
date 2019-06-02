@@ -20,8 +20,14 @@
                 //mode : "exact",
                 //elements : "rrr"
                 selector: 'textarea',
+                plugins: 'image',
                 forced_root_block : false,
-                menubar: false
+                menubar: false,
+                toolbar: 'image',                  
+                image_list: [
+                  {title: 'My image 1', value: 'https://www.tinymce.com/my1.gif'},
+                  {title: 'My image 2', value: 'http://www.moxiecode.com/my2.gif'}
+                ]
              });
             </script>
             <!-- /TinyMCE -->
