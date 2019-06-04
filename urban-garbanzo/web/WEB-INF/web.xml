@@ -36,6 +36,14 @@
         <servlet-name>DirectEntityInfo</servlet-name>
         <servlet-class>ru.garbanzo.urban.controller.DirectEntityInfo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ImageLibrary</servlet-name>
+        <servlet-class>ru.garbanzo.urban.controller.ImageLibrary</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NoResponseServlet</servlet-name>
+        <servlet-class>ru.garbanzo.urban.controller.NoResponseServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>/controller</url-pattern>
@@ -55,6 +63,14 @@
     <servlet-mapping>
         <servlet-name>DirectEntityInfo</servlet-name>
         <url-pattern>/directInfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImageLibrary</servlet-name>
+        <url-pattern>/imgLib</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NoResponseServlet</servlet-name>
+        <url-pattern>/noResp</url-pattern>
     </servlet-mapping>
     <error-page>
         <exception-type>ru.garbanzo.urban.exception.JDBCException</exception-type>

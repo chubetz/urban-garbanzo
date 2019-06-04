@@ -37,6 +37,8 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
     private Set<ThemeQuestion> themeQuestionSet = new HashSet<>();
     
     private UserAnswer lastUserAnswer; 
+    
+    private Set availableImagesSet; //изображения, которые можно вставить в текст карточки
 
     public UserAnswer getLastUserAnswer() {
         return lastUserAnswer;

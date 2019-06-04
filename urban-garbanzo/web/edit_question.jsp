@@ -30,27 +30,34 @@
                 <span style="border: 1px solid black;padding: 1px;background-color:#C7AE99;">Порядковый номер вопроса в теме <b>${theme.text}<b>&nbsp;&nbsp;&nbsp;<input type="text" size="3" name="orderNum" value="${orderNum}"></span>
                 <input type="hidden" name="themeId" value="${theme.id}">
             </c:if>
-            <table width="800" cellpadding="10">
+            <table width="80%" cellpadding="10">
                 <tr>
-                    <td>
+                    <td width="60%">
                         <p>Текст вопроса</p>
                         <textarea name="text" rows="10" cols="80">${question.getStrLtGt("text")}</textarea>
                     </td>
-                    <td style="vertical-align: top">
+                    <td width="10%" style="vertical-align: top">
                         <p>Правильные ответы</p>
                         <select name="correct" size="${question.getAnswersSizeForHTML()}" multiple>
                             ${question.getAnswersCorrectHTML()}
                         </select>
                         
                     </td>
-                    <td style="vertical-align: top">
+                    <td width="30%" style="vertical-align: top">
                         <p>Изображения</p>
+                        <input type="button" value="Открыть библиотеку изображений" onclick="window.open('imgLib?questionId=${question.id}', '${question}', 'menubar=no, scrollbars=yes, status=yes')">
                     </td>
                 </tr>
             </table>
             <br>
             ${question.getAnswersEditHTML()}
-            <input type="submit" onclick="document.getElementById('actiontag').value = 'add_answer';" value="Добавить ответ"/> 
+            <input id="addq" type="submit" onclick="document.getElementById('actiontag').value = 'add_answer';" value="Добавить ответ"/> 
             <input type="submit" value="Отправить" /> 
         </form>
+        <script type="text/javascript">
+            function handler1() {
+              alert('Спасибо!');
+            };
+            this.addEventListener("test", handler1); // Спасибо!
+        </script>
 <c:import url= "/includes/newfooter.jsp" />

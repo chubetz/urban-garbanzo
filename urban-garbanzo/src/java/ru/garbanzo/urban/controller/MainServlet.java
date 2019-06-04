@@ -229,6 +229,9 @@ public class MainServlet extends ErrorHandlingServlet {
                 break;
             case "upload_image": // сохранение (закачка) изображения
                 url = "/view?info=images";
+                String questionId = request.getParameter("questionId");
+                if (questionId != null)
+                    url = "/imgLib?questionId=" + questionId;
                 Part filePart = request.getPart("file");
                 String fileFullName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
                 InputStream fileContent = filePart.getInputStream();

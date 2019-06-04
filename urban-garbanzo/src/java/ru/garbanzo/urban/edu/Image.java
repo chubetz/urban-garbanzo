@@ -84,4 +84,8 @@ public class Image extends Entity {
     public boolean delete() {
         return false;
     }
+    
+    public boolean containedInQuestion(Question q) {
+        return false;
+    }
 }
