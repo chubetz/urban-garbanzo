@@ -52,6 +52,13 @@ public class Image extends Entity {
         return Collections.unmodifiableMap(getStorage().getImageMap());
     }
     
+    public static Image getById(Object id){
+        if (id instanceof String)
+            return getMap().get(Integer.parseInt((String)id));
+        else
+            return getMap().get((Integer)id);
+    }
+    
     public static Image saveImage(String id, Map<String, ?> data) throws JDBCException {
         return saveImage(Integer.parseInt(id), data);
     }
@@ -86,6 +93,19 @@ public class Image extends Entity {
     }
     
     public boolean containedInQuestion(Question q) {
-        return false;
+        return q.containsImage(this);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Image)) return false;
+        Image other = (Image) obj;
+        return this.getId() == other.getId(); 
+    }
+    
+    @Override
+    public int hashCode() {
+        return this.getId()*13;
+    }
+    
 }

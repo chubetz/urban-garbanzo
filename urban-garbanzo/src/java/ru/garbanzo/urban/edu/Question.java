@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeSet;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import ru.garbanzo.urban.db.JDBCUtils;
 import ru.garbanzo.urban.exception.JDBCException;
@@ -38,8 +40,30 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
     
     private UserAnswer lastUserAnswer; 
     
-    private Set availableImagesSet; //изображения, которые можно вставить в текст карточки
+    private Set<Image> availableImagesSet; //изображения, которые можно вставить в текст карточки
+    
+    private static String imagesUploadLocation;
+    
+    private long tempId = System.currentTimeMillis();
+    
+    public static void setImagesUploadLocation(String location) {
+        if (location != null && imagesUploadLocation == null) {
+            imagesUploadLocation = location;
+        }
+    }
+    
+    public String getUploadLocation() {
+        return imagesUploadLocation;
+    }
 
+    public long getTempId() {
+        return tempId;
+    }
+
+    public void setNeededNewAnswer(boolean val) {
+        neededNewAnswer = val;
+    }
+    
     public UserAnswer getLastUserAnswer() {
         return lastUserAnswer;
     }
@@ -76,6 +100,8 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
     public static final int COMMON_TYPE = 2;
     
     public static Question getMockQuestion() { //обертка для Question - для jsp
+        Question q = new Question(-100);
+        getStorage().registerMockQuestion(q);
         return new Question(-100);
     }
     
@@ -107,24 +133,36 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
             data = Utils.translateWebData( (Map<String, String[]>)data );
         }
         Question question = new MockQuestion(data); //возвращает полностью заполненный объект, с которого можно сгенерить формы для редактирования
-        question.neededNewAnswer = true;
         if (data.get("newThemeId") != null) {
             question.themeIdForNewQuestion = Integer.parseInt((String)data.get("newThemeId"));
         }
 
-        //даты создания и изменения берем из реального вопроса (если есть) - эти данные не передаются с формы
+        //даты создания и изменения, а также доступные изображения берем из реального вопроса (если есть) - эти данные не передаются с формы
         Question realQuestion = getStorage().getQuestionMap().get(question.getId());
         if (realQuestion != null) {
             question.setStateValue("regDate", realQuestion.getRegDate());
             question.setStateValue("updateDate", realQuestion.getUpdateDate());
+            for (Image i: realQuestion.getAvailableImages()) {
+                question.doImageLink(i, true);
+            }
+        } else { //берем изображения и tempId из хранимого в памяти, но еще не сохраненного в БД вопроса
+            Question mock = getByTempId(data.get("tempId"));
+            question.tempId = mock.tempId;
+            for (Image i: mock.getAvailableImages()) {
+                question.doImageLink(i, true);
+            }
             
         }
+        
 
         return question;
     }
     
     public static Map<Integer, Question> getMap() {
         return Collections.unmodifiableMap(getStorage().getQuestionMap());
+    }
+    public static Map<Long, Question> getMockMap() {
+        return Collections.unmodifiableMap(getStorage().getMockQuestionMap());
     }
 
 
@@ -209,6 +247,13 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
 
 
     
+    public static Question getByTempId(Object id){
+        if (id instanceof String)
+            return getMockMap().get(Long.parseLong((String)id));
+        else
+            return getMockMap().get((Long)id);
+    }
+
     public static Question getById(Object id){
         if (id instanceof String)
             return getMap().get(Integer.parseInt((String)id));
@@ -351,7 +396,10 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
 
     @Override
     public String toString() {
-        return "Вопрос {" + getId() + "} " + '{' + getRealm().getStr("text") + "} " + "{" + Question.getTypeText(getInt("type")) + "}";
+        if (getId() < 0) 
+            return "Новый вопрос " + tempId;
+        else
+            return "Вопрос {" + getId() + "} " + '{' + getRealm().getStr("text") + "} " + "{" + Question.getTypeText(getInt("type")) + "}";
     }
     
     private void saveAnswers(Map<String, ?> data) throws JDBCException {
@@ -607,9 +655,56 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
         return treeSign;
     }
     
+    public void doImageLink(Image img, boolean add) { //добавляет(add=true)/удаляет(add=false) изображение.
+        if (add) {
+            if (availableImagesSet == null) availableImagesSet = new HashSet<Image>();
+            availableImagesSet.add(img);
+        } else
+            if (availableImagesSet != null) availableImagesSet.remove(img);
+    }
+    
+    public boolean containsImage(Image img) {
+        return availableImagesSet != null && availableImagesSet.contains(img);
+    }
+    
+    public Image[] getAvailableImages() {
+        if (availableImagesSet != null)
+            return availableImagesSet.toArray(new Image[0]);
+        else
+            return new Image[0];
+    }
+    
+    public int clearImages() {
+        int size = availableImagesSet != null ? availableImagesSet.size() : 0;
+        availableImagesSet = null;
+        return size;
+    }
+    
+    public String getImagesHTML() {
+        if (this.getAvailableImages().length== 0)
+            return "";
+        StringBuilder sb = new StringBuilder();
+        String uploads = getUploadLocation();
+        if (uploads.startsWith("/"))
+            uploads = uploads.substring(1);
+        sb.append("<table>");
+        sb.append("<tr>");
+        for (Image i: this.getAvailableImages()) {
+            sb.append("<td align=center valign=bottom>");
+            sb.append("<img src=\"" + uploads + "/" + i.getId() + "\" width=\"100\" onclick=\"showThumbnail('" + i.getId() + "', '" + uploads + "')\"><br>");
+            sb.append("<font class='calibri_thumb'>" + i.getStr("filename") + "." + i.getStr("extension") + "</font>");
+            sb.append("</td>");
+        }
+
+        sb.append("</tr>");
+        sb.append("</table>");
+        return sb.toString();
+        
+    }
+
+    private static Comparator<Question> naturalComparator = Comparator.<Question,Date>comparing(q -> q.getRegDate()).thenComparing(q -> q.getId());
     @Override
     public int compareTo(Question obj) {
-        Comparator<Question> c = Comparator.<Question,Date>comparing(q -> q.getRegDate()).thenComparing(q -> q.getId());
-        return c.compare(this, obj);
+        return naturalComparator.compare(this, obj);
     }
 }

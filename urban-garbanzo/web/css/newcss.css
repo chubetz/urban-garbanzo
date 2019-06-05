@@ -102,6 +102,13 @@ and open the template in the editor.
     background: navy;
 }
 
+.calibri_thumb {
+    font-family: Calibri;
+    font-size: 10px;
+    font-weight: 700;
+    color:black;
+}
+
 .calibri_hdr {
     font-family: Calibri;
     font-size: 14px;

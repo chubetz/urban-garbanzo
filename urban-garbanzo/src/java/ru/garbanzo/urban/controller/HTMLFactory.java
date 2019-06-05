@@ -26,17 +26,17 @@ public class HTMLFactory {
         sb.append("<table border=2>");
         Image.getMap().values().stream()
                 .sorted(Comparator.<Image>comparingInt(i -> i.containedInQuestion(question) ? 0 : 1)
-                        .thenComparingInt(i -> i.getId()).reversed())
+                        .thenComparingInt(i -> -i.getId()))
                 .forEach(i -> {
                     sb.append("<tr>");
                     sb.append("<td>");
                     sb.append("id: " + i.getId());
                     sb.append("</td>");
                     sb.append("<td>");
-                    sb.append("имя: " + i.getStr("filename"));
+                    sb.append("имя: " + i.getStr("filename") + "." + i.getStr("extension"));
                     sb.append("</td>");
                     sb.append("<td>");
-                    sb.append("<input type=checkbox>");
+                    sb.append("<input name='i_" + i.getId() + "' type='checkbox' " + (i.containedInQuestion(question) ? "checked" : "")  + ">");
                     sb.append("</td>");
                     sb.append("</tr>");
                     sb.append("<tr>");

@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ru.garbanzo.urban.db.JDBCUtils;
@@ -30,6 +31,7 @@ public class Storage {
     }
     
     private Map<Integer, Question> questionMap;    
+    private Map<Long, Question> mockQuestionMap;    
     private Map<Integer, Answer> answerMap;    
     private Map<Integer, Map<Integer, Answer>> answerMapForQuestion;    
     private Map<Integer, Realm> realmMap;    
@@ -57,6 +59,10 @@ public class Storage {
 
     Map<Integer, Question> getQuestionMap() {
         return questionMap;
+    }
+
+    Map<Long, Question> getMockQuestionMap() {
+        return mockQuestionMap;
     }
 
     Set<ThemeQuestion> getThemeQuestionSet() {
@@ -184,6 +190,9 @@ public class Storage {
         questionMapForRealm.get(realmId).put(question.getId(), question);
             
     }
+    void registerMockQuestion(Question question) { //хранение новых вопросов, еще не сохраненных в БД
+        mockQuestionMap.put(question.getTempId(), question);
+    }
     void unbind(Question question, Realm realm) {
         provideDefaultMap(questionMapForRealm, realm.getId());
         Map map = questionMapForRealm.get(realm.getId());
@@ -298,6 +307,7 @@ public class Storage {
             }
 
             storage.questionMap = new HashMap<Integer, Question>();
+            storage.mockQuestionMap = new HashMap<Long, Question>();
             storage.questionMapForRealm = new HashMap<Integer, Map<Integer, Question>>();
             data = JDBCUtils.loadEntitiesData(new Question(-1));
             for (DBEntity entity : data) {

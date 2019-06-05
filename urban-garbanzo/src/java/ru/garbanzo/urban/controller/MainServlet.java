@@ -71,6 +71,8 @@ public class MainServlet extends ErrorHandlingServlet {
         String url = null;
         Question question;
         Utils.print("Servlet.BEFORE!!!", request.getParameterMap());
+        
+        Question.setImagesUploadLocation(getServletContext().getInitParameter("upload.location"));
 
         switch (action) {
             case "new_question": //редактирование новой карточки
@@ -91,6 +93,16 @@ public class MainServlet extends ErrorHandlingServlet {
             case "add_answer": //добавление ответа в карточку
                 url = "/edit_question.jsp";
                 Utils.print("Servlet.add_answer", request.getParameterMap());
+                Question mock = Question.getQuestionFromParameterMap(request.getParameterMap());
+                mock.setNeededNewAnswer(true);
+                request.setAttribute("question", mock);
+                request.setAttribute("action", "update_question");
+                request.setAttribute("title", "Редактировать вопрос");
+                request.setAttribute("edit_mode", "on");
+                break;
+            case "refresh_question_edit": //добавление ответа в карточку
+                url = "/edit_question.jsp";
+                Utils.print("Servlet.refresh_question_edit", request.getParameterMap());
                 request.setAttribute("question", Question.getQuestionFromParameterMap(request.getParameterMap()));
                 request.setAttribute("action", "update_question");
                 request.setAttribute("title", "Редактировать вопрос");

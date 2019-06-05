@@ -15,6 +15,7 @@
         <form name="${action}" action="controller" method="POST">
             <input id="actiontag" type="hidden" name="action" value="${action}">        
             <input type="hidden" name="id" value="${question.id}">        
+            <input type="hidden" name="tempId" value="${question.tempId}">        
             <c:if test="${question.newThemeId >= 0}">
             <input type="hidden" name="newThemeId" value="${question.newThemeId}">
             </c:if>
@@ -45,19 +46,16 @@
                     </td>
                     <td width="30%" style="vertical-align: top">
                         <p>Изображения</p>
-                        <input type="button" value="Открыть библиотеку изображений" onclick="window.open('imgLib?questionId=${question.id}', '${question}', 'menubar=no, scrollbars=yes, status=yes')">
+                        <input type="button" value="Открыть библиотеку изображений" onclick="window.open('imgLib?questionId=${question.id}&tempId=${question.tempId}', '${question}', 'menubar=no, scrollbars=yes, status=yes')">
+                        <p>
+                        ${question.imagesHTML}
                     </td>
                 </tr>
             </table>
             <br>
             ${question.getAnswersEditHTML()}
-            <input id="addq" type="submit" onclick="document.getElementById('actiontag').value = 'add_answer';" value="Добавить ответ"/> 
+            <input type="submit" onclick="document.getElementById('actiontag').value = 'add_answer';" value="Добавить ответ"/> 
             <input type="submit" value="Отправить" /> 
+            <input id="refresh" type="submit" onclick="document.getElementById('actiontag').value = 'refresh_question_edit';" value="Освежить" style="visibility:hidden" /> 
         </form>
-        <script type="text/javascript">
-            function handler1() {
-              alert('Спасибо!');
-            };
-            this.addEventListener("test", handler1); // Спасибо!
-        </script>
 <c:import url= "/includes/newfooter.jsp" />

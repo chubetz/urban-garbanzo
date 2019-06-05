@@ -32,7 +32,7 @@
             </script>
             <!-- /TinyMCE -->
         </c:if>
-        <c:if test="${exam_mode.equals('on')}">
+        <%--c:if test="${exam_mode.equals('on')}"--%>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
             <script src="colorbox/jquery.colorbox-min.js"></script>
             <script type="text/javascript">
@@ -40,8 +40,11 @@
                      url = "directInfo?entity=answer&field=commentHTML&id=" + id + "&userAnswer=" + userAnswer;
                      jQuery.colorbox({href:url});
                 }
+                function showThumbnail(id, location) {
+                     jQuery.colorbox({html:"<img src=" + location + "/" + id + ">"});
+                }
             </script>
-        </c:if>
+        <%--/c:if--%>
         
     </head>
     <body bgcolor="#d8cFaA">
