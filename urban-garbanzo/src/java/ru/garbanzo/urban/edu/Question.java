@@ -686,7 +686,7 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
     
     public Set<Image> getUsedImages() { //изображения, использованные в тексте карточки
         Set<Image> set = new LinkedHashSet<>();
-        Pattern p = Pattern.compile("<img src=\".*?/(\\d+)\"");
+        Pattern p = Pattern.compile("<img.+?src=\".*?/(\\d+)\"");
         Matcher m = p.matcher(this.getText());
         while (m.find()) {
             Image i = Image.getById(m.group(1));
