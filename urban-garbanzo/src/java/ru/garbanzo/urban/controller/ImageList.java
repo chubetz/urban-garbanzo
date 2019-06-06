@@ -7,7 +7,8 @@ package ru.garbanzo.urban.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,13 +16,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import ru.garbanzo.urban.edu.Image;
 import ru.garbanzo.urban.edu.Question;
-import ru.garbanzo.urban.util.Utils;
 
 /**
  *
  * @author d.gorshenin
  */
-public class ImageLibrary extends ErrorHandlingServlet {
+public class ImageList extends ErrorHandlingServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,39 +35,20 @@ public class ImageLibrary extends ErrorHandlingServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = "/image_library.jsp";
-        String action = request.getParameter("action");
-        if (action == null)
-            action = "";
         Question question = Question.getById(request.getParameter("questionId"));
-        if (question == null) //несохраненный вопрос
+        if (question == null)
             question = Question.getByTempId(request.getParameter("tempId"));
-        if (question == null) {
-            throw new RuntimeException("Не удалось обналичить вопрос с questionId=" 
-                    + request.getParameter("questionId") + " и tempId=" 
-                    + request.getParameter("tempId"));
-        }
-        request.setAttribute("question", question);
-        if (action.equals("select")) { //пришел выбор изображений для карточки, сделанный пользователем
-            question.clearImages(); //стираем все вопросы, так как должны прийти заново с формы
-                
-            Map<String, Object> paramMap = Utils.translateWebData(request.getParameterMap());
-            Utils.print(paramMap);
-            for (Map.Entry<String, Object> entry: paramMap.entrySet()) {
-                String[] splitted = entry.getKey().split("_");
-                if (splitted.length == 2 && splitted[0].equals("i")) { //чекбокс изображения
-                    boolean selected = "on".equals(entry.getValue());
-                    Utils.print(selected);
-                    Image image = Image.getById(splitted[1]);
-                    question.doImageLink(image, selected);
+        try (PrintWriter out = response.getWriter()) {
+            out.println("[");
+            if (question != null) {
+                List<String> list = new ArrayList<>();
+                for (Image image: question.getAvailableImages()) {
+                    list.add("{\"title\": \"" + image.getStr("filename") + "." + image.getStr("extension") + "\", \"value\": \"" + question.getUploadLocation() + "/" + image.getId() + "\"}");
                 }
-                
+                list.stream().reduce((s1,s2) -> s1 + "," + s2).ifPresent(out::println);
             }
-            request.setAttribute("select_done", true); //флаг, закрывающий окно библиотеки и перерисовывающий форму редактирования
+            out.println("]");
         }
-        request.setAttribute("imgLibTable", HTMLFactory.doImageLibraryTable(question, getServletContext()));
-        if (url != null) 
-            getServletContext().getRequestDispatcher(url).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

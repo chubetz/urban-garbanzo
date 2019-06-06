@@ -44,6 +44,10 @@
         <servlet-name>NoResponseServlet</servlet-name>
         <servlet-class>ru.garbanzo.urban.controller.NoResponseServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ImageList</servlet-name>
+        <servlet-class>ru.garbanzo.urban.controller.ImageList</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>/controller</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>NoResponseServlet</servlet-name>
         <url-pattern>/noResp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImageList</servlet-name>
+        <url-pattern>/imgList</url-pattern>
     </servlet-mapping>
     <error-page>
         <exception-type>ru.garbanzo.urban.exception.JDBCException</exception-type>

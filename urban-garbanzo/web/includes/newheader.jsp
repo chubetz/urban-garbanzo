@@ -17,17 +17,26 @@
             <!-- TinyMCE -->
             <script type="text/javascript">
             tinyMCE.init({
-                //mode : "exact",
+                mode : "specific_textareas",
+                editor_selector : "full",                
+                ////mode : "exact",
                 //elements : "rrr"
-                selector: 'textarea',
+                //selector: 'textarea',
                 plugins: 'image',
                 forced_root_block : false,
                 menubar: false,
-                toolbar: 'image',                  
-                image_list: [
-                  {title: 'My image 1', value: 'https://www.tinymce.com/my1.gif'},
-                  {title: 'My image 2', value: 'http://www.moxiecode.com/my2.gif'}
-                ]
+                toolbar: 'bold italic underline | alignleft aligncenter alignright alignjustify alignnone | image',                  
+                image_list: 'imgList?questionId=${question.id}&tempId=${question.tempId}'
+                //image_list: [ {title: 'Usersd.gorsheninPicturesgrafik597_0.png', value: 'uploads/23'} ] 
+             });
+            </script>
+            <script type="text/javascript">
+            tinyMCE.init({
+                mode : "specific_textareas",
+                editor_selector : "noimages",                
+                forced_root_block : false,
+                menubar: false,
+                toolbar: 'bold italic underline | alignleft aligncenter alignright alignjustify alignnone',                  
              });
             </script>
             <!-- /TinyMCE -->

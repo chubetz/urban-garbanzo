@@ -35,7 +35,7 @@
                 <tr>
                     <td width="60%">
                         <p>Текст вопроса</p>
-                        <textarea name="text" rows="10" cols="80">${question.getStrLtGt("text")}</textarea>
+                        <textarea name="text" rows="10" cols="80" class="full">${question.getStrLtGt("text")}</textarea>
                     </td>
                     <td width="10%" style="vertical-align: top">
                         <p>Правильные ответы</p>

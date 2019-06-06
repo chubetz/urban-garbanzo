@@ -14,12 +14,15 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import ru.garbanzo.urban.db.JDBCUtils;
 import ru.garbanzo.urban.exception.JDBCException;
@@ -53,7 +56,10 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
     }
     
     public String getUploadLocation() {
-        return imagesUploadLocation;
+        if (imagesUploadLocation != null && imagesUploadLocation.startsWith("/"))
+            return imagesUploadLocation.substring(1);
+        else
+            return imagesUploadLocation;
     }
 
     public long getTempId() {
@@ -310,11 +316,11 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
             sb.append("</tr>\n");
             sb.append("<tr>\n");
             sb.append("<td width=\"60%\">");
-            sb.append("<textarea style=\"width: 100%;\" name=\"answer_" + answers.get(i).getId() + "\"");
+            sb.append("<textarea class=\"noimages\" style=\"width: 100%;\" name=\"answer_" + answers.get(i).getId() + "\"");
             sb.append(" rows=\"3\" cols=\"40\">" + answers.get(i).getStrLtGt("text") + "</textarea>\n");
             sb.append("</td>\n");
             sb.append("<td width=\"40%\">");
-            sb.append("<textarea style=\"width: 100%;\" name=\"comment_" + answers.get(i).getId() + "\"");
+            sb.append("<textarea class=\"noimages\" style=\"width: 100%;\" name=\"comment_" + answers.get(i).getId() + "\"");
             sb.append(" rows=\"3\" cols=\"30\">" + answers.get(i).getStrLtGt("comment") + "</textarea>\n");
             sb.append("</td>\n");
             sb.append("</tr>\n");
@@ -333,11 +339,11 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
             sb.append("</tr>\n");
             sb.append("<tr>\n");
             sb.append("<td width=\"60%\">");
-            sb.append("<textarea style=\"width: 100%;\" name=\"answer_" + (-answerNum) + "\"");
+            sb.append("<textarea class=\"noimages\" style=\"width: 100%;\" name=\"answer_" + (-answerNum) + "\"");
             sb.append(" rows=\"3\" cols=\"40\"></textarea>\n");
             sb.append("</td>\n");
             sb.append("<td width=\"40%\">");
-            sb.append("<textarea style=\"width: 100%;\" name=\"comment_" + (-answerNum) + "\"");
+            sb.append("<textarea class=\"noimages\" style=\"width: 100%;\" name=\"comment_" + (-answerNum) + "\"");
             sb.append(" rows=\"3\" cols=\"30\"></textarea>\n");
             sb.append("</td>\n");
             sb.append("</tr>\n");
@@ -430,9 +436,10 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
     
     public static Question saveQuestion(int id, Map<String, ?> data) throws JDBCException {
         Question question = getMap().get(id);
-        if (question == null) {
+        if (question == null) 
             question = new Question(-1);
-        }
+        else
+            question.clearImages();
         if (data != null) {
             if (data.get("realmId").getClass().isArray()) { //список параметров с фронта
                 data = Utils.translateWebData( (Map<String, String[]>)data );
@@ -657,21 +664,36 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
     
     public void doImageLink(Image img, boolean add) { //добавляет(add=true)/удаляет(add=false) изображение.
         if (add) {
-            if (availableImagesSet == null) availableImagesSet = new HashSet<Image>();
+            if (availableImagesSet == null) availableImagesSet = new LinkedHashSet<Image>();
             availableImagesSet.add(img);
         } else
             if (availableImagesSet != null) availableImagesSet.remove(img);
     }
     
     public boolean containsImage(Image img) {
-        return availableImagesSet != null && availableImagesSet.contains(img);
+        return (availableImagesSet != null && availableImagesSet.contains(img)) || getUsedImages().contains(img);
     }
     
     public Image[] getAvailableImages() {
+        Set<Image> result = new LinkedHashSet<>();
         if (availableImagesSet != null)
-            return availableImagesSet.toArray(new Image[0]);
-        else
-            return new Image[0];
+            result.addAll(availableImagesSet);
+
+        result.addAll(this.getUsedImages());
+
+        return result.toArray(new Image[0]);
+    }
+    
+    public Set<Image> getUsedImages() { //изображения, использованные в тексте карточки
+        Set<Image> set = new LinkedHashSet<>();
+        Pattern p = Pattern.compile("<img src=\".*?/(\\d+)\"");
+        Matcher m = p.matcher(this.getText());
+        while (m.find()) {
+            Image i = Image.getById(m.group(1));
+            if (i != null)
+                set.add(i);
+        }
+        return set;
     }
     
     public int clearImages() {
@@ -685,19 +707,23 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
             return "";
         StringBuilder sb = new StringBuilder();
         String uploads = getUploadLocation();
-        if (uploads.startsWith("/"))
-            uploads = uploads.substring(1);
+        sb.append("<table><tr><td><div style='max-height:300px; overflow:auto;'>");
         sb.append("<table>");
         sb.append("<tr>");
+        int imgCount = 0;
         for (Image i: this.getAvailableImages()) {
+            if (imgCount % 3 == 0 && imgCount > 0)
+                sb.append("</tr><tr>");
             sb.append("<td align=center valign=bottom>");
             sb.append("<img src=\"" + uploads + "/" + i.getId() + "\" width=\"100\" onclick=\"showThumbnail('" + i.getId() + "', '" + uploads + "')\"><br>");
             sb.append("<font class='calibri_thumb'>" + i.getStr("filename") + "." + i.getStr("extension") + "</font>");
             sb.append("</td>");
+            imgCount ++;
         }
 
         sb.append("</tr>");
         sb.append("</table>");
+        sb.append("</div></td></tr></table>");
         return sb.toString();
         
     }

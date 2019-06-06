@@ -53,6 +53,8 @@ public class Image extends Entity {
     }
     
     public static Image getById(Object id){
+        if (id == null)
+            return null;
         if (id instanceof String)
             return getMap().get(Integer.parseInt((String)id));
         else
