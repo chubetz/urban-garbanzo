@@ -21,6 +21,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.UUID;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -316,7 +318,7 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
             sb.append("</tr>\n");
             sb.append("<tr>\n");
             sb.append("<td width=\"60%\">");
-            sb.append("<textarea class=\"noimages\" style=\"width: 100%;\" name=\"answer_" + answers.get(i).getId() + "\"");
+            sb.append("<textarea class=\"full\" style=\"width: 100%;\" name=\"answer_" + answers.get(i).getId() + "\"");
             sb.append(" rows=\"3\" cols=\"40\">" + answers.get(i).getStrLtGt("text") + "</textarea>\n");
             sb.append("</td>\n");
             sb.append("<td width=\"40%\">");
@@ -339,7 +341,7 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
             sb.append("</tr>\n");
             sb.append("<tr>\n");
             sb.append("<td width=\"60%\">");
-            sb.append("<textarea class=\"noimages\" style=\"width: 100%;\" name=\"answer_" + (-answerNum) + "\"");
+            sb.append("<textarea class=\"full\" style=\"width: 100%;\" name=\"answer_" + (-answerNum) + "\"");
             sb.append(" rows=\"3\" cols=\"40\"></textarea>\n");
             sb.append("</td>\n");
             sb.append("<td width=\"40%\">");
@@ -687,11 +689,16 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
     public Set<Image> getUsedImages() { //изображения, использованные в тексте карточки
         Set<Image> set = new LinkedHashSet<>();
         Pattern p = Pattern.compile("<img.+?src=\".*?/(\\d+)\"");
-        Matcher m = p.matcher(this.getText());
-        while (m.find()) {
-            Image i = Image.getById(m.group(1));
-            if (i != null)
-                set.add(i);
+        Consumer<Matcher> imgExtractor = m -> {
+            while (m.find()) {
+                Image i = Image.getById(m.group(1));
+                if (i != null)
+                    set.add(i);
+            }
+        };
+        imgExtractor.accept(p.matcher(this.getText()));
+        for (Answer a: this.getAnswerMap().values()) {
+            imgExtractor.accept(p.matcher(a.getText()));
         }
         return set;
     }
@@ -733,4 +740,6 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
     public int compareTo(Question obj) {
         return naturalComparator.compare(this, obj);
     }
+    
+
 }
