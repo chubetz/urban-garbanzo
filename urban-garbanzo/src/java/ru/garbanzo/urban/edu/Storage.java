@@ -7,6 +7,8 @@ package ru.garbanzo.urban.edu;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -190,7 +192,12 @@ public class Storage {
         questionMapForRealm.get(realmId).put(question.getId(), question);
             
     }
-    void registerMockQuestion(Question question) { //хранение новых вопросов, еще не сохраненных в БД
+    void registerMockQuestion(Question question) { //хранение новых вопросов, еще не сохраненных в БД (не более 10 штук)
+        if (mockQuestionMap.size() >= 10) {
+            Iterator<Long> it = mockQuestionMap.keySet().iterator();
+            it.next(); it.remove();
+        }
+            
         mockQuestionMap.put(question.getTempId(), question);
     }
     void unbind(Question question, Realm realm) {
@@ -307,7 +314,7 @@ public class Storage {
             }
 
             storage.questionMap = new HashMap<Integer, Question>();
-            storage.mockQuestionMap = new HashMap<Long, Question>();
+            storage.mockQuestionMap = new LinkedHashMap<Long, Question>();
             storage.questionMapForRealm = new HashMap<Integer, Map<Integer, Question>>();
             data = JDBCUtils.loadEntitiesData(new Question(-1));
             for (DBEntity entity : data) {
