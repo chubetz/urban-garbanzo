@@ -110,7 +110,7 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
     public static Question getMockQuestion() { //обертка для Question - для jsp
         Question q = new Question(-100);
         getStorage().registerMockQuestion(q);
-        return new Question(-100);
+        return q;
     }
     
     public static Question getMockQuestion(String realmId, String themeId) { //обертка для Question - для jsp
