@@ -1,6 +1,6 @@
 ﻿
 
-p.337 Ch20№1   p.533
+p.343 Ch20№16   p.536
 -		#21
 		
 		
@@ -15,4 +15,4 @@ Servlet: Ch2. p.66 The JSP for the second page
 
 Java 7 Exam: p.83 ch.2
 
-Java 7 concur: p.815, Use the Parallel Fork/Join Framework
+Java 7 concur: p.833, 837 №5
