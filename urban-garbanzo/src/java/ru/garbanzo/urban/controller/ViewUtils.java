@@ -76,7 +76,7 @@ class ViewUtils {
                 sb.append("<td>");
                 String ansText = answer.getStr("text");
                 if (answer.getBool("correct")) {
-                    ansText = "<b>" + ansText + "</b>";
+                    ansText = "<div class=\"border\">" + ansText + "</div>";
                 }
                 sb.append(ansText);
                 sb.append("</td>");

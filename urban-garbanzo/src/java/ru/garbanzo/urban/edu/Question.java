@@ -298,7 +298,7 @@ public class Question extends Entity implements ITreeElement, Comparable<Questio
             sb.append("<td>");
             String answerText = entry.getValue().getStr("text");
             if (entry.getValue().getBool("correct")) {
-                answerText = "<b>" + answerText + "</b>";
+                answerText = "<div class=\"border\">" + answerText + "</div>";
             }
             sb.append(answerText);
             sb.append("</td>");
