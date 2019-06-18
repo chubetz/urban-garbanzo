@@ -7,6 +7,7 @@ package ru.garbanzo.urban.edu;
 
 import java.sql.Date;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -211,5 +212,27 @@ public abstract class Entity implements DBEntity {
     public String getProfileURL() {
         String className = this.getClass().getSimpleName().toLowerCase();
         return "viewProfile?" + className + "=" + this.getId();
+    }
+    
+    public static final Comparator<Entity> PK_COMPARATOR = new PK_ComparatorImpl();
+    
+    private static class PK_ComparatorImpl implements Comparator<Entity> {
+
+        @Override
+        public int compare(Entity o1, Entity o2) {
+            if (!o1.getClass().equals(o2.getClass())) { //сравнение разных типов сущностей бессмысленно
+                throw new RuntimeException("Попытка сравнить компаратором PK_Comparator сущности разных типов");
+            }
+            int result = 0;
+            for (Map.Entry<String, Object> entry: o1.getPrimaryKey().entrySet()) {
+                result = ((Comparable)entry.getValue()).compareTo(o2.getPrimaryKey().get(entry.getKey()));
+                if (result != 0) { //сравнение состоялось
+                    return result;
+                }
+            }
+            
+            return result;
+        }
+        
     }
 }

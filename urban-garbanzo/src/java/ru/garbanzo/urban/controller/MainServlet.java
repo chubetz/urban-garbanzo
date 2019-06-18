@@ -358,7 +358,7 @@ public class MainServlet extends ErrorHandlingServlet {
                     if (Storage.getJdbcException() != null) {
                         throw Storage.getJdbcException();
                     }
-                    StringBuilder sb = new StringBuilder();
+                    final StringBuilder sb = new StringBuilder();
                         sb.append("DROP TABLE Realm IF EXISTS;\r\n");
                         sb.append("CREATE TABLE Realm (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, text VARCHAR(20), description VARCHAR(2000));\r\n");
                         sb.append("DROP TABLE Theme IF EXISTS;\r\n");
@@ -375,36 +375,76 @@ public class MainServlet extends ErrorHandlingServlet {
                         sb.append("CREATE TABLE UserAnswer (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, questionId int, correct boolean, answerDate TIMESTAMP);\r\n");
                         sb.append("DROP TABLE ThemeExam IF EXISTS;\r\n");
                         sb.append("CREATE TABLE ThemeExam (id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, themeId int, percentage DOUBLE, date TIMESTAMP);\r\n");
-                    for (Realm r: Realm.getMap().values()) {
-                        sb.append(r.getSQLExportString());
-                    }
+//                    for (Realm r: Realm.getMap().values()) {
+//                        sb.append(r.getSQLExportString());
+//                    }
+                    
+                    Realm.getMap().values().stream()
+                            .sorted(Entity.PK_COMPARATOR)
+                            .map(Entity::getSQLExportString)
+                            .forEach(sb::append);
 
-                    for (Theme t: Theme.getMap().values()) {
-                        sb.append(t.getSQLExportString());
-                    }
+//                    for (Theme t: Theme.getMap().values()) {
+//                        sb.append(t.getSQLExportString());
+//                    }
 
-                    for (Question q: Question.getMap().values()) {
-                        sb.append(q.getSQLExportString());
-                        for (Answer a: q.getAnswerMap().values()) {
-                            sb.append("\t"+a.getSQLExportString());
-                        }
-                    }
+                    Theme.getMap().values().stream()
+                            .sorted(Entity.PK_COMPARATOR)
+                            .map(Entity::getSQLExportString)
+                            .forEach(sb::append);
 
-                    for (Entity themeQuestion :  EduAccess.getThemeQuestionSet()) {
-                        sb.append(themeQuestion.getSQLExportString());
-                    }
+//                    for (Question q: Question.getMap().values()) {
+//                        sb.append(q.getSQLExportString());
+//                        for (Answer a: q.getAnswerMap().values()) {
+//                            sb.append("\t"+a.getSQLExportString());
+//                        }
+//                    }
 
-                    for (Image i: Image.getMap().values()) {
-                        sb.append(i.getSQLExportString());
-                    }
+                    Question.getMap().values().stream()
+                            .sorted(Entity.PK_COMPARATOR)
+                            .forEach( q -> {
+                                sb.append(q.getSQLExportString());
+                                q.getAnswerMap().values().stream()
+                                        .sorted(Entity.PK_COMPARATOR)
+                                        .map(a -> "\t"+a.getSQLExportString())
+                                        .forEach(sb::append);
+                            });
 
-                    for (UserAnswer ua: UserAnswer.getMap().values()) {
-                        sb.append(ua.getSQLExportString());
-                    }
+//                    for (Entity themeQuestion :  EduAccess.getThemeQuestionSet()) {
+//                        sb.append(themeQuestion.getSQLExportString());
+//                    }
 
-                    for (ThemeExam te: ThemeExam.getMap().values()) {
-                        sb.append(te.getSQLExportString());
-                    }
+                    EduAccess.getThemeQuestionSet().stream()
+                            .sorted(Entity.PK_COMPARATOR)
+                            .map(Entity::getSQLExportString)
+                            .forEach(sb::append);
+
+//                    for (Image i: Image.getMap().values()) {
+//                        sb.append(i.getSQLExportString());
+//                    }
+
+                    Image.getMap().values().stream()
+                            .sorted(Entity.PK_COMPARATOR)
+                            .map(Entity::getSQLExportString)
+                            .forEach(sb::append);
+
+//                    for (UserAnswer ua: UserAnswer.getMap().values()) {
+//                        sb.append(ua.getSQLExportString());
+//                    }
+
+                    UserAnswer.getMap().values().stream()
+                            .sorted(Entity.PK_COMPARATOR)
+                            .map(Entity::getSQLExportString)
+                            .forEach(sb::append);
+
+//                    for (ThemeExam te: ThemeExam.getMap().values()) {
+//                        sb.append(te.getSQLExportString());
+//                    }
+
+                    ThemeExam.getMap().values().stream()
+                            .sorted(Entity.PK_COMPARATOR)
+                            .map(Entity::getSQLExportString)
+                            .forEach(sb::append);
 
                     Utils.print(sb);
                     response.setContentType("text/plain");
