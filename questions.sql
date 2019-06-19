@@ -31,6 +31,7 @@ INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (13,'fehi
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (14,'bloch','Bloch - Effective Java');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (15,'murserv','Murach - Servlet & JSP');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (16,'ocp7','OCP Java 7');
+INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (17,'walls_spring_4th','Craig Walls - Spring in Action 4th');
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (0,4,'Основы',1.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (1,4,'Особенности экзамена',0.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (2,4,'Задания к теме',1.1);
@@ -118,6 +119,9 @@ INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (83,16
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (84,16,'Задания к теме',14.1);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (85,12,'Java Concurrency',20.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (86,12,'Building Database Applications with JDBC',21.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (87,12,'Localization',22.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (88,17,'Part 1 - Core Spring',0.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (89,17,'Chapter 1 - Springing into Action',1.0);
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (0,4,0,'Тесты экзамена предполагают обычно 5 или 6 ответов, со множественным выбором.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1,4,0,'Нельзя реализовать в классе два интерфейса с общим дефолтным методом, если не переопределить этот метод в классе.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2,4,2,'<p>Перечислите 3 вида комментариев в Java</p>',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
@@ -3733,8 +3737,8 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1028,8,0,'Есть класс java.util.<strong>Properties</strong>. Он может содержать в себе пары ключ-значение, а также предоставляет некоторые дополнительные возможности.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1029,8,2,'Как получить объект <strong>Properties</strong> из <strong>ResourceBundle</strong>?',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2072,1029,'Properties props = new Properties();<br />rb.keySet().stream().forEach(k -&gt; props.put(k, rb.getString(k)));&nbsp;&nbsp;&nbsp;',true,'');
-INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1030,8,2,'1) Как получить ресурс из объекта <strong>Properties</strong>?<br /><br />2) Как получить значение по умолчанию, если ресурса нет?',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
-	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2073,1030,'Properties props = new Properties();<br /><br />1) System.out.println(props.getProperty("notReallyAProperty"));<br /><em>или</em><br />System.out.println(props.get("notReallyAProperty"));<br /><br />(если свойства нет, вернется null)<br /><br />2) System.out.println(props.getProperty("notReallyAProperty", "123"));<br />',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1030,8,2,'1) Как получить ресурс из объекта <strong>Properties</strong>?<br /><br />2) Как получить значение по умолчанию, если ресурса нет?<br /><br />3) Какое место имеет <strong>Properties</strong> в иерархии классов?',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '2019-06-19 11:51:28');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2073,1030,'Properties props = new Properties();<br /><br />1) System.out.println(props.getProperty("notReallyAProperty"));<br /><em>или</em><br />System.out.println(props.get("notReallyAProperty"));<br /><br />(если свойства нет, вернется null)<br /><br />2) System.out.println(props.getProperty("notReallyAProperty", "123"));<br /><br />3) Наследует классу <strong>Hashtable</strong>&lt;<em>Object</em>, <em>Object</em>&gt; и имплементирует <strong>Map</strong>&lt;<em>Object</em>, <em>Object</em>&gt;',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1031,8,2,'Как создать Java Class Resource Bundle и в чем его преимущества по сравнению с property file?',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2074,1031,'import java.util.*;<br />public class Zoo_ru_RU extends <strong>ListResourceBundle</strong> {<br />&nbsp;&nbsp;&nbsp; protected Object[][] getContents() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return new Object[][] {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { "hello", "Привет!" },<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { "bye", "Пока" } <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br />&nbsp;&nbsp;&nbsp; } <br />}<br /><br />Преимущества:<br />1) значениями свойств могут быть не только строки, но также и любые объекты.<br />2) можно создавать свойства в рантайме',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1032,8,2,'Как получить ресурсы из ресурсного класса (Java Class Resource Bundle)?',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
@@ -12906,6 +12910,95 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8223,3066,'ResultSet then Statement then Connection',true,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8224,3066,'Statement then Connection then ResultSet',false,'');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8225,3066,'Statement then ResultSet then Connection',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3067,12,1,'Which is not a locale?',TIMESTAMP '2019-06-19 11:42:40',TIMESTAMP '2019-06-19 11:42:40');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8226,3067,'Cultural region',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8227,3067,'Geographical region',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8228,3067,'Political region',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8229,3067,'Time zone region',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3068,12,1,'When localizing an application, which type of data varies in presentation depending on locale?',TIMESTAMP '2019-06-19 11:43:47',TIMESTAMP '2019-06-19 11:43:47');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8230,3068,'Currencies',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8231,3068,'Dates',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8232,3068,'Both',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8233,3068,'Neither',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3069,12,1,'How do you find out the locale of the running program?',TIMESTAMP '2019-06-19 11:44:42',TIMESTAMP '2019-06-19 11:44:42');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8234,3069,'Locale.get("default")',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8235,3069,'Locale.get(Locale.DEFAULT)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8236,3069,'Locale.getDefault()',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8237,3069,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3070,12,1,'If your application has all town names in a single file named strings.properties, what is the most specific process that has been implemented?',TIMESTAMP '2019-06-19 11:46:43',TIMESTAMP '2019-06-19 11:46:43');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8238,3070,'Internationalization',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8239,3070,'Localization',false,'это связано с поддержкой локалей');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8240,3070,'Specialization',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8241,3070,'Translation',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3071,12,1,'<p>Which interfaces does Properties implement?</p>
+<p>I. Hashtable<br />II. HashMap<br />III. Map</p>',TIMESTAMP '2019-06-19 11:48:14',TIMESTAMP '2019-06-19 11:48:14');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8242,3071,'III',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8243,3071,'I and II',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8244,3071,'I and III',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8245,3071,'II and III',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3072,12,1,'Which filename extension can hold a String property value in a resource bundle?',TIMESTAMP '2019-06-19 11:53:04',TIMESTAMP '2019-06-19 11:53:04');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8246,3072,'.java',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8247,3072,'.properties',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8248,3072,'Both of the above',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8249,3072,'Neither of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3073,12,1,'How long will the effects of calling Locale.setDefault() be active assuming no other calls to that method are made?',TIMESTAMP '2019-06-19 11:54:12',TIMESTAMP '2019-06-19 11:54:12');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8250,3073,'Until the end of the method',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8251,3073,'Until the program exits',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8252,3073,'Until the next reboot of the computer',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8253,3073,'None of the above. It persists even past a reboot.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3074,12,1,'<p>Given this properties file used to load the Properties object props and this code snippet, what is the output?</p>
+<p>mystery=bag<br />type=paper</p>
+<p>18: System.out.print(props.getProperty("mystery"));<br />19: System.out.print(" ");<br />20: System.out.print(props.getProperty("more"));</p>',TIMESTAMP '2019-06-19 11:57:19',TIMESTAMP '2019-06-19 11:57:19');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8254,3074,'bag',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8255,3074,'bag null',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8256,3074,'bag ?',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8257,3074,'This code throws a runtime exception on line 20.',false,'возникнет, если идет работа с классом ресурсов');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3075,12,1,'<p>Fill in the blanks to complete the following code for a Java resource bundle.</p>
+<p>public class Flights_en extends _______________ {<br />&nbsp;&nbsp;&nbsp; protected Object[][] _____________ () {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return new Object[0][0];<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-06-19 11:58:51',TIMESTAMP '2019-06-19 11:58:51');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8258,3075,'JavaResourceBundle, getContents',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8259,3075,'JavaResourceBundle, getProperties',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8260,3075,'ListResourceBundle, getContents',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8261,3075,'ListResourceBundle, getProperties',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3076,12,1,'Which of the following shows a valid Locale format for the language Hindi and the country India?',TIMESTAMP '2019-06-19 11:59:41',TIMESTAMP '2019-06-19 11:59:41');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8262,3076,'hi_IN',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8263,3076,'HI_in',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8264,3076,'in_HI',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8265,3076,'IN_hi',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3077,17,2,'Назовите 2 основные особенности Spring.',TIMESTAMP '2019-06-19 12:41:40',TIMESTAMP '2019-06-19 12:41:40');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8266,3077,'1) внедрение зависимости (<em>dependency injection, DI</em>)<br />2) аспектно-ориентированное программирование (<em>AOP</em>)',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3078,17,0,'Spring - опенсорсный фреймворк, созданный в 2002 году Родом Джонсоном. Целью его создания была попытка использования обычных <em>JavaBeans</em> и <em>POJO&nbsp;</em>для решения задач уровня Enterprise, прежде решаемых только с помощью <em>EJB</em>.<br /><br />В дальнейшем в книге <em>JavaBean</em> и <em>POJO</em> используются как синонимы.',TIMESTAMP '2019-06-19 16:40:00',TIMESTAMP '2019-06-19 16:40:00');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3079,17,2,'Назовите фундаментальную миссию Spring.',TIMESTAMP '2019-06-19 16:41:06',TIMESTAMP '2019-06-19 16:41:06');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8267,3079,'<em>Упрощение Java-разработки.</em>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3080,17,2,'Перечислите 4 ключевые стратегии Spring.',TIMESTAMP '2019-06-19 16:48:11',TIMESTAMP '2019-06-19 16:48:11');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8268,3080,'1) Легкая (<em>lightweight</em>) и минимально&nbsp;"травматичная" разработка с помощью POJO.<br />2) Слабая связанность (<em>loose coupling</em>) благодаря DI и ориентации на интерфейс.<br />3) Декларативное программирование посредством аспектов и общих соглашений<br />4) Избавление от boilerplate с помощью аспектов и шаблонов.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3081,17,2,'Поясните суть термина "травматичное (<em>invasive</em>) программирование"',TIMESTAMP '2019-06-19 16:53:45',TIMESTAMP '2019-06-19 16:56:57');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8269,3081,'Имеется в виду обязательность для разработчика наследовать определенным классам или реализовывать определенные интерфейсы определенных фреймворков.<br /><br />В отличие от такого подхода, Spring не нагружает код своим API, не заставляет наследовать классам или имплементировать интерфейсы. Фактически, код в рамках Spring никак не маркирован принадлежностью к фреймворку, если не учитывать специальные аннотации, правда, также являющиеся POJO.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3082,17,2,'Приведите пример JavaBean, реализующего функционал Hello world.',TIMESTAMP '2019-06-19 17:00:06',TIMESTAMP '2019-06-19 17:00:42');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8270,3082,'public class HelloWorldBean {<br />&nbsp;&nbsp;&nbsp; public String sayHello() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "Hello World";<br />&nbsp;&nbsp;&nbsp; }<br />}<br /><br />как видим, никакой Spring-маркированности.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3083,17,2,'Опишите&nbsp;смысл понятия "внедрение зависимостей" (<em>dependency injection, DI).</em>',TIMESTAMP '2019-06-19 17:20:43',TIMESTAMP '2019-06-19 17:20:43');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8271,3083,'DI - это механизм, который позволяет описать зависимости между объектами, освобождая последние от необходимости самим следить за предоставлением и получением ссылок друг на друга.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3084,17,2,'Приведите пример "жесткого связывания".',TIMESTAMP '2019-06-19 17:21:37',TIMESTAMP '2019-06-19 17:21:37');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8272,3084,'<p>Жесткое связывание имеет место в классе</p>
+<p>public class DamselRescuingKnight implements Knight {<br />&nbsp;&nbsp;&nbsp; private RescueDamselQuest quest;<br />&nbsp;&nbsp;&nbsp; public DamselRescuingKnight() {<br /><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.quest = new RescueDamselQuest();</strong><br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public void embarkOnQuest() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; quest.embark();<br />&nbsp;&nbsp;&nbsp; }<br />}</p>
+<p>В вышеприведенном коде класс <strong>DamselRescuingQuest</strong> жестко связан с <strong>RescueDamselQuest</strong>. Для него будет сложно подготовить unit test.</p>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3085,17,2,'Приведите пример "внедрения в конструкторе" (<em>constructor injection</em>)',TIMESTAMP '2019-06-19 17:34:21',TIMESTAMP '2019-06-19 17:34:21');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8273,3085,'Constructor injection - это тип DI, при котором посредством конструктора осуществляется связь класса с экземпляром <span style="text-decoration: underline;">интерфейса</span>.<br /><br />public class BraveKnight implements Knight {<br />&nbsp;&nbsp;&nbsp; private Quest quest;<br /><strong>&nbsp;&nbsp;&nbsp; public BraveKnight(Quest quest) {</strong><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.quest = quest;<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public void embarkOnQuest() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; quest.embark();<br />&nbsp;&nbsp;&nbsp; }<br />}<br /><br />Таким образом, класс <strong>BraveKnight</strong> можно связать с различными&nbsp;реализациями интерфейса <em>Quest</em>. Он не связан с конкретными классами, не заботится о создании экземпляров, и поэтому достигается <em>loose coupling</em>. Для класса <strong>BraveKnight</strong> можно создать unit test:<br /><br />import static org.mockito.Mockito.*;<br />import org.junit.Test;<br />public class BraveKnightTest {<br />&nbsp;&nbsp;&nbsp; @Test<br />&nbsp;&nbsp;&nbsp; public void knightShouldEmbarkOnQuest() {<br /><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Quest mockQuest = mock(Quest.class); </strong><em>//Create mock Quest</em><br /><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BraveKnight knight = new BraveKnight(mockQuest); </strong><em>// Inject mock QUest</em><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; knight.embarkOnQuest();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; verify(mockQuest, times(1)).embark();<br />&nbsp;&nbsp;&nbsp; }<br />}<br /><br />(в этом тесте проверяется, что метод <strong>embark</strong>() тестового объекта <strong>Quest</strong> вызывается ровно один раз.)',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3086,17,2,'<p>Поясните понятие "монтирование" (<em>wiring</em>)</p>',TIMESTAMP '2019-06-19 17:45:09',TIMESTAMP '2019-06-19 17:45:09');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8274,3086,'Это действия по выстраиванию схемы связей между компонентами приложения.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3087,17,2,'<p>Имеется класс типа <em>Quest</em>:</p>
+<p>package com.springinaction.knights;<br />import java.io.PrintStream;<br />public class SlayDragonQuest implements Quest {<br />&nbsp;&nbsp;&nbsp; private PrintStream stream;<br />&nbsp;&nbsp;&nbsp; public SlayDragonQuest(PrintStream stream) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.stream = stream;<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public void embark() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stream.println("Embarking on quest to slay the dragon!");<br />&nbsp;&nbsp;&nbsp; }<br />}<br /><br />Имеем также класс <br /><br />package com.springinaction.knights;<br />public class BraveKnight implements Knight {<br />&nbsp;&nbsp;&nbsp; private Quest quest;<br />&nbsp;&nbsp;&nbsp; public BraveKnight(Quest quest) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.quest = quest;<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public void embarkOnQuest() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; quest.embark();<br />&nbsp;&nbsp;&nbsp; }<br />}</p>
+<p>Как создать схему связей (<em>wiring</em>) между данными классами? (приведите пример конфигурационного<span style="text-decoration: underline;"> XML-файла</span> Spring)</p>',TIMESTAMP '2019-06-19 17:55:22',TIMESTAMP '2019-06-19 17:55:22');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8275,3087,'<p>&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br />&lt;beans xmlns="http://www.springframework.org/schema/beans"<br />&nbsp; xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"<br />&nbsp; xsi:schemaLocation="http://www.springframework.org/schema/beans<br />&nbsp; http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;</p>
+<p><strong>&nbsp;&nbsp;&nbsp; &lt;bean id="knight" class="com.springinaction.knights.BraveKnight"&gt;</strong><br /><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;constructor-arg ref="quest" /&gt;</strong><br /><strong>&nbsp;&nbsp;&nbsp; &lt;/bean&gt;</strong></p>
+<p><strong>&nbsp;&nbsp;&nbsp; &lt;bean id="quest" class="com.springinaction.knights.SlayDragonQuest"&gt;</strong><br /><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;constructor-arg value="#{T(System).out}" /&gt;</strong><br /><strong>&nbsp;&nbsp;&nbsp; &lt;/bean&gt;</strong><br />&lt;/beans&gt;</p>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3088,17,2,'<p>Имеется класс типа <em>Quest</em>:</p>
+<p>package com.springinaction.knights;<br />import java.io.PrintStream;<br />public class SlayDragonQuest implements Quest {<br />&nbsp;&nbsp;&nbsp; private PrintStream stream;<br />&nbsp;&nbsp;&nbsp; public SlayDragonQuest(PrintStream stream) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.stream = stream;<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public void embark() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stream.println("Embarking on quest to slay the dragon!");<br />&nbsp;&nbsp;&nbsp; }<br />}<br /><br />Имеем также класс <br /><br />package com.springinaction.knights;<br />public class BraveKnight implements Knight {<br />&nbsp;&nbsp;&nbsp; private Quest quest;<br />&nbsp;&nbsp;&nbsp; public BraveKnight(Quest quest) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.quest = quest;<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public void embarkOnQuest() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; quest.embark();<br />&nbsp;&nbsp;&nbsp; }<br />}</p>
+<p>Как создать схему связей (<em>wiring</em>) между данными классами? (приведите пример конфигурационного&nbsp;<span style="text-decoration: underline;">java-класса</span> Spring)</p>',TIMESTAMP '2019-06-19 17:57:13',TIMESTAMP '2019-06-19 17:57:13');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8276,3088,'<p>package com.springinaction.knights.config;<br />import org.springframework.context.annotation.Bean;<br />import org.springframework.context.annotation.Configuration;<br />import com.springinaction.knights.BraveKnight;<br />import com.springinaction.knights.Knight;<br />import com.springinaction.knights.Quest;<br />import com.springinaction.knights.SlayDragonQuest;</p>
+<p>@Configuration<br />public class KnightConfig {</p>
+<p>&nbsp;&nbsp;&nbsp; @Bean<br />&nbsp;&nbsp;&nbsp; public Knight knight() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return new BraveKnight(quest());<br />&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp; @Bean<br />&nbsp;&nbsp;&nbsp; public Quest quest() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return new SlayDragonQuest(System.out);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3089,17,0,'DI позволяет одной настройкой менять конкретные зависимости между классами.',TIMESTAMP '2019-06-19 18:00:50',TIMESTAMP '2019-06-19 18:00:50');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,2,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,3,2);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,4,3);
@@ -15984,6 +16077,29 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (86,3063,37);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (86,3064,38);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (86,3065,39);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (86,3066,40);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3067,1);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3068,2);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3069,3);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3070,4);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3071,5);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3072,6);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3073,7);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3074,8);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3075,9);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3076,10);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (88,3077,1);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (89,3078,1);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (89,3079,2);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (89,3080,3);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (89,3081,4);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (89,3082,5);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (89,3083,6);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (89,3084,7);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (89,3085,8);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (89,3086,9);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (89,3087,10);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (89,3088,11);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (89,3089,12);
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (0,'endermen','jpg');
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (1,'ferrari','jpeg');
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (2,'NIIAS','png');

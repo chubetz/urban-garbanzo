@@ -1,7 +1,7 @@
 ﻿
 
-p.371 Ch22№1   p.545
-#18		#33 #2 #27 #30
+p.374 Ch22№11   p.545
+		#33 #2 #27 #30
 		
 		
 SQL Fehily: p.179 distinct
@@ -16,3 +16,5 @@ Servlet: Ch2. p.66 The JSP for the second page
 Java 7 Exam: p.83 ch.2
 
 Java 7 concur: p.833, 837 №5
+
+Spring in Action: p.10 This example has shown a simple approach to wiring beans in Spring.
