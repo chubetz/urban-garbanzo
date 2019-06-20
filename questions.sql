@@ -33,6 +33,7 @@ INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (15,'murs
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (16,'ocp7','OCP Java 7');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (17,'walls_spring_4th','Craig Walls - Spring in Action 4th');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (18,'elJS','Marijn Haverbeke - Eloquent JavaScript');
+INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (19,'projpa2','Mike Keith - Pro JPA 2');
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (0,4,'Основы',1.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (1,4,'Особенности экзамена',0.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (2,4,'Задания к теме',1.1);
@@ -123,6 +124,9 @@ INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (86,12
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (87,12,'Localization',22.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (88,17,'Part 1 - Core Spring',0.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (89,17,'Chapter 1 - Springing into Action',1.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (90,18,'Introduction',0.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (91,18,'Values, Types, and Operators',1.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (92,19,'Introduction',1.0);
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (0,4,0,'Тесты экзамена предполагают обычно 5 или 6 ответов, со множественным выбором.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1,4,0,'Нельзя реализовать в классе два интерфейса с общим дефолтным методом, если не переопределить этот метод в классе.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2,4,2,'<p>Перечислите 3 вида комментариев в Java</p>',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
@@ -13087,6 +13091,32 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8321,3109,'<p>&lt;beans&gt;<br />&nbsp;&nbsp;&nbsp; &lt;bean id="knight"...<br />&nbsp;&nbsp;&nbsp; &lt;bean id="quest"...<br />&nbsp;<br />&nbsp;&nbsp;&nbsp; &lt;bean id="minstrel" class="com.springinaction.knights.Minstrel"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;constructor-arg value="#{T(System).out}" /&gt;<br />&nbsp;&nbsp;&nbsp; &lt;/bean&gt;</p>
 <p>&nbsp;&nbsp;&nbsp; &lt;aop:config&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;aop:aspect ref="minstrel"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;aop:<strong>pointcut</strong> id="embark" <em>expression</em>="execution(* *.embarkOnQuest(..))"/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;aop:<strong>before</strong> pointcut-ref="embark" method="singBeforeQuest"/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;aop:<strong>after</strong> pointcut-ref="embark" method="singAfterQuest"/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/aop:aspect&gt;<br />&nbsp;&nbsp;&nbsp; &lt;/aop:config&gt;<br />&lt;/beans&gt;<br /><br />Как видим, для настройки аспекта рыцаря и менестреля не надо связывать даже в конфигурации.<br /><br />aop:before - это <em>before advice<br /></em>aop:after - <em>after</em> advice<br /><br />синтаксис в <em>expression</em> - это AspectJ expression language</p>',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3110,17,0,'Работа с JDBC - один из примеров <em>boilerplate code</em>. Из раза в раз приходится<br />- получать Connection/Statement/ResultSet<br />- вызывать сеттеры создаваемого объекта<br />- ловить SQLException (и ничего не делать)<br />- закрывать ресурсы (и опять ловить SQLException)',TIMESTAMP '2019-06-20 17:03:24',TIMESTAMP '2019-06-20 17:03:24');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3111,18,0,'JavaScript появился в 1995 году как язык программирования веб-страниц браузера Netscape Navigator. К языку Java отношения не имеет, название было выбрано из маркетинговых соображений.',TIMESTAMP '2019-06-20 21:04:52',TIMESTAMP '2019-06-20 21:06:33');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3112,18,0,'Стандарт для языка JavaScript называется ECMAScript - фактически, это синонимы.',TIMESTAMP '2019-06-20 21:07:37',TIMESTAMP '2019-06-20 21:07:37');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3113,18,0,'Заявленная гибкость и "либеральность" языка, задуманная как способ облегчить жизнь начинающим программистам, на деле привела к сложностям с нахождением ошибок в программе, так как система на них не указывает. Взамен эта гибкость позволяет использовать техники, недоступные в более строгих языках.',TIMESTAMP '2019-06-20 21:10:08',TIMESTAMP '2019-06-20 21:13:03');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3114,18,0,'Последняя версия языка за номером 6 вышла в 2015 году. Каждый год выходят небольшие пакеты обновлений.',TIMESTAMP '2019-06-20 21:15:32',TIMESTAMP '2019-06-20 21:15:41');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3115,18,0,'Некоторые СУБД (MongoDB, CouchDB) используют JS как язык своих скриптов и запросов. Некоторые платформы серверного и десктопного программирования (например, Node.js) предоставляют среду для программирования на JS вне браузера.',TIMESTAMP '2019-06-20 21:20:21',TIMESTAMP '2019-06-20 21:20:21');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3116,19,2,'Перечислите основные принципы идеального ORM-решения.',TIMESTAMP '2019-06-20 21:45:17',TIMESTAMP '2019-06-20 21:45:17');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8322,3116,'<p><em>- Объекты, а не таблицы</em>. Приложение должно использовать свою модель классов, а не реляционную модель с табличной спецификой.</p>
+<p>- <em>Удобство, а не невежество</em>. Для разработки нужно иметь представление о реляционной технологии, но при этом не нужно писать огромное количество вспомогательного кода.</p>
+<p><em>- Ненавязчивость, а не прозрачность</em>. Долговременное хранение объектов и жизненный цикл сущностей не могут быть невидимыми для приложения, однако контроль над ситуацией не должен выдвигать строгих требований, вроде необходимости для объектов наследовать классам или реализовывать интерфейсы, чтобы быть хранимыми.</p>
+<p><em>- Имеющиеся данные, новые объекты. </em>Возможно, приложение будет использовать уже имеющуюся реляционную модель конкретной БД, а не создавать собственную.</p>
+<p><em>- Достаточно, но не слишком</em>. Не нужно стремиться предоставить решение, которое решит абсолютно все возможные проблемы (многие из которых проблемами не являются), заплатив за это огромным оверхедом и сложностью использования.</p>
+<p><em>- Локальные, но мобильные</em>. Персистентное хранение не должно включать в себя обязательную распределенность объектов, однако сущности должны иметь способность к путешествию, если этого потребует архитектура системы.</p>
+<p>- <em>Стандартный API, подключаемые реализации</em>. Приложение должно иметь возможность легко переключаться между библиотеками от разных поставщиков.</p>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3117,19,2,'Что такое <em>Impedance Mismatch</em>?',TIMESTAMP '2019-06-20 21:46:16',TIMESTAMP '2019-06-20 21:46:16');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8323,3117,'Это несоответствие между объектной и реляционной моделями в части концепций, не имеющих логического эквивалента.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3118,19,0,'Для класса Employee со следующей структурой<br /><img src="uploads/33" alt="Pro_JPA_2_Ch1_01.PNG" width="123" height="123" /><br />можно предложить несколько возможных БД-представлений:<br /><img src="uploads/34" alt="Pro_JPA_2_Ch1_02.PNG" width="634" height="348" /><br />Вариант <strong>А</strong> самый естественный.&nbsp; Вариант <strong>B</strong> отражает вероятность того, что приходится подлаживаться под имеющуюся БД, структуру которй сложно изменить. Вариант <strong>C</strong> реализован для того, чтобы дать возможность администратору БД ограничить доступ к данным о зарплате. Для приложения это говорит о том, что любое изменение объекта <em>Employee</em> приведет к неоходимости работать сразу с двумя таблицами.',TIMESTAMP '2019-06-20 21:49:16',TIMESTAMP '2019-06-20 21:49:16');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3119,19,0,'Отношение один-к-одному в UML (<em>Unified Modeling Language</em>) обозначается как <strong>0..1</strong>',TIMESTAMP '2019-06-20 22:00:39',TIMESTAMP '2019-06-20 22:00:39');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3120,19,0,'Легенда отношений между сущностями:<br /><br /><img src="uploads/35" alt="Pro_JPA_2_Ch1_03.PNG" width="322" height="152" />',TIMESTAMP '2019-06-20 22:06:05',TIMESTAMP '2019-06-20 22:06:05');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3121,19,0,'Допустим, мы имеем структуру классов<br /><br /><img src="uploads/36" alt="Pro_JPA_2_Ch1_04.PNG" width="346" height="127" /><br /><br />Поскольку в БД неудобно хранить данные без PK, и мы не можем предложить качественный композитный ключ, придется доработать структуру объекта.',TIMESTAMP '2019-06-20 22:10:47',TIMESTAMP '2019-06-20 22:10:47');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3122,19,0,'Вообще, вносить изменения в структуру классов легче (и правильнее), чем в структуру БД. В том числе и потому, что на работу с одной БД могут быть "заточены" различные системы.',TIMESTAMP '2019-06-20 22:49:25',TIMESTAMP '2019-06-20 22:49:25');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3123,19,2,'Пусть имеется структура классов, задействующая наследование:<br /><img src="uploads/37" alt="Pro_JPA_2_Ch1_05.PNG" width="356" height="227" /><br /><br />Какими способами это может быть выражено в структуре БД?',TIMESTAMP '2019-06-20 23:06:41',TIMESTAMP '2019-06-20 23:06:41');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8324,3123,'1) Возможно, самое простое решение:<br /><img src="uploads/38" alt="Pro_JPA_2_Ch1_06.PNG" width="385" height="176" /><br />Проблема в том, что таблицы не зависимы друг от друга, и оперировать с сотрудниками "вообще" становится сложно.<br /><br />2) Единая таблица:<br /><img src="uploads/39" alt="Pro_JPA_2_Ch1_07.PNG" width="150" height="208" /><br />Запросы будут проще, но появляется новая колонка - тип сотрудника, которую придется учитывать в ORM-взаимодействии<br /><br />3) Общая таблица и связанные подтаблицы. <br /><img src="uploads/40" alt="Pro_JPA_2_Ch1_08.PNG" width="617" height="179" /><br />В меру логичное решение, позволяющее легко создавать запросы с&nbsp; join. Но ORM-взаимодействие становится еще сложнее',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3124,19,0,'Наследование - очень болезненное явление с точки зрения ORM-взаимодействия.',TIMESTAMP '2019-06-20 23:08:05',TIMESTAMP '2019-06-20 23:08:05');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3125,19,2,'Что такое Data Mapper?',TIMESTAMP '2019-06-20 23:21:40',TIMESTAMP '2019-06-20 23:21:40');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8325,3125,'Это шаблон enterprise-проектирования, нечто среднее между JDBC и полновесным ORM, в соответствии с чем для маппинга объектов и сущностей БД используются строки SQL, но эту работу берут на себя методы выбранного DataMapper-фреймворка. Самый известный такой фреймворк - iBatis/MyBatis.<br />Преимущество Data Mapper в том, что приложение имеет полный контроль над SQL-запросами, в т.ч. хранимыми процедурами. Недостаток - необходимость поддерживать SQL-код и высокий риск "изобретать ORM-велосипеды" по мере роста проекта.<br />DataMappers и до сих пор используются в небольших проектах или там, где требуется особо сложный и заковыристый SQL.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3126,19,0,'В 1997 году появляется JDBC - Java-версия более общего стандарта ODBC (Object Database Connectivity), который описывал доступ к любой реляционной БД из любого языка программирования. Взаимодействие идет на чистом SQL, выполняемом посредством несложной Java-модели.',TIMESTAMP '2019-06-20 23:59:18',TIMESTAMP '2019-06-20 23:59:18');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,2,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,3,2);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,4,3);
@@ -16209,6 +16239,22 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (89,3107,20);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (89,3108,21);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (89,3109,22);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (89,3110,23);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (90,3111,1);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (90,3112,2);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (90,3113,3);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (90,3114,4);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (90,3115,5);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (92,3116,1);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (92,3117,2);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (92,3118,3);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (92,3119,4);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (92,3120,5);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (92,3121,6);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (92,3122,7);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (92,3123,8);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (92,3124,9);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (92,3125,10);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (92,3126,11);
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (0,'endermen','jpg');
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (1,'ferrari','jpeg');
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (2,'NIIAS','png');
@@ -16242,6 +16288,14 @@ INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (29,'tm
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (30,'tmp6OCP_Tests_Ch21_25','png');
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (31,'tmp6OCP_Tests_Ch21_34','png');
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (32,'tmp6SIA4_p12','png');
+INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (33,'Pro_JPA_2_Ch1_01','PNG');
+INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (34,'Pro_JPA_2_Ch1_02','PNG');
+INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (35,'Pro_JPA_2_Ch1_03','PNG');
+INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (36,'Pro_JPA_2_Ch1_04','PNG');
+INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (37,'Pro_JPA_2_Ch1_05','PNG');
+INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (38,'Pro_JPA_2_Ch1_06','PNG');
+INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (39,'Pro_JPA_2_Ch1_07','PNG');
+INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (40,'Pro_JPA_2_Ch1_08','PNG');
 INSERT INTO UserAnswer (id,questionId,correct,answerDate) OVERRIDING SYSTEM VALUE VALUES (0,2,true,TIMESTAMP '2019-03-25 00:04:36');
 INSERT INTO UserAnswer (id,questionId,correct,answerDate) OVERRIDING SYSTEM VALUE VALUES (1,67,true,TIMESTAMP '2019-03-25 00:04:36');
 INSERT INTO UserAnswer (id,questionId,correct,answerDate) OVERRIDING SYSTEM VALUE VALUES (2,70,true,TIMESTAMP '2019-03-25 00:04:36');

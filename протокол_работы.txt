@@ -19,4 +19,6 @@ Java 7 concur: p.833, 837 №5
 
 Spring in Action: p.17 As you can see, this JDBC code queries the database
 
-Eloquent JavaScript: p.6 What is JavaScript?
+Eloquent JavaScript: p.11 To create a value, you must merely invoke its name. This is convenient.
+
+JPA 2: p.11 The Java Persistence API
