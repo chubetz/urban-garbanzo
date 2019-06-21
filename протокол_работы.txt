@@ -1,7 +1,7 @@
 ﻿
 
-p.374 Ch22№11   p.545
-		#33 #2 #27 #30
+p.381 Ch22№31   p.548
+		#33
 		
 		
 SQL Fehily: p.179 distinct
@@ -22,3 +22,5 @@ Spring in Action: p.17 As you can see, this JDBC code queries the database
 Eloquent JavaScript: p.11 To create a value, you must merely invoke its name. This is convenient.
 
 JPA 2: p.11 The Java Persistence API
+
+Maven: p.12 The following screenshot shows an overview of the JVisualVM tool running a Maven build

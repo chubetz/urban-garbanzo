@@ -34,6 +34,7 @@ INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (16,'ocp7
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (17,'walls_spring_4th','Craig Walls - Spring in Action 4th');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (18,'elJS','Marijn Haverbeke - Eloquent JavaScript');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (19,'projpa2','Mike Keith - Pro JPA 2');
+INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (20,'maven','Prabath Siriwardena - Mastering Apache Maven 3');
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (0,4,'Основы',1.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (1,4,'Особенности экзамена',0.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (2,4,'Задания к теме',1.1);
@@ -127,6 +128,8 @@ INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (89,17
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (90,18,'Introduction',0.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (91,18,'Values, Types, and Operators',1.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (92,19,'Introduction',1.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (93,20,'Preface',0.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (94,20,'Chapter 1 - Apache Maven Quick Start',1.0);
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (0,4,0,'Тесты экзамена предполагают обычно 5 или 6 ответов, со множественным выбором.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1,4,0,'Нельзя реализовать в классе два интерфейса с общим дефолтным методом, если не переопределить этот метод в классе.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2,4,2,'<p>Перечислите 3 вида комментариев в Java</p>',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
@@ -3757,7 +3760,7 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1038,8,0,'Когда речь пойдет о ResourceBundle, то, вероятно, не будет указываться путь к пакету, т.е. вся логика пройдет как бы в default package:<br /><br />ResourceBundle.getBundle("Zoo", new Locale("en"));',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1039,8,2,'Укажите приоритеты подбора ресурсов при запросе ResourceBundle из класса ресурсов c неполной локалью (только язык) .<br /><br />ResourceBundle.getBundle("pack2.Zoo", new Locale("ru"))',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2077,1039,'1) Zoo_ru.java<br />2) Zoo_ru.properties<br />3) Zoo_en.java (язык дефолтной локали)<br />4) Zoo_en.properties<br />5) Zoo.java (дефолтные ресурсы)<br />6) Zoo.properties<br />если ничего не нашлось - MissingResourceException<br /><br />т.е. ресурсы с указанием страны в этом случае не просматриваются вообще',true,'');
-INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1040,8,0,'Если в найденном <strong>ResourceBundle</strong> не находится запрашиваемый ключ, то производится попытка получить значение ключа из ресурса, вышестоящего в иерархии. <span style="text-decoration: underline;">Выше по иерархии</span> - это значит отбрасывать по одному специализацию: Zoo_fr_FR.java -&gt; Zoo_fr.java -&gt; Zoo.java <br /><br />Причем действует правило: если совпадают ресурсный класс и файл свойств, то файл свойств выпадает из зоны видимости.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1040,8,0,'Если в найденном <strong>ResourceBundle</strong> не находится запрашиваемый ключ, то производится попытка получить значение ключа из ресурса, вышестоящего в иерархии. <span style="text-decoration: underline;">Выше по иерархии</span> - это значит отбрасывать по одному специализацию: Zoo_fr_FR.java -&gt; Zoo_fr.java -&gt; Zoo.java <br /><br />Причем действует правило: если совпадают ресурсный класс и файл свойств, то файл свойств выпадает из зоны видимости.<br /><br />Если ключ так и не будет найден - будет MissingResourceException',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '2019-06-21 12:35:23');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1041,8,0,'В Java-ресурсах значения строк часто идут со ссылкой на возможные вставки, например<br /><br />helloByName=Hello, {0}<br /><br />Потом в коде программы можно будет что-нибудь подставить:<br /><br />String format = rb.getString("helloByName");<br />String formatted = MessageFormat.format(format, "Tammy");<br />System.out.print(formatted);',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1042,8,2,'Есть класс java.text.<strong>NumberFormat</strong>,&nbsp; который обладает методами-фабриками для получения разнообразных форматтеров. Перечислите эти методы и опишите, что они возвращают.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (2078,1042,'1) <em>NumberFormat</em> <strong>getInstance</strong>() - форматтер общего назначения<br /><em>NumberFormat</em> <strong>getInstance</strong>(<strong>Locale</strong> <em>locale</em>)<br /><br />2) <em>NumberFormat</em> <strong>getNumberInstance</strong>() - аналогично<br /><em>NumberFormat</em> <strong>getNumberInstance</strong>(<strong>Locale</strong> <em>locale</em>)<br /><br />3) <em>NumberFormat</em> <strong>getCurrencyInstance</strong>() - для форматирования валют<br /><em>NumberFormat</em> <strong>getCurrencyInstance</strong>(<strong>Locale</strong> <em>locale</em>)<br /><br />4) <em>NumberFormat</em> <strong>getPercentInstance</strong>() - для форматирования процентов<br /><em>NumberFormat</em> <strong>getPercentInstance</strong>(<strong>Locale</strong> <em>locale</em>)<br /><br />5) <em>NumberFormat</em> <strong>getIntegerInstance</strong>() - для округления десятичных значений<br /><em>NumberFormat</em> <strong>getIntegerInstance</strong>(<strong>Locale</strong> <em>locale</em>)',true,'');
@@ -13117,6 +13120,73 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3125,19,2,'Что такое Data Mapper?',TIMESTAMP '2019-06-20 23:21:40',TIMESTAMP '2019-06-20 23:21:40');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8325,3125,'Это шаблон enterprise-проектирования, нечто среднее между JDBC и полновесным ORM, в соответствии с чем для маппинга объектов и сущностей БД используются строки SQL, но эту работу берут на себя методы выбранного DataMapper-фреймворка. Самый известный такой фреймворк - iBatis/MyBatis.<br />Преимущество Data Mapper в том, что приложение имеет полный контроль над SQL-запросами, в т.ч. хранимыми процедурами. Недостаток - необходимость поддерживать SQL-код и высокий риск "изобретать ORM-велосипеды" по мере роста проекта.<br />DataMappers и до сих пор используются в небольших проектах или там, где требуется особо сложный и заковыристый SQL.',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3126,19,0,'В 1997 году появляется JDBC - Java-версия более общего стандарта ODBC (Object Database Connectivity), который описывал доступ к любой реляционной БД из любого языка программирования. Взаимодействие идет на чистом SQL, выполняемом посредством несложной Java-модели.',TIMESTAMP '2019-06-20 23:59:18',TIMESTAMP '2019-06-20 23:59:18');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3127,12,1,'<p>What is the output of the following?</p>
+<p>1: package keyboard;<br />2: import java.util.*;<br />3:<br />4: public class Type {<br />5:&nbsp;&nbsp;&nbsp;&nbsp; protected Object[][] getContents() {<br />6:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return new Object[][] { { "keys", new ArrayList&lt;String&gt;() }};<br />7:&nbsp;&nbsp;&nbsp;&nbsp; }<br />8:&nbsp;&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />9:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ResourceBundle rb = ResourceBundle.getBundle("keyboard.Type");<br />10:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List&lt;String&gt; keys = (List) rb.getObject("keys");<br />11:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; keys.add("q");<br />12:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; keys.add("w");<br />13:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; keys.add("e");<br />14:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; keys.add("r");<br />15:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; keys.add("t");<br />16:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; keys.add("y");<br />17:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(((List) rb.getObject("keys")).size());<br />18:&nbsp;&nbsp;&nbsp; }<br />19: }</p>',TIMESTAMP '2019-06-21 12:10:07',TIMESTAMP '2019-06-21 12:10:07');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8326,3127,'0',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8327,3127,'6',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8328,3127,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8329,3127,'The code compiles but throws an exception at runtime.',true,'Класс Type не наследует ListResourceBundle');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3128,12,1,'<p>How many lines does the following print out?</p>
+<p>3: Locale.setDefault(Locale.KOREAN);<br />4: System.out.println(Locale.getDefault());<br />5: Locale.setDefault(new Locale("en", "AU"));<br />6: System.out.println(Locale.getDefault());<br />7: Locale.setDefault(new Locale("EN"));<br />8: System.out.println(Locale.getDefault());</p>',TIMESTAMP '2019-06-21 12:12:32',TIMESTAMP '2019-06-21 12:12:32');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8330,3128,'None; it does not compile.',false,'Locale.KOREAN - есть');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8331,3128,'One followed by an exception',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8332,3128,'Two followed by an exception',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8333,3128,'All three',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3129,12,1,'<p>Given this properties file used to load the Properties object <em>props</em> and this code snippet, what is the output?</p>
+<p>mystery=bag<br />type=paper</p>
+<p>18: System.out.print(props.getProperty("mystery", "?"));<br />19: System.out.print(" ");<br />20: System.out.print(props.getProperty("more", "?"));</p>',TIMESTAMP '2019-06-21 12:17:42',TIMESTAMP '2019-06-21 12:17:42');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8334,3129,'bag',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8335,3129,'bag null',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8336,3129,'bag ?',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8337,3129,'This code throws a runtime exception on line 20.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3130,12,1,'<p>Given the following four properties files, what does this code print?<br /><br /><img src="uploads/41" alt="tmp6OCP_Tests_Ch22_24.png" width="337" height="226" /></p>
+<p>Locale.setDefault(new Locale("en", "US"));<br />ResourceBundle rb = ResourceBundle.getBundle(<br />&nbsp;&nbsp;&nbsp; "Cars", new Locale("fr", "FR"));<br />System.out.println(rb.getString("country") + " "<br />&nbsp;&nbsp;&nbsp; + rb.getString("engine"));</p>',TIMESTAMP '2019-06-21 12:28:10',TIMESTAMP '2019-06-21 12:28:10');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8338,3130,'France engine',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8339,3130,'France moteur',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8340,3130,'France null',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8341,3130,'The code throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3131,12,1,'<p>Given the four properties files in question 24, what does this code print?<br /><br /><img src="uploads/41" alt="tmp6OCP_Tests_Ch22_24.png" width="337" height="226" /></p>
+<p>Locale.setDefault(new Locale("en", "US"));<br />ResourceBundle rb = ResourceBundle.getBundle(<br />&nbsp;&nbsp;&nbsp; "Cars", new Locale("fr", "CA"));<br />System.out.println(rb.getString("engine") + " "<br />&nbsp;&nbsp;&nbsp; + rb.getString("horses"));<br />&nbsp;</p>',TIMESTAMP '2019-06-21 12:35:59',TIMESTAMP '2019-06-21 12:35:59');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8342,3131,'engine 241',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8343,3131,'moteur 241',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8344,3131,'moteur null',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8345,3131,'The code throws an exception at runtime.',true,'потому что ресурс на найдется');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3132,12,1,'<p>Given the four properties files, what does this code print?<br /><br /><img src="uploads/41" alt="tmp6OCP_Tests_Ch22_24.png" width="337" height="226" /></p>
+<p>Locale.setDefault(new Locale("fr", "CA"));<br />ResourceBundle rb = ResourceBundle.getBundle(<br />&nbsp;&nbsp;&nbsp; "Cars", new Locale("en", "CA"));<br />System.out.println(rb.getString("engine") + " "<br />&nbsp;&nbsp;&nbsp; + rb.getString("horses"));</p>',TIMESTAMP '2019-06-21 12:39:30',TIMESTAMP '2019-06-21 12:39:30');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8346,3132,'engine 241',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8347,3132,'moteur 241',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8348,3132,'moteur null',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8349,3132,'The code throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3133,12,1,'Which statement about ListResourceBundle is true?',TIMESTAMP '2019-06-21 12:51:40',TIMESTAMP '2019-06-21 13:04:49');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8350,3133,'A disadvantage over properties files is that you cannot create the value at runtime.',false,'<p>Как-то можно. Вероятно, с помощью создания анонимного класса с нужным ресурсом</p>');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8351,3133,'Names-fr.java is a bad implementation class name.',true,'должно быть Names_fr');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8352,3133,'Values of type Integer are not allowed.',false,'можно');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8353,3133,'None of the above',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3134,12,1,'<p>If the key <em>red</em> is in all four of these files, which file will the following code use for the resource bundle?</p>
+<p>Locale loc = new Locale("zh", "CN");<br />Locale.setDefault(new Locale("en", "US"));<br />ResourceBundle rb = ResourceBundle.getBundle("Colors", loc);<br />rb.getString("red");</p>',TIMESTAMP '2019-06-21 13:09:38',TIMESTAMP '2019-06-21 13:09:38');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8354,3134,'Colors_CN.properties',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8355,3134,'Colors_en.properties',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8356,3134,'Colors_US.properties',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8357,3134,'Colors_zh.properties',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3135,12,1,'<p>What is the output of the following?</p>
+<p>package counter;<br />import java.util.*;</p>
+<p>public class PropertyCounter extends ListResourceBundle {<br />&nbsp;&nbsp;&nbsp; private int count = 0;<br />&nbsp;&nbsp;&nbsp; @Override<br />&nbsp;&nbsp;&nbsp; protected Object[][] getContents() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return new Object[][] {{ "count", new PropertyCounter() }};<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public int getCount() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return count++;<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ResourceBundle rb = ResourceBundle.getBundle("counter.PropertyCounter");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PropertyCounter obj = (PropertyCounter) rb.getObject("count");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(obj.getCount() + " " + obj.getCount());<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-06-21 13:13:57',TIMESTAMP '2019-06-21 13:13:57');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8358,3135,'0 0',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8359,3135,'0 1',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8360,3135,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8361,3135,'The code compiles but throws an exception at runtime.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3136,12,1,'<p>What is the output of the following?</p>
+<p>1: package keyboard;<br />2: import java.util.*;<br />3:<br />4: public class Type extends ListResourceBundle {<br />5:&nbsp;&nbsp;&nbsp;&nbsp; protected Object[][] getContents() {<br />6:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return new Object[][] { { "keys", new ArrayList&lt;String&gt;() }};<br />7:&nbsp;&nbsp;&nbsp;&nbsp; }<br />8:&nbsp;&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />9:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ResourceBundle rb = ResourceBundle.getBundle("Type");<br />10:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List&lt;String&gt; keys = (List) rb.getObject("keys");<br />11:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; keys.add("q");<br />12:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; keys.add("w");<br />13:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; keys.add("e");<br />14:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; keys.add("r");<br />15:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; keys.add("t");<br />16:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; keys.add("y");<br />17:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(((List) rb.getObject("keys")).size());<br />18:&nbsp;&nbsp;&nbsp; }<br />19: }</p>',TIMESTAMP '2019-06-21 13:19:20',TIMESTAMP '2019-06-21 13:19:20');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8362,3136,'0',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8363,3136,'6',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8364,3136,'The code does not compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8365,3136,'The code compiles but throws an exception at runtime.',true,'т.к. надо было getBundle("<strong>keyboard.</strong>Type");');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3137,20,0,'Maven использует концепцию <em>convention over configuration</em>. А скачать его можно с<br /><br />http://maven.apache.org/download.cgi',TIMESTAMP '2019-06-21 14:15:51',TIMESTAMP '2019-06-21 14:16:03');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3138,20,0,'Как установить Maven по Windows.<br /><br />- Скачать бинарный Zip-архив и распаковать его в папку C:\Program Files\ASF (или C:\ASF, если нет доступа)<br />- установить переменную окружения M2_HOME, прописав в ней путь C:\ASF\apache-maven-3.x.x.<br />- верифицировать инсталляцию командой <strong>mvn &ndash;version</strong>',TIMESTAMP '2019-06-21 15:52:28',TIMESTAMP '2019-06-21 15:52:28');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3139,20,0,'Размер кучи для комфортной работы Maven желательно сделать не меньше 1024 MB.<br /><br />В Windows это делается установкой переменной окружения:<br /><br />set MAVEN_OPTS=-Xmx1024m -XX:MaxPermSize=128m<br /><br />-Xms - это минимальный размер кучи<br />-Xmx - максимальный<br />MaxPermSize - это зона памяти JVM, называемая <em>Permanent Generation</em> (<em>PermGen</em>), в которой хранятся внутренние представления Java-классов',TIMESTAMP '2019-06-21 16:06:14',TIMESTAMP '2019-06-21 16:06:14');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3140,20,2,'Каков наиболее популярный способ стартовать сборку Maven?',TIMESTAMP '2019-06-21 16:08:34',TIMESTAMP '2019-06-21 16:08:34');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8366,3140,'Использовать команду <strong>mvn clean install</strong>. Она собирает все модули Maven для проекта и устанавливает артефакты в локальный репозиторий.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3141,20,0,'Простой проект может "с нуля" собираться менее чем за минуту, в то время как сложный - 2-3 часа, и даже больше. Такое длительное время обусловлено, в том числе, запуском многочисленных тест-кейсов.',TIMESTAMP '2019-06-21 16:10:25',TIMESTAMP '2019-06-21 16:10:25');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,2,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,3,2);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,4,3);
@@ -16215,6 +16285,16 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3096,17);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3097,18);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3098,19);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3099,20);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3127,21);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3128,22);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3129,23);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3130,24);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3131,25);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3132,26);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3133,27);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3134,28);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3135,29);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (87,3136,30);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (88,3077,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (89,3078,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (89,3079,2);
@@ -16255,6 +16335,11 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (92,3123,8);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (92,3124,9);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (92,3125,10);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (92,3126,11);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (93,3137,1);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (94,3138,1);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (94,3139,2);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (94,3140,3);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (94,3141,4);
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (0,'endermen','jpg');
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (1,'ferrari','jpeg');
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (2,'NIIAS','png');
@@ -16296,6 +16381,7 @@ INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (37,'Pr
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (38,'Pro_JPA_2_Ch1_06','PNG');
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (39,'Pro_JPA_2_Ch1_07','PNG');
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (40,'Pro_JPA_2_Ch1_08','PNG');
+INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (41,'tmp6OCP_Tests_Ch22_24','png');
 INSERT INTO UserAnswer (id,questionId,correct,answerDate) OVERRIDING SYSTEM VALUE VALUES (0,2,true,TIMESTAMP '2019-03-25 00:04:36');
 INSERT INTO UserAnswer (id,questionId,correct,answerDate) OVERRIDING SYSTEM VALUE VALUES (1,67,true,TIMESTAMP '2019-03-25 00:04:36');
 INSERT INTO UserAnswer (id,questionId,correct,answerDate) OVERRIDING SYSTEM VALUE VALUES (2,70,true,TIMESTAMP '2019-03-25 00:04:36');
