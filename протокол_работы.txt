@@ -4,7 +4,7 @@ p.381 Ch22№31   p.548
 		#33
 		
 		
-SQL Fehily: p.179 distinct
+SQL Fehily: p.190 Filtering Groups with HAVING
 
 
 
@@ -17,10 +17,12 @@ Java 7 Exam: p.83 ch.2
 
 Java 7 concur: p.833, 837 №5
 
-Spring in Action: p.17 As you can see, this JDBC code queries the database
+Spring in Action: p.32 Chapter 2
 
 Eloquent JavaScript: p.11 To create a value, you must merely invoke its name. This is convenient.
 
 JPA 2: p.11 The Java Persistence API
 
 Maven: p.12 The following screenshot shows an overview of the JVisualVM tool running a Maven build
+
+Jenkins: p.23 CHA[TER 2
