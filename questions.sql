@@ -36,6 +36,7 @@ INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (18,'elJS
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (19,'projpa2','Mike Keith - Pro JPA 2');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (20,'maven','Prabath Siriwardena - Mastering Apache Maven 3');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (21,'jenkins','Brent Laster - Jenkins 2: Up & Running');
+INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (22,'swing','Java Trail Swing Tutorial');
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (0,4,'Основы',1.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (1,4,'Особенности экзамена',0.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (2,4,'Задания к теме',1.1);
@@ -133,6 +134,7 @@ INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (93,20
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (94,20,'Chapter 1 - Apache Maven Quick Start',1.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (95,21,'Preface',0.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (96,21,'Chapter 1 - Introducing Jenkins 2',1.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (97,22,'Тема',0.0);
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (0,4,0,'Тесты экзамена предполагают обычно 5 или 6 ответов, со множественным выбором.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1,4,0,'Нельзя реализовать в классе два интерфейса с общим дефолтным методом, если не переопределить этот метод в классе.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2,4,2,'<p>Перечислите 3 вида комментариев в Java</p>',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
@@ -13283,6 +13285,23 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3178,17,2,'Опишите <em>Core Spring container</em>',TIMESTAMP '2019-06-22 21:51:24',TIMESTAMP '2019-06-22 21:51:24');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8421,3178,'Основной модуль. Работа с бинами + многие enterprise-сервисы: email, JNDI, EJB, планировщик. Входит фоном во все прочие модули.',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3179,17,0,'Spring Web Services в книге не рассматриваются, описаны на<br />http://docs.spring.io/spring-ws/site/',TIMESTAMP '2019-06-22 22:00:39',TIMESTAMP '2019-06-22 22:00:39');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3180,22,0,'<p>Класс для Hello World&nbsp;в Swing:package start;</p>
+<p>import javax.swing.*;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p>public class HelloWorldSwing {<br />&nbsp;&nbsp;&nbsp; /**<br />&nbsp;&nbsp;&nbsp;&nbsp; * Create the GUI and show it.&nbsp; For thread safety,<br />&nbsp;&nbsp;&nbsp;&nbsp; * this method should be invoked from the<br />&nbsp;&nbsp;&nbsp;&nbsp; * event-dispatching thread.<br />&nbsp;&nbsp;&nbsp;&nbsp; */<br />&nbsp;&nbsp;&nbsp; private static void createAndShowGUI() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Create and set up the window.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JFrame frame = new JFrame("HelloWorldSwing");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Add the ubiquitous "Hello World" label.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JLabel label = new JLabel("Hello World");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frame.getContentPane().add(label);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Display the window.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frame.pack();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frame.setVisible(true);<br />&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Schedule a job for the event-dispatching thread:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //creating and showing this application''s GUI.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; javax.swing.SwingUtilities.invokeLater(new Runnable() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public void run() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; createAndShowGUI();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',TIMESTAMP '2019-06-24 14:39:08',TIMESTAMP '2019-06-24 14:39:08');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3181,22,0,'Swing-приложение в Netbeans можно создать как обычное Java Application',TIMESTAMP '2019-06-24 14:46:32',TIMESTAMP '2019-06-24 14:46:32');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3182,22,0,'Для создания основной сцены: в нужный пакет добавить <em>JFrame Form.<br /></em>Будет сгенерен класс-наследник javax.swing.JFrame<em><br /></em>',TIMESTAMP '2019-06-24 14:50:30',TIMESTAMP '2019-06-24 14:54:15');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3183,22,0,'Основные компоненты Netbeans для Spring<br /><br /><em>Palette</em>: содержит визуальные компоненты<br /><em>Design Area</em>: область конструирования GUI. имеет два представления: <em>source view</em> и <em>design view</em><br /><em>Property Editor</em>: редактирование свойст компонентов (видно в режиме design view)<br /><em>Inspector</em> (<em>Navigator</em>): древовидная структура компонентов',TIMESTAMP '2019-06-24 15:04:15',TIMESTAMP '2019-06-24 15:09:18');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3184,22,0,'Нередактируемые участки автосгенеренного кода называются <em>guarded blocks</em>.',TIMESTAMP '2019-06-24 15:04:45',TIMESTAMP '2019-06-24 15:04:45');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3185,22,0,'При выделении компонента в Inspector отображаются его Properties.',TIMESTAMP '2019-06-24 15:16:20',TIMESTAMP '2019-06-24 15:16:20');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3186,22,0,'<em>JTextField</em> - компонент текстового ввода. Его можно просто перетащить с Palette (он там называется Text Field), при этом IDE создаст необходимый код.<br /><br /><em>JLabel</em> - метка с текстом. В Palette - Label<br /><br /><em>JButton</em> - кнопка. В Palette - Button',TIMESTAMP '2019-06-24 15:20:49',TIMESTAMP '2019-06-24 15:20:49');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3187,22,0,'Правый клик на компоненте в design view позволяет задать массу настроек. Если виделять компоненты левой кнопкой с зажатым Shift, то можно задавать свойства относительно друг друга, например, Same Size.',TIMESTAMP '2019-06-24 15:45:54',TIMESTAMP '2019-06-24 15:45:54');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3188,22,0,'Имена переменных компонентов меняются правой кнопкой.',TIMESTAMP '2019-06-24 15:49:01',TIMESTAMP '2019-06-24 15:49:01');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3189,22,0,'Когда пользователь взаимодействует с компонентом Swing GUI, компонент генерит специальный типобъекта - <em>event object</em> - который рассылается всем&nbsp;объектам, которые ранее зарегистрировались как <em>listeners</em>',TIMESTAMP '2019-06-24 15:50:59',TIMESTAMP '2019-06-24 15:50:59');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3190,22,0,'Чтобы зарегистрировать listener, нужно щелкнуть правой кнопкой мыши по компоненту -&gt; Events -&gt; &lt;Группа эвентов, например,&nbsp;Action&gt; -&gt; выбрать нужное (например, ActionPerformed). Сгенерится код обработки события, а также код добавления листенера на компонент',TIMESTAMP '2019-06-24 16:02:58',TIMESTAMP '2019-06-24 16:02:58');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3191,22,0,'В коде обработки события можно ссылаться на переменные компонентов и их API',TIMESTAMP '2019-06-24 16:05:46',TIMESTAMP '2019-06-24 16:05:46');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,2,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,3,2);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,4,3);
@@ -16474,6 +16493,18 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (96,3154,2);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (96,3155,3);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (96,3156,4);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (96,3157,5);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (97,3180,1);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (97,3181,2);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (97,3182,3);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (97,3183,4);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (97,3184,5);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (97,3185,6);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (97,3186,7);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (97,3187,8);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (97,3188,9);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (97,3189,10);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (97,3190,11);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (97,3191,12);
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (0,'endermen','jpg');
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (1,'ferrari','jpeg');
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (2,'NIIAS','png');

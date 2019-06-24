@@ -26,3 +26,5 @@ JPA 2: p.11 The Java Persistence API
 Maven: p.12 The following screenshot shows an overview of the JVisualVM tool running a Maven build
 
 Jenkins: p.23 CHA[TER 2
+
+Swing Trail tutorial: Lesson: Using Swing Components (https://docs.oracle.com/javase/tutorial/uiswing/components/index.html)
