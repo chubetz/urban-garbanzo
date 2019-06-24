@@ -19,7 +19,7 @@ Java 7 concur: p.833, 837 №5
 
 Spring in Action: p.32 Chapter 2
 
-Eloquent JavaScript: p.11 To create a value, you must merely invoke its name. This is convenient.
+Eloquent JavaScript: p.17 There is only one value in JavaScript that is not equal
 
 JPA 2: p.11 The Java Persistence API
 
