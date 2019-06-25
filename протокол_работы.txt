@@ -15,13 +15,13 @@ Servlet: Ch2. p.66 The JSP for the second page
 
 Java 7 Exam: p.83 ch.2
 
-Java 7 concur: p.833, 837 №5
+Java 7: p.422(423), The Calendar class
 
 Spring in Action: p.32 Chapter 2
 
 Eloquent JavaScript: p.17 There is only one value in JavaScript that is not equal
 
-JPA 2: p.11 The Java Persistence API
+JPA 2: p.13 Non-intrusiveness
 
 Maven: p.12 The following screenshot shows an overview of the JVisualVM tool running a Maven build
 
