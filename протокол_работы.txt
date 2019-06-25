@@ -21,9 +21,9 @@ Spring in Action: p.32 Chapter 2
 
 Eloquent JavaScript: p.17 There is only one value in JavaScript that is not equal
 
-JPA 2: p.13 Non-intrusiveness
+JPA 2: p.23 Updating an Entity
 
-Maven: p.12 The following screenshot shows an overview of the JVisualVM tool running a Maven build
+Maven: p.21 Chapter 2
 
 Jenkins: p.23 CHA[TER 2
 
