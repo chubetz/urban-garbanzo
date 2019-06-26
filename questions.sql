@@ -137,6 +137,7 @@ INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (96,21
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (97,22,'Тема',0.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (98,16,'String Processing, Data Formatting, Resource Bundles',8.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (99,19,'Getting Started',2.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (100,11,'OCA Practice Exam (Mughal)',12.0);
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (0,4,0,'Тесты экзамена предполагают обычно 5 или 6 ответов, со множественным выбором.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1,4,0,'Нельзя реализовать в классе два интерфейса с общим дефолтным методом, если не переопределить этот метод в классе.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2,4,2,'<p>Перечислите 3 вида комментариев в Java</p>',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
@@ -13399,6 +13400,103 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8456,3250,'<strong>mvn help:effective-pom</strong>',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3251,20,2,'Как вывести все папки и jar-ники classpath?',TIMESTAMP '2019-06-26 01:52:22',TIMESTAMP '2019-06-26 01:52:22');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8457,3251,'<strong>mvn dependency:build-classpath</strong>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3252,11,1,'<p>Which expression statements, when inserted at (1), will cause the following class to compile without errors?</p>
+<p>public class Q6db8 {<br />&nbsp;&nbsp;&nbsp; private int a;<br />&nbsp;&nbsp;&nbsp; private int b = 0;<br />&nbsp;&nbsp;&nbsp; private static int c;</p>
+<p>&nbsp;&nbsp;&nbsp; public void m() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int d;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int e = 0;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // (1) INSERT CODE HERE.<br />&nbsp;&nbsp;&nbsp; }<br />}</p>
+<p>Select the four correct answers.</p>',TIMESTAMP '2019-06-26 11:13:58',TIMESTAMP '2019-06-26 11:13:58');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8458,3252,'a++;',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8459,3252,'b++;',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8460,3252,'c++;',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8461,3252,'d++;',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8462,3252,'e++;',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3253,11,1,'<p>What will be printed when the following program is run?</p>
+<p>public class Qd803 {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String word = "restructure";<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(word.substring(2, 3));<br />&nbsp;&nbsp;&nbsp; }<br />}</p>
+<p>Select the one correct answer.</p>',TIMESTAMP '2019-06-26 11:16:22',TIMESTAMP '2019-06-26 11:16:22');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8463,3253,'est',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8464,3253,'es',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8465,3253,'str',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8466,3253,'st',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8467,3253,'s',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3254,11,1,'<p>What will be printed when the following program is run?</p>
+<p>public class Q8929 {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 12; i &gt; 0; i -= 3)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(i);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("");<br />&nbsp;&nbsp;&nbsp; }<br />}</p>
+<p>Select the one correct answer.</p>',TIMESTAMP '2019-06-26 11:18:43',TIMESTAMP '2019-06-26 11:18:43');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8468,3254,'12',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8469,3254,'129630',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8470,3254,'12963',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8471,3254,'36912',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8472,3254,'None of the above.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3255,11,1,'<p>What will be the result of compiling and running the following program?</p>
+<p>public class Q275d {<br />&nbsp;&nbsp;&nbsp; private static int a;<br />&nbsp;&nbsp;&nbsp; private int b;</p>
+<p>&nbsp;&nbsp;&nbsp; public Q275d() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int c;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c = a; // (1)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a++; // (2)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b += c; // (3)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a -= b; // (4)<br />&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new Q275d();<br />&nbsp;&nbsp;&nbsp; }<br />}</p>
+<p>Select the one correct answer.</p>',TIMESTAMP '2019-06-26 11:23:03',TIMESTAMP '2019-06-26 11:23:03');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8473,3255,'The program will fail to compile because of the line marked (1).',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8474,3255,'The program will fail to compile because of the line marked (2).',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8475,3255,'The program will fail to compile because of the line marked (3).',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8476,3255,'The program will fail to compile because of the line marked (4).',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8477,3255,'The program will compile and run without any problems.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3256,11,1,'<p>What will be printed when the following program is run?</p>
+<p>class Base {<br />&nbsp;&nbsp;&nbsp; protected int i;<br />&nbsp;&nbsp;&nbsp; Base() { add(1); }<br />&nbsp;&nbsp;&nbsp; void add(int v) { i += v; }<br />&nbsp;&nbsp;&nbsp; void print() { System.out.println(i); }<br />}</p>
+<p>class Extension extends Base {<br />&nbsp;&nbsp;&nbsp; Extension() { add(2); }<br />&nbsp;&nbsp;&nbsp; void add(int v) { i += v*2; }<br />}</p>
+<p>public class Qd073 {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bogo(new Extension());<br />&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp; static void bogo(Base b) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.add(8);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.print();<br />&nbsp;&nbsp;&nbsp; }<br />}</p>
+<p>Select the one correct answer.</p>',TIMESTAMP '2019-06-26 11:27:58',TIMESTAMP '2019-06-26 11:27:58');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8478,3256,'9',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8479,3256,'11',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8480,3256,'13',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8481,3256,'21',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8482,3256,'22',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3257,11,1,'<p>Which is the first line in the following code after which the object created in the line marked (0) will be a candidate for garbage collection, assuming no compiler optimizations are done?</p>
+<p>class Widget {<br />&nbsp;&nbsp;&nbsp; private String message;</p>
+<p>&nbsp;&nbsp;&nbsp; Widget(String message) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.message = message;<br />&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp; public String toString() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return this.message;<br />&nbsp;&nbsp;&nbsp; }<br />}</p>
+<p>public class Q76a9 {<br />&nbsp;&nbsp;&nbsp; static Widget fiddle() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Widget a = new Widget(&ldquo;hello&rdquo;);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Widget b = new Widget(&ldquo;bye&rdquo;); // (0)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Widget c = new Widget(b + &ldquo;!&rdquo;); // (1)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Widget d = b; // (2)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b = a; // (3)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d = a; // (4)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return c; // (5)<br />&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Widget giz = fiddle();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(giz); // (6)<br />&nbsp;&nbsp;&nbsp; }<br />}</p>
+<p>Select the one correct answer.</p>',TIMESTAMP '2019-06-26 11:32:16',TIMESTAMP '2019-06-26 11:32:16');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8483,3257,'The line marked (1)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8484,3257,'The line marked (2)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8485,3257,'The line marked (3)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8486,3257,'The line marked (4)',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8487,3257,'The line marked (5)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8488,3257,'The line marked (6)',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3258,11,1,'<p>Which methods from the String or the StringBuilder class modify the object on which they are invoked?</p>
+<p>Select the two correct answers.</p>',TIMESTAMP '2019-06-26 11:36:34',TIMESTAMP '2019-06-26 11:36:34');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8489,3258,'The charAt() method of the String class',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8490,3258,'The toUpperCase() method of the String class',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8491,3258,'The replace() method of the String class',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8492,3258,'The replace() method of the StringBuilder class',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8493,3258,'The reverse() method of the StringBuilder class',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8494,3258,'The charAt() method of the StringBuilder class',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3259,11,1,'<p>Which of the following statements, when inserted independently at (1), will throw a runtime exception?</p>
+<p>class A {}</p>
+<p>class B extends A {}</p>
+<p>class C extends A {}</p>
+<p>public class Q3ae4 {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A x = new A();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; B y = new B();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; C z = new C();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // (1) INSERT CODE HERE.<br />&nbsp;&nbsp;&nbsp; }<br />}</p>
+<p>Select the one correct answer.</p>',TIMESTAMP '2019-06-26 11:43:43',TIMESTAMP '2019-06-26 11:43:43');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8495,3259,'x = y;',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8496,3259,'z = x;',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8497,3259,'y = (B) x;',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8498,3259,'z = (C) y;',false,'не скомпилируется, поскольку B и C не находятся в одной иерархии наследования');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8499,3259,'y = (A) y;',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3260,11,1,'<p>Given the following program:</p>
+<p>public class Q400A60 {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String str = "loop or not to loop";<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String[] strs = {"loop", "or", "not", "to", "loop"};<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // (1) INSERT LOOP HERE.<br />&nbsp;&nbsp;&nbsp; }<br />}</p>
+<p>Which code, when inserted independently at (1), will compile without errors?</p>
+<p>Select the four correct answers.</p>',TIMESTAMP '2019-06-26 11:49:53',TIMESTAMP '2019-06-26 11:49:53');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8500,3260,'for (char ch : str)<br />&nbsp;&nbsp;&nbsp; System.out.print(ch);',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8501,3260,'for (char ch : str.toCharArray())<br />&nbsp;&nbsp;&nbsp; System.out.print(ch);',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8502,3260,'for (Character ch : str.toCharArray())<br />&nbsp;&nbsp;&nbsp; System.out.print(ch);',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8503,3260,'for (Character ch : str.toCharArray())<br />&nbsp;&nbsp;&nbsp; System.out.print(ch.charValue());',true,'есть такой');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8504,3260,'for (String str : strs)<br />&nbsp;&nbsp;&nbsp; System.out.print(str);',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8505,3260,'for (String elt : strs[])<br />&nbsp;&nbsp;&nbsp; System.out.print(elt);',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8506,3260,'for (String elt : strs)<br />&nbsp;&nbsp;&nbsp; System.out.print(elt);',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8507,3260,'for (Character ch : strs[strs.length-1].toArray())<br />&nbsp;&nbsp;&nbsp; System.out.print(ch);',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3261,11,1,'<p>Which code initializes the two-dimensional array matrix so that matrix[3][2] is a valid element?</p>
+<p>Select the two correct answers.</p>',TIMESTAMP '2019-06-26 11:54:10',TIMESTAMP '2019-06-26 11:54:10');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8508,3261,'int[][] matrix = {<br />&nbsp;&nbsp;&nbsp; { 0, 0, 0 },<br />&nbsp;&nbsp;&nbsp; { 0, 0, 0 }<br />};',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8509,3261,'int matrix[][] = new int[4][];<br />for (int i = 0; i &lt; matrix.length; i++) matrix[i] = new int[3];',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8510,3261,'int matrix[][] = {<br />&nbsp;&nbsp;&nbsp; 0, 0, 0, 0,<br />&nbsp;&nbsp;&nbsp; 0, 0, 0, 0,<br />&nbsp;&nbsp;&nbsp; 0, 0, 0, 0,<br />&nbsp;&nbsp;&nbsp; 0, 0, 0, 0<br />};',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8511,3261,'int matrix[3][2];',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8512,3261,'int[] matrix[] = { {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0} };',true,'');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,2,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,3,2);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,4,3);
@@ -16662,6 +16760,16 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (99,3236,17);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (99,3237,18);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (99,3238,19);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (99,3239,20);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3252,1);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3253,2);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3254,3);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3255,4);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3256,5);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3257,6);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3258,7);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3259,8);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3260,9);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3261,10);
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (0,'endermen','jpg');
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (1,'ferrari','jpeg');
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (2,'NIIAS','png');

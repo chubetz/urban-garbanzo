@@ -28,3 +28,5 @@ Maven: p.21 Chapter 2
 Jenkins: p.23 CHA[TER 2
 
 Swing Trail tutorial: Lesson: Using Swing Components (https://docs.oracle.com/javase/tutorial/uiswing/components/index.html)
+
+OCA 8 Mughal: p.635 #11 p.669
