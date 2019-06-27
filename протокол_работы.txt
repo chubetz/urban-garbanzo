@@ -4,7 +4,7 @@ p.381 Ch22№31   p.548
 		#33
 		
 		
-SQL Fehily: p.190 Filtering Groups with HAVING
+SQL Fehily: p.200 Creating Joins with JOIN or WHERE
 
 
 
@@ -25,7 +25,7 @@ JPA 2: p.23 Updating an Entity
 
 Maven: p.21 Chapter 2
 
-Jenkins: p.23 CHA[TER 2
+Jenkins: p.33(32) Here’s a very simple pipeline expressed in the Jenkins DSL:
 
 Swing Trail tutorial: Lesson: Using Swing Components (https://docs.oracle.com/javase/tutorial/uiswing/components/index.html)
 
