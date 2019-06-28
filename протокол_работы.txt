@@ -17,9 +17,9 @@ Java 7 Exam: p.83 ch.2
 
 Java 7: p.429(428), There are a couple more methods in Locale (getDisplayCountry()
 
-Spring in Action: p.32 Chapter 2
+Spring in Action: p.45 2.3.3 Injecting with JavaConfig
 
-Eloquent JavaScript: p.17 There is only one value in JavaScript that is not equal
+Eloquent JavaScript: p.22 Chapter 2
 
 JPA 2: p.23 Updating an Entity
 
