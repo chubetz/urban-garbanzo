@@ -15,13 +15,13 @@ Servlet: Ch2. p.66 The JSP for the second page
 
 Java 7 Exam: p.83 ch.2
 
-Java 7: p.429(428), There are a couple more methods in Locale (getDisplayCountry()
+Java 7: p.434(433), In a few pages, we're going to show you a lot more regex code, but first we want to go over some more regex syntax.
 
 Spring in Action: p.45 2.3.3 Injecting with JavaConfig
 
-Eloquent JavaScript: p.22 Chapter 2
+Eloquent JavaScript: p.27 RETURN VALUES
 
-JPA 2: p.23 Updating an Entity
+JPA 2: p.59 Chapter 4
 
 Maven: p.21 Chapter 2
 
@@ -29,4 +29,4 @@ Jenkins: p.33(32) Here’s a very simple pipeline expressed in the Jenkins DSL:
 
 Swing Trail tutorial: Lesson: Using Swing Components (https://docs.oracle.com/javase/tutorial/uiswing/components/index.html)
 
-OCA 8 Mughal: p.635 #11 p.669
+OCA 8 Mughal: p.640 #11 p.671
