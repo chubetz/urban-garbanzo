@@ -23,7 +23,9 @@ Eloquent JavaScript: p.27 RETURN VALUES
 
 JPA 2: p.59 Chapter 4
 
-Maven: p.21 Chapter 2
+Maven 3 : p.21 Chapter 2 - suspended
+
+Maven examples: p.10 Ch.2
 
 Jenkins: p.33(32) Here’s a very simple pipeline expressed in the Jenkins DSL:
 
