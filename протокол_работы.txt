@@ -29,4 +29,4 @@ Jenkins: p.33(32) Here’s a very simple pipeline expressed in the Jenkins DSL:
 
 Swing Trail tutorial: Lesson: Using Swing Components (https://docs.oracle.com/javase/tutorial/uiswing/components/index.html)
 
-OCA 8 Mughal: p.640 #11 p.671
+OCA 8 Mughal: p.644 #31 p.673
