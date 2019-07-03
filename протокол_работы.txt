@@ -15,7 +15,7 @@ Servlet: Ch2. p.66 The JSP for the second page
 
 Java 7 Exam: p.83 ch.2
 
-Java 7: p.434(433), In a few pages, we're going to show you a lot more regex code, but first we want to go over some more regex syntax.
+Java 7: p.439, You can read this as "At position 0, there's an integer with a value of 1;
 
 Spring in Action: p.45 2.3.3 Injecting with JavaConfig
 
