@@ -31,6 +31,6 @@ Jenkins: p.33(32) Here’s a very simple pipeline expressed in the Jenkins DSL:
 
 Swing Trail tutorial: Lesson: Using Swing Components (https://docs.oracle.com/javase/tutorial/uiswing/components/index.html)
 
-OCA 8 Mughal: p.644 #31 p.673
+OCA 8 Mughal: p.649 #31 p.674
 
 JavaFX p.5 The program includes a package declaration, an import statement, and a class declaration

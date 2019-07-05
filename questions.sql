@@ -13907,6 +13907,87 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3425,24,2,'Чем технически является приложение JavaFX?',TIMESTAMP '2019-07-04 15:08:54',TIMESTAMP '2019-07-04 15:08:54');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8702,3425,'Классом, наследующим от javafx.application.<strong>Application</strong>.',true,'');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3426,24,0,'Первая версия приложения HelloWorld.<br /><br />package com.jdojo.intro;<br />import javafx.application.Application;<br /><br />public class HelloFXApp extends Application {<br />&nbsp;&nbsp;&nbsp; //Application logic goes here<br />}<br /><br />Не скомпилируется, т.к. не реализован абстрактный метод <strong>start</strong>().',TIMESTAMP '2019-07-04 15:10:48',TIMESTAMP '2019-07-04 15:10:57');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3427,11,1,'<p>What will be the result of attempting to compile and run the following program?</p>
+<p>public class Switcheroo {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final int iLoc = 3;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final Integer iFour = 4;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Integer iRef = 4;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (iRef) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case iFour:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(&ldquo;It&rsquo;s OK.&rdquo;);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 1:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case iLoc:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 2 * iLoc:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(&ldquo;I am not OK.&rdquo;);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(&ldquo;You are OK.&rdquo;);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; }<br />}</p>
+<p>Select the one correct answer.</p>',TIMESTAMP '2019-07-05 12:11:21',TIMESTAMP '2019-07-05 12:11:21');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8703,3427,'The program will fail to compile.',true,'Обертка Integer е может быть в case');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8704,3427,'The program will compile, but will throw a runtime exception.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8705,3427,'The program will compile correctly and will print the following at runtime:<br />It&rsquo;s OK.<br />I am not OK.<br />You are OK.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8706,3427,'The program will compile correctly and will print the following at runtime:<br />It&rsquo;s OK.<br />I am not OK.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8707,3427,'The program will compile correctly and will print the following at runtime:<br />It&rsquo;s OK.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3428,11,1,'<p>Which of the following implementations of a max() method will correctly return the largest value?</p>
+<p>// (1)<br />int max(int x, int y) {<br />&nbsp;&nbsp;&nbsp; return (if (x &gt; y) { x; } else { y; });<br />}</p>
+<p>// (2)<br />int max(int x, int y) {<br />&nbsp;&nbsp;&nbsp; return (if (x &gt; y) { return x; } else { return y; });<br />}</p>
+<p>// (3)<br />int max(int x, int y) {<br />&nbsp;&nbsp;&nbsp; switch (x &lt; y) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case true:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return y;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return x;<br />&nbsp;&nbsp;&nbsp; };<br />}</p>
+<p>// (4)<br />int max(int x, int y) {<br />&nbsp;&nbsp;&nbsp; if (x &gt; y) return x;<br />&nbsp;&nbsp;&nbsp; return y;<br />}</p>
+<p>Select the one correct answer.</p>',TIMESTAMP '2019-07-05 12:19:07',TIMESTAMP '2019-07-05 12:19:07');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8708,3428,'Implementation labeled (1)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8709,3428,'Implementation labeled (2)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8710,3428,'Implementation labeled (3)',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8711,3428,'Implementation labeled (4)',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3429,11,1,'<p>Given the following code, which statement is true?</p>
+<p>class MyClass {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int k = 0;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int l = 0;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt;= 3; i++) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; k++;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (i == 2) break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; l++;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(k + ",&nbsp;" + l);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>
+<p>Select the one correct answer.</p>',TIMESTAMP '2019-07-05 12:29:14',TIMESTAMP '2019-07-05 12:29:14');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8712,3429,'The program will fail to compile.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8713,3429,'The program will print 3, 3 at runtime.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8714,3429,'The program will print 4, 3 at runtime, if the break statement is replaced by the continue statement.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8715,3429,'The program will fail to compile if the break statement is replaced by the return statement.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8716,3429,'The program will fail to compile if the break statement is replaced by an empty statement.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3430,11,1,'<p>Which statements are true?</p>
+<p>Select the two correct answers.</p>',TIMESTAMP '2019-07-05 12:36:14',TIMESTAMP '2019-07-05 12:36:14');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8717,3430,'{{}} is a valid block statement.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8718,3430,'{ continue; } is a valid block statement.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8719,3430,'block: { break block; } is a valid block statement.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8720,3430,'block: { continue block; } is a valid block statement.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8721,3430,'The break statement can be used only in a loop (while, do-while or for) or a switch statement.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3431,11,1,'<p>Given the declaration:</p>
+<p>int[][] nums = {{20}, {30}, {40}};</p>
+<p>Which code will compile and print 90 at runtime?</p>
+<p>Select the one correct answer.</p>',TIMESTAMP '2019-07-05 12:47:55',TIMESTAMP '2019-07-05 12:47:55');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8722,3431,'{<br />&nbsp;&nbsp;&nbsp; int sum = 0;<br />&nbsp;&nbsp;&nbsp; for (int[] row : nums[])<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int val : nums[row])<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sum += val;<br />&nbsp;&nbsp;&nbsp; System.out.println(sum);<br />}',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8723,3431,'{<br />&nbsp;&nbsp;&nbsp; int sum = 0;<br />&nbsp;&nbsp;&nbsp; for (int[] row : nums[][])<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int val : nums[row])<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sum += val;<br />&nbsp;&nbsp;&nbsp; System.out.println(sum);<br />}',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8724,3431,'{<br />&nbsp;&nbsp;&nbsp; int sum = 0;<br />&nbsp;&nbsp;&nbsp; for (int[] row : nums)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int val : nums[row])<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sum += val;<br />&nbsp;&nbsp;&nbsp; System.out.println(sum);<br />}',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8725,3431,'{<br />&nbsp;&nbsp;&nbsp; int sum = 0;<br />&nbsp;&nbsp;&nbsp; for (int[] row : nums)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int val : row)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sum += val;<br />&nbsp;&nbsp;&nbsp; System.out.println(sum);<br />}',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8726,3431,'{<br />&nbsp;&nbsp;&nbsp; int sum = 0;<br />&nbsp;&nbsp;&nbsp; for (Integer[] row : nums)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int val : row)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sum += val;<br />&nbsp;&nbsp;&nbsp; System.out.println(sum);<br />}',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3432,11,1,'<p>Which digits, and in what order, will be printed when the following program is compiled and run?</p>
+<p>public class MyClass {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; interruptForLunch();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (InterruptedException e) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("1");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw new RuntimeException();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (RuntimeException e) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("2");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (Exception e) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("3");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } finally {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("4");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("5");<br />&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp; // InterruptedException is a direct subclass of Exception.<br />&nbsp;&nbsp;&nbsp; static void interruptForLunch() throws InterruptedException {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw new InterruptedException("Time for lunch.");<br />&nbsp;&nbsp;&nbsp; }<br />}</p>
+<p>Select the one correct answer.</p>',TIMESTAMP '2019-07-05 14:53:46',TIMESTAMP '2019-07-05 14:53:46');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8727,3432,'The program will print 5.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8728,3432,'The program will print 1 and 4, in that order.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8729,3432,'The program will print 1, 2, and 4, in that order.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8730,3432,'The program will print 1, 4, and 5, in that order.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8731,3432,'The program will print 1, 2, 4, and 5, in that order.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8732,3432,'The program will print 3 and 5, in that order.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3433,11,1,'<p>How many objects are reachable when control reaches (1)?</p>
+<p>public class Nullify {<br />&nbsp;&nbsp;&nbsp; private static void nullify(Object[] array) { array = null; }<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; args = null;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Object[] array = new Object[4];<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 4; i++) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[i] = new Object();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nullify(array);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.gc(); // (1);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>
+<p>Select the one correct answer.</p>',TIMESTAMP '2019-07-05 14:59:19',TIMESTAMP '2019-07-05 14:59:19');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8733,3433,'0',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8734,3433,'1',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8735,3433,'4',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8736,3433,'5',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8737,3433,'It is difficult to say.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3434,11,1,'<p>Which statement describes the guaranteed behavior of the garbage collection and finalization mechanisms?</p>
+<p>Select the one correct answer.</p>',TIMESTAMP '2019-07-05 15:17:37',TIMESTAMP '2019-07-05 15:17:37');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8738,3434,'Objects will not be destroyed until they have no references to them.',false,'неверно. на объект может ссылаться другой доступный для gc объект');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8739,3434,'An object eligible for garbage collection will eventually be destroyed by the garbage collector.',false,'не факт, что успеет до завершения программы');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8740,3434,'If object A became eligible for garbage collection before object B, then object A will be destroyed before object B.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8741,3434,'An object, once eligible for garbage collection, can never become accessible by a live thread.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8742,3434,'None of the above.',false,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3435,11,1,'<p>Which of these expressions are legal?</p>
+<p>Select the four correct answers.</p>',TIMESTAMP '2019-07-05 18:07:53',TIMESTAMP '2019-07-05 18:07:53');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8743,3435,'"co".concat("ol")',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8744,3435,'("co" + "ol")',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8745,3435,'(''c'' + ''o'' + ''o'' + ''l'')',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8746,3435,'("co" + new String(''o'' + ''l''))',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8747,3435,'("co" + new String("co"))',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3436,11,1,'<p>Which statement about the charAt() method of the String class is true?</p>
+<p>Select the one correct answer.</p>',TIMESTAMP '2019-07-05 18:09:48',TIMESTAMP '2019-07-05 18:09:48');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8748,3436,'The charAt() method takes a char value as an argument.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8749,3436,'The charAt() method returns a Character object.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8750,3436,'The expression ("abcdef").charAt(3) is illegal.',false,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8751,3436,'The expression "abcdef".charAt(3) evaluates to the character ''d''.',true,'');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8752,3436,'The index of the first character is 1.',false,'');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,2,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,3,2);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,4,3);
@@ -17246,6 +17327,16 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3390,27);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3391,28);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3392,29);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3393,30);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3427,31);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3428,32);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3429,33);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3430,34);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3431,35);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3432,36);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3433,37);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3434,38);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3435,39);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (100,3436,40);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (101,3273,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (101,3274,2);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (101,3275,3);
