@@ -4,7 +4,7 @@ p.381 Ch22№31   p.548
 		#33
 		
 		
-SQL Fehily: p.200 Creating Joins with JOIN or WHERE
+SQL Fehily: p.218 Listing 7.14 is similar to Listing 7.13, except that it uses an additional grouping
 
 
 
@@ -15,19 +15,19 @@ Servlet: Ch2. p.66 The JSP for the second page
 
 Java 7 Exam: p.83 ch.2
 
-Java 7: p.439, You can read this as "At position 0, there's an integer with a value of 1;
+Java 7: p.444(443), Locating Data via Pattern Matching
 
-Spring in Action: p.45 2.3.3 Injecting with JavaConfig
+Spring in Action: p.58 Notice, however, that you can’t use the p-namespace when wiring a collection.
 
-Eloquent JavaScript: p.27 RETURN VALUES
+Eloquent JavaScript: p.40 A function can have multiple parameters or no parameters at all.
 
-JPA 2: p.59 Chapter 4
+JPA 2: p.69 Temporal Types
 
 Maven 3 : p.21 Chapter 2 - suspended
 
 Maven examples: p.10 Ch.2
 
-Jenkins: p.33(32) Here’s a very simple pipeline expressed in the Jenkins DSL:
+Jenkins: p.45 Running a Pipeline
 
 Swing Trail tutorial: Lesson: Using Swing Components (https://docs.oracle.com/javase/tutorial/uiswing/components/index.html)
 
