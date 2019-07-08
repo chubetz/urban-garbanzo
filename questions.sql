@@ -40,6 +40,7 @@ INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (22,'swin
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (23,'maven_ex','Maven in examples');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (24,'javafx','Kishori Sharan - Learn JavaFX 8');
 INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (25,'java_sobes','Java к собеседованию');
+INSERT INTO Realm (id,text,description) OVERRIDING SYSTEM VALUE VALUES (26,'kotinact','Dmitry Jemerov - Kotlin in Action');
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (0,4,'Основы',1.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (1,4,'Особенности экзамена',0.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (2,4,'Задания к теме',1.1);
@@ -156,6 +157,7 @@ INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (112,1
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (113,25,'Без принадлежности',-1.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (114,18,'Functions',3.0);
 INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (115,19,'Object-Relational Mapping',4.0);
+INSERT INTO Theme (id,realmId,text,number) OVERRIDING SYSTEM VALUE VALUES (116,26,'Kotlin: what and why',1.0);
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (0,4,0,'Тесты экзамена предполагают обычно 5 или 6 ответов, со множественным выбором.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (1,4,0,'Нельзя реализовать в классе два интерфейса с общим дефолтным методом, если не переопределить этот метод в классе.',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (2,4,2,'<p>Перечислите 3 вида комментариев в Java</p>',TIMESTAMP '1970-01-01 03:00:00',TIMESTAMP '1970-01-01 03:00:00');
@@ -13911,7 +13913,7 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3424,24,0,'Все классы JavaFX упакованы в jfxrt.jar, лежащий в jre\lib\ext<br /><br />В IDE, отличных от Netbeans, может потребоваться явное добавление библиотеки в CLASSPATH<br /><br />Исходный код лежит в файле javafx-src.zip, который можно найти в домашней папке Java.',TIMESTAMP '2019-07-04 15:04:20',TIMESTAMP '2019-07-04 15:04:20');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3425,24,2,'Чем технически является приложение JavaFX?',TIMESTAMP '2019-07-04 15:08:54',TIMESTAMP '2019-07-04 15:08:54');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8702,3425,'Классом, наследующим от javafx.application.<strong>Application</strong>.',true,'');
-INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3426,24,0,'Первая версия приложения HelloWorld.<br /><br />package com.jdojo.intro;<br />import javafx.application.Application;<br /><br />public class HelloFXApp extends Application {<br />&nbsp;&nbsp;&nbsp; //Application logic goes here<br />}<br /><br />Не скомпилируется, т.к. не реализован абстрактный метод <strong>start</strong>().',TIMESTAMP '2019-07-04 15:10:48',TIMESTAMP '2019-07-04 15:10:57');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3426,24,0,'Первая версия приложения HelloWorld.<br /><br />package com.jdojo.intro;<br />import javafx.application.Application;<br /><br />public class HelloFXApp extends Application {<br />&nbsp;&nbsp;&nbsp; //Application logic goes here<br />}<br /><br />Не скомпилируется, т.к. не реализован абстрактный метод <strong>start</strong>().<br /><br />Кстати, его сигнатура:<br />public abstract <em>void</em> <strong>start</strong>(<em>Stage</em> stage) throws java.lang.<em>Exception</em>',TIMESTAMP '2019-07-04 15:10:48',TIMESTAMP '2019-07-08 12:40:05');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3427,11,1,'<p>What will be the result of attempting to compile and run the following program?</p>
 <p>public class Switcheroo {<br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final int iLoc = 3;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final Integer iFour = 4;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Integer iRef = 4;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (iRef) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case iFour:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(&ldquo;It&rsquo;s OK.&rdquo;);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 1:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case iLoc:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 2 * iLoc:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(&ldquo;I am not OK.&rdquo;);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(&ldquo;You are OK.&rdquo;);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; }<br />}</p>
 <p>Select the one correct answer.</p>',TIMESTAMP '2019-07-05 12:11:21',TIMESTAMP '2019-07-05 12:11:21');
@@ -14148,6 +14150,37 @@ INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3532,19,0,'Типы, которые маппятся на BLOB: <strong>byte</strong>[], <strong>Byte</strong>[], <strong>Serializable<br /></strong><br />Типы, которые маппятся на CLOB: <strong>char</strong>[], <strong>Character</strong>[], <strong>String</strong>',TIMESTAMP '2019-07-07 20:22:52',TIMESTAMP '2019-07-07 20:22:52');
 INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3533,19,2,'Как осуществляется маппинг перечислимых типов?',TIMESTAMP '2019-07-07 20:38:15',TIMESTAMP '2019-07-07 20:39:41');
 	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8810,3533,'В БД в целочисленную колонку записываются порядковые номера (<em>ordinals</em>) экземпляров энума. Никаких специальных пометок в структуре сущности не требуется:<br /><br />@Entity<br />public class Employee {<br />&nbsp;&nbsp;&nbsp; @Id private long id;<br />&nbsp;&nbsp;&nbsp; private EmployeeType type; //энум<br />&nbsp;&nbsp;&nbsp; // ...<br />}<br /><br />Однако может возникнуть проблема, если набор экземпляров будет изменен и перетасован. Если есть риск того, что это случится, можно попробовать хранить энумы как строки. Для этого нужно использовать аннотацию @<strong>Enumerated</strong>:<br /><br />@Entity<br />public class Employee {<br />&nbsp;&nbsp;&nbsp; @Id<br />&nbsp;&nbsp;&nbsp; private long id;<br />&nbsp;&nbsp;&nbsp; @<strong>Enumerated</strong>(EnumType.<em>STRING</em>)<br />&nbsp;&nbsp;&nbsp; private EmployeeType type;<br />&nbsp;&nbsp;&nbsp; // ...<br />}<br /><br />(есть еще опция EnumType.ORDINAL, но ее можно не указывать, т.к. оно так и работает по умолчанию)<br /><br />Но вообще лучше хранить как ORDINAL и грамотно изменять структуру энума - только добавлять экземпляры и не менять порядок и состав уже имеющихся',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3534,26,0,'Онлайн-песочница: http://try.kotl.in',TIMESTAMP '2019-07-08 11:02:46',TIMESTAMP '2019-07-08 11:02:46');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3535,26,2,'Опишите следующий код:<br /><br />data class Person(val name: String, val age: Int? = null)',TIMESTAMP '2019-07-08 11:07:53',TIMESTAMP '2019-07-08 11:07:53');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8811,3535,'Простой класс данных с двумя свойствами. Свойство <em>age</em> по умолчанию <strong>null</strong>.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3536,26,2,'Какова точка входа в программу?',TIMESTAMP '2019-07-08 11:08:51',TIMESTAMP '2019-07-08 11:08:55');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8812,3536,'<p>fun main(args: Array&lt;String&gt;) {</p>
+<p>}</p>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3537,26,2,'Дан класс<br /><br />data class Person(val name: String, val age: Int? = null)<br /><br />Как создать экземпляры?',TIMESTAMP '2019-07-08 11:13:30',TIMESTAMP '2019-07-08 11:13:30');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8813,3537,'Person("Alice") // age будет null<br />Person("Bob", 29)<br />Person("Bob", age = 29)<br />Person(name = "Bob", age = 29)',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3538,26,2,'Дан класс<br /><br />data class Person(val name: String, val age: Int? = null)<br /><br />Как создать список персон?<br /><br />Как найти максимальную по возрасту в списке?<br /><br />Как напечатать результат?',TIMESTAMP '2019-07-08 11:15:55',TIMESTAMP '2019-07-08 11:16:00');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8814,3538,'val persons = <strong>listOf</strong>(Person("Alice"), Person("Bob", age = 29))<br />val oldest = persons.<strong>maxBy</strong> { <strong>it</strong>.age ?: 0 }<br />println("The oldest is: $oldest")',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3539,26,2,'Что такое <em>Elvis operator</em>?',TIMESTAMP '2019-07-08 11:18:09',TIMESTAMP '2019-07-08 11:18:24');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8815,3539,'<strong>?:</strong><br />позволяет задать значение, если переменная равна null:<br /><br />val age = null<br />println(age ?: 0)',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3540,26,2,'Каковы основные области применения Kotlin?',TIMESTAMP '2019-07-08 11:21:36',TIMESTAMP '2019-07-08 11:21:36');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8816,3540,'- Код на стороне сервера (бэкенд веб-приложений)<br />- Мобильные приложения под Android<br /><br />Кроме того, Kotlin может быть скомпилирован в JS',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3541,26,0,'Kotlin - статически типизированный язык, т.е. все типы уже известны на этапе компиляции. Указывать тип необязательно, если он понятен из контекста (<em>type inference</em>):<br /><br />val x = 1 // автоматически станет <strong>Int</strong>',TIMESTAMP '2019-07-08 11:34:22',TIMESTAMP '2019-07-08 11:34:22');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3542,26,2,'Что такое <em>first-class functions</em>?',TIMESTAMP '2019-07-08 11:35:47',TIMESTAMP '2019-07-08 11:35:47');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8817,3542,'Функции как значения. Т.е. функцию можно хранить в переменной, передавать как параметр или возвращать как результат выполнения другой функции',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3543,26,0,'Kotlin имеет полный доступ к класса Java. Наследование и аннотирование - не проблема',TIMESTAMP '2019-07-08 12:07:02',TIMESTAMP '2019-07-08 12:07:02');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3544,26,2,'Поясните концепцию nullable-типов',TIMESTAMP '2019-07-08 12:20:17',TIMESTAMP '2019-07-08 12:20:17');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8818,3544,'val s: String<strong>?</strong> = null //переменная может быть равна null<br />val s2: String = "" //переменная не может быть равна null',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3545,26,0,'Если мы производим проверку на соответствие объекта какому-то типу, то в дальнейшем контексте не требуется явный кастинг:<br /><br />if (value is String)<br />&nbsp;&nbsp;&nbsp; println(value.toUpperCase())',TIMESTAMP '2019-07-08 12:21:50',TIMESTAMP '2019-07-08 12:21:50');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3546,24,0,'<p>Следующая версия приложения HelloWorld:<br /><br />package com.jdojo.intro;</p>
+<p>import javafx.application.Application;<br />import javafx.stage.Stage;</p>
+<p>public class HelloFXApp extends Application {<br />&nbsp;&nbsp;&nbsp; @Override<br />&nbsp;&nbsp;&nbsp; public void start(Stage stage) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // The logic for starting the application goes here<br />&nbsp;&nbsp;&nbsp; }<br />}<br /><br />обратим внимание - убрали <strong>throws </strong>из определения метода <strong>start</strong>()</p>',TIMESTAMP '2019-07-08 12:42:37',TIMESTAMP '2019-07-08 12:43:17');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3547,24,0,'Метод start() является точкой входа и называется <em>application launcher</em>. Аргумент типа Stage называется <em>primary stage</em> приложения.',TIMESTAMP '2019-07-08 12:46:50',TIMESTAMP '2019-07-08 12:46:50');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3548,24,2,'Для чего нужен элемент <strong>Stage</strong>?',TIMESTAMP '2019-07-08 12:50:30',TIMESTAMP '2019-07-08 12:50:30');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8819,3548,'Он является контейнером&nbsp;<em>сцены</em>, имеющей визуальные элементы - текст, формы, управляющие элементы и т.п.<br /><br />Stage - это, по сути, окно. У primary stage изначально сцены нет.',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3549,24,2,'Как вывести stage на экран?',TIMESTAMP '2019-07-08 13:01:04',TIMESTAMP '2019-07-08 13:01:04');
+	INSERT INTO Answer (id,questionId,text,correct,comment) OVERRIDING SYSTEM VALUE VALUES (8820,3549,'<p>С помощью метода <strong>show</strong>():<br /><br />public class HelloFXApp extends Application {<br />&nbsp;&nbsp;&nbsp; @Override<br />&nbsp;&nbsp;&nbsp; public void start(Stage stage) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Set a title for the stage<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stage.setTitle("Hello JavaFX Application");</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Show the stage<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stage.show();<br />&nbsp;&nbsp;&nbsp; }<br />}</p>',true,'');
+INSERT INTO Question (id,realmId,type,text,regDate,updateDate) OVERRIDING SYSTEM VALUE VALUES (3550,24,0,'Приложение JavaFX должно запускаться и без метода <strong>main</strong>(). Если все-таки хочется его прописать, то он должен выглядеть так:<br /><br />&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application.launch(args);<br />&nbsp;&nbsp;&nbsp; }',TIMESTAMP '2019-07-08 13:05:36',TIMESTAMP '2019-07-08 13:05:36');
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,2,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,3,2);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (0,4,3);
@@ -17663,6 +17696,11 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (111,3423,10);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (111,3424,11);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (111,3425,12);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (111,3426,13);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (111,3546,14);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (111,3547,15);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (111,3548,16);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (111,3549,17);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (111,3550,18);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (112,3473,1);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (112,3474,2);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (112,3477,3);
@@ -17691,6 +17729,18 @@ INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (115,3530,15);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (115,3531,16);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (115,3532,17);
 INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (115,3533,18);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (116,3534,1);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (116,3535,2);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (116,3536,3);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (116,3537,4);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (116,3538,6);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (116,3539,5);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (116,3540,7);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (116,3541,8);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (116,3542,9);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (116,3543,10);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (116,3544,11);
+INSERT INTO ThemeQuestion (themeId,questionId,orderNum) VALUES (116,3545,12);
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (0,'endermen','jpg');
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (1,'ferrari','jpeg');
 INSERT INTO Image (id,filename,extension) OVERRIDING SYSTEM VALUE VALUES (2,'NIIAS','png');

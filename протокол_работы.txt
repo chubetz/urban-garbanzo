@@ -33,4 +33,6 @@ Swing Trail tutorial: Lesson: Using Swing Components (https://docs.oracle.com/ja
 
 OCA 8 Mughal: p.649 #31 p.674
 
-JavaFX p.5 The program includes a package declaration, an import statement, and a class declaration
+JavaFX p.8 Run the HelloFXApp class using the following command, which will display a window
+
+Kotlin: p.13(12) 1.4.4 Interoperable
