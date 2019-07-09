@@ -25,7 +25,7 @@ JPA 2: p.69 Temporal Types
 
 Maven 3 : p.21 Chapter 2 - suspended
 
-Maven examples: p.10 Ch.2
+Maven examples: p.22 Simple Project Object Model
 
 Jenkins: p.45 Running a Pipeline
 
