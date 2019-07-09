@@ -31,7 +31,7 @@ Jenkins: p.45 Running a Pipeline
 
 Swing Trail tutorial: Lesson: Using Swing Components (https://docs.oracle.com/javase/tutorial/uiswing/components/index.html)
 
-OCA 8 Mughal: p.649 #31 p.674
+OCA 8 Mughal: p.653 #51 p.676
 
 JavaFX p.8 Run the HelloFXApp class using the following command, which will display a window
 
