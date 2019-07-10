@@ -15,7 +15,7 @@ Servlet: Ch2. p.66 The JSP for the second page
 
 Java 7 Exam: p.83 ch.2
 
-Java 7: p.444(443), Locating Data via Pattern Matching
+Java 7: p.449 Tokenizing with Scanner
 
 Spring in Action: p.58 Notice, however, that you can’t use the p-namespace when wiring a collection.
 
