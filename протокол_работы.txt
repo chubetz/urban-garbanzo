@@ -4,7 +4,7 @@ p.381 Ch22№31   p.548
 		#33
 		
 		
-SQL Fehily: p.218 Listing 7.14 is similar to Listing 7.13, except that it uses an additional grouping
+SQL Fehily: p.235 Creating Outer Joins with OUTER JOIN
 
 
 
@@ -15,11 +15,11 @@ Servlet: Ch2. p.66 The JSP for the second page
 
 Java 7 Exam: p.83 ch.2
 
-Java 7: p.449 Tokenizing with Scanner
+Java 7: p.454 Resource Bundles
 
-Spring in Action: p.58 Notice, however, that you can’t use the p-namespace when wiring a collection.
+Spring in Action: p.69(68) 	CONFIGURING PROFILES IN XML
 
-Eloquent JavaScript: p.40 A function can have multiple parameters or no parameters at all.
+Eloquent JavaScript: p.50 Recursion is not always just an inefficient alternative to looping.
 
 JPA 2: p.69 Temporal Types
 
@@ -27,7 +27,7 @@ Maven 3 : p.21 Chapter 2 - suspended
 
 Maven examples: p.22 Simple Project Object Model
 
-Jenkins: p.45 Running a Pipeline
+Jenkins: p.59 Chapter 3
 
 Swing Trail tutorial: Lesson: Using Swing Components (https://docs.oracle.com/javase/tutorial/uiswing/components/index.html)
 
