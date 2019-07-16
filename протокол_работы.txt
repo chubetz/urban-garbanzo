@@ -21,7 +21,7 @@ Spring in Action: p.69(68) 	CONFIGURING PROFILES IN XML
 
 Eloquent JavaScript: p.50 Recursion is not always just an inefficient alternative to looping.
 
-JPA 2: p.69 Temporal Types
+JPA 2: p.73 The name element globally names the generator, allowing us to reference it in the generator
 
 Maven 3 : p.21 Chapter 2 - suspended
 
@@ -35,4 +35,4 @@ OCA 8 Mughal: p.658 #61 p.677
 
 JavaFX p.8 Run the HelloFXApp class using the following command, which will display a window
 
-Kotlin: p.13(12) 1.4.4 Interoperable
+Kotlin: p.28 Representing and handling choices: enums and “when”
