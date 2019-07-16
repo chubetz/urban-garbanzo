@@ -21,7 +21,7 @@ Spring in Action: p.69(68) 	CONFIGURING PROFILES IN XML
 
 Eloquent JavaScript: p.50 Recursion is not always just an inefficient alternative to looping.
 
-JPA 2: p.73 The name element globally names the generator, allowing us to reference it in the generator
+JPA 2: p.78 Cardinality
 
 Maven 3 : p.21 Chapter 2 - suspended
 
