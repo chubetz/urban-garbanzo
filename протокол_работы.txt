@@ -1,7 +1,7 @@
 ﻿
 
-p.381 Ch22№31   p.548
-		#33
+p.391 Ch23#11   p.551
+#19		#18 #46 #51 #80 #82 #84
 		
 		
 SQL Fehily: p.235 Creating Outer Joins with OUTER JOIN
@@ -21,7 +21,7 @@ Spring in Action: p.69(68) 	CONFIGURING PROFILES IN XML
 
 Eloquent JavaScript: p.50 Recursion is not always just an inefficient alternative to looping.
 
-JPA 2: p.78 Cardinality
+JPA 2: p.83 Bidirectional One-to-One Mappings
 
 Maven 3 : p.21 Chapter 2 - suspended
 
