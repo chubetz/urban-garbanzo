@@ -9,7 +9,7 @@ SQL Fehily: p.235 Creating Outer Joins with OUTER JOIN
 
 
 
-Bloch: Item 2 p.10
+Bloch: Item 2 p.13(12) Luckily, there is a third alternative that combines the safety of the telescoping
 
 Servlet: Ch2. p.66 The JSP for the second page
 
