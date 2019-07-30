@@ -25,7 +25,7 @@ JPA 2: p.83 Bidirectional One-to-One Mappings
 
 Maven 3 : p.21 Chapter 2 - suspended
 
-Maven examples: p.22 Simple Project Object Model
+Maven examples: p.26(25) 3.5.2 Maven Lifecycle
 
 Jenkins: p.59 Chapter 3
 
