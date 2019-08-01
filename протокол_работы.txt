@@ -35,4 +35,5 @@ OCA 8 Mughal: p.658 #61 p.677
 
 JavaFX p.8 Run the HelloFXApp class using the following command, which will display a window
 
-Kotlin: p.28 Representing and handling choices: enums and “when”
+Kotlin: p.33 In Kotlin, you check whether a variable is of a certain type by using an is check
+
