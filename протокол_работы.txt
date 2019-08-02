@@ -27,7 +27,7 @@ Maven 3 : p.21 Chapter 2 - suspended
 
 Maven examples: p.26(25) 3.5.2 Maven Lifecycle
 
-Jenkins: p.59 Chapter 3
+Jenkins: p.65 User Input
 
 Swing Trail tutorial: Lesson: Using Swing Components (https://docs.oracle.com/javase/tutorial/uiswing/components/index.html)
 
