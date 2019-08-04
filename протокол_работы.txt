@@ -15,9 +15,9 @@ Servlet: Ch2. p.66 The JSP for the second page
 
 Java 7 Exam: p.83 ch.2
 
-Java 7: p.531 #2  p.537
+Java 7: p.541 Ch/10
 
-Spring in Action: p.69(68) 	CONFIGURING PROFILES IN XML
+Spring in Action: p.109 In Audience, the performance() method is annotated with @Pointcut.
 
 Eloquent JavaScript: p.50 Recursion is not always just an inefficient alternative to looping.
 
