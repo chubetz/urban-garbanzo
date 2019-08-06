@@ -17,7 +17,7 @@ Java 7 Exam: p.83 ch.2
 
 Java 7: p.541 Ch/10
 
-Spring in Action: p.159 showSpitterProfile() fetches a Spitter object from the SpitterRepository
+Spring in Action: p.209(208) 7.3 Handling exceptions
 
 Eloquent JavaScript: p.50 Recursion is not always just an inefficient alternative to looping.
 
