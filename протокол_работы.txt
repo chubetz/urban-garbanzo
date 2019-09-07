@@ -25,7 +25,7 @@ JPA 2: p.83 Bidirectional One-to-One Mappings
 
 Maven 3 : p.21 Chapter 2 - suspended
 
-Maven examples: p.34 Figure 3.6: Maven Resolves Transitive Dependencies
+Maven examples: p.83 6.5 Building the Multimodule Project
 
 Jenkins: p.65 User Input
 
