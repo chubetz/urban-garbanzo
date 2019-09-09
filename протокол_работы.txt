@@ -25,7 +25,7 @@ JPA 2: p.83 Bidirectional One-to-One Mappings
 
 Maven 3 : p.21 Chapter 2 - suspended
 
-Maven examples: p.103 That’s it. No really, you are done writing a class that can
+Maven examples: p.128 The build progresses through the lifecycle compiling bytecode
 
 Jenkins: p.65 User Input
 
