@@ -25,7 +25,7 @@ JPA 2: p.83 Bidirectional One-to-One Mappings
 
 Maven 3 : p.21 Chapter 2 - suspended
 
-Maven examples: p.128 The build progresses through the lifecycle compiling bytecode
+Maven examples: p.133 There are many instances in the previous chapters when the authors of this book took
 
 Jenkins: p.65 User Input
 
