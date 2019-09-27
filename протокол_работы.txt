@@ -4,7 +4,8 @@ p.415 Ch23#61   p.558
 		#80 #82 #84
 		
 		
-SQL Fehily: p.248 To create a self-join:
+SQL Fehily: p.298 Listing 8.56 uses two existence tests to
+list the authors who wrote (or cowrote)
 
 
 
