@@ -37,3 +37,5 @@ JavaFX p.8 Run the HelloFXApp class using the following command, which will disp
 Kotlin: p.33 In Kotlin, you check whether a variable is of a certain type by using an is check
 
 Elements of Programming Interviews: p.31 Stress interviews
+
+Linux Practical Guide: Chapter 2. Installation Overview p.25
