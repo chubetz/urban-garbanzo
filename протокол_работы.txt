@@ -8,7 +8,7 @@ SQL Fehily: ЗАКОНЧЕН!!!
 
 
 
-Bloch: p.41 Let’s start with a simple immutable two-dimensional integer point class
+Bloch: p.51 Fixing this problem is as simple as writing a proper hashCode
 
 Servlet: Ch2. p.66 The JSP for the second page
 
