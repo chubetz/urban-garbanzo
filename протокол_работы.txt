@@ -8,7 +8,7 @@ SQL Fehily: ЗАКОНЧЕН!!!
 
 
 
-Bloch: p.65 While these internal copies can usually be made by calling clone
+Bloch: p.81(80) Here is a slightly more complex example:
 
 Servlet: Ch2. p.66 The JSP for the second page
 
