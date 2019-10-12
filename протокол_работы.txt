@@ -8,7 +8,7 @@ SQL Fehily: ЗАКОНЧЕН!!!
 
 
 
-Bloch: p.81(80) Here is a slightly more complex example:
+Bloch: p.131 In this case there is one type parameter, representing the element type
 
 Servlet: Ch2. p.66 The JSP for the second page
 
