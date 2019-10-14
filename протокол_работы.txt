@@ -8,7 +8,7 @@ SQL Fehily: ЗАКОНЧЕН!!!
 
 
 
-Bloch: p.177 While the enum type (BasicOperation) is not extensible,
+Bloch: p.180 Item 39
 
 Servlet: Ch2. p.66 The JSP for the second page
 
@@ -39,3 +39,5 @@ Kotlin: p.33 In Kotlin, you check whether a variable is of a certain type by usi
 Elements of Programming Interviews: p.31 Stress interviews
 
 Linux Practical Guide: Chapter 2. Installation Overview p.25
+
+Horstmann - Core Java Volume II - p.457 (пока только аннотации)
