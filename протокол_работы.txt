@@ -8,7 +8,7 @@ SQL Fehily: ЗАКОНЧЕН!!!
 
 
 
-Bloch: p.167 If switch statements on enums are not a good choice for implementing
+Bloch: p.177 While the enum type (BasicOperation) is not extensible,
 
 Servlet: Ch2. p.66 The JSP for the second page
 
