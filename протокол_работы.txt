@@ -40,4 +40,4 @@ Elements of Programming Interviews: p.31 Stress interviews
 
 Linux Practical Guide: Chapter 2. Installation Overview p.25
 
-Horstmann - Core Java Volume II - p.467 (пока только аннотации)  8.4.4 Annotating Type Uses
+Horstmann - Core Java Volume II - p.476 (пока только аннотации)  8.6.1 Annotation Processors
