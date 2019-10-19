@@ -8,7 +8,7 @@ SQL Fehily: ЗАКОНЧЕН!!!
 
 
 
-Bloch: p.212 The previous code snippets use Scanner’s stream method to get a stream
+Bloch: p.252 For example, consider this code snippet, which prints the process ID of
 
 Servlet: Ch2. p.66 The JSP for the second page
 
