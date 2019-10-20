@@ -8,7 +8,7 @@ SQL Fehily: ЗАКОНЧЕН!!!
 
 
 
-Bloch: p.252 For example, consider this code snippet, which prints the process ID of
+Bloch: p.264 Item 58: Prefer for-each loops to traditional for loops
 
 Servlet: Ch2. p.66 The JSP for the second page
 
