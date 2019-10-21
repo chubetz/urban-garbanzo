@@ -8,7 +8,7 @@ SQL Fehily: ЗАКОНЧЕН!!!
 
 
 
-Bloch: p.264 Item 58: Prefer for-each loops to traditional for loops
+Bloch: p.276 Item 62: Avoid strings where other types are more appropriate
 
 Servlet: Ch2. p.66 The JSP for the second page
 
