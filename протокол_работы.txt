@@ -8,7 +8,7 @@ SQL Fehily: ЗАКОНЧЕН!!!
 
 
 
-Bloch: p.276 Item 62: Avoid strings where other types are more appropriate
+Bloch: p.324 Choosing the executor service for a particular application can be tricky.
 
 Servlet: Ch2. p.66 The JSP for the second page
 
