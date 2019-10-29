@@ -8,7 +8,7 @@ SQL Fehily: ЗАКОНЧЕН!!!
 
 
 
-Bloch: p.324 Choosing the executor service for a particular application can be tricky.
+Bloch: p.329 A related issue is whether to use notify or notifyAll to wake waiting
 
 Servlet: Ch2. p.66 The JSP for the second page
 
