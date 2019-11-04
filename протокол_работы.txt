@@ -8,7 +8,9 @@ SQL Fehily: ЗАКОНЧЕН!!!
 
 
 
-Bloch: p.329 A related issue is whether to use notify or notifyAll to wake waiting
+Bloch: ЗАКОНЧЕН!!!
+
+Java Threads 3rd edition. p.33 So threads are simply tasks that you want to execute at roughly the same time.
 
 Servlet: Ch2. p.66 The JSP for the second page
 
