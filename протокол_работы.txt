@@ -10,7 +10,7 @@ SQL Fehily: ЗАКОНЧЕН!!!
 
 Bloch: ЗАКОНЧЕН!!!
 
-Java Threads 3rd edition. p.33 So threads are simply tasks that you want to execute at roughly the same time.
+Java Threads 3rd edition. p.61 This leads to the question of whether you should use the Runnable interface or
 
 Servlet: Ch2. p.66 The JSP for the second page
 
