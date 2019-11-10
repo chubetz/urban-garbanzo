@@ -10,7 +10,7 @@ SQL Fehily: ЗАКОНЧЕН!!!
 
 Bloch: ЗАКОНЧЕН!!!
 
-Java Threads 3rd edition. p.113 Chapter 4. Thread Notification
+Java Threads 3rd edition. p.183 Later in this chapter, we examine the topic of lock starvation in depth.
 
 Servlet: Ch2. p.66 The JSP for the second page
 
