@@ -132,6 +132,7 @@ Javadoc
 профилирование!
 
 
+
 API коллекций просмотреть - не все есть в экзамене, например HashMap.forEach, putAll
 
 API java.util.concurrent
@@ -191,6 +192,8 @@ Generics tutorials by Bracha and Langer, and the IBM DeveloperWorks series by Al
 (static <T,U extends Comparable<? super U>>
 Comparator<T> 	comparing(Function<? super T,? extends U> keyExtractor)
 Accepts a function that extracts a Comparable sort key from a type T, and returns a Comparator<T> that compares by that sort key.)
+
+найти утилиты детекции дэдлоков или хотя бы выводы дампа потоков
 
 
 
