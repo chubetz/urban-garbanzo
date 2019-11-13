@@ -10,7 +10,7 @@ SQL Fehily: ЗАКОНЧЕН!!!
 
 Bloch: ЗАКОНЧЕН!!!
 
-Java Threads 3rd edition. p.193 Assuming that we can keep track of all of the locks that are owned by
+Java Threads 3rd edition. p.212 10.5 6.5 Lock Starvation
 
 Servlet: Ch2. p.66 The JSP for the second page
 
