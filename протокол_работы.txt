@@ -10,7 +10,7 @@ SQL Fehily: ЗАКОНЧЕН!!!
 
 Bloch: ЗАКОНЧЕН!!!
 
-Java Threads 3rd edition. p.212 10.5 6.5 Lock Starvation
+Java Threads 3rd edition. p.274 Chapter 10. Thread Pools
 
 Servlet: Ch2. p.66 The JSP for the second page
 
