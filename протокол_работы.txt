@@ -10,7 +10,7 @@ SQL Fehily: ЗАКОНЧЕН!!!
 
 Bloch: ЗАКОНЧЕН!!!
 
-Java Threads 3rd edition. p.274 Chapter 10. Thread Pools
+Java Threads 3rd edition. p.286 In our example, we used a LinkedBlockingQueue with an unbounded capacity
 
 Servlet: Ch2. p.66 The JSP for the second page
 
