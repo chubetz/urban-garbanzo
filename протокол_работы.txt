@@ -10,7 +10,7 @@ SQL Fehily: ЗАКОНЧЕН!!!
 
 Bloch: ЗАКОНЧЕН!!!
 
-Java Threads 3rd edition. p.286 In our example, we used a LinkedBlockingQueue with an unbounded capacity
+Java Threads 3rd edition. p.290 When you ask an executor service to run a callable object
 
 Servlet: Ch2. p.66 The JSP for the second page
 
