@@ -10,7 +10,7 @@ SQL Fehily: ЗАКОНЧЕН!!!
 
 Bloch: ЗАКОНЧЕН!!!
 
-Java Threads 3rd edition. p.290 When you ask an executor service to run a callable object
+Java Threads 3rd edition. p.405 The basic loop-scheduling types at our disposal include static or chunk
 
 Servlet: Ch2. p.66 The JSP for the second page
 
