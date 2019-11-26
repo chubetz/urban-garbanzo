@@ -10,7 +10,7 @@ SQL Fehily: ЗАКОНЧЕН!!!
 
 Bloch: ЗАКОНЧЕН!!!
 
-Java Threads 3rd edition. p.405 The basic loop-scheduling types at our disposal include static or chunk
+Java Threads 3rd edition. p.409 15.1.2.1 Loop-private variables
 
 Servlet: Ch2. p.66 The JSP for the second page
 
