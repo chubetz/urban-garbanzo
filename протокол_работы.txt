@@ -12,7 +12,7 @@ Bloch: ЗАКОНЧЕН!!!
 
 Java Threads 3rd edition. ЗАКОНЧЕН!!!
 
-Spring Developer Exam. p.91 There are two examples of configuration using XML in the following code snippet.
+Spring Developer Exam. p.99 CC O ut of the box, Spring will try to autowire by type, because rarely in an application is there need for more
 
 Servlet: Ch2. p.66 The JSP for the second page
 
