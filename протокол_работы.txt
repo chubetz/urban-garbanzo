@@ -12,7 +12,7 @@ Bloch: ЗАКОНЧЕН!!!
 
 Java Threads 3rd edition. ЗАКОНЧЕН!!!
 
-Spring Developer Exam. p.186 The database is a central resource in a software application, and thus it can
+Spring Developer Exam. p.226 Before Spring 4.0, the @TransactionConfiguration could be used on a test class used to define
 
 Servlet: Ch2. p.66 The JSP for the second page
 
