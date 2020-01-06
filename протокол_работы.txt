@@ -12,7 +12,7 @@ Bloch: ЗАКОНЧЕН!!!
 
 Java Threads 3rd edition. ЗАКОНЧЕН!!!
 
-Spring Developer Exam. p.226 Before Spring 4.0, the @TransactionConfiguration could be used on a test class used to define
+Spring Developer Exam. p.293 With this plugin set up, the Spring application can be run in two ways:
 
 Servlet: Ch2. p.66 The JSP for the second page
 
