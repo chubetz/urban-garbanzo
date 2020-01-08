@@ -12,7 +12,7 @@ Bloch: ЗАКОНЧЕН!!!
 
 Java Threads 3rd edition. ЗАКОНЧЕН!!!
 
-Spring Developer Exam. p.293 With this plugin set up, the Spring application can be run in two ways:
+Spring Developer Exam. p.300 Security is a cross-cutting concern, so implementing authorization might
 
 Servlet: Ch2. p.66 The JSP for the second page
 
