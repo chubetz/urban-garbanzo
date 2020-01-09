@@ -45,3 +45,5 @@ Elements of Programming Interviews: p.31 Stress interviews
 Linux Practical Guide: Chapter 2. Installation Overview p.25
 
 Horstmann - Core Java Volume II - p.481 (пока только аннотации)  8.7 Bytecode Engineering
+
+Java prim: task 478, KVKSTrainPosition#handle_record
