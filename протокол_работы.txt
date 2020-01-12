@@ -14,6 +14,8 @@ Java Threads 3rd edition. ЗАКОНЧЕН!!!
 
 Spring Developer Exam. p.300 Security is a cross-cutting concern, so implementing authorization might
 
+Practical unit-testing. p.41, If you think about it, you will realize that writing a test after a bug has been found really
+
 Servlet: Ch2. p.66 The JSP for the second page
 
 Java 7 Exam: p.83 ch.2
@@ -46,4 +48,4 @@ Linux Practical Guide: Chapter 2. Installation Overview p.25
 
 Horstmann - Core Java Volume II - p.481 (пока только аннотации)  8.7 Bytecode Engineering
 
-Java prim: task 478, KVKSTrainPosition#handle_record
+Java prim: task 476
