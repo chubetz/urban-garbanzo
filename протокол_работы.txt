@@ -14,7 +14,7 @@ Java Threads 3rd edition. ЗАКОНЧЕН!!!
 
 Spring Developer Exam. p.300 Security is a cross-cutting concern, so implementing authorization might
 
-Practical unit-testing. p.161, Even though myMethod() uses the new operator to create its collaborator
+Practical unit-testing. p.172, Now, if we rerun the test, it passes. Good, we have the first solution to the problem
 
 Servlet: Ch2. p.66 The JSP for the second page
 
