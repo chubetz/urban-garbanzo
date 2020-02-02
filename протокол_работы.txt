@@ -16,6 +16,8 @@ Spring Developer Exam. p.300 Security is a cross-cutting concern, so implementin
 
 Practical unit-testing. p.191, 9.2. Name Your Tests Consistently
 
+Introducing Gradle: p.12
+
 Servlet: Ch2. p.66 The JSP for the second page
 
 Java 7 Exam: p.83 ch.2
