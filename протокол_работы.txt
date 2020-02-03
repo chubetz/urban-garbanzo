@@ -14,9 +14,9 @@ Java Threads 3rd edition. ЗАКОНЧЕН!!!
 
 Spring Developer Exam. p.300 Security is a cross-cutting concern, so implementing authorization might
 
-Practical unit-testing. p.191, 9.2. Name Your Tests Consistently
+Practical unit-testing. ЗАКОНЧЕН!!!
 
-Introducing Gradle: p.12
+Introducing Gradle: p.29 Tasks
 
 Servlet: Ch2. p.66 The JSP for the second page
 
