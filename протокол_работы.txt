@@ -16,7 +16,7 @@ Spring Developer Exam. p.300 Security is a cross-cutting concern, so implementin
 
 Practical unit-testing. ЗАКОНЧЕН!!!
 
-Introducing Gradle: p.29 Tasks
+Introducing Gradle: p.49 Creating Web Projects
 
 Servlet: Ch2. p.66 The JSP for the second page
 
