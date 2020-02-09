@@ -16,7 +16,11 @@ Spring Developer Exam. p.300 Security is a cross-cutting concern, so implementin
 
 Practical unit-testing. ЗАКОНЧЕН!!!
 
-Introducing Gradle: p.67 Chapter 6
+Introducing Gradle: ЗАКОНЧЕН!!!
+
+Introducing Maven: p.3 Plug-ins
+
+Beginning Hibernate: p.11 Installing Maven
 
 Servlet: Ch2. p.66 The JSP for the second page
 
