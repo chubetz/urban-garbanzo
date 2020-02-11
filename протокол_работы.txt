@@ -18,7 +18,7 @@ Practical unit-testing. ЗАКОНЧЕН!!!
 
 Introducing Gradle: ЗАКОНЧЕН!!!
 
-Introducing Maven: p.28 Dependency Identification
+Introducing Maven: p.37 CHAPTER 4
 
 Beginning Hibernate: p.11 Installing Maven
 
