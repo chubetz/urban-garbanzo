@@ -18,7 +18,7 @@ Practical unit-testing. ЗАКОНЧЕН!!!
 
 Introducing Gradle: ЗАКОНЧЕН!!!
 
-Introducing Maven: p.58 Maven lifecycle is an abstract concept and can’t be directly executed.
+Introducing Maven: p.74 Multimodule Project
 
 Beginning Hibernate: p.11 Installing Maven
 
