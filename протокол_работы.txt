@@ -18,7 +18,7 @@ Practical unit-testing. ЗАКОНЧЕН!!!
 
 Introducing Gradle: ЗАКОНЧЕН!!!
 
-Introducing Maven: p.74 Multimodule Project
+Introducing Maven: p.95 Maven provides several archetypes that allow you to generate site structure automatically.
 
 Beginning Hibernate: p.11 Installing Maven
 
