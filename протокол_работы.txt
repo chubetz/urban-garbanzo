@@ -18,9 +18,9 @@ Practical unit-testing. ЗАКОНЧЕН!!!
 
 Introducing Gradle: ЗАКОНЧЕН!!!
 
-Introducing Maven: p.95 Maven provides several archetypes that allow you to generate site structure automatically.
+Introducing Maven: ЗАКОНЧЕН!!!
 
-Beginning Hibernate: p.11 Installing Maven
+Beginning Hibernate: p.22 However, being able to use the data model isn’t the same as being able to persist or query the data
 
 Servlet: Ch2. p.66 The JSP for the second page
 
