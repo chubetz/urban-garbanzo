@@ -20,7 +20,7 @@ Introducing Gradle: ЗАКОНЧЕН!!!
 
 Introducing Maven: ЗАКОНЧЕН!!!
 
-Beginning Hibernate: p.22 However, being able to use the data model isn’t the same as being able to persist or query the data
+Beginning Hibernate: p.31 The way this class is used is very simple and can be seen in the test for SessionUtil
 
 Servlet: Ch2. p.66 The JSP for the second page
 
