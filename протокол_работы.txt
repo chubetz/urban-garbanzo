@@ -20,7 +20,7 @@ Introducing Gradle: ЗАКОНЧЕН!!!
 
 Introducing Maven: ЗАКОНЧЕН!!!
 
-Beginning Hibernate: p.46 With these classes, there’s no “owning relation”; the mappedBy attribute in Email is commented out.
+Beginning Hibernate: p.59 Refreshing Entities
 
 Servlet: Ch2. p.66 The JSP for the second page
 
