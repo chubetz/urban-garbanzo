@@ -20,7 +20,7 @@ Introducing Gradle: ЗАКОНЧЕН!!!
 
 Introducing Maven: ЗАКОНЧЕН!!!
 
-Beginning Hibernate: p.59 Refreshing Entities
+Beginning Hibernate: ЗАКОНЧЕН!!!
 
 Servlet: Ch2. p.66 The JSP for the second page
 
