@@ -22,7 +22,7 @@ Introducing Maven: ЗАКОНЧЕН!!!
 
 Beginning Hibernate: ЗАКОНЧЕН!!!
 
-Spring Core: p. 194 The search performed is hierarchical. By
+Spring Core: p. 220 Some of the most important methods from the Resource interface are:
 
 Servlet: Ch2. p.66 The JSP for the second page
 
