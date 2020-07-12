@@ -22,7 +22,7 @@ Introducing Maven: ЗАКОНЧЕН!!!
 
 Beginning Hibernate: ЗАКОНЧЕН!!!
 
-Spring Core: p. 251 3.4.3. Using GenericConverter
+Spring Core: ЗАКОНЧЕН!!!
 
 Servlet: Ch2. p.66 The JSP for the second page
 
