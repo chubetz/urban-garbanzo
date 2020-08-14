@@ -1058,3 +1058,13 @@ SQL
 Опыт работы в команде
 Опыт работы с Linux
 Опыт работы со средой разработки NetBeans, Eclipse,Intellij Idea и т.п.
+
+
+
+
+Новый проект!!!
+
+как настроить плагин Maven Tomcat: https://www.theserverside.com/video/Step-by-step-Maven-Tomcat-WAR-file-deploy-example
+
+5 ошибок при работе с hibernate:
+https://thorben-janssen.com/5-common-hibernate-mistakes-that-cause-dozens-of-unexpected-queries/

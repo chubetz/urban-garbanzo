@@ -26,6 +26,12 @@ Spring Core: ЗАКОНЧЕН!!!
 
 Deck Spring MVC: ЗАКОНЧЕН!!!
 
+Spring Test: p.16  @TestPropertySource
+
+Spring Data: p.12 1.4.2. Example of Declarative Transaction Implementation
+
+Pro Spring 5: p.30 The code here is fairly simple. We instantiate instances of HelloWorldMessageProvider and
+
 Servlet: Ch2. p.66 The JSP for the second page
 
 Java 7 Exam: p.83 ch.2
