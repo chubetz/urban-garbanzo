@@ -26,11 +26,14 @@ Spring Core: ЗАКОНЧЕН!!!
 
 Deck Spring MVC: ЗАКОНЧЕН!!!
 
-Spring Test: p.16  @TestPropertySource
+Spring Test: p.27  @SqlGroup
 
-Spring Data: p.12 1.4.2. Example of Declarative Transaction Implementation
+Spring Data: p.22 1.4.5. <tx:advice/> Settings
 
-Pro Spring 5: p.30 The code here is fairly simple. We instantiate instances of HelloWorldMessageProvider and
+Pro Spring 5: p.41 Setter Dependency Injection
+
+Spring 5 recipes: p.44 2-4. Autowire POJOs with the @Resource and @Inject Annotations
+
 
 Servlet: Ch2. p.66 The JSP for the second page
 
