@@ -26,13 +26,13 @@ Spring Core: ЗАКОНЧЕН!!!
 
 Deck Spring MVC: ЗАКОНЧЕН!!!
 
-Spring Test: p.27  @SqlGroup
+Spring Test: p.37  Consider the following example:
 
-Spring Data: p.22 1.4.5. <tx:advice/> Settings
+Spring Data: p.42 1.4.9. Using @Transactional with AspectJ
 
-Pro Spring 5: p.41 Setter Dependency Injection
+Pro Spring 5: p.50 The <context:component-scan> tag tells Spring to scan the code for injectable
 
-Spring 5 recipes: p.44 2-4. Autowire POJOs with the @Resource and @Inject Annotations
+Spring 5 recipes: p.54 2-7. Resolve I18N Text Messages for Different Locales in Properties Files
 
 
 Servlet: Ch2. p.66 The JSP for the second page
