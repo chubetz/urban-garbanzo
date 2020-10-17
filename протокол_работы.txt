@@ -26,7 +26,7 @@ Spring Core: ЗАКОНЧЕН!!!
 
 Deck Spring MVC: ЗАКОНЧЕН!!!
 
-Spring Test: p.37  Consider the following example:
+Spring Test: ЗАКОНЧЕН!!!
 
 Spring Data: p.42 1.4.9. Using @Transactional with AspectJ
 
@@ -34,7 +34,7 @@ Pro Spring 5: p.50 The <context:component-scan> tag tells Spring to scan the cod
 
 Spring 5 recipes: p.54 2-7. Resolve I18N Text Messages for Different Locales in Properties Files
 
-Spring MVC: p.81 Handler Classes
+Spring MVC: ЗАКОНЧЕН!!!
 
 
 Servlet: Ch2. p.66 The JSP for the second page
