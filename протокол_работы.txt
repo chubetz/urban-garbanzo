@@ -28,7 +28,7 @@ Deck Spring MVC: ЗАКОНЧЕН!!!
 
 Spring Test: ЗАКОНЧЕН!!!
 
-Spring Data: p.42 1.4.9. Using @Transactional with AspectJ
+Spring Data: ЗАКОНЧЕН!!!
 
 Pro Spring 5: p.50 The <context:component-scan> tag tells Spring to scan the code for injectable
 
@@ -43,7 +43,7 @@ Java 7 Exam: p.83 ch.2
 
 Java 7: p.541 Ch/10
 
-Spring in Action: готово!!!
+Spring in Action: ЗАКОНЧЕН!!!
 
 Eloquent JavaScript: p.50 Recursion is not always just an inefficient alternative to looping.
 
@@ -69,4 +69,41 @@ Linux Practical Guide: Chapter 2. Installation Overview p.25
 
 Horstmann - Core Java Volume II - p.481 (пока только аннотации)  8.7 Bytecode Engineering
 
-Java prim: task 476
+Java prim: task 498   
+
+_self_export_project_KVKS
+_self_find_variant_thread
+KVKSGeneralChannelModule#handle_record
+KVKSLocoTrainInteraction#_self_generate_schedule_from_raw_turbohash
+МодельТекущийГрафик#create
+
+Изучаем HTML p.64
+
+
+Резюме:
+
+Навыки программиста:
+- Java SE 8
+- Spring (core, MVC)
+- JUnit, Mockito
+- SQL, XML и иные вспомогательные технологии.
+- Также в анамнезе: Perl, VB, C#, Ruby, плюс различные DSL
+- Умение работать в команде, владение средствами командной разработки (в последнее время - git, стек Atlassian)
+
+Навыки лингвиста:
+- Умение подробно, понятно и грамотно документировать свой и чужой код, в т.ч. на англ. языке.
+- Умение общаться с коллегами, партнерами и клиентами на английском языке, а разговор на бытовую тематику могу поддержать и на немецком
+
+Вдобавок:
+- Охотно и быстро учусь.
+- Умею делиться знаниями.
+- Считаю дружбу и взаимное уважение важнейшими показателями коллектива и вношу свой вклад в их развитие.
+
+
+
+Здравствуйте!
+
+Меня заинтересовала Ваша вакансия начинающего Java-разработчика. Последние несколько лет я работал преимущественно с JRuby, но принял решение вернуться в экосисему Java. У меня есть опыт Java-разработки, но вне популярных ORM- и DI-фреймворков, поэтому в настоящее время я активно изучаю связку Spring/Hibernate и ряд других актуальных технологий. Буду признателен за ознакомление с моим резюме.
+
+С уважением,
+Дмитрий Горшенин
