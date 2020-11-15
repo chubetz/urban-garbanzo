@@ -30,11 +30,20 @@ Spring Test: ЗАКОНЧЕН!!!
 
 Spring Data: ЗАКОНЧЕН!!!
 
-Pro Spring 5: p.50 The <context:component-scan> tag tells Spring to scan the code for injectable
+Pro Spring 5: p.109 Resolving Dependencies
 
-Spring 5 recipes: p.54 2-7. Resolve I18N Text Messages for Different Locales in Properties Files
+Spring 5 recipes: p.94 2-19. Introduce States to Your POJOs with AOP
 
-Spring MVC: ЗАКОНЧЕН!!!
+Pro Spring Security: p.35 CHAPTER 3
+
+Pro Spring Boot 2: p.42 Why Spring Boot?
+
+Pro Spring MVC: p. 24 C H A P T E R 2
+
+
+Data Structures and Algorithms
+
+Spring Web: ЗАКОНЧЕН!!!
 
 
 Servlet: Ch2. p.66 The JSP for the second page
