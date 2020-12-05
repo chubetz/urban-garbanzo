@@ -41,7 +41,9 @@ Pro Spring Boot 2: p.42 Why Spring Boot?
 Pro Spring MVC: p. 24 C H A P T E R 2
 
 
-Data Structures and Algorithms
+Data Structures and Algorithms, p.58 - Cha[trer 2
+
+Kotlin programming Chapter 7 Strings
 
 Spring Web: ЗАКОНЧЕН!!!
 
