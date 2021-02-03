@@ -112,6 +112,10 @@ https://editor.0lik.ru/
 JSP Faqs
 https://coderanch.com/wiki/660053/Jsp-Faq
 
+
+Отличная статья по кэшированию в Hibernate:
+https://habr.com/ru/post/135176/
+
 Планы по Java
 =============
 
