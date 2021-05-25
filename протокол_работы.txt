@@ -43,6 +43,8 @@ Pro Spring MVC: p. 24 C H A P T E R 2
 
 Data Structures and Algorithms, p.276 - Ch.6 Recursion
 
+Patterns - 
+
 Kotlin programming Chapter 7 Strings
 
 Spring Web: ЗАКОНЧЕН!!!
