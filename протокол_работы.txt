@@ -45,6 +45,8 @@ Data Structures and Algorithms, p.276 - Ch.6 Recursion
 
 Patterns - 
 
+Clean Code - p.152 Ch.9
+
 Kotlin programming Chapter 7 Strings
 
 Spring Web: ЗАКОНЧЕН!!!
