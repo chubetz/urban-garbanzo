@@ -41,9 +41,9 @@ Pro Spring Boot 2: p.42 Why Spring Boot?
 Pro Spring MVC: p. 24 C H A P T E R 2
 
 
-Data Structures and Algorithms, p.276 - Ch.6 Recursion
+Data Structures and Algorithms, p.340 - Ch.7
 
-Patterns - 
+Patterns - Ch. 6
 
 Clean Code - p.152 Ch.9
 
