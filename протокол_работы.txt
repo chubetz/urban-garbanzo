@@ -43,7 +43,7 @@ Pro Spring MVC: p. 24 C H A P T E R 2
 
 Data Structures and Algorithms, p.340 - Ch.7
 
-Patterns - p.111 Q&A Session
+Patterns - p.179 Ch.12
 
 Clean Code - p.152 Ch.9
 
