@@ -43,9 +43,9 @@ Pro Spring MVC: p. 24 C H A P T E R 2
 
 Data Structures and Algorithms, p.340 - Ch.7
 
-Patterns - p.179 Ch.12
+Patterns - p.190 Q&A Session
 
-Clean Code - p.348 Concurrency II
+Clean Code - ЗАКОНЧЕН!!!
 
 Kotlin programming Chapter 7 Strings
 
