@@ -43,7 +43,7 @@ Pro Spring MVC: p. 24 C H A P T E R 2
 
 Data Structures and Algorithms, p.340 - Ch.7
 
-Patterns - p.377 Ch. 22
+Patterns - ЗАКОНЧЕН!!!
 
 Clean Code - ЗАКОНЧЕН!!!
 
