@@ -51,7 +51,7 @@ Kotlin programming Chapter 7 Strings
 
 Spring Web: ЗАКОНЧЕН!!!
 
-React: CHAPTER 2 p.31
+React: p.72 Working with Booleans
 
 Servlet: Ch2. p.66 The JSP for the second page
 
