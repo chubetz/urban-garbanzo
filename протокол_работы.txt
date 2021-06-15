@@ -51,7 +51,7 @@ Kotlin programming Chapter 7 Strings
 
 Spring Web: ЗАКОНЧЕН!!!
 
-React: p.72 Working with Booleans
+React: p.123 To allow the user to add a product to the cart, I added a button alongside
 
 Servlet: Ch2. p.66 The JSP for the second page
 
