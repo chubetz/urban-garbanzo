@@ -30,7 +30,7 @@ Spring Test: ЗАКОНЧЕН!!!
 
 Spring Data: ЗАКОНЧЕН!!!
 
-Pro Spring 5: p.109 Resolving Dependencies
+Pro Spring 5: p.133 As you can see, not much in this example has changed.
 
 Spring 5 recipes: p.94 2-19. Introduce States to Your POJOs with AOP
 
