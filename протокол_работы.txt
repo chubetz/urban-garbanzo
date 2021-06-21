@@ -30,7 +30,7 @@ Spring Test: ЗАКОНЧЕН!!!
 
 Spring Data: ЗАКОНЧЕН!!!
 
-Pro Spring 5: p.170 Using the getMessage() Method
+Pro Spring 5: p.211 CHAPTER 5
 
 Spring 5 recipes: p.94 2-19. Introduce States to Your POJOs with AOP
 
