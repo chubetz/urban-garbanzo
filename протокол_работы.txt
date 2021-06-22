@@ -32,7 +32,7 @@ Spring Data: ЗАКОНЧЕН!!!
 
 Pro Spring 5: p.211 CHAPTER 5
 
-Spring 5 recipes: p.94 2-19. Introduce States to Your POJOs with AOP
+Spring 5 recipes: p.112 2-24. Communicate Application Events Between POJOs
 
 Pro Spring Security: p.35 CHAPTER 3
 
