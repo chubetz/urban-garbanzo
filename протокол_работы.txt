@@ -32,13 +32,15 @@ Spring Data: ЗАКОНЧЕН!!!
 
 Pro Spring 5: p.211 CHAPTER 5
 
-Spring 5 recipes: p.195 Use GSON to Produce JSON
+Spring 5 recipes: p.213 Now when making a reservation, you will see something like this in the logs:
 
 Pro Spring Security: p.35 CHAPTER 3
 
 Pro Spring Boot 2: p.42 Why Spring Boot?
 
 Pro Spring MVC: p. 24 C H A P T E R 2
+
+Pro Spring MVC 2d edition : p.65 In the early days of Java web development, servlets, or JavaServer Pages mainly
 
 
 Data Structures and Algorithms, p.340 - Ch.7
