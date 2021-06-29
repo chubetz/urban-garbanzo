@@ -30,7 +30,7 @@ Spring Test: ЗАКОНЧЕН!!!
 
 Spring Data: ЗАКОНЧЕН!!!
 
-Pro Spring 5: p.279 First, we need to declare the aop namespace in the <beans> tags.
+Pro Spring 5: p.284 Using @AspectJ-Style Annotations
 
 Spring 5 recipes: p.213 Now when making a reservation, you will see something like this in the logs:
 
