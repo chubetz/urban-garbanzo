@@ -30,7 +30,7 @@ Spring Test: ЗАКОНЧЕН!!!
 
 Spring Data: ЗАКОНЧЕН!!!
 
-Pro Spring 5: p.284 Using @AspectJ-Style Annotations
+Pro Spring 5: p.305 Let’s create a plain form of implementation of the SingerDao interface
 
 Spring 5 recipes: p.213 Now when making a reservation, you will see something like this in the logs:
 
