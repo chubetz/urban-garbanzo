@@ -32,7 +32,7 @@ Spring Data: ЗАКОНЧЕН!!!
 
 Pro Spring 5: p.305 Let’s create a plain form of implementation of the SingerDao interface
 
-Spring 5 recipes: p.263 Retrieve Data as a Mapped Object
+Spring 5 recipes: p.314 Encrypt Passwords
 
 Pro Spring Security: p.35 CHAPTER 3
 
