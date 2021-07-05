@@ -40,7 +40,7 @@ Pro Spring Boot 2: p.42 Why Spring Boot?
 
 Pro Spring MVC: p. 24 C H A P T E R 2
 
-Pro Spring MVC 2d edition : p.102 К предыдущей карточке!!! Listing 4-9. The HandlerMapping API
+Pro Spring MVC 2d edition : p.152 If we now enter the username and password (jd/secret)
 
 Data Structures and Algorithms, p.340 - Ch.7
 
