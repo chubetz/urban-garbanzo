@@ -30,7 +30,7 @@ Spring Test: ЗАКОНЧЕН!!!
 
 Spring Data: ЗАКОНЧЕН!!!
 
-Pro Spring 5: p.305 Let’s create a plain form of implementation of the SingerDao interface
+Pro Spring 5: p.335 Let’s proceed to implement the findByFirstName() method,
 
 Spring 5 recipes: p.314 Encrypt Passwords
 
@@ -40,7 +40,7 @@ Pro Spring Boot 2: p.42 Why Spring Boot?
 
 Pro Spring MVC: p. 24 C H A P T E R 2
 
-Pro Spring MVC 2d edition : p.172 Methods annotated with @ModelAttribute have the same flexibility
+Pro Spring MVC 2d edition : p.203 Table 5-22. The Error Codes for Field Errors with JSR-303 Annotations
 
 Data Structures and Algorithms, p.340 - Ch.7
 
