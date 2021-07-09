@@ -30,7 +30,7 @@ Spring Test: ЗАКОНЧЕН!!!
 
 Spring Data: ЗАКОНЧЕН!!!
 
-Pro Spring 5: p.396 You probably expect that there is an equivalent configuration using Java configuration classes
+Pro Spring 5: p.410 Querying with Untyped Results
 
 Spring 5 recipes: p.314 Encrypt Passwords
 
