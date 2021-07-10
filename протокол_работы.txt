@@ -30,9 +30,9 @@ Spring Test: ЗАКОНЧЕН!!!
 
 Spring Data: ЗАКОНЧЕН!!!
 
-Pro Spring 5: p.410 Querying with Untyped Results
+Pro Spring 5: p.417 Updating Data
 
-Spring 5 recipes: p.314 Encrypt Passwords
+Spring 5 recipes: p.324 Although Spring Security has already several built-in functions
 
 Pro Spring Security: p.35 CHAPTER 3
 
