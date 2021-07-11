@@ -32,7 +32,8 @@ Spring Data: ЗАКОНЧЕН!!!
 
 Pro Spring 5: p.417 Updating Data
 
-Spring 5 recipes: p.324 Although Spring Security has already several built-in functions
+Spring 5 recipes: p.389 9-6. Avoid Problems by Using ORM Frameworks Directly
+Пропущено: глава 8 (Spring Mobile)
 
 Pro Spring Security: p.35 CHAPTER 3
 
