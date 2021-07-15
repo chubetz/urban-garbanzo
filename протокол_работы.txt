@@ -32,7 +32,7 @@ Spring Data: ЗАКОНЧЕН!!!
 
 Pro Spring 5: p.417 Updating Data
 
-Spring 5 recipes: p.394 Persist Objects Using the Hibernate API with JPA Annotations
+Spring 5 recipes: p.420 To demonstrate the problems that can arise without transaction
 Пропущено: глава 8 (Spring Mobile)
 
 Pro Spring Security: p.35 CHAPTER 3
