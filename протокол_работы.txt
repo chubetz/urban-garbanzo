@@ -32,7 +32,7 @@ Spring Data: ЗАКОНЧЕН!!!
 
 Pro Spring 5: p.417 Updating Data
 
-Spring 5 recipes: p.420 To demonstrate the problems that can arise without transaction
+Spring 5 recipes: p.429 You can also have the IoC container inject a transaction template instead of creating it directly.
 Пропущено: глава 8 (Spring Mobile)
 
 Pro Spring Security: p.35 CHAPTER 3
@@ -41,7 +41,7 @@ Pro Spring Boot 2: p.42 Why Spring Boot?
 
 Pro Spring MVC: p. 24 C H A P T E R 2
 
-Pro Spring MVC 2d edition : p.203 Table 5-22. The Error Codes for Field Errors with JSR-303 Annotations
+Pro Spring MVC 2d edition : p.207 Table 5-24. The LocaleResolver Overview
 
 Data Structures and Algorithms, p.340 - Ch.7
 
