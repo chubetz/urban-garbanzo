@@ -30,7 +30,7 @@ Spring Test: ЗАКОНЧЕН!!!
 
 Spring Data: ЗАКОНЧЕН!!!
 
-Pro Spring 5: p.471 Table 9-1. Transaction Isolation Levels
+Pro Spring 5: p.537 CHAPTER 11
 
 Spring 5 recipes: p.429 You can also have the IoC container inject a transaction template instead of creating it directly.
 Пропущено: глава 8 (Spring Mobile)
