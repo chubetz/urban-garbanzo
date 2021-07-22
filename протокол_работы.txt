@@ -32,8 +32,10 @@ Spring Data: ЗАКОНЧЕН!!!
 
 Pro Spring 5: p.537 CHAPTER 11
 
-Spring 5 recipes: p.429 You can also have the IoC container inject a transaction template instead of creating it directly.
+Spring 5 recipes: p.569 Define an E-mail Template
 Пропущено: глава 8 (Spring Mobile)
+Пропущено: глава 11 (Spring Batch)
+Пропущено: глава 13  - рецепты 13-1 - 13-3
 
 Pro Spring Security: p.35 CHAPTER 3
 
