@@ -32,10 +32,19 @@ Spring Data: ЗАКОНЧЕН!!!
 
 Pro Spring 5: p.537 CHAPTER 11
 
-Spring 5 recipes: p.569 Define an E-mail Template
+Spring 5 recipes: p.716 Before you create integration tests to test the AccountService instance that uses this DAO
 Пропущено: глава 8 (Spring Mobile)
 Пропущено: глава 11 (Spring Batch)
-Пропущено: глава 13  - рецепты 13-1 - 13-3
+Пропущено: глава 13  - рецепты 13-1 - 13-3,
+13-7. Expose and Invoke Services Through RMI
+13-8. Expose and Invoke Services Through HTTP
+13-10. Use Contract-First SOAP Web Services
+13-11. Expose and Invoke SOAP Web Services with Spring-WS 
+13-12. Develop SOAP Web Services with Spring-WS and XML Marshalling
+Пропущено: глава 14 (Spring Messaging)
+Пропущено: глава 15 (Spring Integration)
+
+
 
 Pro Spring Security: p.35 CHAPTER 3
 
