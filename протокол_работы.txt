@@ -32,7 +32,7 @@ Spring Data: ЗАКОНЧЕН!!!
 
 Pro Spring 5: p.537 CHAPTER 11
 
-Spring 5 recipes: p.716 Before you create integration tests to test the AccountService instance that uses this DAO
+Spring 5 recipes: p.795 APPENDIX B Caching
 Пропущено: глава 8 (Spring Mobile)
 Пропущено: глава 11 (Spring Batch)
 Пропущено: глава 13  - рецепты 13-1 - 13-3,
@@ -43,6 +43,8 @@ Spring 5 recipes: p.716 Before you create integration tests to test the AccountS
 13-12. Develop SOAP Web Services with Spring-WS and XML Marshalling
 Пропущено: глава 14 (Spring Messaging)
 Пропущено: глава 15 (Spring Integration)
+Пропущено: глава 17 (Grails)
+Пропущено: APPENDIX A Deploying to the Cloud
 
 
 
