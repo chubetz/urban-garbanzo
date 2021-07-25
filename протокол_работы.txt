@@ -54,7 +54,7 @@ Pro Spring Boot 2: p.42 Why Spring Boot?
 
 Pro Spring MVC: p. 24 C H A P T E R 2
 
-Pro Spring MVC 2d edition : p.318 PDF
+Pro Spring MVC 2d edition : p.339 These three instances are introduced to externalize
 
 Data Structures and Algorithms, p.340 - Ch.7
 
