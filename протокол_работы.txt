@@ -54,7 +54,11 @@ Pro Spring Boot 2: p.42 Why Spring Boot?
 
 Pro Spring MVC: p. 24 C H A P T E R 2
 
-Pro Spring MVC 2d edition : p.339 These three instances are introduced to externalize
+Pro Spring MVC 2d edition : p.482 Spring Security provides a way to configure and customize
+остановились на гл. 10 стр. 370.
+Гл. 11 также пока на потом.
+Пропущено: гл. 13 (Spring Applications in the Cloud)
+
 
 Data Structures and Algorithms, p.340 - Ch.7
 
