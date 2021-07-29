@@ -31,6 +31,11 @@ Spring Test: ЗАКОНЧЕН!!!
 Spring Data: ЗАКОНЧЕН!!!
 
 Pro Spring 5: p.537 CHAPTER 11
+Пропущено: Глава 12. Using Spring Remoting
+Пропущено: Глава 14. Scripting Support in Spring
+Пропущено:  Глава 15. Application Monitoring
+Пропущено: Глава 17. WebSocket
+Пропущено: Глава 18. Spring projects: Batch, Integration, XD, and More
 
 Spring 5 recipes: p.795 APPENDIX B Caching
 Пропущено: глава 8 (Spring Mobile)
@@ -56,7 +61,7 @@ Pro Spring MVC: p. 24 C H A P T E R 2
 
 Pro Spring MVC 2d edition : p.482 Spring Security provides a way to configure and customize
 остановились на гл. 10 стр. 370.
-Гл. 11 также пока на потом.
+Гл. 11 также пока на потом .
 Пропущено: гл. 13 (Spring Applications in the Cloud)
 
 
