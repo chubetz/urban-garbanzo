@@ -34,6 +34,7 @@ Pro Spring 5: p.537 CHAPTER 11
 Пропущено: Глава 12. Using Spring Remoting
 Пропущено: Глава 14. Scripting Support in Spring
 Пропущено:  Глава 15. Application Monitoring
+Пропущено: Глава 16. Web applications - уже и так на эту тему прочитана масса.
 Пропущено: Глава 17. WebSocket
 Пропущено: Глава 18. Spring projects: Batch, Integration, XD, and More
 
