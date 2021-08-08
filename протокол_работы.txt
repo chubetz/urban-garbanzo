@@ -70,7 +70,7 @@ Java concurrency in practice: p.7 UnsafeSequence illustrates a common concurrenc
 OCP-11-I. p.92 Ch.2
 
 
-Data Structures and Algorithms, p.340 - Ch.7
+Data Structures and Algorithms, p.350 - Partitioning (ch.7)
 
 Patterns - ЗАКОНЧЕН!!!
 
