@@ -69,6 +69,9 @@ Java concurrency in practice: p.7 UnsafeSequence illustrates a common concurrenc
 
 OCP-11-I. p.92 Ch.2
 
+Mihalcea - p.12 CH.2. JDBC Connection Management
+
+Spring persistence with Hibernate - p.11 The Benefit of Coding to Interfaces
 
 Data Structures and Algorithms, p.350 - Partitioning (ch.7)
 
