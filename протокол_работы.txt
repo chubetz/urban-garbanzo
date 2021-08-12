@@ -67,7 +67,7 @@ Pro Spring MVC 2d edition : ЗАКОНЧЕН!!! локально
 
 Java concurrency in practice: p.7 UnsafeSequence illustrates a common concurrency hazard
 
-OCP-11-I. p.92 Ch.2
+OCP-11-I. p.103 Declaring Variables
 
 Mihalcea - p.12 CH.2. JDBC Connection Management
 
