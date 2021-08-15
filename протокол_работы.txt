@@ -71,7 +71,7 @@ OCP-11-I. p.103 Declaring Variables
 
 Mihalcea - p.12 CH.2. JDBC Connection Management
 
-Spring persistence with Hibernate - p.61 As mentioned earlier, our Person class extends Thing
+Spring persistence with Hibernate - p.74 Note that we have set up two different datasources
 
 Data Structures and Algorithms, p.350 - Partitioning (ch.7)
 
