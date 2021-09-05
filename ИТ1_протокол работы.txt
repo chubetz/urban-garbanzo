@@ -3,3 +3,5 @@
 Guava: Throwables
 
 СортМастер: стр.18 2. Общее описание
+
+Выборочный конспект RammitMQ in Depth. Стр. 101,102 (direct exchange), 115 (fanout exchange), 119 (topic exchange), 122 (header exchange)
