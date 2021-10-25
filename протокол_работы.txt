@@ -83,6 +83,9 @@ Kotlin programming Chapter 7 Strings
 
 Spring Web: ЗАКОНЧЕН!!!
 
+RabbitMQ in depth
+p.4 RabbitMQ’s features and benefits
+
 React: p.123 To allow the user to add a product to the cart, I added a button alongside
 
 Servlet: Ch2. p.66 The JSP for the second page
